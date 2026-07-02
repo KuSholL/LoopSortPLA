@@ -1,0 +1,118 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: M_Gradient_Scissors2
+  m_Shader: {fileID: 4800000, guid: 50fe90dc2e08f67429531e1074b6f31b, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords:
+  - TCP2_REFLECTIONS_FRESNEL
+  - TCP2_RIM_LIGHTING_LIGHTMASK
+  - TCP2_SHADOW_LIGHT_COLOR
+  - TCP2_UV_NORMALS_FULL
+  - _OUTLINEENABLE_ON
+  - _USEOUTLINE_ON
+  - _USESTYLIZEDFX_ON
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 1
+  m_CustomRenderQueue: 3000
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BaseMap:
+        m_Texture: {fileID: 2800000, guid: 2a2acdbdfebf16b4cb4976ccce542b72, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Cubemap:
+        m_Texture: {fileID: 8900000, guid: 00ca37d2d49c93b418783eb5c1d4888c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GradientAO:
+        m_Texture: {fileID: 2800000, guid: 2a2acdbdfebf16b4cb4976ccce542b72, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GradientMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GradientTex:
+        m_Texture: {fileID: 2800000, guid: c5efe874110d65f438e98178ae965d1d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - PixelSnap: 0
+    - _AlphaMode: 2
+    - _AlphaPower: 1
+    - _AlphaStrength: 1
+    - _BlackPoint: 0
+    - _BorderSharpness: 10
+    - _Brightness: 1
+    - _Contrast: 1
+    - _Cutoff: 0.5
+    - _DepthFlattenFactor: 0
+    - _DepthPushBack: 0
+    - _DstBlend: 0
+    - _FakeAOIntensity: 1
+    - _GlossSoftness: 0.3
+    - _Glossiness: 0.94
+    - _GradientStrength: 1
+    - _Intensity: 0.891
+    - _MidPoint: 0.215
+    - _OutlineAlpha: 1
+    - _OutlineDepthOffset: 0.5
+    - _OutlineEnable: 1
+    - _OutlineShapeFix: 0.35
+    - _OutlineSharpness: 4
+    - _OutlineSoftness: 0.2
+    - _OutlineWidth: 0.35
+    - _OutlineZOffset: 0.05
+    - _RampSmoothness: 0.01
+    - _RampThreshold: 0.708
+    - _ReflectIntensity: 1
+    - _ReflectRoughness: 1
+    - _RimSoftness: 0.5
+    - _RimWidth: 1
+    - _Roughness: 0
+    - _Shininess: 16
+    - _Specular: 0.5
+    - _SpecularCoverage: 0
+    - _SpecularStrength: 2
+    - _SrcBlend: 1
+    - _Strength: 1
+    - _UseOutline: 1
+    - _UseStylizedFX: 1
+    - _ZWrite: 1
+    m_Colors:
+    - _BaseColor: {r: 1, g: 0.11792451, b: 0.11792451, a: 1}
+    - _BottomColor: {r: 0, g: 0, b: 0, a: 1}
+    - _Color: {r: 0.8588236, g: 0.20392159, b: 0.21960786, a: 1}
+    - _Color1: {r: 0.7254902, g: 0.24313727, b: 0.14901961, a: 1}
+    - _Color2: {r: 0.9960785, g: 0.54901963, b: 0.16078432, a: 1}
+    - _Color3: {r: 1, g: 0.72156864, b: 0.20000002, a: 1}
+    - _DarkColor: {r: 1, g: 0, b: 0, a: 1}
+    - _LightColor: {r: 1, g: 1, b: 1, a: 1}
+    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
+    - _RampColor: {r: 0.3018868, g: 0.3018868, b: 0.3018868, a: 1}
+    - _ReflectColor: {r: 0.9686275, g: 0.7607844, b: 0.78823537, a: 1}
+    - _RimColor: {r: 1, g: 1, b: 1, a: 0.54509807}
+    - _ShadowColor: {r: 0.654902, g: 0.12941177, b: 0.18039216, a: 1}
+    - _SpecColor: {r: 1, g: 1, b: 1, a: 1}
+    - _SpecularColor: {r: 0.9646866, g: 0.21586053, b: 0.22322798, a: 1}
+    - _TopColor: {r: 1, g: 0, b: 0, a: 1}
+  m_BuildTextureStacks: []

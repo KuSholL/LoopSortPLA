@@ -1,0 +1,161 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5b0dc611db156541a4e76ecbd9d7345, type: 3}
+  m_Name: Level_007
+  m_EditorClassIdentifier: 
+  LevelId: 7
+  BaselineCapacity: 14
+  Capacity: 8
+  OrthographicSize: 20
+  GoldReward: 30
+  LevelType: 1
+  CarrierLayout:
+    Carriers:
+    - Progress: 0.2906158
+      Position: {x: -5.263319, y: 0, z: 4.0852757}
+      RotationY: 0
+      Blocks:
+      - BlockColor: 0
+        Mechanics: []
+      - BlockColor: 0
+        Mechanics:
+        - Type: 0
+          ContainerId: -1
+          KeyColor: -1
+          LinkGroupId: -1
+      - BlockColor: 10
+        Mechanics:
+        - Type: 0
+          ContainerId: -1
+          KeyColor: -1
+          LinkGroupId: -1
+      - BlockColor: 10
+        Mechanics: []
+      Mechanics: []
+    - Progress: 0.61022377
+      Position: {x: -5.4416895, y: 0, z: -4.835064}
+      RotationY: 0
+      Blocks:
+      - BlockColor: 10
+        Mechanics: []
+      - BlockColor: 10
+        Mechanics:
+        - Type: 0
+          ContainerId: -1
+          KeyColor: -1
+          LinkGroupId: -1
+      - BlockColor: 0
+        Mechanics:
+        - Type: 0
+          ContainerId: -1
+          KeyColor: -1
+          LinkGroupId: -1
+      - BlockColor: 0
+        Mechanics: []
+      Mechanics: []
+    - Progress: 0.14129557
+      Position: {x: 2.7990437, y: 0, z: 5.21383}
+      RotationY: 90
+      Blocks:
+      - BlockColor: -1
+        Mechanics: []
+      - BlockColor: 5
+        Mechanics: []
+      - BlockColor: 4
+        Mechanics:
+        - Type: 0
+          ContainerId: -1
+          KeyColor: -1
+          LinkGroupId: -1
+      - BlockColor: 4
+        Mechanics: []
+      Mechanics: []
+    - Progress: 0.58227813
+      Position: {x: 2.7970028, y: 0, z: -7.200855}
+      RotationY: 90
+      Blocks:
+      - BlockColor: -1
+        Mechanics: []
+      - BlockColor: 4
+        Mechanics: []
+      - BlockColor: 4
+        Mechanics:
+        - Type: 0
+          ContainerId: -1
+          KeyColor: -1
+          LinkGroupId: -1
+      - BlockColor: 5
+        Mechanics: []
+      Mechanics: []
+    - Progress: 0.29016852
+      Position: {x: 2.8, y: 0, z: 1.13}
+      RotationY: 90
+      Blocks:
+      - BlockColor: -1
+        Mechanics: []
+      - BlockColor: 9
+        Mechanics: []
+      - BlockColor: 9
+        Mechanics:
+        - Type: 0
+          ContainerId: -1
+          KeyColor: -1
+          LinkGroupId: -1
+      - BlockColor: 5
+        Mechanics: []
+      Mechanics: []
+    - Progress: 0.4409655
+      Position: {x: 2.799806, y: 0, z: -3.15}
+      RotationY: 90
+      Blocks:
+      - BlockColor: -1
+        Mechanics: []
+      - BlockColor: 5
+        Mechanics: []
+      - BlockColor: 9
+        Mechanics:
+        - Type: 0
+          ContainerId: -1
+          KeyColor: -1
+          LinkGroupId: -1
+      - BlockColor: 9
+        Mechanics: []
+      Mechanics: []
+    BoosterCarriers: []
+    Containers: []
+  SplineLayout:
+    Closed: 0
+    Nodes:
+    - MapPointId: 1
+      GridPosition: {x: -2, y: 9.26}
+      TangentMode: 4
+      TangentInValue: {x: 0, y: 0, z: -2}
+      TangentOutValue: {x: 0, y: 0, z: 2}
+      Rotation: {x: -0, y: 180, z: 0}
+    - MapPointId: 2
+      GridPosition: {x: -2, y: -8.36}
+      TangentMode: 4
+      TangentInValue: {x: 0, y: 0, z: -1.5}
+      TangentOutValue: {x: 0, y: 0, z: 1.5}
+      Rotation: {x: -0, y: 180, z: 0}
+    - MapPointId: 3
+      GridPosition: {x: 0, y: -10.36}
+      TangentMode: 4
+      TangentInValue: {x: 0, y: 0, z: -1.5}
+      TangentOutValue: {x: 0, y: 0, z: 1.5}
+      Rotation: {x: -0, y: 90, z: 0}
+    - MapPointId: 4
+      GridPosition: {x: 7.03, y: -10.36}
+      TangentMode: 4
+      TangentInValue: {x: 0, y: 0, z: -2}
+      TangentOutValue: {x: 0, y: 0, z: 2}
+      Rotation: {x: -0, y: 90, z: 0}

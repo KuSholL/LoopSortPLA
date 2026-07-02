@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9f59b84869300e46a6b6861d018d05e, type: 3}
+  m_Name: GameConditionConfigSO
+  m_EditorClassIdentifier: 
+  WinDelaySeconds: 1
+  LoseDelaySeconds: 3
+  PreloseTargetSpeedMultiplier: 0
+  LoseShakeDuration: 0.3
+  LoseShakeMagnitude: 0.3
+  EnableWinGuaranteeSpeedUp: 1
+  WinGuaranteeSpeedMultiplier: 2.5

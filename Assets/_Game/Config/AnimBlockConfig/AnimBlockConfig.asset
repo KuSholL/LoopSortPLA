@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45ae2ef4517ff994c9f41a8ff0357df8, type: 3}
+  m_Name: AnimBlockConfig
+  m_EditorClassIdentifier: 
+  DataAnims:
+  - Type: 1
+    LocalScales:
+    - {x: 0.9925, y: 1.0038, z: 0.99196}
+    - {x: 0.97015, y: 0.90039, z: 0.9696}
+    - {x: 0.99101, y: 1.0465, z: 0.99047}
+    - {x: 0.97374, y: 0.90047, z: 0.9732}
+    - {x: 0.9925, y: 1.0351, z: 0.99196}
+    - {x: 0.97015, y: 0.88964, z: 0.9696}
+    - {x: 0.99101, y: 1.0465, z: 0.99047}
+    - {x: 0.97374, y: 0.90047, z: 0.9732}
+    - {x: 0.9925, y: 1.0038, z: 0.99196}
+    Duration: 0.04
+    Ease: 5
+  - Type: 2
+    LocalScales:
+    - {x: 0.9925, y: 1.0019, z: 0.99196}
+    - {x: 0.97015, y: 1.0962, z: 0.9696}
+    - {x: 0.99101, y: 0.95752, z: 0.99047}
+    - {x: 0.97374, y: 1.0899, z: 0.99047}
+    - {x: 0.9925, y: 1.0019, z: 0.99196}
+    Duration: 0.04
+    Ease: 5
+  - Type: 3
+    LocalScales:
+    - {x: 1.009, y: 0.85959, z: 1.0094}
+    - {x: 0.90688, y: 1.1266, z: 0.90634}
+    - {x: 0.9925, y: 0.90857, z: 0.99196}
+    - {x: 0.97015, y: 1.0842, z: 0.9696}
+    - {x: 0.9821, y: 0.92707, z: 0.98156}
+    - {x: 0.97624, y: 1.0378, z: 0.9757}
+    - {x: 0.97762, y: 0.9908, z: 0.97708}
+    - {x: 1, y: 1, z: 1}
+    Duration: 0.05
+    Ease: 5

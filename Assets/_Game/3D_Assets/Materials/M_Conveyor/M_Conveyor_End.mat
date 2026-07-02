@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: M_Conveyor_End
+  m_Shader: {fileID: 4800000, guid: b62230acaa02d29479ae8460047a1371, type: 3}
+  m_Parent: {fileID: 2100000, guid: 6a5ffc45310b3bb4a96c902168c39a19, type: 2}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords:
+  - TCP2_DISABLE_WRAPPED_LIGHT
+  - TCP2_REFLECTIONS_FRESNEL
+  - TCP2_RIM_LIGHTING_LIGHTMASK
+  - TCP2_SHADOW_LIGHT_COLOR
+  - TCP2_UV_NORMALS_FULL
+  - _ENABLEFAKESHADOW_ON
+  - _ENABLE_FAKE_SHADOW
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: _RampSmoothing
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Ints: []
+    m_Floats:
+    - _BlinkEnabled: 0
+    - _BlinkStartTime: 0
+    - _EnableFakeShadow: 0
+    - _FakeShadowHeight: -1.15
+    - _FakeShadowSize: 1.2
+    - _NormalsSource: 0
+    - _RampSmoothing: 0.6
+    - _RampThreshold: 0.136
+    - _SpecularToonSize: 0
+    - _SpecularToonSmoothness: 0.001
+    m_Colors:
+    - _FakeShadowDir: {r: 0, g: -1, b: 0, a: 0}
+    - _OutlineOffset: {r: 0, g: -10.03, b: 0, a: 0}
+    - _SColor: {r: 0.23137257, g: 0.20784315, b: 0.40784317, a: 1}
+    - _SpecularColor: {r: 0.7176471, g: 0.72156864, b: 0.9686275, a: 1}
+  m_BuildTextureStacks: []

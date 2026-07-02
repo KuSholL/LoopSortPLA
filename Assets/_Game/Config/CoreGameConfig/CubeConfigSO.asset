@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d8c140c741ef5244b99bb0545aaa061, type: 3}
+  m_Name: CubeConfigSO
+  m_EditorClassIdentifier: 
+  CubePrefab: {fileID: 570581654699605141, guid: 0a7354e6596e22845bb0fbf13b1ce3ea, type: 3}
+  AnimCubePrefab: {fileID: 1144204020988226138, guid: 9d7b365d88178f441adf63b4342e3fce, type: 3}
+  hiddenCubeEntries:
+  - hiddenCubeType: 0
+    Prefab: {fileID: 573699414840329465, guid: c34944ccd64de8a4ba99e54cb044b11a, type: 3}
+  - hiddenCubeType: 1
+    Prefab: {fileID: 9144575013578093126, guid: 2c961a201e297bf42981919929ecc5f2, type: 3}
+  - hiddenCubeType: 2
+    Prefab: {fileID: 5072032321425440426, guid: 53686a25fa87378499429f6ddb25f6db, type: 3}
+  - hiddenCubeType: 3
+    Prefab: {fileID: 6364622598514239099, guid: d69a77b4843da1f48a1eca815f89a06a, type: 3}
+  - hiddenCubeType: 4
+    Prefab: {fileID: 4679663507263914284, guid: 35331e660db894e459337cf30c9e7d8c, type: 3}
+  - hiddenCubeType: 5
+    Prefab: {fileID: 6690992014172192840, guid: e37cae08d32f4d34b976c1ee3cec3a50, type: 3}

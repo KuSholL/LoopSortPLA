@@ -1,0 +1,52 @@
+using System;
+using UnityEngine;
+
+[Serializable]
+public class SoundData
+{
+    public AudioClipName Name;
+    public AudioClip Clip;
+    public float VolumeDefault = 1f;
+}
+
+public enum AudioClipName
+{
+    None = 0,
+    sfx_victory_1,
+    sfx_victory_2,
+    sfx_coins_fly_start,
+    sfx_coins_fly_end,
+    sfx_warning,
+    sfx_prelose,
+    sfx_lose,
+    sfx_button,
+    sfx_button_close,
+    sfx_pay_done,
+    sfx_rateus,
+    sfx_popup_reward,
+    sfx_touch_box,
+    bg_music1,
+    bg_music2,
+    sfx_complete_box,
+    sfx_booster_undo,
+    sfx_booster_extrabox,
+    sfx_hiddencube,
+    sfx_cut,
+    sfx_mascot_dance,
+    sfx_hiddenbox_whoosh,
+    sfx_endgame_lose,
+    sfx_placeCube,
+    sfx_claw_down,
+    sfx_claw_drop,
+    sfx_claw_grab,
+    sfx_claw_movement,
+    sfx_claw_turn,
+    sfx_merge,
+    sfx_merge_loop,
+    sfx_squash_end,
+    sfx_combo1,
+    sfx_combo2,
+    sfx_combo3,
+    sfx_combo4,
+    sfx_combo5,
+}

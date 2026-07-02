@@ -1,0 +1,395 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5b0dc611db156541a4e76ecbd9d7345, type: 3}
+  m_Name: Level_248
+  m_EditorClassIdentifier: 
+  LevelId: 248
+  BaselineCapacity: 13
+  Capacity: 5
+  OrthographicSize: 25
+  GoldReward: 60
+  LevelType: 3
+  CarrierLayout:
+    Carriers:
+    - Progress: 0.20006257
+      Position: {x: -3.88, y: 0, z: 4.02}
+      RotationY: 90
+      Blocks:
+      - BlockColor: 9
+        Mechanics: []
+      - BlockColor: 1
+        Mechanics: []
+      - BlockColor: 12
+        Mechanics: []
+      - BlockColor: 5
+        Mechanics: []
+      - BlockColor: 4
+        Mechanics: []
+      - BlockColor: 9
+        Mechanics: []
+      Mechanics:
+      - Type: 3
+        UnlockColor: 0
+        TargetColor: -1
+    - Progress: 0.6433424
+      Position: {x: 3.88, y: 0, z: 3.97}
+      RotationY: -90
+      Blocks:
+      - BlockColor: 4
+        Mechanics: []
+      - BlockColor: 5
+        Mechanics: []
+      - BlockColor: 0
+        Mechanics: []
+      - BlockColor: 1
+        Mechanics: []
+      - BlockColor: 5
+        Mechanics: []
+      - BlockColor: 6
+        Mechanics: []
+      Mechanics:
+      - Type: 3
+        UnlockColor: 0
+        TargetColor: -1
+    - Progress: 0.022141501
+      Position: {x: -2.76, y: 0, z: -0.68}
+      RotationY: 32
+      Blocks:
+      - BlockColor: -1
+        Mechanics: []
+      - BlockColor: -1
+        Mechanics: []
+      - BlockColor: 0
+        Mechanics: []
+      - BlockColor: 0
+        Mechanics: []
+      Mechanics: []
+    - Progress: 0.4175757
+      Position: {x: 0, y: 0, z: 12.710001}
+      RotationY: 0
+      Blocks:
+      - BlockColor: -1
+        Mechanics: []
+      - BlockColor: 8
+        Mechanics:
+        - Type: 2
+          ContainerId: -1
+          KeyColor: -1
+          LinkGroupId: 3
+          SwapGroupId: -1
+      - BlockColor: 2
+        Mechanics:
+        - Type: 2
+          ContainerId: -1
+          KeyColor: -1
+          LinkGroupId: 0
+          SwapGroupId: -1
+      - BlockColor: 11
+        Mechanics: []
+      Mechanics: []
+    - Progress: 0.47197056
+      Position: {x: 3.98, y: 0, z: 12.18}
+      RotationY: 15.000001
+      Blocks:
+      - BlockColor: -1
+        Mechanics: []
+      - BlockColor: 5
+        Mechanics:
+        - Type: 2
+          ContainerId: -1
+          KeyColor: -1
+          LinkGroupId: 3
+          SwapGroupId: -1
+      - BlockColor: 11
+        Mechanics: []
+      - BlockColor: 11
+        Mechanics: []
+      Mechanics: []
+    - Progress: 0.36638075
+      Position: {x: -3.98, y: 0, z: 12.18}
+      RotationY: -15
+      Blocks:
+      - BlockColor: -1
+        Mechanics: []
+      - BlockColor: 0
+        Mechanics: []
+      - BlockColor: 2
+        Mechanics:
+        - Type: 2
+          ContainerId: -1
+          KeyColor: -1
+          LinkGroupId: 0
+          SwapGroupId: -1
+      - BlockColor: 4
+        Mechanics: []
+      Mechanics: []
+    - Progress: 0.91731286
+      Position: {x: 0, y: 0, z: -10.78}
+      RotationY: 180
+      Blocks:
+      - BlockColor: -1
+        Mechanics: []
+      - BlockColor: 6
+        Mechanics: []
+      - BlockColor: 12
+        Mechanics: []
+      - BlockColor: 12
+        Mechanics: []
+      Mechanics: []
+    - Progress: 0.87186706
+      Position: {x: 3.88, y: 0, z: -10.25}
+      RotationY: 164
+      Blocks:
+      - BlockColor: -1
+        Mechanics: []
+      - BlockColor: 1
+        Mechanics:
+        - Type: 2
+          ContainerId: -1
+          KeyColor: -1
+          LinkGroupId: 1
+          SwapGroupId: -1
+      - BlockColor: 8
+        Mechanics: []
+      - BlockColor: 8
+        Mechanics: []
+      Mechanics: []
+    - Progress: 0.9667017
+      Position: {x: -3.88, y: 0, z: -10.25}
+      RotationY: -164
+      Blocks:
+      - BlockColor: -1
+        Mechanics: []
+      - BlockColor: 12
+        Mechanics:
+        - Type: 2
+          ContainerId: -1
+          KeyColor: -1
+          LinkGroupId: 2
+          SwapGroupId: -1
+      - BlockColor: 9
+        Mechanics: []
+      - BlockColor: 6
+        Mechanics: []
+      Mechanics: []
+    - Progress: 0.01633314
+      Position: {x: -7.53, y: 0, z: -8.62}
+      RotationY: -148
+      Blocks:
+      - BlockColor: -1
+        Mechanics: []
+      - BlockColor: 11
+        Mechanics: []
+      - BlockColor: 6
+        Mechanics:
+        - Type: 2
+          ContainerId: -1
+          KeyColor: -1
+          LinkGroupId: 2
+          SwapGroupId: -1
+      - BlockColor: 2
+        Mechanics: []
+      Mechanics: []
+    - Progress: 0.8184465
+      Position: {x: 7.53, y: 0, z: -8.62}
+      RotationY: 148
+      Blocks:
+      - BlockColor: -1
+        Mechanics: []
+      - BlockColor: 8
+        Mechanics: []
+      - BlockColor: 4
+        Mechanics:
+        - Type: 2
+          ContainerId: -1
+          KeyColor: -1
+          LinkGroupId: 1
+          SwapGroupId: -1
+      - BlockColor: 1
+        Mechanics: []
+      Mechanics: []
+    - Progress: 0.8164018
+      Position: {x: 2.76, y: 0, z: -0.68}
+      RotationY: -32
+      Blocks:
+      - BlockColor: -1
+        Mechanics: []
+      - BlockColor: -1
+        Mechanics: []
+      - BlockColor: 2
+        Mechanics: []
+      - BlockColor: 9
+        Mechanics: []
+      Mechanics: []
+    BoosterCarriers:
+    - Progress: 0.5577125
+      Position: {x: 8.47, y: 0, z: 12.580001}
+      RotationY: 15.000001
+      Blocks:
+      - BlockColor: -1
+        Mechanics: []
+      - BlockColor: -1
+        Mechanics: []
+      - BlockColor: -1
+        Mechanics: []
+      - BlockColor: -1
+        Mechanics: []
+      Mechanics: []
+    - Progress: 0.28067786
+      Position: {x: -8.47, y: 0, z: 12.580001}
+      RotationY: -15
+      Blocks:
+      - BlockColor: -1
+        Mechanics: []
+      - BlockColor: -1
+        Mechanics: []
+      - BlockColor: -1
+        Mechanics: []
+      - BlockColor: -1
+        Mechanics: []
+      Mechanics: []
+    Containers: []
+  SplineLayout:
+    Closed: 1
+    Nodes:
+    - MapPointId: 1
+      GridPosition: {x: -4.15, y: -5.18}
+      TangentMode: 4
+      TangentInValue: {x: 0, y: 0, z: 0}
+      TangentOutValue: {x: 0.00000010753001, y: 0, z: 1.23}
+      Rotation: {x: -0, y: 294.86, z: 0}
+    - MapPointId: 2
+      GridPosition: {x: -6.99, y: -2.99}
+      TangentMode: 4
+      TangentInValue: {x: 0.000000016050407, y: 0, z: -1.1800001}
+      TangentOutValue: {x: 0.010000099, y: 0, z: 1.2500002}
+      Rotation: {x: -0, y: 321.82, z: 0}
+    - MapPointId: 3
+      GridPosition: {x: -8.19, y: 0.39}
+      TangentMode: 4
+      TangentInValue: {x: -0.00000010665579, y: 0, z: -1.22}
+      TangentOutValue: {x: 0.00000006644131, y: 0, z: 0.76}
+      Rotation: {x: -0, y: 0.000010017912, z: 0}
+    - MapPointId: 4
+      GridPosition: {x: -8.19, y: 2.68}
+      TangentMode: 4
+      TangentInValue: {x: -0.00000006644131, y: 0, z: -0.76}
+      TangentOutValue: {x: 0.00000007955473, y: 0, z: 0.91}
+      Rotation: {x: -0, y: 0.000010017912, z: 0}
+    - MapPointId: 5
+      GridPosition: {x: -8.19, y: 5.23}
+      TangentMode: 0
+      TangentInValue: {x: -0, y: -0, z: -0.8046982}
+      TangentOutValue: {x: 0, y: 0, z: 0.7232635}
+      Rotation: {x: -0, y: 0, z: 0}
+    - MapPointId: 6
+      GridPosition: {x: -8.19, y: 7.29}
+      TangentMode: 0
+      TangentInValue: {x: -0, y: -0, z: -0.54615086}
+      TangentOutValue: {x: 0, y: 0, z: 0.45485914}
+      Rotation: {x: -0, y: 28.933542, z: 0}
+    - MapPointId: 7
+      GridPosition: {x: -6.98, y: 8.05}
+      TangentMode: 0
+      TangentInValue: {x: -0, y: -0, z: -0.51448834}
+      TangentOutValue: {x: 0, y: 0, z: 0.77888244}
+      Rotation: {x: -0, y: 84.119415, z: 0}
+    - MapPointId: 8
+      GridPosition: {x: -3.91, y: 6.91}
+      TangentMode: 0
+      TangentInValue: {x: -0, y: -0, z: -0.65872777}
+      TangentOutValue: {x: 0, y: 0, z: 0.29120693}
+      Rotation: {x: -0, y: 100.18587, z: 0}
+    - MapPointId: 9
+      GridPosition: {x: -3.27, y: 6.91}
+      TangentMode: 0
+      TangentInValue: {x: -0, y: -0, z: -0.2954207}
+      TangentOutValue: {x: 0, y: 0, z: 0.67227346}
+      Rotation: {x: -0, y: 85.311485, z: 0}
+    - MapPointId: 10
+      GridPosition: {x: 0, y: 7.45}
+      TangentMode: 4
+      TangentInValue: {x: -0.00000022149393, y: 0, z: -1.1700001}
+      TangentOutValue: {x: 0.00000022149393, y: 0, z: 1.1700001}
+      Rotation: {x: -0, y: 90.00001, z: 0}
+    - MapPointId: 11
+      GridPosition: {x: 3.27, y: 6.91}
+      TangentMode: 0
+      TangentInValue: {x: -0, y: -0, z: -0.67227346}
+      TangentOutValue: {x: 0, y: 0, z: 0.2954207}
+      Rotation: {x: -0, y: 94.688515, z: 0}
+    - MapPointId: 12
+      GridPosition: {x: 3.91, y: 6.91}
+      TangentMode: 0
+      TangentInValue: {x: -0, y: -0, z: -0.29109588}
+      TangentOutValue: {x: 0, y: 0, z: 0.65989643}
+      Rotation: {x: -0, y: 79.48748, z: 0}
+    - MapPointId: 13
+      GridPosition: {x: 6.98, y: 8.09}
+      TangentMode: 0
+      TangentInValue: {x: -0, y: -0, z: -0.7790215}
+      TangentOutValue: {x: 0, y: 0, z: 0.51347303}
+      Rotation: {x: -0, y: 95.553955, z: 0}
+    - MapPointId: 14
+      GridPosition: {x: 8.19, y: 7.33}
+      TangentMode: 0
+      TangentInValue: {x: -0, y: -0, z: -0.4568457}
+      TangentOutValue: {x: 0, y: 0, z: 0.55383617}
+      Rotation: {x: -0, y: 151.06647, z: 0}
+    - MapPointId: 15
+      GridPosition: {x: 8.19, y: 5.23}
+      TangentMode: 0
+      TangentInValue: {x: -0, y: -0, z: -0.70573807}
+      TangentOutValue: {x: 0, y: 0, z: 0.7174039}
+      Rotation: {x: -0, y: 180, z: 0}
+    - MapPointId: 16
+      GridPosition: {x: 8.19, y: 3.06}
+      TangentMode: 4
+      TangentInValue: {x: -0.00000007955473, y: 0, z: -0.91}
+      TangentOutValue: {x: 0.00000007343513, y: 0, z: 0.84}
+      Rotation: {x: -0, y: 180, z: 0}
+    - MapPointId: 17
+      GridPosition: {x: 8.19, y: 0.56}
+      TangentMode: 4
+      TangentInValue: {x: -0.00000007343513, y: 0, z: -0.84}
+      TangentOutValue: {x: 0.000000115398066, y: 0, z: 1.32}
+      Rotation: {x: -0, y: 180, z: 0}
+    - MapPointId: 18
+      GridPosition: {x: 6.88, y: -3.1}
+      TangentMode: 4
+      TangentInValue: {x: -0.000000104868036, y: 0, z: -1.37}
+      TangentOutValue: {x: 0.000000104033106, y: 0, z: 1.19}
+      Rotation: {x: -0, y: 219.09, z: 0}
+    - MapPointId: 19
+      GridPosition: {x: 3.97, y: -5.25}
+      TangentMode: 4
+      TangentInValue: {x: -0.00000010753003, y: 0, z: -1.2300001}
+      TangentOutValue: {x: 0.00000011802076, y: 0, z: 1.3500001}
+      Rotation: {x: -0, y: 246.44, z: 0}
+    - MapPointId: 20
+      GridPosition: {x: 0, y: -6.06}
+      TangentMode: 4
+      TangentInValue: {x: -5.599077e-10, y: 0, z: -1.3700001}
+      TangentOutValue: {x: -0.0000000013309851, y: 0, z: 0.07000001}
+      Rotation: {x: -0, y: 270, z: 0}
+    - MapPointId: 21
+      GridPosition: {x: -0.22, y: -6.06}
+      TangentMode: 4
+      TangentInValue: {x: 0.0000000013309851, y: 0, z: -0.07000001}
+      TangentOutValue: {x: 0.01999998, y: 0, z: 1.3600001}
+      Rotation: {x: -0, y: 270, z: 0}
+    - MapPointId: 22
+      GridPosition: {x: -4.15, y: -5.18}
+      TangentMode: 4
+      TangentInValue: {x: 0.0000000020627624, y: 0, z: -1.3400002}
+      TangentOutValue: {x: 0, y: 0, z: 0}
+      Rotation: {x: -0, y: 295.09, z: 0}

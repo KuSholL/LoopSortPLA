@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26574997ec594ec49811b0c38f14163f, type: 3}
+  m_Name: CarrierLinkedBlockVisualConfigSO
+  m_EditorClassIdentifier: 
+  linkedVisuals:
+  - BlockCount: 2
+    Prefab: {fileID: 913517705585973967, guid: 457a00ef7eeb0de40abcdafb13dc7131, type: 3}
+    LocalOffset: {x: 0, y: 0, z: 0.874866}
+  - BlockCount: 3
+    Prefab: {fileID: 760245596639187503, guid: 23ec41ab8ec331e449457999aaae84ed, type: 3}
+    LocalOffset: {x: 0, y: 0, z: 1.55072}
+  - BlockCount: 4
+    Prefab: {fileID: 2227972899018426239, guid: 75a8ac91df9dc2b40bd4b8c40eac1278, type: 3}
+    LocalOffset: {x: 0, y: 0, z: -0.543423}
