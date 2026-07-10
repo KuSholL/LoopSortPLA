@@ -21,6 +21,17 @@ public sealed class LinkedBlockVisual : MonoBehaviour
     private CarrierBase _carrier;
     private Block _anchorBlock;
     private MaterialPropertyBlock _materialBlock;
+    private Collider[] _visualColliders;
+
+    private void Awake()
+    {
+        DisableVisualColliders();
+    }
+
+    private void OnEnable()
+    {
+        DisableVisualColliders();
+    }
     
     public void Apply(
         ColorEntry colorEntry,
@@ -120,6 +131,7 @@ public sealed class LinkedBlockVisual : MonoBehaviour
 
     public void SetVisible(bool isVisible)
     {
+        DisableVisualColliders();
         if (!isVisible) SetProgress(1f, true);
         if (modelGO != null) modelGO.SetActive(isVisible);
         else gameObject.SetActive(isVisible);
@@ -133,6 +145,7 @@ public sealed class LinkedBlockVisual : MonoBehaviour
         if (targetTransform != null)
             targetTransform.localScale = new Vector3(progress <= 0 ? 0 : 1, progress <= 0 ? 0 : 1, progress);
         progressAnimator?.SetProgress(progress, suppressAnimation, forceFullAnimation);
+        DisableVisualColliders();
     }
 
     public void SetLayer(int layer)
@@ -172,6 +185,19 @@ public sealed class LinkedBlockVisual : MonoBehaviour
     {
         var targetRenderer = GetTargetRenderer();
         return targetRenderer != null ? targetRenderer.transform : null;
+    }
+
+    private void DisableVisualColliders()
+    {
+        if (_visualColliders == null || _visualColliders.Length == 0)
+            _visualColliders = GetComponentsInChildren<Collider>(true);
+
+        if (_visualColliders == null) return;
+        for (var i = 0; i < _visualColliders.Length; i++)
+        {
+            var target = _visualColliders[i];
+            if (target != null) target.enabled = false;
+        }
     }
     
     private static void ApplyLayer(GameObject target, int layer)

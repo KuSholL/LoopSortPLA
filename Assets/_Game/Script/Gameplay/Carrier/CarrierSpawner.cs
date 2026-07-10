@@ -14,7 +14,7 @@ public class CarrierSpawner : MonoBehaviour
         LevelManager.Instance != null ? LevelManager.Instance.LevelEntryAnimConfig : null;
     private float CarrierScaleDuration => EntryConfig != null ? EntryConfig.CarrierScaleDuration : 0.3f;
     private float CarrierScaleStagger => EntryConfig != null ? EntryConfig.CarrierScaleStagger : 0.1f;
-    private Ease CarrierScaleEase => EntryConfig != null ? EntryConfig.CarrierScaleEase : Ease.OutBack;
+    private DG.Tweening.Ease CarrierScaleEase => EntryConfig != null ? EntryConfig.CarrierScaleEase : DG.Tweening.Ease.OutBack;
 
     private readonly List<CarrierBase> _spawnedCarriers = new List<CarrierBase>();
     public List<CarrierBase> SpawnedCarriers => _spawnedCarriers;
@@ -38,7 +38,9 @@ public class CarrierSpawner : MonoBehaviour
 
         foreach (var carrier in _spawnedCarriers)
         {
-            if (carrier != null) carrier.transform.localScale = Vector3.zero;
+            if (carrier == null) continue;
+            carrier.SetClickCollidersEnabled(false);
+            carrier.transform.localScale = Vector3.zero;
         }
     }
 
@@ -48,10 +50,14 @@ public class CarrierSpawner : MonoBehaviour
         if (carrier == null) return false;
         ConveyorDeliverySystem.Instance?.SetupCarrierPickup(_spawnedCarriers);
 
+        carrier.SetClickCollidersEnabled(false);
         carrier.transform.localScale = Vector3.zero;
-        var handle = carrier.transform.DOScale(Vector3.one, CarrierScaleDuration)
-            .SetEase(CarrierScaleEase);
-        carrier.SetScaleMotionHandle(handle);
+        var spawnedCarrier = carrier;
+        var scaleTween = carrier.transform.DOScale(Vector3.one, CarrierScaleDuration)
+            .SetEase(CarrierScaleEase)
+            .SetUpdate(true)
+            .OnComplete(() => spawnedCarrier.SetClickCollidersEnabled(true));
+        carrier.SetScaleMotionHandle(scaleTween);
 
         return true;
     }
@@ -68,6 +74,7 @@ public class CarrierSpawner : MonoBehaviour
         foreach (var carrier in _spawnedCarriers)
         {
             if (carrier == null) continue;
+            carrier.SetClickCollidersEnabled(true);
             carrier.transform.localScale = Vector3.one; // reset scale trước khi pool
             PoolManagerNew.Instance.PushToPool(carrier);
         }
@@ -78,7 +85,22 @@ public class CarrierSpawner : MonoBehaviour
     private CarrierBase CreateCarrier(CarrierStackData carrierStack)
     {
         if (carrierStack == null) return null;
-        var prefab = (CarrierBase)carrierConfig.Prefab;
+        var isSpawner = false;
+        if (carrierStack.Mechanics != null)
+        {
+            for (var i = 0; i < carrierStack.Mechanics.Count; i++)
+            {
+                var mechanic = carrierStack.Mechanics[i];
+                if (mechanic != null && mechanic.Type == ECarrierMechanic.Spawner)
+                {
+                    isSpawner = true;
+                    break;
+                }
+            }
+        }
+        var prefab = isSpawner && carrierConfig.Spawner != null
+            ? (CarrierBase)carrierConfig.Spawner
+            : carrierConfig.Prefab;
         var carrier = PoolManagerNew.Instance.PopFromPool(prefab, spawnRoot);
         carrier.IncrementSessionId();
         ApplyCarrierTransform(carrier, carrierStack);
@@ -114,31 +136,66 @@ public class CarrierSpawner : MonoBehaviour
     public IEnumerator PlayCarriersScaleAnimation()
     {
         if (_spawnedCarriers.Count == 0) yield break;
-        if (_carrierSequence != null) _carrierSequence.Kill();
+        if (_carrierSequence != null)
+        {
+            _carrierSequence.Kill();
+            _carrierSequence = null;
+        }
 
         for (var i = 0; i < _spawnedCarriers.Count; i++)
         {
             var carrier = _spawnedCarriers[i];
             if (carrier != null)
             {
-                carrier.transform.localScale = carrier.IsLockedByContainer()
-                    ? Vector3.one
-                    : Vector3.zero;
+                var isLocked = carrier.IsLockedByContainer();
+                carrier.SetClickCollidersEnabled(isLocked);
+                carrier.transform.localScale = isLocked ? Vector3.one : Vector3.zero;
             }
         }
 
-        _carrierSequence = DOTween.Sequence().SetTarget(this);
+        _carrierSequence = DOTween.Sequence().SetUpdate(true).SetTarget(this);
         for (var i = 0; i < _spawnedCarriers.Count; i++)
         {
             var carrier = _spawnedCarriers[i];
             if (carrier == null || carrier.IsLockedByContainer()) continue;
-            var tween = carrier.transform.DOScale(Vector3.one, CarrierScaleDuration)
-                .SetEase(CarrierScaleEase);
-            carrier.SetScaleMotionHandle(tween);
-            _carrierSequence.Insert(i * CarrierScaleStagger, tween);
+            var scaleTween = carrier.transform.DOScale(Vector3.one, CarrierScaleDuration)
+                .SetEase(CarrierScaleEase)
+                .SetUpdate(true)
+                .OnComplete(() => carrier.SetClickCollidersEnabled(true));
+            carrier.SetScaleMotionHandle(scaleTween);
+            _carrierSequence.Insert(i * CarrierScaleStagger, scaleTween);
         }
 
-        yield return _carrierSequence.WaitForCompletion();
+        var elapsed = 0f;
+        var timeout = Mathf.Max(0.05f, CarrierScaleDuration + CarrierScaleStagger * Mathf.Max(0, _spawnedCarriers.Count - 1) + 0.25f);
+        while (_carrierSequence != null
+               && _carrierSequence.IsActive()
+               && !_carrierSequence.IsComplete()
+               && elapsed < timeout)
+        {
+            elapsed += Time.unscaledDeltaTime;
+            yield return null;
+        }
+
+        if (_carrierSequence != null && _carrierSequence.IsActive() && !_carrierSequence.IsComplete())
+        {
+            _carrierSequence.Kill();
+        }
+
         _carrierSequence = null;
+        EnsureCarriersVisibleAndClickable();
+    }
+
+    public void EnsureCarriersVisibleAndClickable()
+    {
+        for (var i = 0; i < _spawnedCarriers.Count; i++)
+        {
+            var carrier = _spawnedCarriers[i];
+            if (carrier == null) continue;
+
+            carrier.CancelScaleAnimation();
+            carrier.transform.localScale = Vector3.one;
+            carrier.SetClickCollidersEnabled(!carrier.IsLockedByContainer());
+        }
     }
 }

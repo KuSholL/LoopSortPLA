@@ -64,13 +64,18 @@ public class Carrier : CarrierBase
     public override bool CanBeClicked()
     {
         EnsureRuntime();
+        if (_isWaitingHiddenCarrierReveal) return false;
         if (!RuntimeState.IsIdle) return false;
-        if (!_actionGateResolver.EvaluateInteract(this).IsAllowed)
+        var interactResult = _actionGateResolver.EvaluateInteract(this);
+        if (!interactResult.IsAllowed)
         {
             PlayBlockedByFullConveyorFeedback();
             return false;
         }
-        if (ConveyorDeliverySystem.Instance != null && ConveyorDeliverySystem.Instance.IsReceivingCube(this)) return false;
+        if (ConveyorDeliverySystem.Instance != null && ConveyorDeliverySystem.Instance.IsReceivingCube(this))
+        {
+            return false;
+        }
         return true;
     }
 
@@ -209,11 +214,13 @@ public class Carrier : CarrierBase
 
     public override bool CanUnloadByMechanic()
     {
+        if (_isWaitingHiddenCarrierReveal) return false;
         return _actionGateResolver.EvaluateUnload(this).IsAllowed;
     }
 
     public override bool CanReceiveByMechanic(EBlockColorType colorType)
     {
+        if (_isWaitingHiddenCarrierReveal) return false;
         return _actionGateResolver.EvaluateReceive(this, colorType).IsAllowed;
     }
 
@@ -252,12 +259,18 @@ public class Carrier : CarrierBase
     
     private bool IsHiddenByColor()
     {
+        foreach (var mechanic in _mechanicContainer.Mechanics)
+        {
+            var hidden = mechanic as HiddenCarrierByColorMechanicRuntime;
+            if (hidden != null && !hidden.IsUnlocked) return true;
+        }
         return false;
     }
 
     public override bool IsLockedByContainer()
     {
-        return false;
+        var member = GetComponent<CarrierContainerMember>();
+        return member != null && member.IsLocked;
     }
 
     public override List<LinkedBlockVisual> GetLinkedBlockVisuals(int size)
@@ -329,7 +342,8 @@ public class Carrier : CarrierBase
             hiddenVisualRoot,
             mechanicVisualConfig,
             specialColorReceiverCarrierMeshRenderer,
-            RevealBlockLayoutForHiddenCarrier);
+            RevealBlockLayoutForHiddenCarrier,
+            CompleteHiddenCarrierReveal);
         _linkedBlockVisualController = new CarrierLinkedBlockVisualController(this, linkedBlockVisualConfig);
         _unloadPort = new CarrierUnloadPort(this);
         _receivePort = new CarrierReceivePort(this);
@@ -351,15 +365,42 @@ public class Carrier : CarrierBase
 
     protected virtual void RevealBlockLayoutForHiddenCarrier()
     {
-        _isWaitingHiddenCarrierReveal = false;
         SetBlockLayoutRootVisible(true);
+    }
+
+    protected virtual void CompleteHiddenCarrierReveal()
+    {
+        SetBlockLayoutRootVisible(true);
+        _isWaitingHiddenCarrierReveal = false;
     }
 
     protected virtual void SetBlockLayoutRootVisible(bool isVisible)
     {
         var root = blockLayout != null ? blockLayout.Root : null;
-        if (root != null && root.gameObject.activeSelf != isVisible)
-            root.gameObject.SetActive(isVisible);
+        if (root == null || root.gameObject.activeSelf == isVisible) return;
+
+        var blocks = blockLayout.Blocks;
+        if (!isVisible)
+        {
+            SetBlocksPreserveRuntimeState(blocks, true);
+            root.gameObject.SetActive(false);
+            return;
+        }
+
+        root.gameObject.SetActive(true);
+        SetBlocksPreserveRuntimeState(blocks, false);
+    }
+
+    private static void SetBlocksPreserveRuntimeState(
+        System.Collections.Generic.IReadOnlyList<Block> blocks,
+        bool preserve)
+    {
+        if (blocks == null) return;
+        for (var i = 0; i < blocks.Count; i++)
+        {
+            if (blocks[i] != null)
+                blocks[i].PreserveRuntimeStateWhileHidden(preserve);
+        }
     }
 
     private void HandleMechanicEvent(ICarrierMechanicEvent carrierEvent)

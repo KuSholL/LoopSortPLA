@@ -15,5 +15,6 @@ MonoBehaviour:
   Prefab: {fileID: 7995454447952293480, guid: 807037d99615e77479eb64f60727145c, type: 3}
   ContainerMechanic: {fileID: 1213042367807691925, guid: ac14e3fcd7ce63f42984edfdb96c3fde, type: 3}
   Spawner: {fileID: 5391279563630338026, guid: 839f02e75fa135443b160cad7468f619, type: 3}
+  BlockLinkVisualPrefab: {fileID: 6149649433893190570, guid: 9be2149385c18c245b3df1a60b7726d7, type: 3}
   Depth: 2
   BlockCount: 4

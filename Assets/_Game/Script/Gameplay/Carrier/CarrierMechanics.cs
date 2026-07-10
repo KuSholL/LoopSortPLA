@@ -158,6 +158,11 @@ public sealed class CarrierMechanicContainer
     {
         if (mechanicData == null) return null;
 
+        if (mechanicData.Type == ECarrierMechanic.HiddenByColor)
+        {
+            return new HiddenCarrierByColorMechanicRuntime(mechanicData.UnlockColor);
+        }
+
         if (mechanicData.Type == ECarrierMechanic.SpecialColorReceiver)
         {
             var targetColor = mechanicData.TargetColor != EBlockColorType.None

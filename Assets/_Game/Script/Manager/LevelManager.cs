@@ -177,11 +177,23 @@ public class LevelManager : MonoSingleton<LevelManager>
         if (conveyorManager != null)
         {
             yield return conveyorManager.PlayRevealAnimation();
+            conveyorManager.SetRevealProgress(1f);
+        }
+
+        if (carrierSystem != null)
+        {
+            yield return carrierSystem.PlayContainersScaleAnimation(levelEntryAnimConfig);
         }
 
         if (carrierSystem != null && carrierSystem.CarrierSpawner != null)
         {
             yield return carrierSystem.CarrierSpawner.PlayCarriersScaleAnimation();
+            carrierSystem.CarrierSpawner.EnsureCarriersVisibleAndClickable();
+        }
+
+        if (BlockLinkVisualManager.Instance != null)
+        {
+            BlockLinkVisualManager.Instance.SetupLevelLinks();
         }
 
         SoundManager.Instance.PlayInGameBgm(IsReplay);

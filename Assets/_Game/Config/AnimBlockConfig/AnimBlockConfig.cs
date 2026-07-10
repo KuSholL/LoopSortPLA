@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
-using DG.Tweening;
 using UnityEngine;
+using DG.Tweening;
 
 [CreateAssetMenu(fileName = "AnimBlockConfig", menuName = "ScriptableObject/AnimBlockConfig")]
 public class AnimBlockConfig : ScriptableObject
@@ -19,7 +19,7 @@ public class DataAnim
     public AnimType Type;
     public List<Vector3> LocalScales;
     public float Duration;
-    public Ease Ease = Ease.OutQuad; 
+    public DG.Tweening.Ease Ease = DG.Tweening.Ease.OutQuad; 
 }
 
 [Serializable]

@@ -1,0 +1,1089 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <LangVersion>9.0</LangVersion>
+    <_TargetFrameworkDirectories>non_empty_path_generated_by_unity.rider.package</_TargetFrameworkDirectories>
+    <_FullFrameworkReferenceAssemblyPaths>non_empty_path_generated_by_unity.rider.package</_FullFrameworkReferenceAssemblyPaths>
+    <DisableHandlePackageFileConflicts>true</DisableHandlePackageFileConflicts>
+  </PropertyGroup>
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <RootNamespace/>
+    <ProjectGuid>{ed4f8bee-ecfd-5ad2-6a3d-adc0ecbae50a}</ProjectGuid>
+    <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <AssemblyName>Diagnostics</AssemblyName>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <BaseDirectory>.</BaseDirectory>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Temp\Bin\Debug\Assembly-CSharp\</OutputPath>
+    <DefineConstants/>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>0169,0649</NoWarn>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup>
+    <NoConfig>true</NoConfig>
+    <NoStdLib>true</NoStdLib>
+    <AddAdditionalExplicitAssemblyReferences>false</AddAdditionalExplicitAssemblyReferences>
+    <ImplicitlyExpandNETStandardFacades>false</ImplicitlyExpandNETStandardFacades>
+    <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
+  </PropertyGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
+  <ItemGroup>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Config\ConfigManager.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Config\ConfigManager.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\PoolManagerNew.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\PoolManagerNew.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_FrameWork\Scripts\Manager\GameEventBus.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_FrameWork\Scripts\Manager\GameEventBus.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_FrameWork\Scripts\Manager\SoundManager.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_FrameWork\Scripts\Manager\SoundManager.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_FrameWork\Scripts\Singletons\MonoSingleton.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_FrameWork\Scripts\Singletons\MonoSingleton.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Config\AnimBlockConfig\AnimBlockConfig.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Config\AnimBlockConfig\AnimBlockConfig.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Config\CoreGameConfig\CarrierConfigSO.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Config\CoreGameConfig\CarrierConfigSO.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Config\CoreGameConfig\CarrierLinkedBlockVisualConfigSO.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Config\CoreGameConfig\CarrierLinkedBlockVisualConfigSO.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Config\CoreGameConfig\CatColorConfigSO.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Config\CoreGameConfig\CatColorConfigSO.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Config\CoreGameConfig\ColorConfigSO.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Config\CoreGameConfig\ColorConfigSO.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Config\CoreGameConfig\CubeConfigSO.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Config\CoreGameConfig\CubeConfigSO.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Config\CoreGameConfig\CubeMovementConfigSO.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Config\CoreGameConfig\CubeMovementConfigSO.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Config\CoreGameConfig\GameConditionConfigSO.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Config\CoreGameConfig\GameConditionConfigSO.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Config\CoreGameConfig\LevelEntryAnimConfigSO.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Config\CoreGameConfig\LevelEntryAnimConfigSO.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Config\CoreGameConfig\RemainingColorConfigSO.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Config\CoreGameConfig\RemainingColorConfigSO.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Config\CoreGameConfig\StylizedColorConfigSO.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Config\CoreGameConfig\StylizedColorConfigSO.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Config\MechanicConfig\CarrierMechanicVisualConfigSO.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Config\MechanicConfig\CarrierMechanicVisualConfigSO.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\ContainerMechanic\CarrierContainerMember.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\ContainerMechanic\CarrierContainerMember.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\ContainerMechanic\ContainerKey.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\ContainerMechanic\ContainerKey.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\ContainerMechanic\ContainerMechanic.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\ContainerMechanic\ContainerMechanic.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\ContainerMechanic\GiftBoxVisual.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\ContainerMechanic\GiftBoxVisual.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\ContainerMechanic\Key3DCodeAnimator.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\ContainerMechanic\Key3DCodeAnimator.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\ContainerMechanic\KeyAnim.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\ContainerMechanic\KeyAnim.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\AutoplayInterface.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\AutoplayInterface.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Manager\CameraManager.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Manager\CameraManager.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Manager\CapacityManager.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Manager\CapacityManager.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Manager\DeadlockDetector.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Manager\DeadlockDetector.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Manager\GameConditionManager.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Manager\GameConditionManager.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Manager\LevelManager.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Manager\LevelManager.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModuleAudio.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModuleAudio.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModuleEPOOutline.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModuleEPOOutline.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModulePhysics.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModulePhysics.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModulePhysics2D.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModulePhysics2D.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModuleSprite.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModuleSprite.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModuleUI.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModuleUI.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModuleUnityVersion.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModuleUnityVersion.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModuleUtils.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModuleUtils.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_FrameWork\Scripts\Config\LevelConfig\LevelConfigSO.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_FrameWork\Scripts\Config\LevelConfig\LevelConfigSO.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_FrameWork\Scripts\Config\Sound\SoundData.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_FrameWork\Scripts\Config\Sound\SoundData.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_FrameWork\Scripts\Config\Sound\SoundDataSO.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_FrameWork\Scripts\Config\Sound\SoundDataSO.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_FrameWork\Scripts\UILayers\GamePlayLayer\CapacityUI.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_FrameWork\Scripts\UILayers\GamePlayLayer\CapacityUI.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Config\ConveyorConfig\ConveyorCornerDetector\ConveyorCornerDetectorConfigSO.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Config\ConveyorConfig\ConveyorCornerDetector\ConveyorCornerDetectorConfigSO.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Config\ConveyorConfig\ConveyorSpawnPoint\ConveyorSpawnPointConfigSO.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Config\ConveyorConfig\ConveyorSpawnPoint\ConveyorSpawnPointConfigSO.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Config\ConveyorConfig\ConveyorSpeedBoost\ConveyorSpeedBoostConfigSO.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Config\ConveyorConfig\ConveyorSpeedBoost\ConveyorSpeedBoostConfigSO.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Base\Level\LevelConfig.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Base\Level\LevelConfig.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Base\Level\LevelData.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Base\Level\LevelData.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Block\Block.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Block\Block.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Block\BlockCubePayload.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Block\BlockCubePayload.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Block\BlockEnum.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Block\BlockEnum.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Block\BlockMechanics.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Block\BlockMechanics.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Block\BlockOpenHandler.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Block\BlockOpenHandler.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Block\BlockReceiveHandler.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Block\BlockReceiveHandler.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Block\BlockSolidProgressAnimator.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Block\BlockSolidProgressAnimator.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Block\BlockSolidVisual.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Block\BlockSolidVisual.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Block\BlockVisual.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Block\BlockVisual.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Block\BlockZigzagOffsetCalculator.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Block\BlockZigzagOffsetCalculator.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Block\MaterialPropertyBlockExtensions.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Block\MaterialPropertyBlockExtensions.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Carrier\BlockLinkSystem.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Carrier\BlockLinkSystem.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Carrier\BlockLinkVisual.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Carrier\BlockLinkVisual.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Carrier\BlockLinkVisualManager.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Carrier\BlockLinkVisualManager.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Carrier\Carrier.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Carrier\Carrier.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Carrier\CarrierBase.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Carrier\CarrierBase.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Carrier\CarrierBlockController.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Carrier\CarrierBlockController.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Carrier\CarrierBlockFactory.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Carrier\CarrierBlockFactory.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Carrier\CarrierBlockLayout.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Carrier\CarrierBlockLayout.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Carrier\CarrierBlockLayoutBase.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Carrier\CarrierBlockLayoutBase.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Carrier\CarrierCubePayload.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Carrier\CarrierCubePayload.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Carrier\CarrierExtensions.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Carrier\CarrierExtensions.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Carrier\CarrierLinkedBlockVisualController.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Carrier\CarrierLinkedBlockVisualController.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Carrier\CarrierMechanicEventHub.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Carrier\CarrierMechanicEventHub.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Carrier\CarrierMechanics.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Carrier\CarrierMechanics.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Carrier\CarrierMechanicVisual.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Carrier\CarrierMechanicVisual.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Carrier\CarrierReceivePort.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Carrier\CarrierReceivePort.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Carrier\CarrierReceiveReservation.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Carrier\CarrierReceiveReservation.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Carrier\CarrierRuntimeState.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Carrier\CarrierRuntimeState.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Carrier\CarrierSpawnEffect.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Carrier\CarrierSpawnEffect.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Carrier\CarrierSpawner.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Carrier\CarrierSpawner.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Carrier\CarrierStateType.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Carrier\CarrierStateType.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Carrier\CarrierSystem.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Carrier\CarrierSystem.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Carrier\CarrierUnloadPayloadCollector.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Carrier\CarrierUnloadPayloadCollector.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Carrier\CarrierUnloadPort.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Carrier\CarrierUnloadPort.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Carrier\CarrierUnloadRequest.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Carrier\CarrierUnloadRequest.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Carrier\CarrierVisualController.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Carrier\CarrierVisualController.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Carrier\ContainerRuntimeSpawner.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Carrier\ContainerRuntimeSpawner.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Carrier\HiddenCarrierByColorMechanicRuntime.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Carrier\HiddenCarrierByColorMechanicRuntime.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Carrier\HiddenCarrierVisual.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Carrier\HiddenCarrierVisual.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Carrier\LinkedBlockVisual.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Carrier\LinkedBlockVisual.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Carrier\SingleBlockLayout.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Carrier\SingleBlockLayout.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Carrier\SpecialColorReceiverMechanicRuntime.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Carrier\SpecialColorReceiverMechanicRuntime.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Carrier\SpecialColorReceiverVisual.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Carrier\SpecialColorReceiverVisual.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Conveyor\ConveyorCornerDetector.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Conveyor\ConveyorCornerDetector.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Conveyor\ConveyorCubeSpeedController.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Conveyor\ConveyorCubeSpeedController.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Conveyor\ConveyorDeliveryCubeFactory.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Conveyor\ConveyorDeliveryCubeFactory.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Conveyor\ConveyorDeliverySystem.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Conveyor\ConveyorDeliverySystem.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Conveyor\ConveyorLoseDetector.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Conveyor\ConveyorLoseDetector.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Conveyor\ConveyorManager.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Conveyor\ConveyorManager.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Conveyor\ConveyorMeshBuilder.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Conveyor\ConveyorMeshBuilder.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Conveyor\ConveyorPickupHandler.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Conveyor\ConveyorPickupHandler.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Conveyor\ConveyorPortal.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Conveyor\ConveyorPortal.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Conveyor\ConveyorSpawnPointCalculator.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Conveyor\ConveyorSpawnPointCalculator.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Conveyor\ConveyorUnloadHandler.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Conveyor\ConveyorUnloadHandler.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Conveyor\ConveyorWinDetector.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Conveyor\ConveyorWinDetector.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Conveyor\DeliveryCubeState.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Conveyor\DeliveryCubeState.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Conveyor\ForwardBestSlotPickupRule.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Conveyor\ForwardBestSlotPickupRule.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Conveyor\IConveyorPickupHandler.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Conveyor\IConveyorPickupHandler.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Conveyor\PickupState.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Conveyor\PickupState.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Conveyor\RoadAreaCalculator.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Conveyor\RoadAreaCalculator.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Conveyor\SplineBuilder.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Conveyor\SplineBuilder.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Cube\AnimCube.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Cube\AnimCube.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Cube\Cube.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Cube\Cube.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Cube\CubeBase.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Cube\CubeBase.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Cube\CubeDeliveryHandler.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Cube\CubeDeliveryHandler.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Cube\CubeEnum.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Cube\CubeEnum.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Cube\CubeMovement.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Cube\CubeMovement.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Cube\CubeVisual.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Cube\CubeVisual.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Cube\CustomTimeScaleGroup.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Cube\CustomTimeScaleGroup.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Cube\HiddenCube.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Cube\HiddenCube.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Cube\ICustomTimeScaleTarget.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Cube\ICustomTimeScaleTarget.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Cube\SplineDataCache.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Cube\SplineDataCache.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Input\IClickableObject.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Input\IClickableObject.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Input\InputController.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Input\InputController.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Spawner\Spawner.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Spawner\Spawner.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Spawner\SpawnerBlockAnimation.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Spawner\SpawnerBlockAnimation.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Spawner\SpawnerRemainingSlimeAnimator.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Spawner\SpawnerRemainingSlimeAnimator.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Library\ScriptAssemblies\Unity.Splines.Editor.dll">
+      <HintPath>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Library\ScriptAssemblies\Unity.Splines.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Library\ScriptAssemblies\Unity.Settings.Editor.dll">
+      <HintPath>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Library\ScriptAssemblies\Unity.Settings.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Library\ScriptAssemblies\Unity.Mathematics.dll">
+      <HintPath>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Library\ScriptAssemblies\Unity.Mathematics.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Library\ScriptAssemblies\Unity.Splines.dll">
+      <HintPath>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Library\ScriptAssemblies\Unity.Splines.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Library\ScriptAssemblies\Unity.TextMeshPro.dll">
+      <HintPath>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Library\ScriptAssemblies\UnityEditor.UI.dll">
+      <HintPath>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll">
+      <HintPath>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Library\ScriptAssemblies\UnityEngine.UI.dll">
+      <HintPath>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Library\ScriptAssemblies\Unity.Mathematics.Editor.dll">
+      <HintPath>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Library\ScriptAssemblies\Unity.Mathematics.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\Plugins\Demigiant\DOTween\DOTween.dll">
+      <HintPath>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\Plugins\Demigiant\DOTween\DOTween.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Users\hapiga\Downloads\Unity Playwork\scripts\Runtime\RuntimeScripts.dll">
+      <HintPath>C:\Users\hapiga\Downloads\Unity Playwork\scripts\Runtime\RuntimeScripts.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\ref\2.1.0\netstandard.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\ref\2.1.0\netstandard.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\Microsoft.Win32.Primitives.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\Microsoft.Win32.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.AppContext.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.AppContext.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Buffers.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Collections.Concurrent.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Collections.Concurrent.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Collections.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Collections.NonGeneric.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Collections.NonGeneric.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Collections.Specialized.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Collections.Specialized.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.ComponentModel.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.ComponentModel.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.ComponentModel.EventBasedAsync.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.ComponentModel.EventBasedAsync.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.ComponentModel.Primitives.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.ComponentModel.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.ComponentModel.TypeConverter.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.ComponentModel.TypeConverter.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Console.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Console.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Data.Common.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Data.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Diagnostics.Contracts.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Diagnostics.Contracts.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Diagnostics.Debug.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Diagnostics.Debug.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Diagnostics.FileVersionInfo.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Diagnostics.FileVersionInfo.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Diagnostics.Process.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Diagnostics.Process.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Diagnostics.StackTrace.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Diagnostics.StackTrace.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Diagnostics.TextWriterTraceListener.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Diagnostics.TextWriterTraceListener.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Diagnostics.Tools.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Diagnostics.Tools.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Diagnostics.TraceSource.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Diagnostics.TraceSource.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Diagnostics.Tracing.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Diagnostics.Tracing.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Drawing.Primitives.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Drawing.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Dynamic.Runtime.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Dynamic.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Globalization.Calendars.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Globalization.Calendars.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Globalization.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Globalization.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Globalization.Extensions.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Globalization.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.IO.Compression.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.IO.Compression.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.IO.Compression.ZipFile.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.IO.Compression.ZipFile.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.IO.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.IO.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.IO.FileSystem.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.IO.FileSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.IO.FileSystem.DriveInfo.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.IO.FileSystem.DriveInfo.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.IO.FileSystem.Primitives.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.IO.FileSystem.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.IO.FileSystem.Watcher.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.IO.FileSystem.Watcher.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.IO.IsolatedStorage.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.IO.IsolatedStorage.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.IO.MemoryMappedFiles.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.IO.MemoryMappedFiles.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.IO.Pipes.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.IO.Pipes.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.IO.UnmanagedMemoryStream.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.IO.UnmanagedMemoryStream.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Linq.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Linq.Expressions.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Linq.Expressions.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Linq.Parallel.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Linq.Parallel.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Linq.Queryable.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Linq.Queryable.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Memory.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Net.Http.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Net.NameResolution.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Net.NameResolution.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Net.NetworkInformation.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Net.NetworkInformation.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Net.Ping.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Net.Ping.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Net.Primitives.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Net.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Net.Requests.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Net.Requests.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Net.Security.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Net.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Net.Sockets.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Net.Sockets.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Net.WebHeaderCollection.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Net.WebHeaderCollection.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Net.WebSockets.Client.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Net.WebSockets.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Net.WebSockets.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Net.WebSockets.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Numerics.Vectors.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.ObjectModel.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.ObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Reflection.DispatchProxy.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Reflection.DispatchProxy.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Reflection.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Reflection.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Reflection.Emit.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Reflection.Emit.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Reflection.Emit.ILGeneration.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Reflection.Emit.ILGeneration.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Reflection.Emit.Lightweight.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Reflection.Emit.Lightweight.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Reflection.Extensions.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Reflection.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Reflection.Primitives.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Reflection.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Resources.Reader.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Resources.Reader.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Resources.ResourceManager.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Resources.ResourceManager.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Resources.Writer.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Resources.Writer.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Runtime.CompilerServices.VisualC.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Runtime.CompilerServices.VisualC.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Runtime.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Runtime.Extensions.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Runtime.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Runtime.Handles.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Runtime.Handles.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Runtime.InteropServices.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Runtime.InteropServices.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Runtime.InteropServices.RuntimeInformation.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Runtime.Numerics.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Runtime.Numerics.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Runtime.Serialization.Formatters.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Runtime.Serialization.Formatters.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Runtime.Serialization.Json.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Runtime.Serialization.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Runtime.Serialization.Primitives.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Runtime.Serialization.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Runtime.Serialization.Xml.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Runtime.Serialization.Xml.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Security.Claims.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Security.Claims.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Security.Cryptography.Algorithms.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Security.Cryptography.Algorithms.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Security.Cryptography.Csp.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Security.Cryptography.Csp.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Security.Cryptography.Encoding.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Security.Cryptography.Encoding.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Security.Cryptography.Primitives.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Security.Cryptography.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Security.Cryptography.X509Certificates.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Security.Cryptography.X509Certificates.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Security.Principal.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Security.Principal.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Security.SecureString.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Security.SecureString.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Text.Encoding.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Text.Encoding.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Text.Encoding.Extensions.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Text.Encoding.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Text.RegularExpressions.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Text.RegularExpressions.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Threading.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Threading.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Threading.Overlapped.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Threading.Overlapped.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Threading.Tasks.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Threading.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Threading.Tasks.Extensions.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Threading.Tasks.Parallel.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Threading.Tasks.Parallel.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Threading.Thread.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Threading.Thread.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Threading.ThreadPool.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Threading.ThreadPool.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Threading.Timer.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Threading.Timer.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.ValueTuple.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Xml.ReaderWriter.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Xml.ReaderWriter.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Xml.XDocument.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Xml.XDocument.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Xml.XmlDocument.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Xml.XmlDocument.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Xml.XmlSerializer.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Xml.XmlSerializer.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Xml.XPath.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Xml.XPath.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Xml.XPath.XDocument.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Xml.XPath.XDocument.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\Extensions\2.0.0\System.Runtime.InteropServices.WindowsRuntime.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\Extensions\2.0.0\System.Runtime.InteropServices.WindowsRuntime.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\mscorlib.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\mscorlib.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.ComponentModel.Composition.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.ComponentModel.Composition.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.Core.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.Data.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.Drawing.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.Drawing.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.IO.Compression.FileSystem.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.IO.Compression.FileSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.Net.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.Numerics.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.Numerics.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.Runtime.Serialization.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.Runtime.Serialization.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.ServiceModel.Web.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.ServiceModel.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.Transactions.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.Transactions.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.Web.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.Windows.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.Xml.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.Xml.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.Xml.Linq.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.Xml.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.Xml.Serialization.dll">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.Xml.Serialization.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Users\hapiga\Downloads\Unity Playwork\pipeline\templates\LunaCompiler\packages\Bridge.Attributes\Bridge.Attributes.dll">
+      <HintPath>C:\Users\hapiga\Downloads\Unity Playwork\pipeline\templates\LunaCompiler\packages\Bridge.Attributes\Bridge.Attributes.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Users\hapiga\Downloads\Unity Playwork\pipeline\templates\LunaCompiler\packages\LunaTypesStub\LunaTypesStub.dll">
+      <HintPath>C:\Users\hapiga\Downloads\Unity Playwork\pipeline\templates\LunaCompiler\packages\LunaTypesStub\LunaTypesStub.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\LunaTemp\Assemblies\RuntimeScripts.dll">
+      <HintPath>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\LunaTemp\Assemblies\RuntimeScripts.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\Unity.Cecil.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\Unity.Cecil.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\Unity.Cecil.Mdb.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\Unity.Cecil.Mdb.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\Unity.Cecil.Pdb.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\Unity.Cecil.Pdb.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEditor.CoreModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEditor.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEditor.DeviceSimulatorModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEditor.DeviceSimulatorModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEditor.DiagnosticsModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEditor.DiagnosticsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEditor.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEditor.EditorToolbarModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEditor.EditorToolbarModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEditor.GraphViewModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEditor.GraphViewModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEditor.PresetsUIModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEditor.PresetsUIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEditor.QuickSearchModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEditor.QuickSearchModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEditor.SceneTemplateModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEditor.SceneTemplateModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEditor.SceneViewModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEditor.SceneViewModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEditor.TextCoreFontEngineModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEditor.TextCoreFontEngineModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEditor.TextCoreTextEngineModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEditor.TextCoreTextEngineModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEditor.UIBuilderModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEditor.UIBuilderModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEditor.UIElementsModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEditor.UIElementsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEditor.UIElementsSamplesModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEditor.UIElementsSamplesModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEditor.UnityConnectModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEditor.UnityConnectModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.AccessibilityModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.AccessibilityModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.AIModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.AIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.AndroidJNIModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.AndroidJNIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.AnimationModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.AnimationModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.ARModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.ARModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.AssetBundleModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.AssetBundleModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.AudioModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.AudioModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.ClothModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.ClothModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.ClusterInputModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.ClusterInputModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.ClusterRendererModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.ClusterRendererModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.ContentLoadModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.ContentLoadModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.CoreModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.CrashReportingModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.CrashReportingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.DirectorModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.DirectorModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.DSPGraphModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.DSPGraphModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.GameCenterModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.GameCenterModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.GIModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.GIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.GridModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.GridModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.HotReloadModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.HotReloadModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.ImageConversionModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.ImageConversionModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.IMGUIModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.IMGUIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.InputLegacyModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.InputLegacyModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.InputModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.InputModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.JSONSerializeModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.JSONSerializeModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.LocalizationModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.LocalizationModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.NVIDIAModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.NVIDIAModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.ParticleSystemModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.ParticleSystemModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.PerformanceReportingModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.PerformanceReportingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.Physics2DModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.Physics2DModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.PhysicsModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.PhysicsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.ProfilerModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.ProfilerModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.PropertiesModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.PropertiesModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.ScreenCaptureModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.ScreenCaptureModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.SharedInternalsModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.SharedInternalsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.SpriteMaskModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.SpriteMaskModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.SpriteShapeModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.SpriteShapeModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.StreamingModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.StreamingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.SubstanceModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.SubstanceModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.SubsystemsModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.SubsystemsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.TerrainModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.TerrainModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.TerrainPhysicsModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.TerrainPhysicsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.TextCoreFontEngineModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.TextCoreFontEngineModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.TextCoreTextEngineModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.TextCoreTextEngineModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.TextRenderingModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.TextRenderingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.TilemapModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.TilemapModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.TLSModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.TLSModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.UIElementsModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.UIElementsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.UIModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.UIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.UmbraModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.UmbraModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.UnityAnalyticsCommonModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.UnityAnalyticsCommonModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.UnityAnalyticsModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.UnityAnalyticsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.UnityConnectModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.UnityConnectModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.UnityCurlModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.UnityCurlModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.UnityTestProtocolModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.UnityTestProtocolModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.UnityWebRequestAssetBundleModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.UnityWebRequestAudioModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.UnityWebRequestModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.UnityWebRequestModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.UnityWebRequestTextureModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.UnityWebRequestWWWModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.VehiclesModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.VehiclesModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.VFXModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.VFXModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.VideoModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.VideoModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.VirtualTexturingModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.VirtualTexturingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.VRModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.VRModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.WindModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.WindModule.dll</HintPath>
+    </Reference>
+    <Reference Include="C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.XRModule.dll">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data\Managed\UnityEngine\UnityEngine.XRModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>

@@ -11,7 +11,9 @@ public class CarrierMechanicVisualConfigSO : ScriptableObject
         foreach (var entry in visualPrefabs)
         {
             if (entry == null || entry.Kind != kind) continue;
-            return entry.Prefab;
+            return entry.Prefab != null
+                ? entry.Prefab.GetComponent<CarrierMechanicVisual>()
+                : null;
         }
 
         return null;
@@ -22,5 +24,5 @@ public class CarrierMechanicVisualConfigSO : ScriptableObject
 public class CarrierVisualPrefabEntry
 {
     public ECarrierVisualKind Kind;
-    public CarrierMechanicVisual Prefab;
+    public GameObject Prefab;
 }

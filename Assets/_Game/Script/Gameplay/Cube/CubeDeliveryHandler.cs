@@ -1,6 +1,6 @@
 using System;
-using DG.Tweening;
 using UnityEngine;
+using DG.Tweening;
 
 public class CubeDeliveryHandler : MonoBehaviour, ICustomTimeScaleTarget
 {
@@ -60,7 +60,7 @@ public class CubeDeliveryHandler : MonoBehaviour, ICustomTimeScaleTarget
 
         var duration = customDuration.HasValue ? customDuration.Value : 0.5f;
         var flightHeight = customHeight.HasValue ? customHeight.Value : (config != null ? config.Height : 1f);
-        var ease = config != null ? config.EaseType : Ease.OutSine;
+        var ease = config != null ? config.EaseType : DG.Tweening.Ease.OutSine;
 
         _flyTween = DOTween.To(
                 () => 0f,
@@ -69,20 +69,22 @@ public class CubeDeliveryHandler : MonoBehaviour, ICustomTimeScaleTarget
                 duration)
             .SetEase(ease)
             .SetUpdate(true)
-            .SetTarget(this);
-
+            .SetTarget(this)
+            .OnComplete(() =>
+            {
+                _flyTween = null;
+                onComplete?.Invoke();
+            });
         _flyTween.timeScale = _customTimeScale;
-        _flyTween.OnComplete(() =>
-        {
-            _flyTween = null;
-            onComplete?.Invoke();
-        });
     }
 
     public void SetCustomTimeScale(float timeScale)
     {
         _customTimeScale = Mathf.Max(0f, timeScale);
-        if (_flyTween != null) _flyTween.timeScale = _customTimeScale;
+        if (_flyTween != null && _flyTween.IsActive())
+        {
+            _flyTween.timeScale = _customTimeScale;
+        }
     }
 
     private void UpdateCubePosition(Vector3 startPos, Vector3 targetPos, float progress, float height)
@@ -98,6 +100,6 @@ public class CubeDeliveryHandler : MonoBehaviour, ICustomTimeScaleTarget
 public class CubeDeliveryConfig
 {
     public float Speed = 10f;
-    public Ease EaseType = Ease.OutSine;
+    public DG.Tweening.Ease EaseType = DG.Tweening.Ease.OutSine;
     public float Height = 1f;
 }

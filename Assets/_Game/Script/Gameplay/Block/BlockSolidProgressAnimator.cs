@@ -1,5 +1,5 @@
-using DG.Tweening;
 using UnityEngine;
+using DG.Tweening;
 
 public class BlockSolidProgressAnimator : MonoBehaviour
 {
@@ -71,7 +71,7 @@ public class BlockSolidProgressAnimator : MonoBehaviour
 
     public void PlayTriggerActiveAnimation()
     {
-        if (_animator == null) return;
+        if (_animator == null || _animator.runtimeAnimatorController == null) return;
 
         if (_isProgressTweenPlaying || _progressSequence != null)
         {
@@ -85,7 +85,7 @@ public class BlockSolidProgressAnimator : MonoBehaviour
 
     public void SetAnimatorEnabled(bool isEnabled)
     {
-        if (!isBlock4X || _animator == null) return;
+        if (!isBlock4X || _animator == null || _animator.runtimeAnimatorController == null) return;
         _animator.enabled = isEnabled;
     }
 
@@ -125,26 +125,16 @@ public class BlockSolidProgressAnimator : MonoBehaviour
         _isProgressTweenPlaying = true;
         _currentAnimType = animData.Type;
 
-        var sequence = DOTween.Sequence().SetTarget(this);
-
+        _progressSequence = DOTween.Sequence().SetTarget(this);
         for (var index = 0; index < animData.LocalScales.Count - 1; index++)
         {
             var targetScale = animData.LocalScales[index + 1];
-            var motion = animatedTarget
+            _progressSequence.Append(animatedTarget
                 .DOScale(targetScale, animData.Duration)
-                .SetEase(animData.Ease);
-
-            if (index == animData.LocalScales.Count - 2)
-            {
-                motion.OnComplete(OnProgressTweenCompleted);
-            }
-
-            sequence.Append(motion);
+                .SetEase(animData.Ease));
         }
 
-        _progressSequence = sequence;
-
-        void OnProgressTweenCompleted()
+        _progressSequence.OnComplete(() =>
         {
             _isProgressTweenPlaying = false;
             _currentAnimType = AnimType.None;
@@ -160,7 +150,7 @@ public class BlockSolidProgressAnimator : MonoBehaviour
             {
                 SoundManager.Instance?.PlayOneShot(AudioClipName.sfx_squash_end);
             }
-        }
+        });
     }
 
     private void StopProgressTween(bool resetScale)
@@ -186,4 +176,5 @@ public class BlockSolidProgressAnimator : MonoBehaviour
         _isProgressTweenPlaying = false;
         _currentAnimType = AnimType.None;
     }
+
 }

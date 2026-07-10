@@ -352,6 +352,7 @@ GameObject:
   - component: {fileID: 7157394702645640073}
   - component: {fileID: -6854596576529562979}
   - component: {fileID: 8218430309889846215}
+  - component: {fileID: 6899234344763335695}
   m_Layer: 8
   m_Name: Block
   m_TagString: Untagged
@@ -425,6 +426,23 @@ MonoBehaviour:
   hiddenRevealVfxPrefab: {fileID: 7616197948213221594, guid: 110f62df63352f54195973a6987ba2a8, type: 3}
   mergeVfx: {fileID: 4016779824137347117}
   parrentVFX: {fileID: 4502914730755861556}
+--- !u!114 &6899234344763335695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2301646182815490972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bded5f78f1746e48ed6c8dfe14f9d14, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  keyPrefab: {fileID: 7321098456123490789, guid: cbe804c239d707e4a92359c93a387add, type: 3}
+  unlockDuration: 0.85
+  unlockEase: 5
+  useOverrideFlightY: 1
+  flightY: 3.2
 --- !u!1 &2336637394823626897
 GameObject:
   m_ObjectHideFlags: 0

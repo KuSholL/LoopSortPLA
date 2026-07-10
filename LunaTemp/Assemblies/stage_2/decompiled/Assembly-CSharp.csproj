@@ -1,0 +1,54 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
+    <TargetFramework>netstandard2.1</TargetFramework>
+  </PropertyGroup>
+  <PropertyGroup>
+    <LangVersion>7</LangVersion>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup />
+  <ItemGroup />
+  <ItemGroup>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AudioModule">
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.AudioModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\..\..\..\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UIModule">
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.UIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween">
+      <HintPath>..\..\..\..\Assets\Plugins\Demigiant\DOTween\DOTween.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Splines">
+      <HintPath>..\..\..\..\Library\ScriptAssemblies\Unity.Splines.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ParticleSystemModule">
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.ParticleSystemModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.PhysicsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AnimationModule">
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.AnimationModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.TextRenderingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Mathematics">
+      <HintPath>..\..\..\..\Library\ScriptAssemblies\Unity.Mathematics.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.InputLegacyModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Physics2DModule">
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.Physics2DModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>

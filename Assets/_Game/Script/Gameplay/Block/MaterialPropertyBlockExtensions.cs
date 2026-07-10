@@ -10,6 +10,8 @@ public static class MaterialPropertyBlockExtensions
     private static readonly int RimColor = Shader.PropertyToID("_RimColor");
     private static readonly int MatCapColor = Shader.PropertyToID("_MatCapColor");
     private static readonly int OutlineColor = Shader.PropertyToID("_OutlineColorVertex");
+    private static readonly int StylizedShadowColor = Shader.PropertyToID("_ShadowColor");
+    private static readonly int ReflectColor = Shader.PropertyToID("_ReflectColor");
 
     public static void SetColorEntry(this MaterialPropertyBlock propertyBlock, ColorEntry entry)
     {
@@ -31,5 +33,14 @@ public static class MaterialPropertyBlockExtensions
         propertyBlock.SetColor(RimColor, UnityEngine.Color.white);
         propertyBlock.SetColor(MatCapColor, UnityEngine.Color.white);
         propertyBlock.SetColor(OutlineColor, UnityEngine.Color.white);
+    }
+
+    public static void SetColorEntry(this MaterialPropertyBlock propertyBlock, StylizedColorEntry entry)
+    {
+        if (entry == null || propertyBlock == null) return;
+        propertyBlock.SetColor(Color, entry.Color);
+        propertyBlock.SetColor(StylizedShadowColor, entry.ShadowColor);
+        propertyBlock.SetColor(SpecularColor, entry.SpecularColor);
+        propertyBlock.SetColor(ReflectColor, entry.ReflectColor);
     }
 }

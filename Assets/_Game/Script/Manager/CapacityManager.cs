@@ -22,6 +22,10 @@ public class CapacityManager : MonoSingleton<CapacityManager>
         _cubePerBlock = GetCubePerBlock();
         _currentCubeCount = 0;
         _pendingCubeCount = 0;
+
+        var capacityUI = CapacityUI.EnsureExists();
+        if (capacityUI != null) capacityUI.InitLevel(_maxCapacity);
+        UpdateCapacityUI();
     }
 
     public void ReservePendingCubes(int count)

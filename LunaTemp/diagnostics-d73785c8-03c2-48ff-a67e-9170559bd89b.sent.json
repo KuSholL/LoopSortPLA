@@ -1,0 +1,2562 @@
+{
+  "BuildID": "d73785c8-03c2-48ff-a67e-9170559bd89b",
+  "Command": "project:build",
+  "ProjectID": "dc2b0d14efb857f4ea56325f3c38e974",
+  "ProjectStateHash": "58986a99938b960d0b071d65ba6447c907d2797f21c9c5064f5815ae93ca8436",
+  "StageCompletedAt": 3,
+  "EarliestFatalError": 3,
+  "StartTime": 1783651400755,
+  "EndTime": 1783651448882,
+  "PlaygroundUserID": 38211,
+  "OperatingSystem": "win32",
+  "UnityPackageID": null,
+  "TargetPlatform": "develop",
+  "UnityVersion": "2022.3.62f3",
+  "LunaVersion": "7.2.0",
+  "LogCount": 106,
+  "Logs": [
+    {
+      "LogID": "32af88a4-75d5-4eeb-a891-87096c7fc948",
+      "Order": 103,
+      "Timestamp": 1783651449908,
+      "Stage": 3,
+      "ErrorType": 1,
+      "ErrorCode": "LP3006",
+      "Description": "You are not using the Luna API: Playable.InstallFullGame",
+      "Details": [
+        "You are not using the Luna API: Playable.InstallFullGame. Some ad networks require these calls. Please add these calls to ensure your playable works on all ad networks. Check documentation for more information."
+      ],
+      "DescriptionValues": [
+        "Playable",
+        "InstallFullGame"
+      ],
+      "DetailsValues": [
+        "Playable",
+        "InstallFullGame"
+      ],
+      "LogCount": 1,
+      "LinePosition": null,
+      "FilePath": "",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 0
+    },
+    {
+      "LogID": "5946d8d0-6ad4-4487-9f1d-2b69270cb181",
+      "Order": 103,
+      "Timestamp": 1783651449908,
+      "Stage": 3,
+      "ErrorType": 1,
+      "ErrorCode": "LP3015",
+      "Description": "You are not the Game Ended API: LifeCycle.GameEnded",
+      "Details": [
+        "You are not using the Game Ended API: LifeCycle.GameEnded. Some ad networks require this call, please add the event to avoid the ad being rejected."
+      ],
+      "DescriptionValues": [
+        "LifeCycle",
+        "GameEnded"
+      ],
+      "DetailsValues": [
+        "LifeCycle",
+        "GameEnded"
+      ],
+      "LogCount": 1,
+      "LinePosition": null,
+      "FilePath": "",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 0
+    },
+    {
+      "LogID": "2def5533-ea95-4ab2-8a2d-7a1d99d628e2",
+      "Order": 103,
+      "Timestamp": 1783651449908,
+      "Stage": 3,
+      "ErrorType": 3,
+      "ErrorCode": "LP3007",
+      "Description": "You are not using any custom events",
+      "Details": [
+        "You are not using any custom events. It is recommended to use custom events to have a better understanding of the playable."
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": null,
+      "FilePath": "",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 0
+    },
+    {
+      "LogID": "211583c7-b09e-44c0-9444-c1162f6a28fd",
+      "Order": 103,
+      "Timestamp": 1783651449908,
+      "Stage": 3,
+      "ErrorType": 3,
+      "ErrorCode": "LP3011",
+      "Description": "You are not using any LunaPlaygroundFields attributes.",
+      "Details": [
+        "You are not using any LunaPlaygroundFields attributes, it allows you to configure your playable to different concepts to find the best variation, which can drastically improve playable performance on all ad networks."
+      ],
+      "DescriptionValues": null,
+      "DetailsValues": null,
+      "LogCount": 1,
+      "LinePosition": null,
+      "FilePath": "",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 0
+    },
+    {
+      "LogID": "275f0606-e3d8-458b-9080-56a6faa88973",
+      "Order": 0,
+      "Timestamp": 1783651416265,
+      "Stage": 1,
+      "ErrorType": 2,
+      "ErrorCode": "LP1014",
+      "Description": "We recommend running Runtime Analysis to find and remove all unused code",
+      "Details": [
+        "Navigate to the Runtime Analysis → Code tab to enable code stripping. Before uploading the playable, please make sure to have played all scenario’s of the playable in a development build to make Runtime Analysis work properly."
+      ],
+      "DescriptionValues": [],
+      "DetailsValues": [],
+      "LogCount": 1,
+      "LinePosition": 0,
+      "FilePath": "",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 0
+    },
+    {
+      "LogID": "be06d4cd-71cd-42a0-be4f-b738e28aec84",
+      "Order": 1,
+      "Timestamp": 1783651416265,
+      "Stage": 1,
+      "ErrorType": 2,
+      "ErrorCode": "LP1016",
+      "Description": "Extensive usage of ParticleSystem Component",
+      "Details": [
+        "There is extensive usage of the ParticleSystem component.\nExcessive usage of any component can be detrimental to performance on lower and in some cases higher end devices, consider reducing the amount the component is used.\nRecommended count: 10, current count 12."
+      ],
+      "DescriptionValues": [
+        "ParticleSystem"
+      ],
+      "DetailsValues": [
+        "ParticleSystem",
+        "10",
+        "12"
+      ],
+      "LogCount": 1,
+      "LinePosition": 0,
+      "FilePath": "",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 0
+    },
+    {
+      "LogID": "9beaf0ea-22d6-4e0e-bddc-f5bb710d621d",
+      "Order": 2,
+      "Timestamp": 1783651416287,
+      "Stage": 1,
+      "ErrorType": 3,
+      "ErrorCode": "LP1002",
+      "Description": "Repeat wrap mode used on a texture with non power-of-two dimensions, this might not be rendered correctly.",
+      "Details": [
+        "Repeat wrap mode used on 'T_BG_Xanh' texture at 'Assets/_Game/3D_Assets/Textrue/Bg/T_BG_Xanh.png' with non power-of-two dimensions, this might not be rendered correctly."
+      ],
+      "DescriptionValues": [],
+      "DetailsValues": [
+        "T_BG_Xanh",
+        "Assets/_Game/3D_Assets/Textrue/Bg/T_BG_Xanh.png"
+      ],
+      "LogCount": 1,
+      "LinePosition": 0,
+      "FilePath": "Assets/_Game/3D_Assets/Textrue/Bg/T_BG_Xanh.png",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 0
+    },
+    {
+      "LogID": "3ed5f442-7027-46b5-b67e-411392428fcc",
+      "Order": 3,
+      "Timestamp": 1783651416288,
+      "Stage": 1,
+      "ErrorType": 2,
+      "ErrorCode": "LP1010",
+      "Description": "Looks like a collider was scaled, this might affect performance.",
+      "Details": [
+        "Cube",
+        "Cube",
+        "Scissors_L",
+        "Scissors_R",
+        "Model",
+        "Block2x_Mesh",
+        "Block3x_Mesh"
+      ],
+      "DescriptionValues": [],
+      "DetailsValues": [],
+      "LogCount": 7,
+      "LinePosition": 0,
+      "FilePath": "",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 0
+    },
+    {
+      "LogID": "3b04a59c-3d31-46ce-9037-2ca29a31ca97",
+      "Order": 4,
+      "Timestamp": 1783651448868,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0234",
+      "Description": "The type or namespace name 'Splines' does not exist in the namespace 'UnityEngine' (are you missing an assembly reference?)",
+      "Details": [
+        "using UnityEngine.Splines;"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 4,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\CarrierBase.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "373a1ab6-13d9-4e50-853a-8764db99b702",
+      "Order": 5,
+      "Timestamp": 1783651448868,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0234",
+      "Description": "The type or namespace name 'Splines' does not exist in the namespace 'UnityEngine' (are you missing an assembly reference?)",
+      "Details": [
+        "using UnityEngine.Splines;"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 2,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\CarrierExtensions.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "a0163f86-417c-4420-bd5b-2fc03777343f",
+      "Order": 6,
+      "Timestamp": 1783651448870,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0234",
+      "Description": "The type or namespace name 'Splines' does not exist in the namespace 'UnityEngine' (are you missing an assembly reference?)",
+      "Details": [
+        "using UnityEngine.Splines;"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 7,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\CarrierSpawner.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "65a6fb39-e37e-40c1-840e-0160562ff593",
+      "Order": 7,
+      "Timestamp": 1783651448870,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0234",
+      "Description": "The type or namespace name 'Splines' does not exist in the namespace 'UnityEngine' (are you missing an assembly reference?)",
+      "Details": [
+        "using UnityEngine.Splines;"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 7,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\ContainerRuntimeSpawner.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "89ae445b-d4fb-440d-b7de-febb51492174",
+      "Order": 8,
+      "Timestamp": 1783651448870,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0234",
+      "Description": "The type or namespace name 'Mathematics' does not exist in the namespace 'Unity' (are you missing an assembly reference?)",
+      "Details": [
+        "using Unity.Mathematics;"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 3,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\ConveyorCornerDetector.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "6a6884f1-d0bc-4e88-9028-45309c949e6e",
+      "Order": 9,
+      "Timestamp": 1783651448870,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0234",
+      "Description": "The type or namespace name 'Splines' does not exist in the namespace 'UnityEngine' (are you missing an assembly reference?)",
+      "Details": [
+        "using UnityEngine.Splines;"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 5,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\ConveyorCornerDetector.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "c219b94b-9507-4a7f-a43a-c824b143fee7",
+      "Order": 10,
+      "Timestamp": 1783651448870,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0234",
+      "Description": "The type or namespace name 'Mathematics' does not exist in the namespace 'Unity' (are you missing an assembly reference?)",
+      "Details": [
+        "using Unity.Mathematics;"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 2,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\ConveyorCubeSpeedController.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "995bffcb-1183-4c31-9702-2d79ab290ea7",
+      "Order": 11,
+      "Timestamp": 1783651448870,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0234",
+      "Description": "The type or namespace name 'Splines' does not exist in the namespace 'UnityEngine' (are you missing an assembly reference?)",
+      "Details": [
+        "using UnityEngine.Splines;"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 4,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\ConveyorCubeSpeedController.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "58b31e50-6185-4cea-a712-5b24a434ca53",
+      "Order": 12,
+      "Timestamp": 1783651448870,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0234",
+      "Description": "The type or namespace name 'Mathematics' does not exist in the namespace 'Unity' (are you missing an assembly reference?)",
+      "Details": [
+        "using Unity.Mathematics;"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 3,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\ConveyorDeliverySystem.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "81b97340-576a-49eb-b51f-820c793242c3",
+      "Order": 13,
+      "Timestamp": 1783651448870,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0234",
+      "Description": "The type or namespace name 'Splines' does not exist in the namespace 'UnityEngine' (are you missing an assembly reference?)",
+      "Details": [
+        "using UnityEngine.Splines;"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 5,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\ConveyorDeliverySystem.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "fe8b0ebb-cce0-43ae-88af-3fadca99feaa",
+      "Order": 14,
+      "Timestamp": 1783651448870,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0234",
+      "Description": "The type or namespace name 'Mathematics' does not exist in the namespace 'Unity' (are you missing an assembly reference?)",
+      "Details": [
+        "using Unity.Mathematics;"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 4,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\ConveyorManager.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "742d81c9-9d7a-4215-90b9-288b503c4f17",
+      "Order": 15,
+      "Timestamp": 1783651448870,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0234",
+      "Description": "The type or namespace name 'Splines' does not exist in the namespace 'UnityEngine' (are you missing an assembly reference?)",
+      "Details": [
+        "using UnityEngine.Splines;"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 6,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\ConveyorManager.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "1a778991-4794-44d0-8ac7-00319827c297",
+      "Order": 16,
+      "Timestamp": 1783651448870,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0234",
+      "Description": "The type or namespace name 'Splines' does not exist in the namespace 'UnityEngine' (are you missing an assembly reference?)",
+      "Details": [
+        "using UnityEngine.Splines;"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 4,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\ConveyorMeshBuilder.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "70156bf4-f1dc-4ba6-b0f0-9eadd823d1b7",
+      "Order": 17,
+      "Timestamp": 1783651448870,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0234",
+      "Description": "The type or namespace name 'Splines' does not exist in the namespace 'UnityEngine' (are you missing an assembly reference?)",
+      "Details": [
+        "using UnityEngine.Splines;"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 2,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\ConveyorPortal.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "6a83e3a8-315f-4a0d-aa8e-a889660592a4",
+      "Order": 18,
+      "Timestamp": 1783651448870,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0234",
+      "Description": "The type or namespace name 'Mathematics' does not exist in the namespace 'Unity' (are you missing an assembly reference?)",
+      "Details": [
+        "using Unity.Mathematics;"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 1,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\ConveyorSpawnPointCalculator.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "6e4e7cbd-7cbc-4346-9667-6ac3f198a16b",
+      "Order": 19,
+      "Timestamp": 1783651448870,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0234",
+      "Description": "The type or namespace name 'Splines' does not exist in the namespace 'UnityEngine' (are you missing an assembly reference?)",
+      "Details": [
+        "using UnityEngine.Splines;"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 3,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\ConveyorSpawnPointCalculator.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "dfa367b2-1cf1-4147-bda6-995bcbedebc0",
+      "Order": 20,
+      "Timestamp": 1783651448870,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0234",
+      "Description": "The type or namespace name 'Splines' does not exist in the namespace 'UnityEngine' (are you missing an assembly reference?)",
+      "Details": [
+        "using UnityEngine.Splines;"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 2,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\Cube.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "25adf141-8f28-4797-b275-c01af8888573",
+      "Order": 21,
+      "Timestamp": 1783651448870,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0234",
+      "Description": "The type or namespace name 'Mathematics' does not exist in the namespace 'Unity' (are you missing an assembly reference?)",
+      "Details": [
+        "using Unity.Mathematics;"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 4,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\CubeMovement.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "e7a0cc7d-b06a-4238-a349-9a5595b32df0",
+      "Order": 22,
+      "Timestamp": 1783651448870,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0234",
+      "Description": "The type or namespace name 'Splines' does not exist in the namespace 'UnityEngine' (are you missing an assembly reference?)",
+      "Details": [
+        "using UnityEngine.Splines;"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 6,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\CubeMovement.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "69089a4e-7131-49b7-ba31-d41010e072b3",
+      "Order": 23,
+      "Timestamp": 1783651448870,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0234",
+      "Description": "The type or namespace name 'Splines' does not exist in the namespace 'UnityEngine' (are you missing an assembly reference?)",
+      "Details": [
+        "using UnityEngine.Splines;"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 3,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\RoadAreaCalculator.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "8826a0b6-9de1-44e9-8be0-c1eb67ff0c50",
+      "Order": 24,
+      "Timestamp": 1783651448870,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0234",
+      "Description": "The type or namespace name 'Splines' does not exist in the namespace 'UnityEngine' (are you missing an assembly reference?)",
+      "Details": [
+        "using UnityEngine.Splines;"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 2,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\SplineBuilder.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "c3e7c2af-a5e6-49db-bbf1-81f640d2af8b",
+      "Order": 25,
+      "Timestamp": 1783651448870,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0234",
+      "Description": "The type or namespace name 'Splines' does not exist in the namespace 'UnityEngine' (are you missing an assembly reference?)",
+      "Details": [
+        "using UnityEngine.Splines;"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 2,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\SplineDataCache.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "007d9d76-68b9-4eb5-be0e-2878e1374eea",
+      "Order": 26,
+      "Timestamp": 1783651448870,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0234",
+      "Description": "The type or namespace name 'Splines' does not exist in the namespace 'UnityEngine' (are you missing an assembly reference?)",
+      "Details": [
+        "using UnityEngine.Splines;"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 3,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\SplinePointData.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "34ad71a2-c4f7-459a-9bbd-f28dfd5cbfc8",
+      "Order": 27,
+      "Timestamp": 1783651448870,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0246",
+      "Description": "The type or namespace name 'Spline' could not be found (are you missing a using directive or an assembly reference?)",
+      "Details": [
+        "private void BuildBakedSpline(Spline spline, List<SplinePointData> source, bool closed)"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 111,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\ConveyorManager.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "317401e2-cd3f-428f-9192-ac967651c84c",
+      "Order": 28,
+      "Timestamp": 1783651448870,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0246",
+      "Description": "The type or namespace name 'BezierKnot' could not be found (are you missing a using directive or an assembly reference?)",
+      "Details": [
+        "private static BezierKnot CreateKnot(SplinePointData point)"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 209,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\ConveyorManager.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "f78384e5-3d42-4baf-97e3-38cbc6e0dd67",
+      "Order": 29,
+      "Timestamp": 1783651448870,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0246",
+      "Description": "The type or namespace name 'Spline' could not be found (are you missing a using directive or an assembly reference?)",
+      "Details": [
+        "private static void ApplySavedStyle(Spline spline, SplinePointData point, int index)"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 214,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\ConveyorManager.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "050f6273-4536-4d62-bc4f-6c190b514d64",
+      "Order": 30,
+      "Timestamp": 1783651448870,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0246",
+      "Description": "The type or namespace name 'SplineContainer' could not be found (are you missing a using directive or an assembly reference?)",
+      "Details": [
+        "private SplineContainer conveyorContainer;"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 26,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\ConveyorManager.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "d53641f8-1128-414f-af89-f19cee699b26",
+      "Order": 31,
+      "Timestamp": 1783651448870,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0246",
+      "Description": "The type or namespace name 'SplineInstantiate' could not be found (are you missing a using directive or an assembly reference?)",
+      "Details": [
+        "private SplineInstantiate splineInstantiate;"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 41,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\ConveyorManager.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "4cd331b3-d68a-4744-acef-52e73cefa9fc",
+      "Order": 32,
+      "Timestamp": 1783651448870,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0246",
+      "Description": "The type or namespace name 'SplineContainer' could not be found (are you missing a using directive or an assembly reference?)",
+      "Details": [
+        "protected SplineContainer _cachedSplineContainer;"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 19,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\CarrierBase.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "f19e59c5-31f2-42ec-9cff-518b1c84dab5",
+      "Order": 33,
+      "Timestamp": 1783651448870,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0246",
+      "Description": "The type or namespace name 'Spline' could not be found (are you missing a using directive or an assembly reference?)",
+      "Details": [
+        "private static SplineDataCache GetOrCreateCache(Spline spline, int sampleCount)"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 91,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\CubeMovement.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "648add3a-27e8-42ff-b883-bc1012dcc5cb",
+      "Order": 34,
+      "Timestamp": 1783651448870,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0246",
+      "Description": "The type or namespace name 'SplineContainer' could not be found (are you missing a using directive or an assembly reference?)",
+      "Details": [
+        "public void Setup(SplineContainer splineContainer, float startProgress = 0f, float progressOffset = 0f, Vector3? initialWorldPosition = null)"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 140,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\CubeMovement.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "b6c6f92f-3f05-410f-9d84-57af9a17dca7",
+      "Order": 35,
+      "Timestamp": 1783651448870,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0246",
+      "Description": "The type or namespace name 'SplineContainer' could not be found (are you missing a using directive or an assembly reference?)",
+      "Details": [
+        "public void ApplyPortalTransfer(SplineContainer splineContainer, Vector3 worldPosition, Vector3 worldVelocity, Vector3 worldForward)"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 152,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\CubeMovement.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "47016bd5-c475-47b8-9a46-b016b1fee424",
+      "Order": 36,
+      "Timestamp": 1783651448870,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0246",
+      "Description": "The type or namespace name 'SplineContainer' could not be found (are you missing a using directive or an assembly reference?)",
+      "Details": [
+        "private SplineContainer _splineContainer;"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 36,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\CubeMovement.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "505b82de-3d84-410a-9d56-228312335cc3",
+      "Order": 37,
+      "Timestamp": 1783651448870,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0246",
+      "Description": "The type or namespace name 'Spline' could not be found (are you missing a using directive or an assembly reference?)",
+      "Details": [
+        "private static readonly Dictionary<Spline, SplineDataCache> _splineCache;"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 78,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\CubeMovement.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "3c6abfd7-3dfe-430c-a881-96cccde723eb",
+      "Order": 38,
+      "Timestamp": 1783651448870,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0246",
+      "Description": "The type or namespace name 'SplineContainer' could not be found (are you missing a using directive or an assembly reference?)",
+      "Details": [
+        "public float GetApproximateRoadLength(SplineContainer container)"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 121,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\ConveyorMeshBuilder.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "28097291-4cc6-490d-906e-20392f53dd01",
+      "Order": 39,
+      "Timestamp": 1783651448870,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0246",
+      "Description": "The type or namespace name 'SplineContainer' could not be found (are you missing a using directive or an assembly reference?)",
+      "Details": [
+        "public float GetProjectedRoadArea(SplineContainer container)"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 152,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\ConveyorMeshBuilder.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "13a7cdab-835c-450a-811a-466c6eb15153",
+      "Order": 40,
+      "Timestamp": 1783651448870,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0246",
+      "Description": "The type or namespace name 'SplineContainer' could not be found (are you missing a using directive or an assembly reference?)",
+      "Details": [
+        "public void Rebuild(SplineContainer splineContainer)"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 165,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\ConveyorMeshBuilder.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "c0714638-e7bb-471d-b8cd-83c86d0c69c4",
+      "Order": 41,
+      "Timestamp": 1783651448870,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0246",
+      "Description": "The type or namespace name 'SplineContainer' could not be found (are you missing a using directive or an assembly reference?)",
+      "Details": [
+        "private Mesh BuildRoadMesh(SplineContainer container)"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 181,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\ConveyorMeshBuilder.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "c7a8f79e-fb13-43c2-aced-921487776404",
+      "Order": 42,
+      "Timestamp": 1783651448870,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0246",
+      "Description": "The type or namespace name 'SplineContainer' could not be found (are you missing a using directive or an assembly reference?)",
+      "Details": [
+        "private Mesh BuildRailMesh(SplineContainer container)"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 244,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\ConveyorMeshBuilder.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "a5cc0e6e-c2b6-4112-8038-830ee131415c",
+      "Order": 43,
+      "Timestamp": 1783651448870,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0246",
+      "Description": "The type or namespace name 'SplineContainer' could not be found (are you missing a using directive or an assembly reference?)",
+      "Details": [
+        "private void BuildSingleRail(SplineContainer container, float sideSign, List<Vector3> vertices, List<Vector3> normals, List<Vector2> uvs, List<int> triangles)"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 269,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\ConveyorMeshBuilder.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "cd62d5fd-f27a-4ef6-aeb0-1cb5913dfe11",
+      "Order": 44,
+      "Timestamp": 1783651448870,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0246",
+      "Description": "The type or namespace name 'SplineContainer' could not be found (are you missing a using directive or an assembly reference?)",
+      "Details": [
+        "private void SampleFrame(SplineContainer container, float t, out Vector3 center, out Vector3 forward, out Vector3 up, out Vector3 right)"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 400,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\ConveyorMeshBuilder.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "863d693d-1aa1-417a-9e7d-018ace6c6215",
+      "Order": 45,
+      "Timestamp": 1783651448870,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0246",
+      "Description": "The type or namespace name 'SplineContainer' could not be found (are you missing a using directive or an assembly reference?)",
+      "Details": [
+        "private void UpdateRoadVisual(SplineContainer splineContainer, GameObject roadObject)"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 429,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\ConveyorMeshBuilder.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "df0dfeb2-4649-452b-8483-4ef64d641190",
+      "Order": 46,
+      "Timestamp": 1783651448870,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0246",
+      "Description": "The type or namespace name 'SplineContainer' could not be found (are you missing a using directive or an assembly reference?)",
+      "Details": [
+        "private void ApplyRoadShaderData(MeshRenderer meshRenderer, SplineContainer splineContainer)"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 438,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\ConveyorMeshBuilder.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "81f37cc4-dbca-4d04-ac13-051298aecde9",
+      "Order": 47,
+      "Timestamp": 1783651448870,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0246",
+      "Description": "The type or namespace name 'SplineContainer' could not be found (are you missing a using directive or an assembly reference?)",
+      "Details": [
+        "private Mesh BuildRoadVisualMesh(SplineContainer container)"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 508,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\ConveyorMeshBuilder.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "31b6e86e-8451-426d-8899-b3d40fba1032",
+      "Order": 48,
+      "Timestamp": 1783651448870,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0246",
+      "Description": "The type or namespace name 'SplineContainer' could not be found (are you missing a using directive or an assembly reference?)",
+      "Details": [
+        "private void FillRoadVisualRing(SplineContainer container, float sampleTime, int ringIndex, bool hasPrevious, float halfWidth, ref float accumulatedLength, ref Vector3 previousCenter, Vector3[] vertices, Vector3[] normals, Vector2[] uvs)"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 549,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\ConveyorMeshBuilder.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "c6a2e187-6082-4fe8-b892-930fb7cb7e8e",
+      "Order": 49,
+      "Timestamp": 1783651448870,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0246",
+      "Description": "The type or namespace name 'SplineContainer' could not be found (are you missing a using directive or an assembly reference?)",
+      "Details": [
+        "private void UpdateRoadPlaneCollider(SplineContainer splineContainer, Transform roadRoot)"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 655,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\ConveyorMeshBuilder.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "29cc9220-0600-4c80-b154-ccc91acbdf95",
+      "Order": 50,
+      "Timestamp": 1783651448870,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0246",
+      "Description": "The type or namespace name 'SplineContainer' could not be found (are you missing a using directive or an assembly reference?)",
+      "Details": [
+        "public static void SetPoseOnSpline(this Carrier carrier, SplineContainer spline, float progress, Vector3 position, float rotationY)"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 6,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\CarrierExtensions.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "99433b24-36ac-468c-a3a0-04ec8b73cae7",
+      "Order": 51,
+      "Timestamp": 1783651448870,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0246",
+      "Description": "The type or namespace name 'SplineContainer' could not be found (are you missing a using directive or an assembly reference?)",
+      "Details": [
+        "private static Vector3 GetSplinePosition(SplineContainer spline, float t)"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 21,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\CarrierExtensions.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "5598e7c0-bfa5-4028-95b7-ceb5180973aa",
+      "Order": 52,
+      "Timestamp": 1783651448870,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0246",
+      "Description": "The type or namespace name 'SplineContainer' could not be found (are you missing a using directive or an assembly reference?)",
+      "Details": [
+        "private static Vector3 GetSplineTangent(SplineContainer spline, float t)"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 26,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\CarrierExtensions.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "edde946f-e733-4f69-8313-b12ac4ad7c04",
+      "Order": 53,
+      "Timestamp": 1783651448870,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0246",
+      "Description": "The type or namespace name 'SplineContainer' could not be found (are you missing a using directive or an assembly reference?)",
+      "Details": [
+        "public void SpawnContainers(LevelData levelData, IReadOnlyList<CarrierBase> carriers, CarrierConfigSO config, SplineContainer splineContainer)"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 17,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\ContainerRuntimeSpawner.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "dfa3e82a-d889-4b25-afa3-24501df5da5d",
+      "Order": 54,
+      "Timestamp": 1783651448870,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0246",
+      "Description": "The type or namespace name 'SplineContainer' could not be found (are you missing a using directive or an assembly reference?)",
+      "Details": [
+        "public void UpdateCornerProgresses(SplineContainer container, bool closed)"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 64,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\ConveyorCornerDetector.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "c8e11df1-7992-41a7-918b-a67229aacd85",
+      "Order": 55,
+      "Timestamp": 1783651448870,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0246",
+      "Description": "The type or namespace name 'Spline' could not be found (are you missing a using directive or an assembly reference?)",
+      "Details": [
+        "private List<float> BuildCornerProgresses(Spline spline, bool closed, float progressOffset)"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 77,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\ConveyorCornerDetector.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "1391d1e5-3d8e-4534-b56d-0cc1ddc58528",
+      "Order": 56,
+      "Timestamp": 1783651448870,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0246",
+      "Description": "The type or namespace name 'Spline' could not be found (are you missing a using directive or an assembly reference?)",
+      "Details": [
+        "private void ScanCornerProgresses(List<float> progresses, Spline spline, bool closed)"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 89,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\ConveyorCornerDetector.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "aefdfda2-12f7-4704-99fe-1c8edc6d68a1",
+      "Order": 57,
+      "Timestamp": 1783651448873,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0246",
+      "Description": "The type or namespace name 'Spline' could not be found (are you missing a using directive or an assembly reference?)",
+      "Details": [
+        "private void UpdateCornerCluster(List<float> progresses, Spline spline, bool closed, float progress, ref CornerScanState state)"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 109,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\ConveyorCornerDetector.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "665a9dee-b4c5-4f0e-b330-1ba978a6cf90",
+      "Order": 58,
+      "Timestamp": 1783651448873,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0246",
+      "Description": "The type or namespace name 'Spline' could not be found (are you missing a using directive or an assembly reference?)",
+      "Details": [
+        "private bool HasDirectionChange(Spline spline, float progress, bool closed)"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 131,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\ConveyorCornerDetector.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "64aab440-c711-487e-936c-3ee26fd86dbc",
+      "Order": 59,
+      "Timestamp": 1783651448873,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0246",
+      "Description": "The type or namespace name 'Spline' could not be found (are you missing a using directive or an assembly reference?)",
+      "Details": [
+        "private static Vector3 GetSplineTangent(Spline spline, float progress)"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 161,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\ConveyorCornerDetector.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "2a6ecb7d-10af-4436-8eb5-6c4a84b79db2",
+      "Order": 60,
+      "Timestamp": 1783651448873,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0246",
+      "Description": "The type or namespace name 'SplineContainer' could not be found (are you missing a using directive or an assembly reference?)",
+      "Details": [
+        "private SplineContainer splineContainer;"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 52,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\ConveyorCornerDetector.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "b7214e9d-80cc-4612-9e28-fa4d449c3792",
+      "Order": 61,
+      "Timestamp": 1783651448873,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0246",
+      "Description": "The type or namespace name 'SplineContainer' could not be found (are you missing a using directive or an assembly reference?)",
+      "Details": [
+        "public SplineContainer SplineContainer => splineContainer;"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 36,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\CarrierSpawner.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "500bc9e4-06f8-46a2-a590-933175662674",
+      "Order": 62,
+      "Timestamp": 1783651448873,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0246",
+      "Description": "The type or namespace name 'SplineContainer' could not be found (are you missing a using directive or an assembly reference?)",
+      "Details": [
+        "private SplineContainer splineContainer;"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 15,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\CarrierSpawner.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "8c3290ee-cbdc-410d-a87a-449956812032",
+      "Order": 63,
+      "Timestamp": 1783651448873,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0246",
+      "Description": "The type or namespace name 'SplineContainer' could not be found (are you missing a using directive or an assembly reference?)",
+      "Details": [
+        "public int GetRecommendedBlockCount(SplineContainer road)"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 54,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\RoadAreaCalculator.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "4444a933-1008-4251-aad1-3bc27d80c283",
+      "Order": 64,
+      "Timestamp": 1783651448873,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0246",
+      "Description": "The type or namespace name 'SplineContainer' could not be found (are you missing a using directive or an assembly reference?)",
+      "Details": [
+        "public int GetBaselineBlockCount(SplineContainer road)"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 60,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\RoadAreaCalculator.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "c6202ed5-cad7-4de6-81b1-1702a22ca2c5",
+      "Order": 65,
+      "Timestamp": 1783651448873,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0246",
+      "Description": "The type or namespace name 'SplineContainer' could not be found (are you missing a using directive or an assembly reference?)",
+      "Details": [
+        "private float GetRoadArea(SplineContainer road)"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 66,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\RoadAreaCalculator.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "e4da3af0-995a-49f9-aa8c-314e8ddcc2e9",
+      "Order": 66,
+      "Timestamp": 1783651448873,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0246",
+      "Description": "The type or namespace name 'SplineContainer' could not be found (are you missing a using directive or an assembly reference?)",
+      "Details": [
+        "private SplineContainer centerRoad;"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 10,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\RoadAreaCalculator.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "266d2218-8e71-4f37-addf-f168d3296447",
+      "Order": 67,
+      "Timestamp": 1783651448873,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0246",
+      "Description": "The type or namespace name 'SplineContainer' could not be found (are you missing a using directive or an assembly reference?)",
+      "Details": [
+        "public void DrawPickupRanges(SplineContainer splineContainer, List<CarrierBase> carriers)"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 161,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\ConveyorCubeSpeedController.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "7617c3e7-3de0-4466-b781-7338215008ff",
+      "Order": 68,
+      "Timestamp": 1783651448873,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0246",
+      "Description": "The type or namespace name 'SplineContainer' could not be found (are you missing a using directive or an assembly reference?)",
+      "Details": [
+        "private bool CanDrawPickupRanges(SplineContainer splineContainer, List<CarrierBase> carriers)"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 173,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\ConveyorCubeSpeedController.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "f611ae0b-b694-49a8-b907-27b0094d3538",
+      "Order": 69,
+      "Timestamp": 1783651448873,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0246",
+      "Description": "The type or namespace name 'SplineContainer' could not be found (are you missing a using directive or an assembly reference?)",
+      "Details": [
+        "private void DrawCarrierRanges(SplineContainer splineContainer, CarrierBase carrier)"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 178,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\ConveyorCubeSpeedController.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "fc811c42-d8eb-4f20-ba08-6b75b1947b6a",
+      "Order": 70,
+      "Timestamp": 1783651448873,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0246",
+      "Description": "The type or namespace name 'SplineContainer' could not be found (are you missing a using directive or an assembly reference?)",
+      "Details": [
+        "private void DrawSpawnLockRange(SplineContainer splineContainer, float progress)"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 206,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\ConveyorCubeSpeedController.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "1f7bdadd-60f1-435b-9390-1a8ece0bed37",
+      "Order": 71,
+      "Timestamp": 1783651448873,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0246",
+      "Description": "The type or namespace name 'SplineContainer' could not be found (are you missing a using directive or an assembly reference?)",
+      "Details": [
+        "private void DrawBoostRanges(SplineContainer splineContainer, float progress)"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 220,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\ConveyorCubeSpeedController.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "0d4e9d5b-1e02-4143-b3dd-256ac8a368f5",
+      "Order": 72,
+      "Timestamp": 1783651448873,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0246",
+      "Description": "The type or namespace name 'SplineContainer' could not be found (are you missing a using directive or an assembly reference?)",
+      "Details": [
+        "private void DrawRange(SplineContainer splineContainer, float startProgress, float length, Color color)"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 230,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\ConveyorCubeSpeedController.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "033caefe-a918-4e1c-9527-84d40eba2a71",
+      "Order": 73,
+      "Timestamp": 1783651448873,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0246",
+      "Description": "The type or namespace name 'SplineContainer' could not be found (are you missing a using directive or an assembly reference?)",
+      "Details": [
+        "private static Vector3 GetSplinePoint(SplineContainer splineContainer, float progress)"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 253,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\ConveyorCubeSpeedController.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "32e99eb5-5fe9-4297-8fa6-974b4bf80c33",
+      "Order": 74,
+      "Timestamp": 1783651448873,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0246",
+      "Description": "The type or namespace name 'SplineContainer' could not be found (are you missing a using directive or an assembly reference?)",
+      "Details": [
+        "private SplineContainer splineContainer;"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 7,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\SplineBuilder.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "dc8d592e-f4ae-4ed1-9b0e-eb04e692b548",
+      "Order": 75,
+      "Timestamp": 1783651448873,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0246",
+      "Description": "The type or namespace name 'Spline' could not be found (are you missing a using directive or an assembly reference?)",
+      "Details": [
+        "public SplineDataCache(Spline spline, int sampleCount = 200)"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 21,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\SplineDataCache.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "a0b0b784-8328-457d-88dc-2fad75fa7120",
+      "Order": 76,
+      "Timestamp": 1783651448873,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0246",
+      "Description": "The type or namespace name 'SplineContainer' could not be found (are you missing a using directive or an assembly reference?)",
+      "Details": [
+        "public void Setup(SplineContainer splineContainer, float startProgress = 0f, float progressOffset = 0f, Vector3? initialWorldPosition = null)"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 9,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\Cube.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "9b4b8b17-0629-4164-8ab4-477f73f52f45",
+      "Order": 77,
+      "Timestamp": 1783651448873,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0246",
+      "Description": "The type or namespace name 'TangentMode' could not be found (are you missing a using directive or an assembly reference?)",
+      "Details": [
+        "public TangentMode TangentMode;"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 12,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\SplinePointData.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "1a592d1b-e716-494c-becf-6a0aadfcfb26",
+      "Order": 78,
+      "Timestamp": 1783651448873,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0246",
+      "Description": "The type or namespace name 'SplineContainer' could not be found (are you missing a using directive or an assembly reference?)",
+      "Details": [
+        "public SplineContainer SplineContainer => splineContainer;"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 87,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\ConveyorDeliverySystem.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "caa172b8-3711-44c0-a075-2b5ea059ee21",
+      "Order": 79,
+      "Timestamp": 1783651448873,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0246",
+      "Description": "The type or namespace name 'SplineContainer' could not be found (are you missing a using directive or an assembly reference?)",
+      "Details": [
+        "public void Setup(SplineContainer targetSpline, ConveyorPortal targetPortal, bool isEntryPortal)"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 32,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\ConveyorPortal.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "c39ca349-b140-450e-bf1b-ed79533182e1",
+      "Order": 80,
+      "Timestamp": 1783651448873,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0246",
+      "Description": "The type or namespace name 'SplineContainer' could not be found (are you missing a using directive or an assembly reference?)",
+      "Details": [
+        "private SplineContainer _splineContainer;"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 26,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\ConveyorPortal.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "5f263cc5-8d5e-42bd-8fea-f32a4b858bd1",
+      "Order": 81,
+      "Timestamp": 1783651448873,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0246",
+      "Description": "The type or namespace name 'SplineContainer' could not be found (are you missing a using directive or an assembly reference?)",
+      "Details": [
+        "private SplineContainer _splineContainer;"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 11,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\ConveyorSpawnPointCalculator.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "a7074607-f738-4d83-b676-6fcd2cb7d76a",
+      "Order": 82,
+      "Timestamp": 1783651448873,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0246",
+      "Description": "The type or namespace name 'SplineContainer' could not be found (are you missing a using directive or an assembly reference?)",
+      "Details": [
+        "private SplineContainer splineContainer;"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 10,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\ConveyorDeliverySystem.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "22c503f1-c1dd-4a62-bf91-27e3d0f4d94a",
+      "Order": 83,
+      "Timestamp": 1783651448873,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0246",
+      "Description": "The type or namespace name 'SplineInstantiate' could not be found (are you missing a using directive or an assembly reference?)",
+      "Details": [
+        "private SplineInstantiate splineInstantiate;"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 13,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\ConveyorDeliverySystem.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "47f38139-5be5-4b5a-a754-082f166b9163",
+      "Order": 84,
+      "Timestamp": 1783651448873,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0246",
+      "Description": "The type or namespace name 'SplineContainer' could not be found (are you missing a using directive or an assembly reference?)",
+      "Details": [
+        "public ConveyorSpawnPointCalculator(ConveyorSpawnPointConfigSO spawnPointConfig, ConveyorMeshBuilder conveyorMeshBuilder, SplineContainer splineContainer, Transform spawnRoot, Transform fallbackTransform)"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 21,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\ConveyorSpawnPointCalculator.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "2e95f586-4acb-4240-ba95-e0ab5a735478",
+      "Order": 85,
+      "Timestamp": 1783651448882,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0308",
+      "Description": "The non-generic method 'Resources.GetBuiltinResource(Type, string)' cannot be used with type arguments",
+      "Details": [
+        "text.font = Resources.GetBuiltinResource<Font>(\"LegacyRuntime.ttf\");"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 312,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\CapacityUI.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "a2a52f6e-9655-437e-9f2d-64242a6bcae1",
+      "Order": 86,
+      "Timestamp": 1783651448882,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0246",
+      "Description": "The type or namespace name 'float3' could not be found (are you missing a using directive or an assembly reference?)",
+      "Details": [
+        "float3 point = splineContainer.Spline.EvaluatePosition(Mathf.Repeat(progress, 1f));"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 255,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\ConveyorCubeSpeedController.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "82cecfef-69da-411c-88ed-927adee2b946",
+      "Order": 87,
+      "Timestamp": 1783651448882,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0246",
+      "Description": "The type or namespace name 'float3' could not be found (are you missing a using directive or an assembly reference?)",
+      "Details": [
+        "float3 tangent = _splineContainer.Spline.EvaluateTangent(progress);"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 64,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\ConveyorSpawnPointCalculator.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "83e500f4-2558-4ec8-bc90-2d7fa272ca6b",
+      "Order": 88,
+      "Timestamp": 1783651448882,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0246",
+      "Description": "The type or namespace name 'Spline' could not be found (are you missing a using directive or an assembly reference?)",
+      "Details": [
+        "_splineCache = new Dictionary<Spline, SplineDataCache>();"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 82,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\CubeMovement.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "3550a1cb-c74e-4926-853a-97ffaa6842b8",
+      "Order": 89,
+      "Timestamp": 1783651448882,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0246",
+      "Description": "The type or namespace name 'float3' could not be found (are you missing a using directive or an assembly reference?)",
+      "Details": [
+        "float3 localPosition = splineContainer.Spline.EvaluatePosition(normalizedProgress);"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 360,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\ConveyorDeliverySystem.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "cdfbc622-6d9f-4702-8241-bcd3eb0f531c",
+      "Order": 90,
+      "Timestamp": 1783651448882,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0103",
+      "Description": "The name 'math' does not exist in the current context",
+      "Details": [
+        "return math.normalizesafe(spline.EvaluateTangent(progress), math.forward());"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 163,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\ConveyorCornerDetector.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "e7f79011-2645-4d2e-88d2-4910a00453c1",
+      "Order": 91,
+      "Timestamp": 1783651448882,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0103",
+      "Description": "The name 'math' does not exist in the current context",
+      "Details": [
+        "return math.normalizesafe(spline.EvaluateTangent(progress), math.forward());"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 163,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\ConveyorCornerDetector.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "ef35fd6a-4a85-40f9-b546-a6d1987073b5",
+      "Order": 92,
+      "Timestamp": 1783651448882,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0246",
+      "Description": "The type or namespace name 'float3' could not be found (are you missing a using directive or an assembly reference?)",
+      "Details": [
+        "float3 localPoint = splineContainer.Spline.EvaluatePosition(progress);"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 189,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\ConveyorCornerDetector.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "82ebf961-efc4-4800-b335-1680bb0df785",
+      "Order": 93,
+      "Timestamp": 1783651448882,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0246",
+      "Description": "The type or namespace name 'float3' could not be found (are you missing a using directive or an assembly reference?)",
+      "Details": [
+        "float3 localPos = _splineContainer.Spline.EvaluatePosition(progress);"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 442,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\CubeMovement.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "9ee65e16-7bef-47fd-862a-30c7982fa767",
+      "Order": 94,
+      "Timestamp": 1783651448882,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0246",
+      "Description": "The type or namespace name 'float3' could not be found (are you missing a using directive or an assembly reference?)",
+      "Details": [
+        "float3 tangent = _splineContainer.Spline.EvaluateTangent(progress);"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 538,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\CubeMovement.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "6d8f3df2-75ef-4164-96f8-7587527a470f",
+      "Order": 95,
+      "Timestamp": 1783651448882,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0246",
+      "Description": "The type or namespace name 'SplineContainer' could not be found (are you missing a using directive or an assembly reference?)",
+      "Details": [
+        "splineContainer = GetComponent<SplineContainer>();"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 13,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\SplineBuilder.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "2127d169-9fc2-4a61-a58d-faefe84b4590",
+      "Order": 96,
+      "Timestamp": 1783651448882,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0308",
+      "Description": "The non-generic method 'Resources.GetBuiltinResource(Type, string)' cannot be used with type arguments",
+      "Details": [
+        "_remainingBlockCountText.font = Resources.GetBuiltinResource<Font>(\"LegacyRuntime.ttf\");"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 404,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\Spawner.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "8cba032e-af17-47a0-8a00-a099d5273672",
+      "Order": 97,
+      "Timestamp": 1783651448882,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0103",
+      "Description": "The name 'SplineUtility' does not exist in the current context",
+      "Details": [
+        "SplineUtility.GetNearestPoint(conveyorContainer.Spline, localPos, out var _, out var t);"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 149,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\ConveyorManager.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "1501c355-f621-46e9-b12a-eee99ec14330",
+      "Order": 98,
+      "Timestamp": 1783651448882,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0246",
+      "Description": "The type or namespace name 'BezierKnot' could not be found (are you missing a using directive or an assembly reference?)",
+      "Details": [
+        "return new BezierKnot(ToSplinePosition(point), point.TangentInValue, point.TangentOutValue);"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 211,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\ConveyorManager.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "a53e147e-7b9f-45b4-afc1-aa3e661ba9a6",
+      "Order": 99,
+      "Timestamp": 1783651448882,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0246",
+      "Description": "The type or namespace name 'BezierKnot' could not be found (are you missing a using directive or an assembly reference?)",
+      "Details": [
+        "BezierKnot knot = spline[index];"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 217,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\ConveyorManager.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "ef39855e-54be-4a57-a126-93456b4a76a6",
+      "Order": 100,
+      "Timestamp": 1783651448882,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0103",
+      "Description": "The name 'quaternion' does not exist in the current context",
+      "Details": [
+        "knot.Rotation = quaternion.Euler(math.radians(point.Rotation));"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 220,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\ConveyorManager.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    },
+    {
+      "LogID": "cc4e94b6-5ebf-463b-af0b-e3dc80648a82",
+      "Order": 101,
+      "Timestamp": 1783651448882,
+      "Stage": 3,
+      "ErrorType": 0,
+      "ErrorCode": "CS0103",
+      "Description": "The name 'math' does not exist in the current context",
+      "Details": [
+        "knot.Rotation = quaternion.Euler(math.radians(point.Rotation));"
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 220,
+      "FilePath": "C:\\Users\\hapiga\\Documents\\GitHub\\LoopSortPLA\\LunaTemp\\Assemblies\\stage_2\\decompiled\\ConveyorManager.cs",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 1
+    }
+  ]
+}

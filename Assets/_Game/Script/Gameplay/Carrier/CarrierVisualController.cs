@@ -12,6 +12,7 @@ public sealed class CarrierVisualController
     private readonly CarrierMechanicVisualConfigSO _mechanicVisualConfig;
     private readonly MeshRenderer[] _carrierMeshRenderers;
     private readonly Action _onHiddenVisualFlyOutStarted;
+    private readonly Action _onHiddenVisualDisappearCompleted;
     private MaterialPropertyBlock _materialPropertyBlock;
     private MaterialPropertyBlock _carrierTintBlock;
     private CarrierMechanicVisual _spawnedVisual;
@@ -22,7 +23,8 @@ public sealed class CarrierVisualController
         Transform hiddenVisualRoot,
         CarrierMechanicVisualConfigSO mechanicVisualConfig,
         MeshRenderer[] carrierMeshRenderers,
-        Action onHiddenVisualFlyOutStarted)
+        Action onHiddenVisualFlyOutStarted,
+        Action onHiddenVisualDisappearCompleted)
     {
         _carrierRoot = carrierRoot;
         _carrierRenderer = carrierRoot != null ? carrierRoot.GetComponent<Renderer>() : null;
@@ -30,6 +32,7 @@ public sealed class CarrierVisualController
         _mechanicVisualConfig = mechanicVisualConfig;
         _carrierMeshRenderers = carrierMeshRenderers;
         _onHiddenVisualFlyOutStarted = onHiddenVisualFlyOutStarted;
+        _onHiddenVisualDisappearCompleted = onHiddenVisualDisappearCompleted;
     }
 
     public void Reset()
@@ -107,7 +110,7 @@ public sealed class CarrierVisualController
             {
                 if (visualKindToClear == ECarrierVisualKind.HiddenShell)
                     visualToClear.SetBeforeDisappearCallback(_onHiddenVisualFlyOutStarted);
-                PlayAndPool(visualToClear);
+                PlayAndPool(visualToClear, visualKindToClear);
             }
             else
             {
@@ -120,11 +123,14 @@ public sealed class CarrierVisualController
         }
     }
 
-    private void PlayAndPool(CarrierMechanicVisual visual)
+    private void PlayAndPool(CarrierMechanicVisual visual, ECarrierVisualKind visualKind)
     {
         if (visual == null) return;
         visual.PlayDisappearAnimation(() =>
         {
+            if (visualKind == ECarrierVisualKind.HiddenShell)
+                _onHiddenVisualDisappearCompleted?.Invoke();
+
             if (visual != null && PoolManagerNew.Instance != null)
                 PoolManagerNew.Instance.PushToPool(visual);
         });

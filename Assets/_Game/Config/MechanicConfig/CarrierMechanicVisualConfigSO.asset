@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: CarrierMechanicVisualConfigSO
   m_EditorClassIdentifier: 
   visualPrefabs:
+  - Kind: 1
+    Prefab: {fileID: 5731461657019475235, guid: 2c8c8941a9319bf4b9324f768bf26b44, type: 3}
   - Kind: 3
-    Prefab: {fileID: 4015278819471068618, guid: 47568b3ebe187cb4c8cebcd1ca6b54c0, type: 3}
+    Prefab: {fileID: 7463639497338369, guid: 47568b3ebe187cb4c8cebcd1ca6b54c0, type: 3}

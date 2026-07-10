@@ -10,7 +10,7 @@ public class LevelEntryAnimConfigSO : ScriptableObject
     [Tooltip("Thời gian (giây) chạy hoạt ảnh xuất hiện đường ray (spline).")]
     public float ConveyorRevealDuration = 1.0f;
     [Tooltip("Kiểu chuyển động (Ease) của hoạt ảnh xuất hiện đường ray (spline).")]
-    public Ease ConveyorRevealEase = Ease.OutCubic;
+    public DG.Tweening.Ease ConveyorRevealEase = DG.Tweening.Ease.OutCubic;
 
     [Header("Container Scale Entry Animation")]
     [Tooltip("Độ trễ staggered (giây) xuất hiện giữa các container tiếp theo.")]
@@ -18,7 +18,7 @@ public class LevelEntryAnimConfigSO : ScriptableObject
     [Tooltip("Thời gian scale (giây) phóng to của container khi xuất hiện.")]
     public float ContainerScaleDuration = 0.35f;
     [Tooltip("Kiểu chuyển động (Ease) phóng to của container.")]
-    public Ease ContainerScaleEase = Ease.OutBack;
+    public DG.Tweening.Ease ContainerScaleEase = DG.Tweening.Ease.OutBack;
 
     [Header("Carrier Scale Entry Animation")]
     [Tooltip("Thời gian scale (giây) phóng to của carrier khi xuất hiện.")]
@@ -26,5 +26,5 @@ public class LevelEntryAnimConfigSO : ScriptableObject
     [Tooltip("Độ trễ staggered (giây) xuất hiện giữa các carrier tiếp theo.")]
     public float CarrierScaleStagger = 0.1f;
     [Tooltip("Kiểu chuyển động (Ease) phóng to của carrier.")]
-    public Ease CarrierScaleEase = Ease.OutBack;
+    public DG.Tweening.Ease CarrierScaleEase = DG.Tweening.Ease.OutBack;
 }

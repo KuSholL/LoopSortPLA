@@ -20,6 +20,7 @@ public static class GameEventBus
     public static Action<bool> OnPreloseDelayChanged;
 
     public static Action<EBlockColorType> OnCarrierFinished;
+    public static Action OnContainerUnlocked;
     public static Action OnCarrierUnload;
     public static Action OnCarrierUnloadDone;
     public static Action OnCarrierPickupDone;

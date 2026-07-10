@@ -1,6 +1,6 @@
 using System.Collections;
-using DG.Tweening;
 using UnityEngine;
+using DG.Tweening;
 
 public class CarrierSpawnEffect : MonoBehaviour
 {
@@ -50,10 +50,7 @@ public class CarrierSpawnEffect : MonoBehaviour
 
         transform.localScale = Vector3.zero;
         if (_spawnTween != null) _spawnTween.Kill();
-        _spawnTween = transform.DOScale(Vector3.one, duration)
-            .SetEase(Ease.OutBack)
-            .SetTarget(this);
-
+        _spawnTween = transform.DOScale(Vector3.one, duration).SetEase(DG.Tweening.Ease.OutBack);
         yield return _spawnTween.WaitForCompletion();
         _spawnTween = null;
 

@@ -33,7 +33,7 @@ public class ConveyorManager : MonoBehaviour
         LevelManager.Instance != null ? LevelManager.Instance.LevelEntryAnimConfig : null;
     private float RevealDelay => EntryConfig != null ? EntryConfig.ConveyorRevealDelay : 0.1f;
     private float RevealDuration => EntryConfig != null ? EntryConfig.ConveyorRevealDuration : 1f;
-    private Ease RevealEase => EntryConfig != null ? EntryConfig.ConveyorRevealEase : Ease.OutCubic;
+    private DG.Tweening.Ease RevealEase => EntryConfig != null ? EntryConfig.ConveyorRevealEase : DG.Tweening.Ease.OutCubic;
 
     private Tween _revealTween;
 
@@ -361,8 +361,26 @@ public class ConveyorManager : MonoBehaviour
 
         _revealTween = DOTween.To(SetRevealProgress, 0f, 1f, RevealDuration)
             .SetEase(RevealEase)
+            .SetUpdate(true)
             .SetTarget(this);
-        yield return _revealTween.WaitForCompletion();
+
+        var elapsed = 0f;
+        var timeout = Mathf.Max(0.05f, RevealDuration + 0.25f);
+        while (_revealTween != null
+               && _revealTween.IsActive()
+               && !_revealTween.IsComplete()
+               && elapsed < timeout)
+        {
+            elapsed += Time.unscaledDeltaTime;
+            yield return null;
+        }
+
+        if (_revealTween != null && _revealTween.IsActive() && !_revealTween.IsComplete())
+        {
+            _revealTween.Kill();
+        }
+
         _revealTween = null;
+        SetRevealProgress(1f);
     }
 }

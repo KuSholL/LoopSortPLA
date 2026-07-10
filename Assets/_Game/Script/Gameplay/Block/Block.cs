@@ -7,6 +7,7 @@ public class Block : MonoBehaviour
 
     [SerializeField] private BoxCollider blockCollider;
     [SerializeField] private BlockVisual blockVisual;
+    [SerializeField] private ContainerKey containerKey;
     [SerializeField] private Transform animationPivot;
 
     [Header("Link Anchors")]
@@ -63,13 +64,26 @@ public class Block : MonoBehaviour
             return blockVisual;
         }
     }
+
+    private ContainerKey ContainerKeyComponent
+    {
+        get
+        {
+            if (containerKey == null) containerKey = GetComponent<ContainerKey>();
+            if (containerKey == null && Application.isPlaying)
+                containerKey = gameObject.AddComponent<ContainerKey>();
+            return containerKey;
+        }
+    }
     private CarrierBase _ownerCarrier;
     private List<BlockMechanicData> _runtimeMechanics = new List<BlockMechanicData>();
+    private Collider[] _cachedPhysicsColliders;
 
     private bool _hasHiddenMechanic;
     private bool _isHiddenRevealed;
     private bool _isLinkedVisualSuppressed;
     private bool _isHiddenForClawBooster;
+    private bool _preserveRuntimeStateOnDisable;
     private bool _isSwappingActive = true;
     private int _swapGroupId = -1;
     private EBlockColorType _swapArrowColorType = EBlockColorType.None;
@@ -79,8 +93,15 @@ public class Block : MonoBehaviour
 
     #region Unity Lifecycle
 
+    private void Awake()
+    {
+        SetPhysicsCollidersEnabled(false);
+    }
+
     private void OnDisable()
     {
+        if (_preserveRuntimeStateOnDisable) return;
+
         state = EBlockState.Idle;
         _ownerCarrier = null;
         _runtimeMechanics.Clear();
@@ -101,6 +122,9 @@ public class Block : MonoBehaviour
         _runtimeMechanics = CloneMechanics(blockData?.Mechanics);
         _hasHiddenMechanic = HasHiddenMechanic(blockData?.Mechanics);
         _isHiddenRevealed = !_hasHiddenMechanic;
+        ConfigureContainerKey(GetResolvedKeyColor(blockData != null
+            ? blockData.BlockColor
+            : EBlockColorType.None), false);
         // Configure swap mechanic
         var swapMechanic = GetBlockMechanic(EBlockMechanic.SwappingBlock);
         if (swapMechanic != null)
@@ -121,6 +145,18 @@ public class Block : MonoBehaviour
     public void SetLayer(int layer)
     {
         ApplyLayer(gameObject, layer);
+    }
+
+    public void SetPhysicsCollidersEnabled(bool isEnabled)
+    {
+        if (_cachedPhysicsColliders == null || _cachedPhysicsColliders.Length == 0)
+            _cachedPhysicsColliders = GetComponentsInChildren<Collider>(true);
+
+        for (var i = 0; i < _cachedPhysicsColliders.Length; i++)
+        {
+            var target = _cachedPhysicsColliders[i];
+            if (target != null) target.enabled = false;
+        }
     }
 
     public void ApplyBlockData(BlockData blockData, ColorConfigSO colorConfig, float visualProgress, bool suppressProgressAnimation)
@@ -166,6 +202,7 @@ public class Block : MonoBehaviour
         _isHiddenRevealed = false;
         _isLinkedVisualSuppressed = false;
         _isHiddenForClawBooster = false;
+        ConfigureContainerKey(EBlockColorType.None, true);
         ConfigureSwapMechanic(-1, false);
         _swapArrowColorType = EBlockColorType.None;
         SetSwapArrowColor(EBlockColorType.None);
@@ -179,6 +216,11 @@ public class Block : MonoBehaviour
         currentCubes = 0;
         visualCubes = 0;
         _reservedReceiveCount = 0;
+    }
+
+    public void PreserveRuntimeStateWhileHidden(bool preserve)
+    {
+        _preserveRuntimeStateOnDisable = preserve;
     }
 
     #endregion
@@ -210,6 +252,17 @@ public class Block : MonoBehaviour
     }
 
     public bool IsHiddenVisualActive() => IsHiddenMechanicVisualActive();
+    public int GetKeyTargetContainerId()
+    {
+        var mechanic = GetBlockMechanic(EBlockMechanic.KeyUnlockContainer);
+        return mechanic != null ? mechanic.ContainerId : -1;
+    }
+
+    public bool HasVisibleContainerKey()
+    {
+        return HasContainerKeyMechanic()
+               && (ContainerKeyComponent == null || !ContainerKeyComponent.IsConsumed);
+    }
     public bool IsReadyForFinish()
     {
         return hasContent
@@ -227,6 +280,7 @@ public class Block : MonoBehaviour
             ShadowColor = blockShadowColor,
             CubeCount = currentCubes,
             IsHiddenRevealed = _isHiddenRevealed,
+            IsContainerKeyConsumed = ContainerKeyComponent != null && ContainerKeyComponent.IsConsumed,
             Mechanics = CloneMechanics(_runtimeMechanics),
             IsSwappingActive = _isSwappingActive,
             SwapGroupId = _swapGroupId,
@@ -255,6 +309,7 @@ public class Block : MonoBehaviour
         _hasHiddenMechanic = HasHiddenMechanic(_runtimeMechanics);
         _isHiddenRevealed = !_hasHiddenMechanic || runtimeData.IsHiddenRevealed;
         _isLinkedVisualSuppressed = false;
+        ConfigureContainerKey(GetResolvedKeyColor(blockColorType), runtimeData.IsContainerKeyConsumed);
         ConfigureSwapMechanic(runtimeData.SwapGroupId, runtimeData.IsSwappingActive);
         
         _swapArrowColorType = runtimeData.SwapArrowColorType;
@@ -376,6 +431,7 @@ public class Block : MonoBehaviour
         _hasHiddenMechanic = false;
         _isHiddenRevealed = true;
         _isLinkedVisualSuppressed = false;
+        ConfigureContainerKey(colorType, true);
         RefreshVisualState(GetCurrentVisualProgress(), suppressProgressAnimation);
     }
 
@@ -456,8 +512,8 @@ public class Block : MonoBehaviour
         }
         BlockVisualComponent.ApplyVisualState(
             hasContent, !_isLinkedVisualSuppressed, blockColorType, IsHiddenMechanicVisualActive(),
-            false,
-            progress, suppressProgressAnimation, forceFullAnimation, EBlockColorType.None);
+            HasVisibleContainerKey(),
+            progress, suppressProgressAnimation, forceFullAnimation, GetResolvedKeyColor(blockColorType));
     }
 
     private float GetCurrentVisualProgress()
@@ -492,6 +548,49 @@ public class Block : MonoBehaviour
     {
         if (!_hasHiddenMechanic || _isHiddenRevealed) return;
         _isHiddenRevealed = true;
+    }
+
+    public void RevealContainerKeyIfNeeded(bool suppressProgressAnimation = false)
+    {
+        if (!HasContainerKeyMechanic()) return;
+        var startPosition = transform.position;
+        var startRotation = transform.rotation;
+        if (BlockVisualComponent != null
+            && BlockVisualComponent.FixedVisual != null
+            && BlockVisualComponent.FixedVisual.KeyRenderer != null)
+        {
+            startPosition = BlockVisualComponent.FixedVisual.KeyRenderer.transform.position;
+            startRotation = BlockVisualComponent.FixedVisual.KeyRenderer.transform.rotation;
+        }
+
+        if (ContainerKeyComponent != null)
+            ContainerKeyComponent.RevealAndUnlock(startPosition, startRotation);
+        RefreshVisualState(GetCurrentVisualProgress(), suppressProgressAnimation);
+    }
+
+    private void ConfigureContainerKey(EBlockColorType colorType, bool isConsumed)
+    {
+        var component = ContainerKeyComponent;
+        if (component == null) return;
+        var mechanic = GetBlockMechanic(EBlockMechanic.KeyUnlockContainer);
+        component.Configure(
+            mechanic != null,
+            colorType,
+            mechanic != null ? mechanic.ContainerId : -1,
+            isConsumed);
+    }
+
+    private EBlockColorType GetResolvedKeyColor(EBlockColorType fallbackColor)
+    {
+        var mechanic = GetBlockMechanic(EBlockMechanic.KeyUnlockContainer);
+        return mechanic != null && mechanic.KeyColor != EBlockColorType.None
+            ? mechanic.KeyColor
+            : fallbackColor;
+    }
+
+    private bool HasContainerKeyMechanic()
+    {
+        return HasMechanic(_runtimeMechanics, EBlockMechanic.KeyUnlockContainer);
     }
     public bool HasLinkGroupId() => GetLinkGroupId() >= 0;
 
@@ -638,6 +737,7 @@ public sealed class BlockRuntimeData
     public Color ShadowColor;
     public int CubeCount;
     public bool IsHiddenRevealed;
+    public bool IsContainerKeyConsumed;
     public List<BlockMechanicData> Mechanics = new List<BlockMechanicData>();
     public bool IsSwappingActive = true;
     public int SwapGroupId = -1;

@@ -6,6 +6,12 @@
       "source": "embedded",
       "dependencies": {}
     },
+    "com.unity.playworks.upp": {
+      "version": "file:../../../../Downloads/Unity Playwork/scripts",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {}
+    },
     "com.unity.settings-manager": {
       "version": "2.1.0",
       "depth": 1,

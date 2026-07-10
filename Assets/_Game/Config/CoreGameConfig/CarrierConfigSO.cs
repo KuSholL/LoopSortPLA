@@ -4,6 +4,9 @@ using UnityEngine;
 public class CarrierConfigSO : ScriptableObject
 {
     public Carrier Prefab;
+    public ContainerMechanic ContainerMechanic;
+    public Spawner Spawner;
+    public BlockLinkVisual BlockLinkVisualPrefab;
     [Min(1)] public int Depth = 2;
     [Min(1)] public int BlockCount = 4;
 

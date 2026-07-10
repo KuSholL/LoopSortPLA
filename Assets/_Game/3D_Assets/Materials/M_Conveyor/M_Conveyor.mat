@@ -18,6 +18,7 @@ Material:
   - TCP2_RIM_LIGHTING_LIGHTMASK
   - TCP2_SHADOW_LIGHT_COLOR
   - TCP2_UV_NORMALS_FULL
+  - _BLINKENABLED_ON
   - _ENABLEFAKESHADOW_ON
   - _ENABLE_FAKE_SHADOW
   - _FAKE_SHADOW_ON
@@ -69,9 +70,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _BlinkEnabled: 1
+    - _BlinkEnabled: 0
     - _BlinkSpeed: 4
-    - _BlinkStartTime: 41.270596
+    - _BlinkStartTime: 49.50833
     - _BlinkStrength: 1
     - _BumpScale: 1
     - _Cull: 2

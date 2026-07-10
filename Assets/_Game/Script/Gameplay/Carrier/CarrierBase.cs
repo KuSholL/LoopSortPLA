@@ -27,6 +27,7 @@ public abstract class CarrierBase : MonoBehaviour, IClickableObject
 
     protected int maxBlockCount = 4;
     protected Tween _scaleTween;
+    private Collider[] _clickColliders;
 
     #endregion
 
@@ -201,6 +202,19 @@ public abstract class CarrierBase : MonoBehaviour, IClickableObject
     {
         if (_scaleTween != null && _scaleTween.IsActive()) _scaleTween.Kill();
         _scaleTween = null;
+    }
+
+    public void SetClickCollidersEnabled(bool isEnabled)
+    {
+        if (_clickColliders == null || _clickColliders.Length == 0)
+            _clickColliders = GetComponents<Collider>();
+
+        if (_clickColliders == null) return;
+        for (var i = 0; i < _clickColliders.Length; i++)
+        {
+            var target = _clickColliders[i];
+            if (target != null) target.enabled = isEnabled;
+        }
     }
 
     public virtual void SetLayer(int layer)

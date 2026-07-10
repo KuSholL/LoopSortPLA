@@ -1,8 +1,10 @@
 using System.Collections.Generic;
+using System.Collections;
 
 public class CarrierSystem : MonoSingleton<CarrierSystem>
 {
     [UnityEngine.SerializeField] private CarrierSpawner carrierSpawner;
+    private readonly ContainerRuntimeSpawner _containerSpawner = new ContainerRuntimeSpawner();
 
     public CarrierSpawner CarrierSpawner
     {
@@ -19,7 +21,17 @@ public class CarrierSystem : MonoSingleton<CarrierSystem>
         if (carrierSpawner != null)
         {
             carrierSpawner.SpawnCarriers(levelData);
+            _containerSpawner.SpawnContainers(
+                levelData,
+                carrierSpawner.SpawnedCarriers,
+                carrierSpawner.CarrierConfig,
+                carrierSpawner.SplineContainer);
         }
+    }
+
+    public IEnumerator PlayContainersScaleAnimation(LevelEntryAnimConfigSO animationConfig)
+    {
+        yield return _containerSpawner.PlayScaleAnimation(animationConfig);
     }
 
     public bool TrySpawnCarrier(CarrierStackData carrierStack)

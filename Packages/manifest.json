@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "com.unity.mathematics": "file:com.unity.mathematics",
+    "com.unity.playworks.upp": "file:../../../../Downloads/Unity Playwork/scripts",
     "com.unity.splines": "file:com.unity.splines",
     "com.unity.textmeshpro": "3.0.6",
     "com.unity.ugui": "1.0.0",

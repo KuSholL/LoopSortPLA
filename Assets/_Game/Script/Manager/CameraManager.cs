@@ -38,6 +38,8 @@ public class CameraManager : MonoSingleton<CameraManager>
         if (mainCamera != null)
         {
             _originalMainCameraPosition = mainCamera.transform.localPosition;
+            if (mainCamera.GetComponent<AudioListener>() == null)
+                mainCamera.gameObject.AddComponent<AudioListener>();
         }
 
         _defaultHighlightMask = highlightCamera != null ? highlightCamera.cullingMask : 0;

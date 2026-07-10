@@ -1,6 +1,6 @@
 using System;
-using DG.Tweening;
 using UnityEngine;
+using DG.Tweening;
 
 public class BlockSolidVisual : MonoBehaviour
 {
@@ -19,6 +19,8 @@ public class BlockSolidVisual : MonoBehaviour
     public Renderer KeyRenderer => keyRenderers != null && keyRenderers.Length > 0 ? keyRenderers[0] : null;
     private MaterialPropertyBlock _materialBlock;
     private Tween _progressTween;
+    private Tween _swapRotateTween;
+    private Collider[] _modelColliders;
     private float _currentProgress;
 
     private void OnValidate()
@@ -75,6 +77,7 @@ public class BlockSolidVisual : MonoBehaviour
     public void SetVisible(bool isVisible)
     {
         meshRenderer.enabled = isVisible;
+        SetModelCollidersEnabled(isVisible && _currentProgress > 0f);
     }
 
     public void SetQuestionMark(bool isHiddenBlock)
@@ -121,14 +124,11 @@ public class BlockSolidVisual : MonoBehaviour
         if (swapArrowRenderer == null) return;
         var arrowTransform = swapArrowRenderer.transform;
         var currentRotation = arrowTransform.localEulerAngles;
-        arrowTransform.DOKill();
-        DOTween.To(
-                () => currentRotation.y,
-                y => arrowTransform.localRotation = Quaternion.Euler(90f, y, 0f),
-                currentRotation.y + 180f,
-                0.3f)
-            .SetEase(Ease.OutQuad)
-            .SetTarget(arrowTransform);
+        if (_swapRotateTween != null) _swapRotateTween.Kill();
+        _swapRotateTween = arrowTransform
+            .DOLocalRotate(new Vector3(90f, currentRotation.y + 180f, 0f), 0.3f)
+            .SetEase(DG.Tweening.Ease.OutQuad)
+            .OnComplete(() => _swapRotateTween = null);
     }
 
     public void SetKeyTexture(EBlockColorType colorType)
@@ -203,13 +203,9 @@ public class BlockSolidVisual : MonoBehaviour
     private void StartScaleProgressTween(float targetProgress)
     {
         CancelProgressTween();
-        var currentProgress = _currentProgress;
-        _progressTween = DOTween.To(
-                () => currentProgress,
-                ApplyScaleProgress,
-                targetProgress,
-                progressTweenDuration)
-            .SetEase(Ease.OutQuad)
+        _progressTween = DOTween
+            .To(() => _currentProgress, ApplyScaleProgress, targetProgress, progressTweenDuration)
+            .SetEase(DG.Tweening.Ease.OutQuad)
             .SetTarget(this);
     }
 
@@ -218,7 +214,24 @@ public class BlockSolidVisual : MonoBehaviour
         if (!meshRenderer) return;
         _currentProgress = progress;
         var mappedProgress = GetMappedProgress(progress);
-        meshRenderer.transform.localScale = new Vector3(progress <= 0f ? 0f : 1f, progress <= 0f ? 0f : 1f, mappedProgress);
+        var hasVisibleVolume = progress > 0f && mappedProgress > 0f;
+        SetModelCollidersEnabled(hasVisibleVolume);
+        meshRenderer.transform.localScale = hasVisibleVolume
+            ? new Vector3(1f, 1f, mappedProgress)
+            : Vector3.zero;
+    }
+
+    private void SetModelCollidersEnabled(bool isEnabled)
+    {
+        if (!meshRenderer) return;
+        if (_modelColliders == null)
+            _modelColliders = meshRenderer.GetComponentsInChildren<Collider>(true);
+
+        for (var i = 0; i < _modelColliders.Length; i++)
+        {
+            var target = _modelColliders[i];
+            if (target != null) target.enabled = false;
+        }
     }
 
     private float GetMappedProgress(float progress)
