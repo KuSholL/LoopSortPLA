@@ -20,7 +20,6 @@ public sealed class BlockLinkVisual : MonoBehaviour
     private CarrierBase _carrierB;
     private Block _blockA;
     private Block _blockB;
-    private MaterialPropertyBlock _materialBlock;
 
     public void Setup(CarrierBase carrierA, Block blockA, CarrierBase carrierB, Block blockB)
     {
@@ -119,30 +118,28 @@ public sealed class BlockLinkVisual : MonoBehaviour
 
         var entryA = GetColorEntry(_carrierA, _blockA);
         var entryB = GetColorEntry(_carrierB, _blockB);
-        if (_materialBlock == null) _materialBlock = new MaterialPropertyBlock();
-        renderer.GetPropertyBlock(_materialBlock);
 
         if (entryA != null)
         {
-            _materialBlock.SetColor(RightColor, entryA.Color);
-            _materialBlock.SetColor(RightShadowColor, entryA.ShadowColor);
-            _materialBlock.SetColor(RightOutlineColor, entryA.OutlineColor);
+            renderer.ApplyColor(RightColor, entryA.Color);
+            renderer.ApplyColor(RightShadowColor, entryA.ShadowColor);
+            renderer.ApplyColor(RightOutlineColor, entryA.OutlineColor);
         }
         if (entryB != null)
         {
-            _materialBlock.SetColor(LeftColor, entryB.Color);
-            _materialBlock.SetColor(LeftShadowColor, entryB.ShadowColor);
-            _materialBlock.SetColor(LeftOutlineColor, entryB.OutlineColor);
+            renderer.ApplyColor(LeftColor, entryB.Color);
+            renderer.ApplyColor(LeftShadowColor, entryB.ShadowColor);
+            renderer.ApplyColor(LeftOutlineColor, entryB.OutlineColor);
         }
-
-        renderer.SetPropertyBlock(_materialBlock);
     }
 
     private static ColorEntry GetColorEntry(CarrierBase carrier, Block block)
     {
         if (block == null || block.GetBlockColorType() == EBlockColorType.None) return null;
         var config = carrier != null ? carrier.ColorConfig : null;
-        return config != null ? config.GetColorEntry(block.GetBlockColorType()) : null;
+        return config != null
+            ? config.GetColorEntry(block.GetBlockColorType())
+            : PlayableColorFallback.CreateColorEntry(block.GetBlockColorType());
     }
 
     private void GetClosestAnchors(out Vector3 positionA, out Vector3 positionB)

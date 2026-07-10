@@ -74,7 +74,7 @@ Material:
     - _FollowerAlpha: 1
     - _FollowerEmission: 1.45
     - _FollowerLength: 0.218
-    - _FollowerOffset: 0
+    - _FollowerOffset: 1.5215468
     - _FollowerSoftness: 0.08
     - _FollowerSpacing: 3
     - _FollowerSpeed: 3
@@ -87,6 +87,7 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
+    - _RevealProgress: 1
     - _RoadLength: 1
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1

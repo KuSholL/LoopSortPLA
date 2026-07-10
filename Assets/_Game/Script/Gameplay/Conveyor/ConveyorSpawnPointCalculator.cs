@@ -1,11 +1,10 @@
 using UnityEngine;
-using UnityEngine.Splines;
 
 public class ConveyorSpawnPointCalculator
 {
     private ConveyorSpawnPointConfigSO _spawnPointConfig;
     private ConveyorMeshBuilder _conveyorMeshBuilder;
-    private SplineContainer _splineContainer;
+    private ConveyorPathRuntime _path;
     private Transform _spawnRoot;
     private Transform _fallbackTransform;
     private float _deliverySideSpread = 0.12f;
@@ -14,13 +13,13 @@ public class ConveyorSpawnPointCalculator
     public ConveyorSpawnPointCalculator(
         ConveyorSpawnPointConfigSO spawnPointConfig,
         ConveyorMeshBuilder conveyorMeshBuilder,
-        SplineContainer splineContainer,
+        ConveyorPathRuntime path,
         Transform spawnRoot,
         Transform fallbackTransform)
     {
         _spawnPointConfig = spawnPointConfig;
         _conveyorMeshBuilder = conveyorMeshBuilder;
-        _splineContainer = splineContainer;
+        _path = path;
         _spawnRoot = spawnRoot;
         _fallbackTransform = fallbackTransform;
     }
@@ -50,7 +49,7 @@ public class ConveyorSpawnPointCalculator
             return _spawnPointConfig.DeliveryMinForwardSpread;
         }
 
-        var roadLength = _conveyorMeshBuilder.GetApproximateRoadLength(_splineContainer);
+        var roadLength = _conveyorMeshBuilder.GetApproximateRoadLength(_path);
         var spread = roadLength * _spawnPointConfig.DeliveryForwardSpreadByLength;
         return Mathf.Clamp(spread, _spawnPointConfig.DeliveryMinForwardSpread, _spawnPointConfig.DeliveryMaxForwardSpread);
     }
@@ -58,13 +57,12 @@ public class ConveyorSpawnPointCalculator
     public Vector3 GetDeliverySpawnPosition(float progress, int index)
     {
         var center = GetSpawnPosition(progress);
-        if (_splineContainer == null || _splineContainer.Spline == null || _splineContainer.Spline.Count <= 0)
+        if (_path == null || !_path.IsValid)
         {
             return center;
         }
 
-        var tangent = _splineContainer.Spline.EvaluateTangent(progress);
-        var worldForward = _splineContainer.transform.TransformDirection(tangent).normalized;
+        var worldForward = _path.EvaluateWorldTangent(progress);
         if (worldForward.sqrMagnitude <= 0.000001f)
         {
             worldForward = _fallbackTransform != null
@@ -115,12 +113,11 @@ public class ConveyorSpawnPointCalculator
 
     private Vector3 GetSpawnPosition(float progress)
     {
-        if (_splineContainer == null || _splineContainer.Spline == null || _splineContainer.Spline.Count <= 0)
+        if (_path == null || !_path.IsValid)
         {
             return _spawnRoot != null ? _spawnRoot.position : Vector3.zero;
         }
 
-        return _splineContainer.transform.TransformPoint(
-            _splineContainer.Spline.EvaluatePosition(progress));
+        return _path.EvaluateWorldPosition(progress);
     }
 }

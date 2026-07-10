@@ -20,7 +20,6 @@ public sealed class LinkedBlockVisual : MonoBehaviour
     private bool IsBlock4X => shapeType == EBlockShapeType.Block4x;
     private CarrierBase _carrier;
     private Block _anchorBlock;
-    private MaterialPropertyBlock _materialBlock;
     private Collider[] _visualColliders;
 
     private void Awake()
@@ -44,7 +43,14 @@ public sealed class LinkedBlockVisual : MonoBehaviour
         SetupMaterial(colorEntry);
         SetProgress(1f, suppressProgressAnimation, forceFullAnimation);
         SetVisible(true);
-        if (catFace) catFace.color = catEntry.Color;
+        if (catFace)
+        {
+            catFace.color = catEntry != null
+                ? catEntry.Color
+                : colorEntry != null
+                    ? colorEntry.Color
+                    : Color.white;
+        }
 
         SetKeyVisible(hasKey);
         if (hasKey && keyColorType != EBlockColorType.None)
@@ -74,9 +80,10 @@ public sealed class LinkedBlockVisual : MonoBehaviour
             config = UnityEditor.AssetDatabase.LoadAssetAtPath<StylizedColorConfigSO>("Assets/_Game/Config/CoreGameConfig/StylizedColorConfigSO.asset");
         }
 #endif
-        if (config == null) return;
-        var entry = config.GetColorEntry(colorType);
-        var propertyBlock = new MaterialPropertyBlock();
+        var entry = config != null
+            ? config.GetColorEntry(colorType)
+            : PlayableStylizedColorFallback.CreateColorEntry(colorType);
+        if (entry == null) return;
         var colorId = Shader.PropertyToID("_Color");
         var shadowColorId = Shader.PropertyToID("_ShadowColor");
         var specularColorId = Shader.PropertyToID("_SpecularColor");
@@ -91,22 +98,18 @@ public sealed class LinkedBlockVisual : MonoBehaviour
                 int[] targetIndices = { 0, 2 };
                 foreach (int i in targetIndices)
                 {
-                    r.GetPropertyBlock(propertyBlock, i);
-                    propertyBlock.SetColor(colorId, entry.Color);
-                    propertyBlock.SetColor(shadowColorId, entry.ShadowColor);
-                    propertyBlock.SetColor(specularColorId, entry.SpecularColor);
-                    propertyBlock.SetColor(reflectColorId, entry.ReflectColor);
-                    r.SetPropertyBlock(propertyBlock, i);
+                    r.ApplyColor(colorId, entry.Color, i);
+                    r.ApplyColor(shadowColorId, entry.ShadowColor, i);
+                    r.ApplyColor(specularColorId, entry.SpecularColor, i);
+                    r.ApplyColor(reflectColorId, entry.ReflectColor, i);
                 }
             }
             else
             {
-                r.GetPropertyBlock(propertyBlock, 0);
-                propertyBlock.SetColor(colorId, entry.Color);
-                propertyBlock.SetColor(shadowColorId, entry.ShadowColor);
-                propertyBlock.SetColor(specularColorId, entry.SpecularColor);
-                propertyBlock.SetColor(reflectColorId, entry.ReflectColor);
-                r.SetPropertyBlock(propertyBlock, 0);
+                r.ApplyColor(colorId, entry.Color, 0);
+                r.ApplyColor(shadowColorId, entry.ShadowColor, 0);
+                r.ApplyColor(specularColorId, entry.SpecularColor, 0);
+                r.ApplyColor(reflectColorId, entry.ReflectColor, 0);
             }
         }
     }
@@ -168,10 +171,7 @@ public sealed class LinkedBlockVisual : MonoBehaviour
         var targetRenderer = GetTargetRenderer();
         if (targetRenderer == null || colorEntry == null) return;
 
-        if (_materialBlock == null) _materialBlock = new MaterialPropertyBlock();
-        targetRenderer.GetPropertyBlock(_materialBlock);
-        _materialBlock.SetColorEntry(colorEntry);
-        targetRenderer.SetPropertyBlock(_materialBlock);
+        targetRenderer.ApplyColorEntry(colorEntry);
     }
     
     private Renderer GetTargetRenderer()

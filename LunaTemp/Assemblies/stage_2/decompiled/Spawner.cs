@@ -40,10 +40,6 @@ public sealed class Spawner : CarrierBase
 
 	private CarrierLinkedBlockVisualController _linkedBlockVisualController;
 
-	private MaterialPropertyBlock _remainingColorBlock;
-
-	private MaterialPropertyBlock _remainingSlimeBlock;
-
 	private Coroutine _delayedVisualRoutine;
 
 	private TextMesh _remainingBlockCountText;
@@ -260,10 +256,14 @@ public sealed class Spawner : CarrierBase
 			SetRemainingBlockCount(_blocksQueue.Count - _currentQueueIndex - 1);
 			if (playAnimation && spawnAnimator != null)
 			{
-				_singleBlock.SetPhysicsCollidersEnabled(false);
-				_singleBlock.transform.localScale = Vector3.zero;
-				_singleBlock.SetVisualCubes(0, true);
-				spawnAnimator.Play(_singleBlock);
+				if (spawnAnimator != null)
+				{
+					spawnAnimator.Cancel();
+				}
+				_singleBlock.SetPhysicsCollidersEnabled(true);
+				_singleBlock.transform.localScale = Vector3.one;
+				_singleBlock.transform.localPosition = Vector3.zero;
+				_singleBlock.SetVisualCubes(_singleBlock.GetCurrentCubes(), true);
 			}
 			else
 			{
@@ -332,14 +332,6 @@ public sealed class Spawner : CarrierBase
 
 	private void ApplyRemainingColors(bool hasNext, BlockRuntimeData next)
 	{
-		if (_remainingColorBlock == null)
-		{
-			_remainingColorBlock = new MaterialPropertyBlock();
-		}
-		if (_remainingSlimeBlock == null)
-		{
-			_remainingSlimeBlock = new MaterialPropertyBlock();
-		}
 		Color color = Color.white;
 		ColorEntry cubeEntry = null;
 		if (hasNext && next != null)
@@ -351,24 +343,20 @@ public sealed class Spawner : CarrierBase
 		}
 		if (remainingColorMesh != null)
 		{
-			remainingColorMesh.GetPropertyBlock(_remainingColorBlock);
-			_remainingColorBlock.SetColor(ColorId, color);
-			_remainingColorBlock.SetColor(BaseColorId, color);
-			remainingColorMesh.SetPropertyBlock(_remainingColorBlock);
+			remainingColorMesh.ApplyColor(ColorId, color);
+			remainingColorMesh.ApplyColor(BaseColorId, color);
 			remainingColorMesh.gameObject.SetActive(true);
 		}
 		if (remainingSlimeMesh != null)
 		{
-			remainingSlimeMesh.GetPropertyBlock(_remainingSlimeBlock);
 			if (cubeEntry != null)
 			{
-				_remainingSlimeBlock.SetColorEntry(cubeEntry);
+				remainingSlimeMesh.ApplyColorEntry(cubeEntry);
 			}
 			else
 			{
-				_remainingSlimeBlock.SetColor(ColorId, color);
+				remainingSlimeMesh.ApplyColor(ColorId, color);
 			}
-			remainingSlimeMesh.SetPropertyBlock(_remainingSlimeBlock);
 			remainingSlimeMesh.gameObject.SetActive(true);
 		}
 	}
@@ -401,9 +389,6 @@ public sealed class Spawner : CarrierBase
 		{
 			_remainingBlockCountText = remainingBlockCount.gameObject.AddComponent<TextMesh>();
 		}
-		_remainingBlockCountText.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
-		_remainingBlockCountText.anchor = TextAnchor.MiddleCenter;
-		_remainingBlockCountText.alignment = TextAlignment.Center;
 		_remainingBlockCountText.fontSize = 64;
 		_remainingBlockCountText.characterSize = 0.08f;
 		_remainingBlockCountText.color = Color.white;

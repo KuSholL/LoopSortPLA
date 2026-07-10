@@ -184,8 +184,10 @@ public class Block : MonoBehaviour
 
     private static ColorEntry GetColorEntry(ColorConfigSO colorConfig, BlockData blockData)
     {
-        if (colorConfig == null || blockData == null) return null;
-        return colorConfig.GetColorEntry(blockData.BlockColor);
+        if (blockData == null) return null;
+        return colorConfig != null
+            ? colorConfig.GetColorEntry(blockData.BlockColor)
+            : PlayableColorFallback.CreateColorEntry(blockData.BlockColor);
     }
 
     public void ClearContent()

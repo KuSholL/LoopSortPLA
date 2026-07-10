@@ -181,7 +181,6 @@ public sealed class GiftBoxVisual : MonoBehaviour
 		{
 			return;
 		}
-		MaterialPropertyBlock propertyBlock = new MaterialPropertyBlock();
 		for (int rendererIndex = 0; rendererIndex < ribbonRenderers.Count; rendererIndex++)
 		{
 			MeshRenderer target = ribbonRenderers[rendererIndex];
@@ -189,9 +188,7 @@ public sealed class GiftBoxVisual : MonoBehaviour
 			{
 				for (int materialIndex = 0; materialIndex < target.sharedMaterials.Length; materialIndex++)
 				{
-					target.GetPropertyBlock(propertyBlock, materialIndex);
-					propertyBlock.SetColorEntry(entry);
-					target.SetPropertyBlock(propertyBlock, materialIndex);
+					target.ApplyColorEntry(entry, materialIndex);
 				}
 			}
 		}

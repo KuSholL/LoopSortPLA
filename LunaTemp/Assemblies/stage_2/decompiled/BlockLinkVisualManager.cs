@@ -190,6 +190,7 @@ public sealed class BlockLinkVisualManager : MonoSingleton<BlockLinkVisualManage
 		BlockLinkVisual visual = ((MonoSingleton<PoolManagerNew>.Instance != null) ? MonoSingleton<PoolManagerNew>.Instance.PopFromPool(linkVisualPrefab, base.transform) : UnityEngine.Object.Instantiate(linkVisualPrefab, base.transform));
 		if (!(visual == null))
 		{
+			LunaMaterialUtility.NormalizeRenderers(visual.gameObject);
 			visual.Setup(first.Carrier, first.Block, second.Carrier, second.Block);
 			_activeVisuals.Add(visual);
 		}

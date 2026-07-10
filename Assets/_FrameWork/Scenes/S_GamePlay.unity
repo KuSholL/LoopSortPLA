@@ -4912,6 +4912,69 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &751760795
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: dbe5b937bf54b2147a5106746ef21ab1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: dbe5b937bf54b2147a5106746ef21ab1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: dbe5b937bf54b2147a5106746ef21ab1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: dbe5b937bf54b2147a5106746ef21ab1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: dbe5b937bf54b2147a5106746ef21ab1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: dbe5b937bf54b2147a5106746ef21ab1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: dbe5b937bf54b2147a5106746ef21ab1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: dbe5b937bf54b2147a5106746ef21ab1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: dbe5b937bf54b2147a5106746ef21ab1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: dbe5b937bf54b2147a5106746ef21ab1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: dbe5b937bf54b2147a5106746ef21ab1, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 919132149155446097, guid: dbe5b937bf54b2147a5106746ef21ab1, type: 3}
+      propertyPath: m_Name
+      value: GeneratedRoad
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects:
+    - {fileID: 7222560179062609735, guid: dbe5b937bf54b2147a5106746ef21ab1, type: 3}
+    - {fileID: -5277820689771248292, guid: dbe5b937bf54b2147a5106746ef21ab1, type: 3}
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: dbe5b937bf54b2147a5106746ef21ab1, type: 3}
 --- !u!1 &775231337
 GameObject:
   m_ObjectHideFlags: 0
@@ -5692,7 +5755,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carrierConfig: {fileID: 11400000, guid: 9f3ed52bca1f4b69a1a7d4f2cbf8c646, type: 2}
-  splineContainer: {fileID: 1079557533}
   spawnRoot: {fileID: 939211782}
 --- !u!4 &939211782
 Transform:
@@ -6473,11 +6535,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   conveyorContainer: {fileID: 1079557533}
+  splineInstantiate: {fileID: 1079557537}
   conveyorMeshBuilder: {fileID: 487414565}
   conveyorCornerDetector: {fileID: 1079557538}
   conveyorPortalPrefab: {fileID: 1419550991047808711, guid: 8a98abad9286e54448d53be3468c1f42, type: 3}
   portalHolder: {fileID: 1079557535}
-  splineInstantiate: {fileID: 1079557537}
+  conveyorRoot: {fileID: 0}
 --- !u!4 &1079557535
 Transform:
   m_ObjectHideFlags: 0
@@ -6510,8 +6573,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f62aacd14e406b94599ca59392c3825d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  splineContainer: {fileID: 1079557533}
-  splineInstantiate: {fileID: 1079557537}
+  conveyorManager: {fileID: 0}
   conveyorMeshBuilder: {fileID: 487414565}
   cubeConfig: {fileID: 11400000, guid: 93c29f1b8d203e54199870a6486a3805, type: 2}
   spawnInterval: 0.02
@@ -6583,7 +6645,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c3d17dd57567534cbfe49fc8babe0aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  splineContainer: {fileID: 1079557533}
   config: {fileID: 11400000, guid: 385946bf3f36728479228fea27189d98, type: 2}
   cornerProgresses: []
 --- !u!1 &1082265809
@@ -13838,3 +13899,4 @@ SceneRoots:
   - {fileID: 705070454}
   - {fileID: 1004876373}
   - {fileID: 535753067}
+  - {fileID: 751760795}

@@ -19,9 +19,16 @@ public class ConveyorDeliveryCubeFactory
             return null;
         }
 
-        var animCube = PoolManagerNew.Instance.PopFromPool(animCubePrefab, parent);
+        AnimCube animCube;
+#if UNITY_LUNA
+        animCube = Object.Instantiate(animCubePrefab, parent);
+#else
+        animCube = PoolManagerNew.Instance.PopFromPool(animCubePrefab, parent);
+#endif
+        if (animCube.Trans == null) animCube.Trans = animCube.transform;
+        LunaMaterialUtility.NormalizeRenderers(animCube.gameObject);
         cacheList?.Add(animCube);
-        CustomTimeScaleGroup.Instance.AddTarget(animCube);
+        if (CustomTimeScaleGroup.Instance != null) CustomTimeScaleGroup.Instance.AddTarget(animCube);
         return animCube;
     }
 
@@ -34,9 +41,16 @@ public class ConveyorDeliveryCubeFactory
             return null;
         }
 
-        var instance = PoolManagerNew.Instance.PopFromPool(cube);
+        Cube instance;
+#if UNITY_LUNA
+        instance = Object.Instantiate(cube);
+#else
+        instance = PoolManagerNew.Instance.PopFromPool(cube);
+#endif
+        if (instance.Trans == null) instance.Trans = instance.transform;
+        LunaMaterialUtility.NormalizeRenderers(instance.gameObject);
         instance.Trans.localScale = _cubeConfig.CubeDefaultScale;
-        CustomTimeScaleGroup.Instance.AddTarget(instance);
+        if (CustomTimeScaleGroup.Instance != null) CustomTimeScaleGroup.Instance.AddTarget(instance);
         return instance;
     }
 

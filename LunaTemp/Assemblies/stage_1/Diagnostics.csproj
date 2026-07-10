@@ -333,6 +333,9 @@
     <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Conveyor\ConveyorMeshBuilder.cs">
       <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Conveyor\ConveyorMeshBuilder.cs</Link>
     </Compile>
+    <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Conveyor\ConveyorPathRuntime.cs">
+      <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Conveyor\ConveyorPathRuntime.cs</Link>
+    </Compile>
     <Compile Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Conveyor\ConveyorPickupHandler.cs">
       <Link>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Assets\_Game\Script\Gameplay\Conveyor\ConveyorPickupHandler.cs</Link>
     </Compile>
@@ -416,8 +419,29 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Library\ScriptAssemblies\Unity.Polybrush.dll">
+      <HintPath>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Library\ScriptAssemblies\Unity.Polybrush.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Library\ScriptAssemblies\Unity.Timeline.dll">
+      <HintPath>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Library\ScriptAssemblies\Unity.Timeline.dll</HintPath>
+    </Reference>
     <Reference Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Library\ScriptAssemblies\Unity.Splines.Editor.dll">
       <HintPath>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Library\ScriptAssemblies\Unity.Splines.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Library\ScriptAssemblies\Unity.Polybrush.Editor.dll">
+      <HintPath>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Library\ScriptAssemblies\Unity.Polybrush.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Library\ScriptAssemblies\Unity.Formats.Fbx.Editor.dll">
+      <HintPath>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Library\ScriptAssemblies\Unity.Formats.Fbx.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Library\ScriptAssemblies\Autodesk.Fbx.dll">
+      <HintPath>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Library\ScriptAssemblies\Autodesk.Fbx.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Library\ScriptAssemblies\Unity.Timeline.Editor.dll">
+      <HintPath>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Library\ScriptAssemblies\Autodesk.Fbx.Editor.dll">
+      <HintPath>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Library\ScriptAssemblies\Autodesk.Fbx.Editor.dll</HintPath>
     </Reference>
     <Reference Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Library\ScriptAssemblies\Unity.Settings.Editor.dll">
       <HintPath>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Library\ScriptAssemblies\Unity.Settings.Editor.dll</HintPath>
@@ -439,6 +463,12 @@
     </Reference>
     <Reference Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Library\ScriptAssemblies\UnityEngine.UI.dll">
       <HintPath>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Library\ScriptAssemblies\Unity.Formats.Fbx.Runtime.dll">
+      <HintPath>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Library\ScriptAssemblies\Unity.Formats.Fbx.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Library\ScriptAssemblies\FbxBuildTestAssets.dll">
+      <HintPath>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Library\ScriptAssemblies\FbxBuildTestAssets.dll</HintPath>
     </Reference>
     <Reference Include="C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Library\ScriptAssemblies\Unity.Mathematics.Editor.dll">
       <HintPath>C:\Users\hapiga\Documents\GitHub\LoopSortPLA\Library\ScriptAssemblies\Unity.Mathematics.Editor.dll</HintPath>

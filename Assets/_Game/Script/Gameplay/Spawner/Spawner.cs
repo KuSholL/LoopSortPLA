@@ -20,8 +20,6 @@ public sealed class Spawner : CarrierBase
     private Block _singleBlock;
     private CarrierBlockLayoutBase _blockLayout;
     private CarrierLinkedBlockVisualController _linkedBlockVisualController;
-    private MaterialPropertyBlock _remainingColorBlock;
-    private MaterialPropertyBlock _remainingSlimeBlock;
     private Coroutine _delayedVisualRoutine;
     private TextMesh _remainingBlockCountText;
     private int _currentQueueIndex;
@@ -201,10 +199,18 @@ public sealed class Spawner : CarrierBase
 
             if (playAnimation && spawnAnimator != null)
             {
+#if UNITY_LUNA
+                if (spawnAnimator != null) spawnAnimator.Cancel();
+                _singleBlock.SetPhysicsCollidersEnabled(true);
+                _singleBlock.transform.localScale = Vector3.one;
+                _singleBlock.transform.localPosition = Vector3.zero;
+                _singleBlock.SetVisualCubes(_singleBlock.GetCurrentCubes(), true);
+#else
                 _singleBlock.SetPhysicsCollidersEnabled(false);
                 _singleBlock.transform.localScale = Vector3.zero;
                 _singleBlock.SetVisualCubes(0, true);
                 spawnAnimator.Play(_singleBlock);
+#endif
             }
             else
             {
@@ -278,9 +284,6 @@ public sealed class Spawner : CarrierBase
 
     private void ApplyRemainingColors(bool hasNext, BlockRuntimeData next)
     {
-        if (_remainingColorBlock == null) _remainingColorBlock = new MaterialPropertyBlock();
-        if (_remainingSlimeBlock == null) _remainingSlimeBlock = new MaterialPropertyBlock();
-
         var color = Color.white;
         ColorEntry cubeEntry = null;
         if (hasNext && next != null)
@@ -302,18 +305,14 @@ public sealed class Spawner : CarrierBase
 
         if (remainingColorMesh != null)
         {
-            remainingColorMesh.GetPropertyBlock(_remainingColorBlock);
-            _remainingColorBlock.SetColor(ColorId, color);
-            _remainingColorBlock.SetColor(BaseColorId, color);
-            remainingColorMesh.SetPropertyBlock(_remainingColorBlock);
+            remainingColorMesh.ApplyColor(ColorId, color);
+            remainingColorMesh.ApplyColor(BaseColorId, color);
             remainingColorMesh.gameObject.SetActive(true);
         }
         if (remainingSlimeMesh != null)
         {
-            remainingSlimeMesh.GetPropertyBlock(_remainingSlimeBlock);
-            if (cubeEntry != null) _remainingSlimeBlock.SetColorEntry(cubeEntry);
-            else _remainingSlimeBlock.SetColor(ColorId, color);
-            remainingSlimeMesh.SetPropertyBlock(_remainingSlimeBlock);
+            if (cubeEntry != null) remainingSlimeMesh.ApplyColorEntry(cubeEntry);
+            else remainingSlimeMesh.ApplyColor(ColorId, color);
             remainingSlimeMesh.gameObject.SetActive(true);
         }
     }
@@ -337,9 +336,6 @@ public sealed class Spawner : CarrierBase
         if (_remainingBlockCountText == null)
             _remainingBlockCountText = remainingBlockCount.gameObject.AddComponent<TextMesh>();
 
-        _remainingBlockCountText.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
-        _remainingBlockCountText.anchor = TextAnchor.MiddleCenter;
-        _remainingBlockCountText.alignment = TextAlignment.Center;
         _remainingBlockCountText.fontSize = 64;
         _remainingBlockCountText.characterSize = 0.08f;
         _remainingBlockCountText.color = Color.white;

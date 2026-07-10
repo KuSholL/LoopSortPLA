@@ -1,7 +1,5 @@
 using UnityEngine;
-using UnityEngine.Splines;
 using System;
-using System.Collections.Generic;
 using System.Collections;
 
 public class CubeMovement : MonoBehaviour, ICustomTimeScaleTarget
@@ -9,10 +7,9 @@ public class CubeMovement : MonoBehaviour, ICustomTimeScaleTarget
     [SerializeField] private CubeMovementConfigSO config;
     [SerializeField] private Rigidbody rb;
 
-    private readonly int _splineSampleCount = 200;
     private readonly int _splineSearchRange = 15;
 
-    private SplineContainer _splineContainer;
+    private ConveyorPathRuntime _path;
     private float _lastProgress;
     private float _startProgress;
     private float _nextRoadGripTime;
@@ -33,32 +30,15 @@ public class CubeMovement : MonoBehaviour, ICustomTimeScaleTarget
     private bool _hasLoggedMissingConfig;
     private bool _hasStartedFirstLoop = true;
     private bool _isFirstSampleOnSpline = true;
-
-    private static readonly Dictionary<Spline, SplineDataCache> _splineCache = new Dictionary<Spline, SplineDataCache>();
-
-    static CubeMovement()
-    {
-        GameEventBus.OnInitLoadLevel += ClearSplineCache;
-    }
-
-    private static void ClearSplineCache()
-    {
-        _splineCache.Clear();
-    }
-
-    private static SplineDataCache GetOrCreateCache(Spline spline, int sampleCount)
-    {
-        if (spline == null) return null;
-        if (!_splineCache.TryGetValue(spline, out var cache))
-        {
-            cache = new SplineDataCache(spline, sampleCount);
-            _splineCache.Add(spline, cache);
-        }
-        return cache;
-    }
+#if UNITY_LUNA
+    private bool _lunaManualMode;
+#endif
 
     private void OnDisable()
     {
+#if UNITY_LUNA
+        if (_lunaManualMode) return;
+#endif
         _isFirstSampleOnSpline = true;
         _setupVersion++;
         _yAxisLockVersion++;
@@ -90,6 +70,11 @@ public class CubeMovement : MonoBehaviour, ICustomTimeScaleTarget
             return;
         }
 
+#if UNITY_LUNA
+        ManualUpdate(Time.unscaledDeltaTime);
+        return;
+#endif
+
         if (!IsMovementStepReady())
         {
             return;
@@ -98,23 +83,39 @@ public class CubeMovement : MonoBehaviour, ICustomTimeScaleTarget
         AdvanceAlongSpline();
     }
 
-    public void Setup(SplineContainer splineContainer, float startProgress = 0f, float progressOffset = 0f, Vector3? initialWorldPosition = null)
+    public void Setup(ConveyorPathRuntime path, float startProgress = 0f, float progressOffset = 0f, Vector3? initialWorldPosition = null)
     {
         _isFirstSampleOnSpline = true;
         _setupVersion++;
-        _splineContainer = splineContainer;
+        _path = path;
         var progress = Mathf.Repeat(startProgress, 1f);
         _progressOffset = progressOffset;
         PrepareForSplineMovement(progress, initialWorldPosition);
+#if UNITY_LUNA
+        _lunaManualMode = true;
+        SetPhysicsEnabled(false);
+        enabled = false;
+        return;
+#endif
         LockYAxisTemporarily(config != null ? config.SpawnFreezeYDuration : 0.3f);
         EnablePhysicsNextFrameAsync(_setupVersion, progress);
     }
 
-    public void ApplyPortalTransfer(SplineContainer splineContainer, Vector3 worldPosition, Vector3 worldVelocity, Vector3 worldForward)
+    public void ApplyPortalTransfer(ConveyorPathRuntime path, Vector3 worldPosition, Vector3 worldVelocity, Vector3 worldForward)
     {
         _isFirstSampleOnSpline = true;
-        _splineContainer = splineContainer;
+        _path = path;
         ResetDelayedForces();
+#if UNITY_LUNA
+        _lunaManualMode = true;
+        SetPhysicsEnabled(false);
+        transform.position = worldPosition;
+        if (worldForward.sqrMagnitude > 0.001f)
+        {
+            transform.forward = worldForward.normalized;
+        }
+        return;
+#endif
         SetPhysicsEnabled(true);
 
         if (rb != null)
@@ -147,20 +148,17 @@ public class CubeMovement : MonoBehaviour, ICustomTimeScaleTarget
 
     public float GetRealtimeProgress()
     {
-        if (_splineContainer == null || _splineContainer.Spline == null || _splineContainer.Spline.Count <= 0) return _lastProgress;
+        if (_path == null || !_path.IsValid) return _lastProgress;
 
-        var cache = GetOrCreateCache(_splineContainer.Spline, _splineSampleCount);
-        if (cache == null) return _lastProgress;
-
-        var localPosition = _splineContainer.transform.InverseTransformPoint(transform.position);
+        var localPosition = _path.InverseTransformPoint(transform.position);
         float progress;
         if (_isFirstSampleOnSpline)
         {
-            cache.GetNearestPointGlobal(localPosition, out _, out progress, out _);
+            _path.GetNearestPointGlobal(localPosition, out _, out progress, out _);
         }
         else
         {
-            cache.GetNearestPointLocal(localPosition, _lastProgress, _splineSearchRange, out _, out progress, out _);
+            _path.GetNearestPointLocal(localPosition, _lastProgress, _splineSearchRange, out _, out progress, out _);
         }
         return Mathf.Repeat(progress, 1f);
     }
@@ -189,11 +187,14 @@ public class CubeMovement : MonoBehaviour, ICustomTimeScaleTarget
     private bool CanMove()
     {
         if (!HasValidConfig()) return false;
+#if UNITY_LUNA
+        return _path != null && _path.IsValid;
+#else
         return rb != null
                && !rb.isKinematic
-               && _splineContainer != null
-               && _splineContainer.Spline != null
-               && _splineContainer.Spline.Count > 0;
+               && _path != null
+               && _path.IsValid;
+#endif
     }
 
     private float GetSpeedTimeScale()
@@ -231,16 +232,43 @@ public class CubeMovement : MonoBehaviour, ICustomTimeScaleTarget
         ApplyRoadGripForce(sample.WorldNearestPoint, sample.WorldTangent);
     }
 
+#if UNITY_LUNA
+    public void ManualUpdate(float deltaTime)
+    {
+        _movementTime += Mathf.Max(0f, deltaTime) * _customTimeScale;
+        if (_customTimeScale <= 0f || !CanMove()) return;
+        AdvanceAlongSplineManual(deltaTime);
+    }
+
+    private void AdvanceAlongSplineManual(float deltaTime)
+    {
+        if (_path == null || !_path.IsValid) return;
+        var pathLength = Mathf.Max(0.0001f, _path.CalculateLength());
+        var deltaProgress = GetTargetSpeed() * Mathf.Max(0f, deltaTime) / pathLength;
+        if (deltaProgress <= 0f) return;
+
+        var nextProgress = Mathf.Repeat(_lastProgress + deltaProgress, 1f);
+        UpdateCompletedLapCount(nextProgress);
+
+        var worldPosition = _path.EvaluateWorldPosition(nextProgress);
+        var worldTangent = _path.EvaluateWorldTangent(nextProgress);
+        transform.position = worldPosition;
+        if (worldTangent.sqrMagnitude > 0.000001f)
+        {
+            transform.forward = worldTangent.normalized;
+        }
+    }
+#endif
+
     private bool TryGetSplineSample(out SplineSample sample)
     {
         sample = default;
-        var cache = GetOrCreateCache(_splineContainer.Spline, _splineSampleCount);
-        if (cache == null)
+        if (_path == null || !_path.IsValid)
         {
             return false;
         }
 
-        var localPosition = _splineContainer.transform.InverseTransformPoint(transform.position);
+        var localPosition = _path.InverseTransformPoint(transform.position);
         
         Vector3 nearestPoint;
         float progress;
@@ -249,15 +277,15 @@ public class CubeMovement : MonoBehaviour, ICustomTimeScaleTarget
         if (_isFirstSampleOnSpline)
         {
             _isFirstSampleOnSpline = false;
-            cache.GetNearestPointGlobal(localPosition, out nearestPoint, out progress, out tangent);
+            _path.GetNearestPointGlobal(localPosition, out nearestPoint, out progress, out tangent);
             _lastProgress = progress;
         }
         else
         {
-            cache.GetNearestPointLocal(localPosition, _lastProgress, _splineSearchRange, out nearestPoint, out progress, out tangent);
+            _path.GetNearestPointLocal(localPosition, _lastProgress, _splineSearchRange, out nearestPoint, out progress, out tangent);
         }
         
-        var worldTangent = _splineContainer.transform.TransformDirection(tangent).normalized;
+        var worldTangent = _path.TransformDirection(tangent).normalized;
         if (worldTangent.sqrMagnitude <= 0.000001f)
         {
             return false;
@@ -265,7 +293,7 @@ public class CubeMovement : MonoBehaviour, ICustomTimeScaleTarget
 
         sample = new SplineSample(
             Mathf.Repeat(progress, 1f),
-            _splineContainer.transform.TransformPoint(nearestPoint),
+            _path.TransformPoint(nearestPoint),
             worldTangent);
         return true;
     }
@@ -401,8 +429,7 @@ public class CubeMovement : MonoBehaviour, ICustomTimeScaleTarget
 
     private Vector3 GetSplineWorldPosition(float progress)
     {
-        var localPos = _splineContainer.Spline.EvaluatePosition(progress);
-        return _splineContainer.transform.TransformPoint(localPos);
+        return _path != null && _path.IsValid ? _path.EvaluateWorldPosition(progress) : transform.position;
     }
 
     private void EnablePhysicsNextFrameAsync(int setupVersion, float progress)
@@ -490,8 +517,7 @@ public class CubeMovement : MonoBehaviour, ICustomTimeScaleTarget
 
     private Vector3 GetSplineWorldTangent(float progress)
     {
-        var tangent = _splineContainer.Spline.EvaluateTangent(progress);
-        return _splineContainer.transform.TransformDirection(tangent).normalized;
+        return _path != null && _path.IsValid ? _path.EvaluateWorldTangent(progress) : Vector3.forward;
     }
 
     private bool HasValidConfig()

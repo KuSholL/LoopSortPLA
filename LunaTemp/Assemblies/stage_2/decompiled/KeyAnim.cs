@@ -17,7 +17,6 @@ public sealed class KeyAnim : MonoBehaviour
 		{
 			return;
 		}
-		MaterialPropertyBlock propertyBlock = new MaterialPropertyBlock();
 		for (int rendererIndex = 0; rendererIndex < keyRenderers.Length; rendererIndex++)
 		{
 			Renderer target = keyRenderers[rendererIndex];
@@ -25,9 +24,7 @@ public sealed class KeyAnim : MonoBehaviour
 			{
 				for (int materialIndex = 0; materialIndex < target.sharedMaterials.Length; materialIndex++)
 				{
-					target.GetPropertyBlock(propertyBlock, materialIndex);
-					propertyBlock.SetColorEntry(entry);
-					target.SetPropertyBlock(propertyBlock, materialIndex);
+					target.ApplyColorEntry(entry, materialIndex);
 				}
 			}
 		}

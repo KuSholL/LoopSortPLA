@@ -147,16 +147,13 @@ public sealed class GiftBoxVisual : MonoBehaviour
         var entry = config.GetColorEntry(colorType);
         if (entry == null) return;
 
-        var propertyBlock = new MaterialPropertyBlock();
         for (var rendererIndex = 0; rendererIndex < ribbonRenderers.Count; rendererIndex++)
         {
             var target = ribbonRenderers[rendererIndex];
             if (target == null) continue;
             for (var materialIndex = 0; materialIndex < target.sharedMaterials.Length; materialIndex++)
             {
-                target.GetPropertyBlock(propertyBlock, materialIndex);
-                propertyBlock.SetColorEntry(entry);
-                target.SetPropertyBlock(propertyBlock, materialIndex);
+                target.ApplyColorEntry(entry, materialIndex);
             }
         }
     }

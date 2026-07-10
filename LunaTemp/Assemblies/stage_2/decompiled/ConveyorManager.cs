@@ -1,9 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
-using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.Splines;
 
 public class ConveyorManager : MonoBehaviour
 {
@@ -23,9 +21,6 @@ public class ConveyorManager : MonoBehaviour
 	private const string PreviewHolderName = "EditorCarrierPreview";
 
 	[SerializeField]
-	private SplineContainer conveyorContainer;
-
-	[SerializeField]
 	private ConveyorMeshBuilder conveyorMeshBuilder;
 
 	[SerializeField]
@@ -38,7 +33,7 @@ public class ConveyorManager : MonoBehaviour
 	private Transform portalHolder;
 
 	[SerializeField]
-	private SplineInstantiate splineInstantiate;
+	private Transform conveyorRoot;
 
 	private ConveyorPortal _spawnedPortalA;
 
@@ -48,6 +43,8 @@ public class ConveyorManager : MonoBehaviour
 
 	private Tween _revealTween;
 
+	private readonly ConveyorPathRuntime _path = new ConveyorPathRuntime();
+
 	private LevelEntryAnimConfigSO EntryConfig => (MonoSingleton<LevelManager>.Instance != null) ? MonoSingleton<LevelManager>.Instance.LevelEntryAnimConfig : null;
 
 	private float RevealDelay => (EntryConfig != null) ? EntryConfig.ConveyorRevealDelay : 0.1f;
@@ -55,6 +52,8 @@ public class ConveyorManager : MonoBehaviour
 	private float RevealDuration => (EntryConfig != null) ? EntryConfig.ConveyorRevealDuration : 1f;
 
 	private Ease RevealEase => (EntryConfig != null) ? EntryConfig.ConveyorRevealEase : Ease.OutCubic;
+
+	public ConveyorPathRuntime Path => _path;
 
 	private void Awake()
 	{
@@ -72,69 +71,63 @@ public class ConveyorManager : MonoBehaviour
 
 	public IEnumerator InitConveyor(SplinePathData splinePathData)
 	{
-		if (!(conveyorContainer == null) && splinePathData != null)
+		if (splinePathData != null)
 		{
 			ClearPreviewHolder();
-			SetupSpline(splinePathData);
+			SetupPath(splinePathData);
 			if (conveyorMeshBuilder != null)
 			{
 				conveyorMeshBuilder.SetRevealProgress(0f);
 			}
-			conveyorMeshBuilder.Rebuild(conveyorContainer);
+			if (conveyorMeshBuilder != null)
+			{
+				conveyorMeshBuilder.Rebuild(_path);
+			}
 			UpdatePortals(splinePathData);
 			yield return null;
-			if (splineInstantiate != null)
-			{
-				splineInstantiate.UpdateInstances();
-			}
 			CacheInstantiatedSegments();
-			SetRevealProgress(0f);
+			SetRevealProgress(1f);
+			Transform pathRoot = GetPathRoot();
+			if (pathRoot != null)
+			{
+				LunaMaterialUtility.NormalizeRenderers(pathRoot.gameObject);
+			}
 		}
 	}
 
 	private void ClearPreviewHolder()
 	{
-		Transform holder = conveyorContainer.transform.Find("EditorCarrierPreview");
+		Transform root = GetPathRoot();
+		Transform holder = ((root != null) ? root.Find("EditorCarrierPreview") : null);
 		if (!(holder == null))
 		{
 			Object.Destroy(holder.gameObject);
 		}
 	}
 
-	private void SetupSpline(SplinePathData splinePathData)
+	private void SetupPath(SplinePathData splinePathData)
 	{
-		List<SplinePointData> mapPoints = splinePathData.GetMapPointsInOrder();
-		BuildBakedSpline(conveyorContainer.Spline, mapPoints, splinePathData.Closed);
-		conveyorCornerDetector.UpdateCornerProgresses(conveyorContainer, splinePathData.Closed);
-	}
-
-	private void BuildBakedSpline(Spline spline, List<SplinePointData> source, bool closed)
-	{
-		spline.Clear();
-		spline.Closed = closed;
-		foreach (SplinePointData point in source)
+		_path.Setup(splinePathData, GetPathRoot());
+		if (conveyorCornerDetector != null)
 		{
-			spline.Add(CreateKnot(point));
-		}
-		for (int i = 0; i < source.Count; i++)
-		{
-			ApplySavedStyle(spline, source[i], i);
+			conveyorCornerDetector.UpdateCornerProgresses(_path, splinePathData.Closed);
 		}
 	}
 
 	private void CacheInstantiatedSegments()
 	{
 		_instantiatedSegments.Clear();
-		if (splineInstantiate == null || conveyorContainer == null || conveyorContainer.Spline == null)
+		Transform rootTransform = GetPathRoot();
+		if (rootTransform == null || !_path.IsValid)
 		{
 			return;
 		}
 		Transform instancesRoot = null;
-		foreach (Transform child in splineInstantiate.transform)
+		foreach (Transform child2 in rootTransform)
 		{
-			if (child.name.StartsWith("root-"))
+			if (child2.name.StartsWith("root-"))
 			{
-				instancesRoot = child;
+				instancesRoot = child2;
 				break;
 			}
 		}
@@ -145,8 +138,8 @@ public class ConveyorManager : MonoBehaviour
 		List<(Transform, float)> segmentTempList = new List<(Transform, float)>();
 		foreach (Transform child3 in instancesRoot)
 		{
-			Vector3 localPos = conveyorContainer.transform.InverseTransformPoint(child3.position);
-			SplineUtility.GetNearestPoint(conveyorContainer.Spline, localPos, out var _, out var t);
+			Vector3 localPos = _path.InverseTransformPoint(child3.position);
+			_path.GetNearestPointGlobal(localPos, out var _, out var t, out var _);
 			segmentTempList.Add((child3, Mathf.Repeat(t, 1f)));
 		}
 		segmentTempList.Sort(((Transform transform, float t) a, (Transform transform, float t) b) => a.t.CompareTo(b.t));
@@ -181,11 +174,11 @@ public class ConveyorManager : MonoBehaviour
 				tEnd = (current.Item2 + segmentTempList[i + 1].Item2) * 0.5f;
 			}
 			Transform shadowChild = null;
-			foreach (Transform child2 in current.Item1)
+			foreach (Transform child in current.Item1)
 			{
-				if (child2.name.Contains("Shadow"))
+				if (child.name.Contains("Shadow"))
 				{
-					shadowChild = child2;
+					shadowChild = child;
 					break;
 				}
 			}
@@ -206,21 +199,6 @@ public class ConveyorManager : MonoBehaviour
 		}
 	}
 
-	private static BezierKnot CreateKnot(SplinePointData point)
-	{
-		return new BezierKnot(ToSplinePosition(point), point.TangentInValue, point.TangentOutValue);
-	}
-
-	private static void ApplySavedStyle(Spline spline, SplinePointData point, int index)
-	{
-		spline.SetTangentMode(index, point.TangentMode);
-		BezierKnot knot = spline[index];
-		knot.TangentIn = point.TangentInValue;
-		knot.TangentOut = point.TangentOutValue;
-		knot.Rotation = quaternion.Euler(math.radians(point.Rotation));
-		spline.SetKnot(index, knot);
-	}
-
 	private static Vector3 ToSplinePosition(SplinePointData pointData)
 	{
 		return new Vector3(pointData.GridPosition.x, 0f, pointData.GridPosition.y);
@@ -228,7 +206,7 @@ public class ConveyorManager : MonoBehaviour
 
 	public void RebuildMesh()
 	{
-		conveyorMeshBuilder.Rebuild(conveyorContainer);
+		conveyorMeshBuilder.Rebuild(_path);
 	}
 
 	private void UpdatePortals(SplinePathData splinePathData)
@@ -252,6 +230,8 @@ public class ConveyorManager : MonoBehaviour
 		{
 			_spawnedPortalB = MonoSingleton<PoolManagerNew>.Instance.PopFromPool(conveyorPortalPrefab, GetPortalHolder());
 		}
+		LunaMaterialUtility.NormalizeRenderers((_spawnedPortalA != null) ? _spawnedPortalA.gameObject : null);
+		LunaMaterialUtility.NormalizeRenderers((_spawnedPortalB != null) ? _spawnedPortalB.gameObject : null);
 		_spawnedPortalA.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
 		_spawnedPortalB.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
 		SetupPortalAtStart(_spawnedPortalA, mapPoints);
@@ -283,14 +263,14 @@ public class ConveyorManager : MonoBehaviour
 	{
 		if (!(_spawnedPortalA == null) && !(_spawnedPortalB == null))
 		{
-			_spawnedPortalA.Setup(conveyorContainer, _spawnedPortalB, false);
-			_spawnedPortalB.Setup(conveyorContainer, _spawnedPortalA, true);
+			_spawnedPortalA.Setup(_path, _spawnedPortalB, false);
+			_spawnedPortalB.Setup(_path, _spawnedPortalA, true);
 		}
 	}
 
 	private Vector3 GetPointWorldPosition(SplinePointData point)
 	{
-		return conveyorContainer.transform.TransformPoint(ToSplinePosition(point));
+		return _path.TransformPoint(ToSplinePosition(point));
 	}
 
 	private Quaternion GetPortalRotation(SplinePointData fromPoint, SplinePointData toPoint)
@@ -304,7 +284,7 @@ public class ConveyorManager : MonoBehaviour
 		{
 			localDirection = Vector3.forward;
 		}
-		Vector3 worldDirection = conveyorContainer.transform.TransformDirection(localDirection.normalized);
+		Vector3 worldDirection = _path.TransformDirection(localDirection.normalized);
 		return Quaternion.LookRotation(worldDirection, Vector3.up);
 	}
 
@@ -325,6 +305,11 @@ public class ConveyorManager : MonoBehaviour
 	private Transform GetPortalHolder()
 	{
 		return (portalHolder != null) ? portalHolder : base.transform;
+	}
+
+	private Transform GetPathRoot()
+	{
+		return (conveyorRoot != null) ? conveyorRoot : base.transform;
 	}
 
 	public void SetRevealProgress(float progress)
@@ -366,29 +351,7 @@ public class ConveyorManager : MonoBehaviour
 
 	public IEnumerator PlayRevealAnimation()
 	{
-		if (_revealTween != null)
-		{
-			_revealTween.Kill();
-		}
-		SetRevealProgress(0f);
-		if (RevealDelay > 0f)
-		{
-			yield return new WaitForSeconds(RevealDelay);
-		}
-		_revealTween = DOTween.To(SetRevealProgress, 0f, 1f, RevealDuration).SetEase(RevealEase).SetUpdate(true)
-			.SetTarget(this);
-		float elapsed = 0f;
-		float timeout = Mathf.Max(0.05f, RevealDuration + 0.25f);
-		while (_revealTween != null && _revealTween.IsActive() && !_revealTween.IsComplete() && elapsed < timeout)
-		{
-			elapsed += Time.unscaledDeltaTime;
-			yield return null;
-		}
-		if (_revealTween != null && _revealTween.IsActive() && !_revealTween.IsComplete())
-		{
-			_revealTween.Kill();
-		}
-		_revealTween = null;
 		SetRevealProgress(1f);
+		yield break;
 	}
 }

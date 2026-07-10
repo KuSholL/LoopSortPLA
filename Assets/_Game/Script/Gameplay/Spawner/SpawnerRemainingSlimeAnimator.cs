@@ -55,6 +55,11 @@ public sealed class SpawnerRemainingSlimeAnimator : MonoBehaviour, ICustomTimeSc
     {
         Initialize();
         Cancel();
+#if UNITY_LUNA
+        targetTransform.localScale = _initialScale;
+        onComplete?.Invoke();
+        return;
+#endif
         targetTransform.localScale = Vector3.zero;
         if (enablePulseOnScaleUp)
         {
@@ -90,6 +95,10 @@ public sealed class SpawnerRemainingSlimeAnimator : MonoBehaviour, ICustomTimeSc
     {
         Initialize();
         Cancel();
+#if UNITY_LUNA
+        targetTransform.localScale = Vector3.zero;
+        return;
+#endif
         _scaleTween = targetTransform
             .DOScale(Vector3.zero, Mathf.Max(0.01f, customDuration ?? scaleDuration))
             .SetEase(DG.Tweening.Ease.InQuad)

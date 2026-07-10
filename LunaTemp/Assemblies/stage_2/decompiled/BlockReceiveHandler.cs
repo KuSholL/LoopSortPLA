@@ -77,7 +77,7 @@ public sealed class BlockReceiveHandler
 
 	private ColorEntry GetColorEntry(EBlockColorType colorType)
 	{
-		ColorConfigSO colorConfig = MonoSingleton<ConfigManager>.Instance.GetColorConfig();
-		return (colorConfig != null) ? colorConfig.GetColorEntry(colorType) : null;
+		ColorConfigSO colorConfig = ((MonoSingleton<ConfigManager>.Instance != null) ? MonoSingleton<ConfigManager>.Instance.GetColorConfig() : null);
+		return (colorConfig != null) ? colorConfig.GetColorEntry(colorType) : PlayableColorFallback.CreateColorEntry(colorType);
 	}
 }

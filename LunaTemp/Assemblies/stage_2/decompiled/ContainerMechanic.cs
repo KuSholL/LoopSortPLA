@@ -340,7 +340,7 @@ public sealed class ContainerMechanic : MonoBehaviour
 	private void ApplyVisuals(EBlockColorType colorType)
 	{
 		ColorConfigSO colorConfig = ((MonoSingleton<ConfigManager>.Instance != null) ? MonoSingleton<ConfigManager>.Instance.GetColorConfig() : null);
-		ColorEntry entry = ((colorConfig != null) ? colorConfig.GetColorEntry(colorType) : null);
+		ColorEntry entry = ((colorConfig != null) ? colorConfig.GetColorEntry(colorType) : PlayableColorFallback.CreateColorEntry(colorType));
 		if (entry != null && particleSystems != null)
 		{
 			for (int i = 0; i < particleSystems.Length; i++)

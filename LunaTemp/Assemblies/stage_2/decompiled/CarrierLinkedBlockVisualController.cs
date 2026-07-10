@@ -446,12 +446,18 @@ public sealed class CarrierLinkedBlockVisualController
 			}
 		}
 		Transform parent = ((_carrier.BlockLayout != null) ? _carrier.BlockLayout.Root : _carrier.transform);
-		LinkedBlockVisual visual = ((!Application.isPlaying || !(MonoSingleton<PoolManagerNew>.Instance != null)) ? Object.Instantiate(prefab, parent) : MonoSingleton<PoolManagerNew>.Instance.PopFromPool(prefab, parent));
+		LinkedBlockVisual visual = null;
+		if (prefab != null)
+		{
+			GameObject instanceObject = Object.Instantiate(prefab.gameObject, parent);
+			visual = instanceObject.GetComponent<LinkedBlockVisual>();
+		}
 		if (visual == null)
 		{
 			return null;
 		}
 		visual.name = $"{prefab.name}_{blockCount}x_{visuals.Count}";
+		LunaMaterialUtility.NormalizeRenderers(visual.gameObject);
 		visuals.Add(visual);
 		return visual;
 	}
@@ -610,7 +616,7 @@ public sealed class CarrierLinkedBlockVisualController
 	private ColorEntry GetColorEntry(EBlockColorType colorType)
 	{
 		ColorConfigSO config = ((_carrier != null) ? _carrier.ColorConfig : null);
-		return (config != null) ? config.GetColorEntry(colorType) : null;
+		return (config != null) ? config.GetColorEntry(colorType) : PlayableColorFallback.CreateColorEntry(colorType);
 	}
 
 	public LinkedBlockVisual GetLinkedVisualContainingBlock(Block block)

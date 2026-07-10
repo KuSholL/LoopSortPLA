@@ -13,13 +13,21 @@ public class CarrierSystem : MonoSingleton<CarrierSystem>
 
 	public IReadOnlyList<CarrierBase> SpawnedCarriers => (carrierSpawner != null) ? carrierSpawner.SpawnedCarriers : null;
 
-	public void InitCarrier(LevelData levelData)
+	public void InitCarrier(LevelData levelData, ConveyorPathRuntime path)
 	{
 		if (carrierSpawner != null)
 		{
+			carrierSpawner.SetPath(path);
 			carrierSpawner.SpawnCarriers(levelData);
-			_containerSpawner.SpawnContainers(levelData, carrierSpawner.SpawnedCarriers, carrierSpawner.CarrierConfig, carrierSpawner.SplineContainer);
+			_containerSpawner.SpawnContainers(levelData, carrierSpawner.SpawnedCarriers, carrierSpawner.CarrierConfig, path);
+			carrierSpawner.EnsureCarriersVisibleAndClickable();
+			_containerSpawner.EnsureContainersAtFinalState();
 		}
+	}
+
+	public void InitCarrier(LevelData levelData)
+	{
+		InitCarrier(levelData, (carrierSpawner != null) ? carrierSpawner.Path : null);
 	}
 
 	public IEnumerator PlayContainersScaleAnimation(LevelEntryAnimConfigSO animationConfig)

@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
-using UnityEngine.Splines;
 
 public abstract class CarrierBase : MonoBehaviour, IClickableObject
 {
@@ -15,8 +14,6 @@ public abstract class CarrierBase : MonoBehaviour, IClickableObject
 	[Tooltip("Offset of the pickup point from the spline position in meters (can be positive or negative)")]
 	[SerializeField]
 	protected float pickupDistanceOffset = -1f;
-
-	protected SplineContainer _cachedSplineContainer;
 
 	protected float _cachedSplineLength = -1f;
 
@@ -112,10 +109,10 @@ public abstract class CarrierBase : MonoBehaviour, IClickableObject
 	{
 		if (!_isSplineCached)
 		{
-			_cachedSplineContainer = ((MonoSingleton<ConveyorDeliverySystem>.Instance != null) ? MonoSingleton<ConveyorDeliverySystem>.Instance.SplineContainer : null);
-			if (_cachedSplineContainer != null && _cachedSplineContainer.Spline != null)
+			ConveyorPathRuntime path = ((MonoSingleton<ConveyorDeliverySystem>.Instance != null) ? MonoSingleton<ConveyorDeliverySystem>.Instance.Path : null);
+			if (path != null && path.IsValid)
 			{
-				_cachedSplineLength = _cachedSplineContainer.Spline.CalculateLength(_cachedSplineContainer.transform.localToWorldMatrix);
+				_cachedSplineLength = path.CalculateLength();
 			}
 			_isSplineCached = true;
 		}
@@ -142,7 +139,6 @@ public abstract class CarrierBase : MonoBehaviour, IClickableObject
 	{
 		CancelScaleAnimation();
 		base.transform.localScale = Vector3.one;
-		_cachedSplineContainer = null;
 		_cachedSplineLength = -1f;
 		_isSplineCached = false;
 	}

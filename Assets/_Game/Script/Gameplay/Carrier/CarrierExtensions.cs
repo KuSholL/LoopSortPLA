@@ -1,18 +1,17 @@
 using UnityEngine;
-using UnityEngine.Splines;
 
 public static class CarrierExtensions
 {
     public static void SetPoseOnSpline(
         this Carrier carrier,
-        SplineContainer spline,
+        ConveyorPathRuntime spline,
         float progress,
         Vector3 position,
         float rotationY)
     {
-        if (carrier == null || spline == null) return;
+        if (carrier == null || spline == null || !spline.IsValid) return;
         var t = Mathf.Repeat(progress, 1f);
-        var worldPosition = spline.transform.TransformPoint(position);
+        var worldPosition = spline.TransformPoint(position);
         var splinePosition = GetSplinePosition(spline, t);
         var tangent = GetSplineTangent(spline, t);
         var right = GetCarrierRight(tangent);
@@ -21,14 +20,14 @@ public static class CarrierExtensions
         carrier.SetSplineProgress(t);
     }
 
-    private static Vector3 GetSplinePosition(SplineContainer spline, float t)
+    private static Vector3 GetSplinePosition(ConveyorPathRuntime spline, float t)
     {
-        return spline.transform.TransformPoint(spline.EvaluatePosition(t));
+        return spline.EvaluateWorldPosition(t);
     }
 
-    private static Vector3 GetSplineTangent(SplineContainer spline, float t)
+    private static Vector3 GetSplineTangent(ConveyorPathRuntime spline, float t)
     {
-        return spline.transform.TransformDirection(spline.EvaluateTangent(t)).normalized;
+        return spline.EvaluateWorldTangent(t);
     }
 
     private static Vector3 GetCarrierRight(Vector3 tangent)

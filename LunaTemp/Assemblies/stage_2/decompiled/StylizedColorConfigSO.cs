@@ -18,6 +18,6 @@ public class StylizedColorConfigSO : ScriptableObject
 			}
 			return entry;
 		}
-		return new StylizedColorEntry();
+		return PlayableStylizedColorFallback.CreateColorEntry(blockColorType);
 	}
 }

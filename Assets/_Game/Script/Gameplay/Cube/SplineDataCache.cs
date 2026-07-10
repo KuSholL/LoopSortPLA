@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Splines;
 
 public class SplineDataCache
 {
@@ -14,11 +13,11 @@ public class SplineDataCache
     private readonly int _sampleCount;
     private readonly bool _isClosed;
 
-    public SplineDataCache(Spline spline, int sampleCount = 200)
+    public SplineDataCache(ConveyorPathRuntime spline, int sampleCount = 200)
     {
         _sampleCount = sampleCount;
         _samples = new SamplePoint[sampleCount];
-        _isClosed = spline.Closed;
+        _isClosed = spline != null && spline.Closed;
 
         for (int i = 0; i < sampleCount; i++)
         {
@@ -26,8 +25,8 @@ public class SplineDataCache
             _samples[i] = new SamplePoint
             {
                 Progress = progress,
-                LocalPosition = spline.EvaluatePosition(progress),
-                LocalTangent = ((Vector3)spline.EvaluateTangent(progress)).normalized
+                LocalPosition = spline != null ? spline.EvaluateLocalPosition(progress) : Vector3.zero,
+                LocalTangent = spline != null ? spline.EvaluateLocalTangent(progress) : Vector3.forward
             };
         }
     }

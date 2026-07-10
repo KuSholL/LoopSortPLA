@@ -75,34 +75,15 @@ public sealed class SpawnerRemainingSlimeAnimator : MonoBehaviour, ICustomTimeSc
 	{
 		Initialize();
 		Cancel();
-		targetTransform.localScale = Vector3.zero;
-		if (enablePulseOnScaleUp)
-		{
-			_scaleTween = DOTween.Sequence().Append(targetTransform.DOScale(_initialScale * pulseScaleAmount, Mathf.Max(0.01f, scaleDuration - pulseDuration)).SetEase(scaleEase)).Append(targetTransform.DOScale(_initialScale, Mathf.Max(0.01f, pulseDuration)).SetEase(pulseEase))
-				.OnComplete(delegate
-				{
-					_scaleTween = null;
-					onComplete?.Invoke();
-				});
-		}
-		else
-		{
-			_scaleTween = targetTransform.DOScale(_initialScale, scaleDuration).SetEase(scaleEase).OnComplete(delegate
-			{
-				_scaleTween = null;
-				onComplete?.Invoke();
-			});
-		}
-		_scaleTween.SetUpdate(true);
-		_scaleTween.timeScale = _customTimeScale;
+		targetTransform.localScale = _initialScale;
+		onComplete?.Invoke();
 	}
 
 	public void PlayScaleDown(float? customDuration = null)
 	{
 		Initialize();
 		Cancel();
-		_scaleTween = targetTransform.DOScale(Vector3.zero, Mathf.Max(0.01f, customDuration ?? scaleDuration)).SetEase(Ease.InQuad).SetUpdate(true);
-		_scaleTween.timeScale = _customTimeScale;
+		targetTransform.localScale = Vector3.zero;
 	}
 
 	public void Cancel()

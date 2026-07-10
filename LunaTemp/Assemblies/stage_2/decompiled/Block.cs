@@ -222,11 +222,11 @@ public class Block : MonoBehaviour
 
 	private static ColorEntry GetColorEntry(ColorConfigSO colorConfig, BlockData blockData)
 	{
-		if (colorConfig == null || blockData == null)
+		if (blockData == null)
 		{
 			return null;
 		}
-		return colorConfig.GetColorEntry(blockData.BlockColor);
+		return (colorConfig != null) ? colorConfig.GetColorEntry(blockData.BlockColor) : PlayableColorFallback.CreateColorEntry(blockData.BlockColor);
 	}
 
 	public void ClearContent()

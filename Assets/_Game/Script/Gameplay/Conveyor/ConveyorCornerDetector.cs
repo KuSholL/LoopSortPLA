@@ -1,20 +1,18 @@
 using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.Splines;
 
 public class ConveyorCornerDetector : MonoBehaviour
 {
-    [SerializeField] private SplineContainer splineContainer;
     [SerializeField] private ConveyorCornerDetectorConfigSO config;
     [SerializeField] private List<float> cornerProgresses = new List<float>();
+    private ConveyorPathRuntime _path;
     private bool _hasLoggedMissingConfig;
 
     public IReadOnlyList<float> CornerProgresses => cornerProgresses;
 
-    public void UpdateCornerProgresses(SplineContainer container, bool closed)
+    public void UpdateCornerProgresses(ConveyorPathRuntime container, bool closed)
     {
-        splineContainer = container;
+        _path = container;
         if (!HasValidConfig())
         {
             cornerProgresses.Clear();
@@ -22,12 +20,12 @@ public class ConveyorCornerDetector : MonoBehaviour
         }
 
         cornerProgresses = BuildCornerProgresses(
-            container ? container.Spline : null,
+            container,
             closed,
             config.CornerProgressOffset);
     }
 
-    private List<float> BuildCornerProgresses(Spline spline, bool closed, float progressOffset)
+    private List<float> BuildCornerProgresses(ConveyorPathRuntime spline, bool closed, float progressOffset)
     {
         var progresses = new List<float>();
         if (spline == null) return progresses;
@@ -36,7 +34,7 @@ public class ConveyorCornerDetector : MonoBehaviour
         return progresses;
     }
 
-    private void ScanCornerProgresses(List<float> progresses, Spline spline, bool closed)
+    private void ScanCornerProgresses(List<float> progresses, ConveyorPathRuntime spline, bool closed)
     {
         var state = CornerScanState.None;
         foreach (var progress in GetScanProgresses(closed))
@@ -54,7 +52,7 @@ public class ConveyorCornerDetector : MonoBehaviour
 
     private void UpdateCornerCluster(
         List<float> progresses,
-        Spline spline,
+        ConveyorPathRuntime spline,
         bool closed,
         float progress,
         ref CornerScanState state)
@@ -77,7 +75,7 @@ public class ConveyorCornerDetector : MonoBehaviour
         state = CornerScanState.None;
     }
 
-    private bool HasDirectionChange(Spline spline, float progress, bool closed)
+    private bool HasDirectionChange(ConveyorPathRuntime spline, float progress, bool closed)
     {
         if (!TryGetSampleRange(progress, closed, out var before, out var after)) return false;
         var incoming = GetSplineTangent(spline, before);
@@ -103,14 +101,15 @@ public class ConveyorCornerDetector : MonoBehaviour
             progresses[i] = Mathf.Repeat(progresses[i] + progressOffset, 1f);
     }
 
-    private static Vector3 GetSplineTangent(Spline spline, float progress)
+    private static Vector3 GetSplineTangent(ConveyorPathRuntime spline, float progress)
     {
-        return math.normalizesafe(spline.EvaluateTangent(progress), math.forward());
+        var tangent = spline != null ? spline.EvaluateWorldTangent(progress) : Vector3.forward;
+        return tangent.sqrMagnitude > 0.000001f ? tangent.normalized : Vector3.forward;
     }
 
     private void OnDrawGizmosSelected()
     {
-        if (!HasValidConfig() || splineContainer == null || cornerProgresses.Count == 0) return;
+        if (!HasValidConfig() || _path == null || !_path.IsValid || cornerProgresses.Count == 0) return;
         Gizmos.color = Color.yellow;
         foreach (var progress in cornerProgresses) DrawCornerPoint(progress);
     }
@@ -125,8 +124,7 @@ public class ConveyorCornerDetector : MonoBehaviour
 
     private Vector3 GetCornerWorldPoint(float progress)
     {
-        var localPoint = splineContainer.Spline.EvaluatePosition(progress);
-        return splineContainer.transform.TransformPoint(localPoint);
+        return _path.EvaluateWorldPosition(progress);
     }
 
     private bool HasValidConfig()

@@ -12,7 +12,6 @@ public class BlockVisual : MonoBehaviour
     [SerializeField] private ParticleSystem mergeVfx;
     [SerializeField] private Transform parrentVFX;
     private bool _wasShowingMechanicVisual;
-    private MaterialPropertyBlock _vfxPropertyBlock;
     private Block _parentBlock;
     private Block ParentBlock
     {
@@ -103,10 +102,7 @@ public class BlockVisual : MonoBehaviour
         var psRenderer = mergeVfx.GetComponent<ParticleSystemRenderer>();
         if (psRenderer != null)
         {
-            if (_vfxPropertyBlock == null) _vfxPropertyBlock = new MaterialPropertyBlock();
-            psRenderer.GetPropertyBlock(_vfxPropertyBlock);
-            _vfxPropertyBlock.SetColorEntry(entry);
-            psRenderer.SetPropertyBlock(_vfxPropertyBlock);
+            psRenderer.ApplyColorEntry(entry);
         }
     }
 
@@ -121,7 +117,7 @@ public class BlockVisual : MonoBehaviour
     private static ColorEntry GetColorEntry(EBlockColorType colorType)
     {
         var config = ConfigManager.Instance?.GetColorConfig();
-        return config ? config.GetColorEntry(colorType) : null;
+        return config ? config.GetColorEntry(colorType) : PlayableColorFallback.CreateColorEntry(colorType);
     }
 
     private void PlayHiddenRevealVfx()

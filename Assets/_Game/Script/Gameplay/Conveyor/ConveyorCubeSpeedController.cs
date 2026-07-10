@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Splines;
 
 public class ConveyorCubeSpeedController
 {
@@ -144,23 +143,22 @@ public class ConveyorCubeSpeedController
 
 
 
-    public void DrawPickupRanges(SplineContainer splineContainer, List<CarrierBase> carriers)
+    public void DrawPickupRanges(ConveyorPathRuntime splineContainer, List<CarrierBase> carriers)
     {
         if (!CanDrawPickupRanges(splineContainer, carriers)) return;
         foreach (var carrier in carriers) DrawCarrierRanges(splineContainer, carrier);
     }
 
-    private bool CanDrawPickupRanges(SplineContainer splineContainer, List<CarrierBase> carriers)
+    private bool CanDrawPickupRanges(ConveyorPathRuntime splineContainer, List<CarrierBase> carriers)
     {
         return _boostConfig != null
                && (CanDrawSpawnLockRange() || CanDrawBoostRanges())
                && splineContainer != null
-               && splineContainer.Spline != null
-               && splineContainer.Spline.Count > 0
+               && splineContainer.IsValid
                && carriers != null;
     }
 
-    private void DrawCarrierRanges(SplineContainer splineContainer, CarrierBase carrier)
+    private void DrawCarrierRanges(ConveyorPathRuntime splineContainer, CarrierBase carrier)
     {
         if (carrier == null) return;
         var progress = carrier.SplineProgress;
@@ -185,7 +183,7 @@ public class ConveyorCubeSpeedController
                && _boostConfig.AheadBoostDistance > 0f;
     }
 
-    private void DrawSpawnLockRange(SplineContainer splineContainer, float progress)
+    private void DrawSpawnLockRange(ConveyorPathRuntime splineContainer, float progress)
     {
         var centerProgress = GetSpawnLockCenterProgress(progress);
         var centerPoint = GetSplinePoint(splineContainer, centerProgress);
@@ -203,7 +201,7 @@ public class ConveyorCubeSpeedController
         DrawAnchor(rangeEndPoint, BehindLockColor, 1f);
     }
 
-    private void DrawBoostRanges(SplineContainer splineContainer, float progress)
+    private void DrawBoostRanges(ConveyorPathRuntime splineContainer, float progress)
     {
         var aheadEndProgress = progress + _boostConfig.AheadRange;
         var aheadEndPoint = GetSplinePoint(splineContainer, aheadEndProgress);
@@ -222,7 +220,7 @@ public class ConveyorCubeSpeedController
             1f);
     }
 
-    private void DrawRange(SplineContainer splineContainer, float startProgress, float length, Color color)
+    private void DrawRange(ConveyorPathRuntime splineContainer, float startProgress, float length, Color color)
     {
         if (length <= 0f) return;
         Gizmos.color = color;
@@ -243,9 +241,8 @@ public class ConveyorCubeSpeedController
         Gizmos.DrawWireSphere(position, MarkerRadius * (scale + 0.35f));
     }
 
-    private static Vector3 GetSplinePoint(SplineContainer splineContainer, float progress)
+    private static Vector3 GetSplinePoint(ConveyorPathRuntime splineContainer, float progress)
     {
-        var point = splineContainer.Spline.EvaluatePosition(Mathf.Repeat(progress, 1f));
-        return splineContainer.transform.TransformPoint(point);
+        return splineContainer.EvaluateWorldPosition(Mathf.Repeat(progress, 1f));
     }
 }

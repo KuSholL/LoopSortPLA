@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Splines;
 
 public class ConveyorPortal : MonoBehaviour
 {
@@ -23,13 +22,13 @@ public class ConveyorPortal : MonoBehaviour
 
 	private ConveyorPortal _linkedPortal;
 
-	private SplineContainer _splineContainer;
+	private ConveyorPathRuntime _splineContainer;
 
 	private bool _isTeleporting;
 
 	private PortalRole _portalRole;
 
-	public void Setup(SplineContainer targetSpline, ConveyorPortal targetPortal, bool isEntryPortal)
+	public void Setup(ConveyorPathRuntime targetSpline, ConveyorPortal targetPortal, bool isEntryPortal)
 	{
 		_splineContainer = targetSpline;
 		_linkedPortal = targetPortal;

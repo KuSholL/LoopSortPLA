@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Splines;
 
 [CreateAssetMenu(fileName = "LevelData", menuName = "ScriptableObjects/Level/LevelData")]
 public class LevelData : ScriptableObject
@@ -122,4 +121,13 @@ public sealed partial class SplinePointData
     public Vector3 TangentInValue;
     public Vector3 TangentOutValue;
     public Vector3 Rotation;
+}
+
+public enum TangentMode
+{
+    AutoSmooth = 0,
+    Linear = 1,
+    Mirrored = 2,
+    Continuous = 3,
+    Broken = 4
 }

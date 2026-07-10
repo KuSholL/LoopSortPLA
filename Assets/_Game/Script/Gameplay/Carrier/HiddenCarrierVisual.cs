@@ -12,7 +12,6 @@ public sealed class HiddenCarrierVisual : CarrierMechanicVisual
     [SerializeField] private float flyOutDuration = 0.3f;
     [SerializeField] private float screenMargin = 120f;
 
-    private MaterialPropertyBlock _materialBlock;
     private Sequence _sequence;
     private Action _beforeDisappearCallback;
 
@@ -28,17 +27,16 @@ public sealed class HiddenCarrierVisual : CarrierMechanicVisual
             ? ConfigManager.Instance.GetCubeColorConfig()
             : null;
         var color = request != null ? request.ColorType : EBlockColorType.None;
-        var entry = config != null ? config.GetColorEntry(color) : null;
+        var entry = config != null
+            ? config.GetColorEntry(color)
+            : PlayableColorFallback.CreateColorEntry(color);
         if (entry == null) return;
 
-        if (_materialBlock == null) _materialBlock = new MaterialPropertyBlock();
         for (var i = 0; i < targetRenderers.Count; i++)
         {
             var target = targetRenderers[i];
             if (target == null) continue;
-            target.GetPropertyBlock(_materialBlock, 0);
-            _materialBlock.SetColorEntry(entry);
-            target.SetPropertyBlock(_materialBlock, 0);
+            target.ApplyColorEntry(entry, 0);
         }
     }
 

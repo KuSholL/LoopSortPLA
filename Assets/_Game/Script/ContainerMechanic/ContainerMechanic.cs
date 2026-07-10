@@ -248,7 +248,9 @@ public sealed class ContainerMechanic : MonoBehaviour
     private void ApplyVisuals(EBlockColorType colorType)
     {
         var colorConfig = ConfigManager.Instance != null ? ConfigManager.Instance.GetColorConfig() : null;
-        var entry = colorConfig != null ? colorConfig.GetColorEntry(colorType) : null;
+        var entry = colorConfig != null
+            ? colorConfig.GetColorEntry(colorType)
+            : PlayableColorFallback.CreateColorEntry(colorType);
         if (entry != null && particleSystems != null)
         {
             for (var i = 0; i < particleSystems.Length; i++)

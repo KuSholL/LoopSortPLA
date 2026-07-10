@@ -23,8 +23,6 @@ public class BlockVisual : MonoBehaviour
 
 	private bool _wasShowingMechanicVisual;
 
-	private MaterialPropertyBlock _vfxPropertyBlock;
-
 	private Block _parentBlock;
 
 	public BlockSolidVisual FixedVisual => fixedVisual;
@@ -101,22 +99,15 @@ public class BlockVisual : MonoBehaviour
 			return;
 		}
 		ColorEntry entry = GetColorEntry(colorType);
-		if (entry == null)
+		if (entry != null)
 		{
-			return;
-		}
-		ParticleSystem.MainModule main = mergeVfx.main;
-		main.startColor = entry.Color;
-		ParticleSystemRenderer psRenderer = mergeVfx.GetComponent<ParticleSystemRenderer>();
-		if (psRenderer != null)
-		{
-			if (_vfxPropertyBlock == null)
+			ParticleSystem.MainModule main = mergeVfx.main;
+			main.startColor = entry.Color;
+			ParticleSystemRenderer psRenderer = mergeVfx.GetComponent<ParticleSystemRenderer>();
+			if (psRenderer != null)
 			{
-				_vfxPropertyBlock = new MaterialPropertyBlock();
+				psRenderer.ApplyColorEntry(entry);
 			}
-			psRenderer.GetPropertyBlock(_vfxPropertyBlock);
-			_vfxPropertyBlock.SetColorEntry(entry);
-			psRenderer.SetPropertyBlock(_vfxPropertyBlock);
 		}
 	}
 
@@ -133,7 +124,7 @@ public class BlockVisual : MonoBehaviour
 	private static ColorEntry GetColorEntry(EBlockColorType colorType)
 	{
 		ColorConfigSO config = MonoSingleton<ConfigManager>.Instance?.GetColorConfig();
-		return config ? config.GetColorEntry(colorType) : null;
+		return config ? config.GetColorEntry(colorType) : PlayableColorFallback.CreateColorEntry(colorType);
 	}
 
 	private void PlayHiddenRevealVfx()

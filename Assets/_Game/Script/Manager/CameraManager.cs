@@ -37,12 +37,20 @@ public class CameraManager : MonoSingleton<CameraManager>
 
         if (mainCamera != null)
         {
+#if UNITY_LUNA
+            mainCamera.cullingMask = ~0;
+#endif
             _originalMainCameraPosition = mainCamera.transform.localPosition;
+#if !UNITY_LUNA
             if (mainCamera.GetComponent<AudioListener>() == null)
                 mainCamera.gameObject.AddComponent<AudioListener>();
+#endif
         }
 
         _defaultHighlightMask = highlightCamera != null ? highlightCamera.cullingMask : 0;
+#if UNITY_LUNA
+        if (highlightCamera != null) highlightCamera.gameObject.SetActive(false);
+#endif
         GameEventBus.OnActiveCameraGameplay += SetActiveCameraPlace;
     }
 

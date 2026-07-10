@@ -41,26 +41,7 @@ public class CarrierSpawnEffect : MonoBehaviour
 
 	private IEnumerator PlaySpawnEffectRoutine()
 	{
-		ParticleSystem spawnVfx = null;
-		if (spawnVfxPrefab != null && MonoSingleton<PoolManagerNew>.Instance != null)
-		{
-			spawnVfx = MonoSingleton<PoolManagerNew>.Instance.PopFromPool(spawnVfxPrefab, base.transform);
-			spawnVfx.transform.localPosition = Vector3.zero;
-			spawnVfx.transform.localRotation = Quaternion.Euler(0f, 90f, 0f);
-			spawnVfx.Play();
-		}
-		base.transform.localScale = Vector3.zero;
-		if (_spawnTween != null)
-		{
-			_spawnTween.Kill();
-		}
-		_spawnTween = base.transform.DOScale(Vector3.one, duration).SetEase(Ease.OutBack);
-		yield return _spawnTween.WaitForCompletion();
-		_spawnTween = null;
-		if (spawnVfx != null && MonoSingleton<PoolManagerNew>.Instance != null)
-		{
-			MonoSingleton<PoolManagerNew>.Instance.PushToPool(spawnVfx);
-		}
-		_spawnRoutine = null;
+		base.transform.localScale = Vector3.one;
+		yield break;
 	}
 }

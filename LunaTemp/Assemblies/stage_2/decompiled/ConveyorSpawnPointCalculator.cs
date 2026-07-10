@@ -1,6 +1,4 @@
-using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.Splines;
 
 public class ConveyorSpawnPointCalculator
 {
@@ -8,7 +6,7 @@ public class ConveyorSpawnPointCalculator
 
 	private ConveyorMeshBuilder _conveyorMeshBuilder;
 
-	private SplineContainer _splineContainer;
+	private ConveyorPathRuntime _path;
 
 	private Transform _spawnRoot;
 
@@ -18,11 +16,11 @@ public class ConveyorSpawnPointCalculator
 
 	private float _deliveryForwardSpread = 0.03f;
 
-	public ConveyorSpawnPointCalculator(ConveyorSpawnPointConfigSO spawnPointConfig, ConveyorMeshBuilder conveyorMeshBuilder, SplineContainer splineContainer, Transform spawnRoot, Transform fallbackTransform)
+	public ConveyorSpawnPointCalculator(ConveyorSpawnPointConfigSO spawnPointConfig, ConveyorMeshBuilder conveyorMeshBuilder, ConveyorPathRuntime path, Transform spawnRoot, Transform fallbackTransform)
 	{
 		_spawnPointConfig = spawnPointConfig;
 		_conveyorMeshBuilder = conveyorMeshBuilder;
-		_splineContainer = splineContainer;
+		_path = path;
 		_spawnRoot = spawnRoot;
 		_fallbackTransform = fallbackTransform;
 	}
@@ -49,7 +47,7 @@ public class ConveyorSpawnPointCalculator
 		{
 			return _spawnPointConfig.DeliveryMinForwardSpread;
 		}
-		float roadLength = _conveyorMeshBuilder.GetApproximateRoadLength(_splineContainer);
+		float roadLength = _conveyorMeshBuilder.GetApproximateRoadLength(_path);
 		float spread = roadLength * _spawnPointConfig.DeliveryForwardSpreadByLength;
 		return Mathf.Clamp(spread, _spawnPointConfig.DeliveryMinForwardSpread, _spawnPointConfig.DeliveryMaxForwardSpread);
 	}
@@ -57,12 +55,11 @@ public class ConveyorSpawnPointCalculator
 	public Vector3 GetDeliverySpawnPosition(float progress, int index)
 	{
 		Vector3 center = GetSpawnPosition(progress);
-		if (_splineContainer == null || _splineContainer.Spline == null || _splineContainer.Spline.Count <= 0)
+		if (_path == null || !_path.IsValid)
 		{
 			return center;
 		}
-		float3 tangent = _splineContainer.Spline.EvaluateTangent(progress);
-		Vector3 worldForward = _splineContainer.transform.TransformDirection(tangent).normalized;
+		Vector3 worldForward = _path.EvaluateWorldTangent(progress);
 		if (worldForward.sqrMagnitude <= 1E-06f)
 		{
 			worldForward = ((_fallbackTransform != null) ? _fallbackTransform.forward : Vector3.forward);
@@ -75,8 +72,8 @@ public class ConveyorSpawnPointCalculator
 		float sideSpread = _deliverySideSpread;
 		float forwardSpread = _deliveryForwardSpread;
 		Vector2 patternOffset = GetDeliveryPatternOffset(index);
-		float sideJitter = UnityEngine.Random.Range((0f - sideSpread) * _spawnPointConfig.DeliveryJitterSideRatio, sideSpread * _spawnPointConfig.DeliveryJitterSideRatio);
-		float forwardJitter = UnityEngine.Random.Range((0f - forwardSpread) * _spawnPointConfig.DeliveryJitterForwardRatio, forwardSpread * _spawnPointConfig.DeliveryJitterForwardRatio);
+		float sideJitter = Random.Range((0f - sideSpread) * _spawnPointConfig.DeliveryJitterSideRatio, sideSpread * _spawnPointConfig.DeliveryJitterSideRatio);
+		float forwardJitter = Random.Range((0f - forwardSpread) * _spawnPointConfig.DeliveryJitterForwardRatio, forwardSpread * _spawnPointConfig.DeliveryJitterForwardRatio);
 		return center + worldRight * (patternOffset.x + sideJitter) + worldForward * (patternOffset.y + forwardJitter) + Vector3.up * _spawnPointConfig.DeliveryLift;
 	}
 
@@ -99,10 +96,10 @@ public class ConveyorSpawnPointCalculator
 
 	private Vector3 GetSpawnPosition(float progress)
 	{
-		if (_splineContainer == null || _splineContainer.Spline == null || _splineContainer.Spline.Count <= 0)
+		if (_path == null || !_path.IsValid)
 		{
 			return (_spawnRoot != null) ? _spawnRoot.position : Vector3.zero;
 		}
-		return _splineContainer.transform.TransformPoint(_splineContainer.Spline.EvaluatePosition(progress));
+		return _path.EvaluateWorldPosition(progress);
 	}
 }

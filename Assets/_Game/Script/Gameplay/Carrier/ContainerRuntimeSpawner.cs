@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Splines;
 using DG.Tweening;
 
 public sealed class ContainerRuntimeSpawner
@@ -14,7 +13,7 @@ public sealed class ContainerRuntimeSpawner
         LevelData levelData,
         IReadOnlyList<CarrierBase> carriers,
         CarrierConfigSO config,
-        SplineContainer splineContainer)
+        ConveyorPathRuntime splineContainer)
     {
         ClearContainers();
         var containerData = levelData != null && levelData.CarrierLayout != null
@@ -23,23 +22,28 @@ public sealed class ContainerRuntimeSpawner
         if (containerData == null
             || config == null
             || config.ContainerMechanic == null
-            || splineContainer == null)
+            || splineContainer == null
+            || !splineContainer.IsValid)
             return;
 
-        var root = GetOrCreateRoot(splineContainer.transform);
+        var root = GetOrCreateRoot(splineContainer.Root);
         for (var i = 0; i < containerData.Count; i++)
         {
             var data = containerData[i];
             if (data == null) continue;
             var container = Object.Instantiate(config.ContainerMechanic, root);
             container.Configure(data.ContainerId, data.UnlockColor);
-            container.transform.position = splineContainer.transform.TransformPoint(data.Position);
-            container.transform.rotation = splineContainer.transform.rotation
+            container.transform.position = splineContainer.TransformPoint(data.Position);
+            container.transform.rotation = splineContainer.Root.rotation
                                            * Quaternion.Euler(0f, data.RotationY, 0f);
             var scaleXZ = Mathf.Approximately(data.ScaleXZ, 0f) ? 1f : data.ScaleXZ;
             var targetScale = new Vector3(scaleXZ, 1f, scaleXZ);
             container.SetTargetScale(targetScale);
+#if UNITY_LUNA
+            container.transform.localScale = targetScale;
+#else
             container.transform.localScale = Vector3.zero;
+#endif
             BindCarriers(container, carriers, data.CarrierIndexes);
             _spawnedContainers.Add(container);
         }
@@ -48,6 +52,10 @@ public sealed class ContainerRuntimeSpawner
     public IEnumerator PlayScaleAnimation(LevelEntryAnimConfigSO animationConfig)
     {
         if (_spawnedContainers.Count == 0) yield break;
+#if UNITY_LUNA
+        EnsureContainersAtFinalState();
+        yield break;
+#endif
 
         var duration = animationConfig != null ? animationConfig.ContainerScaleDuration : 0.3f;
         var stagger = animationConfig != null ? animationConfig.ContainerScaleStagger : 0.1f;
@@ -97,7 +105,7 @@ public sealed class ContainerRuntimeSpawner
         EnsureContainersAtFinalState();
     }
 
-    private void EnsureContainersAtFinalState()
+    public void EnsureContainersAtFinalState()
     {
         for (var i = 0; i < _spawnedContainers.Count; i++)
         {

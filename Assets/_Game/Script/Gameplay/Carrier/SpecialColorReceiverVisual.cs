@@ -10,8 +10,6 @@ public class SpecialColorReceiverVisual : CarrierMechanicVisual
 
     [SerializeField] private List<Renderer> targetRenderers = new List<Renderer>();
 
-    private MaterialPropertyBlock _materialBlock;
-
     private void OnValidate()
     {
         if (targetRenderers.Count == 0) targetRenderers.AddRange(GetComponentsInChildren<Renderer>(true));
@@ -21,22 +19,20 @@ public class SpecialColorReceiverVisual : CarrierMechanicVisual
     {
         var config = ConfigManager.Instance != null ? ConfigManager.Instance.GetSpecialColorConfig() : null;
         var colorType = request != null ? request.ColorType : EBlockColorType.None;
-        var colorEntry = config != null ? config.GetColorEntry(colorType) : null;
+        var colorEntry = config != null
+            ? config.GetColorEntry(colorType)
+            : PlayableColorFallback.CreateColorEntry(colorType);
         if (colorEntry == null) return;
-
-        if (_materialBlock == null) _materialBlock = new MaterialPropertyBlock();
 
         for (int i = 0; i < targetRenderers.Count; i++)
         {
             var targetRenderer = targetRenderers[i];
             if (targetRenderer == null) continue;
 
-            targetRenderer.GetPropertyBlock(_materialBlock, 0);
-            _materialBlock.SetColor(ColorId, colorEntry.Color);
-            _materialBlock.SetColor(SColorId, colorEntry.ShadowColor);
-            _materialBlock.SetColor(SpecularColorId, colorEntry.SpecularColor);
-            _materialBlock.SetColor(OutlineColorId, colorEntry.OutlineColor);
-            targetRenderer.SetPropertyBlock(_materialBlock, 0);
+            targetRenderer.ApplyColor(ColorId, colorEntry.Color, 0);
+            targetRenderer.ApplyColor(SColorId, colorEntry.ShadowColor, 0);
+            targetRenderer.ApplyColor(SpecularColorId, colorEntry.SpecularColor, 0);
+            targetRenderer.ApplyColor(OutlineColorId, colorEntry.OutlineColor, 0);
         }
     }
 }

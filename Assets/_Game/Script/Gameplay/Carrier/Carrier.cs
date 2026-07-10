@@ -1,7 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Splines;
-using Unity.Mathematics;
 
 /// <summary>
 /// MonoBehaviour đại diện cho carrier và chỉ giữ lifecycle cùng API giao tiếp bên ngoài.
@@ -440,17 +438,17 @@ public class Carrier : CarrierBase
     {
         if (!Application.isPlaying && UnityEditor.Selection.activeGameObject != gameObject) return;
 
-        // Tìm SplineContainer
-        var splineContainer = ConveyorDeliverySystem.Instance != null 
-            ? ConveyorDeliverySystem.Instance.GetComponent<SplineContainer>() 
+        // Tìm path runtime
+        var path = ConveyorDeliverySystem.Instance != null
+            ? ConveyorDeliverySystem.Instance.Path
             : null;
 
-        if (splineContainer == null) return;
+        if (path == null || !path.IsValid) return;
 
         // 1. Evaluate vị trí trên Spline
-        splineContainer.Evaluate(SplineProgress, out float3 localPos, out _, out float3 localUp);
-        Vector3 worldPos = splineContainer.transform.TransformPoint(localPos);
-        Vector3 worldUp = splineContainer.transform.TransformDirection(localUp);
+        path.Evaluate(SplineProgress, out var localPos, out _, out var localUp);
+        Vector3 worldPos = path.TransformPoint(localPos);
+        Vector3 worldUp = path.TransformDirection(localUp);
 
         // 2. Xác định màu sắc và text theo trạng thái
         Color dotColor = Color.cyan;
@@ -478,9 +476,9 @@ public class Carrier : CarrierBase
         if (pickupDistanceOffset != 0f)
         {
             float actualPickup = GetActualPickupProgress();
-            splineContainer.Evaluate(actualPickup, out float3 pickupLocal, out _, out float3 pickupUp);
-            Vector3 pickupWorld = splineContainer.transform.TransformPoint(pickupLocal);
-            Vector3 pickupWorldUp = splineContainer.transform.TransformDirection(pickupUp);
+            path.Evaluate(actualPickup, out var pickupLocal, out _, out var pickupUp);
+            Vector3 pickupWorld = path.TransformPoint(pickupLocal);
+            Vector3 pickupWorldUp = path.TransformDirection(pickupUp);
 
             Gizmos.color = Color.magenta;
             Gizmos.DrawSphere(pickupWorld, 0.08f);

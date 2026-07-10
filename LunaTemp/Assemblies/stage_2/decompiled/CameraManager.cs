@@ -30,13 +30,14 @@ public class CameraManager : MonoSingleton<CameraManager>
 		}
 		if (mainCamera != null)
 		{
+			mainCamera.cullingMask = -1;
 			_originalMainCameraPosition = mainCamera.transform.localPosition;
-			if (mainCamera.GetComponent<AudioListener>() == null)
-			{
-				mainCamera.gameObject.AddComponent<AudioListener>();
-			}
 		}
 		_defaultHighlightMask = ((highlightCamera != null) ? highlightCamera.cullingMask : 0);
+		if (highlightCamera != null)
+		{
+			highlightCamera.gameObject.SetActive(false);
+		}
 		GameEventBus.OnActiveCameraGameplay = (Action<ActiveCameraPlace, bool>)Delegate.Combine(GameEventBus.OnActiveCameraGameplay, new Action<ActiveCameraPlace, bool>(SetActiveCameraPlace));
 	}
 

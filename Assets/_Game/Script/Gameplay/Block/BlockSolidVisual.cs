@@ -17,7 +17,6 @@ public class BlockSolidVisual : MonoBehaviour
     [SerializeField] [Range(0f, 1f)] private float firstCubeScalePercent = 0.05f;
 
     public Renderer KeyRenderer => keyRenderers != null && keyRenderers.Length > 0 ? keyRenderers[0] : null;
-    private MaterialPropertyBlock _materialBlock;
     private Tween _progressTween;
     private Tween _swapRotateTween;
     private Collider[] _modelColliders;
@@ -50,10 +49,7 @@ public class BlockSolidVisual : MonoBehaviour
     private void SetupMaterial(ColorEntry colorEntry)
     {
         if (colorEntry == null) return;
-        if (_materialBlock == null) _materialBlock = new MaterialPropertyBlock();
-        meshRenderer.GetPropertyBlock(_materialBlock);
-        _materialBlock.SetColorEntry(colorEntry);
-        meshRenderer.SetPropertyBlock(_materialBlock);
+        meshRenderer.ApplyColorEntry(colorEntry);
     }
 
     public void ApplyNormalVisual(Material material, ColorEntry colorEntry)
@@ -108,14 +104,13 @@ public class BlockSolidVisual : MonoBehaviour
 
     public void SetSwapArrowColor(EBlockColorType colorType, ColorConfigSO colorConfig)
     {
-        if (swapArrowRenderer == null || colorConfig == null) return;
-        var entry = colorConfig.GetColorEntry(colorType);
+        if (swapArrowRenderer == null) return;
+        var entry = colorConfig != null
+            ? colorConfig.GetColorEntry(colorType)
+            : PlayableColorFallback.CreateColorEntry(colorType);
         if (entry != null)
         {
-            var propBlock = new MaterialPropertyBlock();
-            swapArrowRenderer.GetPropertyBlock(propBlock);
-            propBlock.SetColorEntry(entry);
-            swapArrowRenderer.SetPropertyBlock(propBlock);
+            swapArrowRenderer.ApplyColorEntry(entry);
         }
     }
 
@@ -141,9 +136,10 @@ public class BlockSolidVisual : MonoBehaviour
             config = UnityEditor.AssetDatabase.LoadAssetAtPath<StylizedColorConfigSO>("Assets/_Game/Config/CoreGameConfig/StylizedColorConfigSO.asset");
         }
 #endif
-        if (config == null) return;
-        var entry = config.GetColorEntry(colorType);
-        var propertyBlock = new MaterialPropertyBlock();
+        var entry = config != null
+            ? config.GetColorEntry(colorType)
+            : PlayableStylizedColorFallback.CreateColorEntry(colorType);
+        if (entry == null) return;
         var colorId = Shader.PropertyToID("_Color");
         var shadowColorId = Shader.PropertyToID("_ShadowColor");
         var specularColorId = Shader.PropertyToID("_SpecularColor");
@@ -158,22 +154,18 @@ public class BlockSolidVisual : MonoBehaviour
                 int[] targetIndices = { 0, 2 };
                 foreach (int i in targetIndices)
                 {
-                    r.GetPropertyBlock(propertyBlock, i);
-                    propertyBlock.SetColor(colorId, entry.Color);
-                    propertyBlock.SetColor(shadowColorId, entry.ShadowColor);
-                    propertyBlock.SetColor(specularColorId, entry.SpecularColor);
-                    propertyBlock.SetColor(reflectColorId, entry.ReflectColor);
-                    r.SetPropertyBlock(propertyBlock, i);
+                    r.ApplyColor(colorId, entry.Color, i);
+                    r.ApplyColor(shadowColorId, entry.ShadowColor, i);
+                    r.ApplyColor(specularColorId, entry.SpecularColor, i);
+                    r.ApplyColor(reflectColorId, entry.ReflectColor, i);
                 }
             }
             else
             {
-                r.GetPropertyBlock(propertyBlock, 0);
-                propertyBlock.SetColor(colorId, entry.Color);
-                propertyBlock.SetColor(shadowColorId, entry.ShadowColor);
-                propertyBlock.SetColor(specularColorId, entry.SpecularColor);
-                propertyBlock.SetColor(reflectColorId, entry.ReflectColor);
-                r.SetPropertyBlock(propertyBlock, 0);
+                r.ApplyColor(colorId, entry.Color, 0);
+                r.ApplyColor(shadowColorId, entry.ShadowColor, 0);
+                r.ApplyColor(specularColorId, entry.SpecularColor, 0);
+                r.ApplyColor(reflectColorId, entry.ReflectColor, 0);
             }
         }
     }
@@ -288,7 +280,7 @@ public class BlockSolidVisual : MonoBehaviour
 
     private void ClearPropertyBlocks()
     {
-        if (meshRenderer) meshRenderer.SetPropertyBlock(null);
+        // Property blocks are not used in the Luna-friendly path.
     }
 
 }

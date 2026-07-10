@@ -18,6 +18,6 @@ public class ColorConfigSO : ScriptableObject
 			}
 			return entry;
 		}
-		return new ColorEntry();
+		return PlayableColorFallback.CreateColorEntry(blockColorType);
 	}
 }

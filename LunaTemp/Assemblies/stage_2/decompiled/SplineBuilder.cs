@@ -1,16 +1,15 @@
 using UnityEngine;
-using UnityEngine.Splines;
 
 public class SplineBuilder : MonoBehaviour
 {
 	[SerializeField]
-	private SplineContainer splineContainer;
+	private ConveyorManager conveyorManager;
 
 	private void OnValidate()
 	{
-		if (splineContainer == null)
+		if (conveyorManager == null)
 		{
-			splineContainer = GetComponent<SplineContainer>();
+			conveyorManager = GetComponent<ConveyorManager>();
 		}
 	}
 }

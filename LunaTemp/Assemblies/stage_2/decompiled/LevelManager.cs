@@ -190,14 +190,14 @@ public class LevelManager : MonoSingleton<LevelManager>
 		{
 			capacityManager.Init(CurrentLevel);
 		}
-		if (carrierSystem != null)
-		{
-			carrierSystem.InitCarrier(CurrentLevel);
-		}
 		if (conveyorManager != null)
 		{
 			yield return conveyorManager.InitConveyor(CurrentLevel.SplineLayout);
-			conveyorManager.SetRevealProgress(0f);
+			conveyorManager.SetRevealProgress(1f);
+		}
+		if (carrierSystem != null)
+		{
+			carrierSystem.InitCarrier(CurrentLevel, (conveyorManager != null) ? conveyorManager.Path : null);
 		}
 		if (MonoSingleton<ConveyorDeliverySystem>.Instance != null)
 		{
@@ -205,16 +205,13 @@ public class LevelManager : MonoSingleton<LevelManager>
 		}
 		if (conveyorManager != null)
 		{
-			yield return conveyorManager.PlayRevealAnimation();
 			conveyorManager.SetRevealProgress(1f);
 		}
 		if (carrierSystem != null)
 		{
-			yield return carrierSystem.PlayContainersScaleAnimation(levelEntryAnimConfig);
 		}
 		if (carrierSystem != null && carrierSystem.CarrierSpawner != null)
 		{
-			yield return carrierSystem.CarrierSpawner.PlayCarriersScaleAnimation();
 			carrierSystem.CarrierSpawner.EnsureCarriersVisibleAndClickable();
 		}
 		if (MonoSingleton<BlockLinkVisualManager>.Instance != null)

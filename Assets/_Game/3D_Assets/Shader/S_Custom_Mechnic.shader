@@ -9,8 +9,13 @@ Shader "PLA/Custom_Cube_Mechanic_Lite"
         _RampThreshold ("Light Threshold", Range(0,1)) = 0.35
         _RampSmoothing ("Light Smoothing", Range(0.001,1)) = 0.2
         _SpecularColor ("Specular Color", Color) = (1,1,1,1)
-        _SpecularToonSize ("Specular Size", Range(0,1)) = 0
+        _SpecularToonSize ("Specular Size", Range(0,1)) = 0.32
         _SpecularToonSmoothness ("Specular Smoothness", Range(0.001,0.5)) = 0.05
+        _SpecularIntensity ("Specular Intensity", Range(0,5)) = 1
+        _RimColor ("Rim Color", Color) = (0.8,0.8,0.9,0.35)
+        _MatCapColor ("MatCap Color", Color) = (1,1,1,1)
+        _ReflectColor ("Reflection Tint", Color) = (1,1,1,1)
+        _ReflectIntensity ("Reflection Intensity", Range(0,5)) = 0.35
     }
 
     SubShader
@@ -39,6 +44,11 @@ Shader "PLA/Custom_Cube_Mechanic_Lite"
             fixed4 _SpecularColor;
             half _SpecularToonSize;
             half _SpecularToonSmoothness;
+            half _SpecularIntensity;
+            fixed4 _RimColor;
+            fixed4 _MatCapColor;
+            fixed4 _ReflectColor;
+            half _ReflectIntensity;
 
             struct appdata
             {
@@ -83,11 +93,18 @@ Shader "PLA/Custom_Cube_Mechanic_Lite"
                 half3 viewDir = normalize(i.viewDir);
                 half3 halfDir = normalize(lightDir + viewDir);
                 half specBase = saturate(dot(normal, halfDir));
+                half specStrength = max(_SpecularToonSize, 0.22h);
                 half spec = smoothstep(
-                    saturate(1.0h - _SpecularToonSize - _SpecularToonSmoothness),
-                    saturate(1.0h - _SpecularToonSize),
+                    saturate(1.0h - specStrength - _SpecularToonSmoothness),
+                    saturate(1.0h - specStrength),
                     specBase);
-                color += spec * _SpecularColor.rgb * saturate(_SpecularToonSize);
+
+                half fresnel = pow(1.0h - saturate(dot(normal, viewDir)), 2.4h);
+                half topLight = saturate(normal.y * 0.5h + 0.5h);
+                color += spec * _SpecularColor.rgb * specStrength * max(_SpecularIntensity, 0.35h);
+                color += fresnel * _RimColor.rgb * _RimColor.a;
+                color += topLight * _MatCapColor.rgb * 0.08h;
+                color += fresnel * _ReflectColor.rgb * _ReflectIntensity * 0.12h;
 
                 return fixed4(color, tex.a * _Color.a);
             }

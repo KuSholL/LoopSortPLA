@@ -105,12 +105,9 @@ public sealed class Key3DCodeAnimator : MonoBehaviour
     private static void ApplyColor(Renderer target, StylizedColorEntry entry)
     {
         if (target == null) return;
-        var block = new MaterialPropertyBlock();
         for (var i = 0; i < target.sharedMaterials.Length; i++)
         {
-            target.GetPropertyBlock(block, i);
-            block.SetColorEntry(entry);
-            target.SetPropertyBlock(block, i);
+            target.ApplyColorEntry(entry, i);
         }
     }
 

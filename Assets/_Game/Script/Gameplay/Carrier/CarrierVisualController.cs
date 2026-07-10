@@ -13,8 +13,6 @@ public sealed class CarrierVisualController
     private readonly MeshRenderer[] _carrierMeshRenderers;
     private readonly Action _onHiddenVisualFlyOutStarted;
     private readonly Action _onHiddenVisualDisappearCompleted;
-    private MaterialPropertyBlock _materialPropertyBlock;
-    private MaterialPropertyBlock _carrierTintBlock;
     private CarrierMechanicVisual _spawnedVisual;
     private ECarrierVisualKind _spawnedVisualKind = ECarrierVisualKind.None;
 
@@ -67,11 +65,8 @@ public sealed class CarrierVisualController
 
         if (_carrierRenderer == null) return;
 
-        if (_carrierTintBlock == null) _carrierTintBlock = new MaterialPropertyBlock();
-        _carrierRenderer.GetPropertyBlock(_carrierTintBlock);
-        _carrierTintBlock.SetColor(ColorId, tintColor.Value);
-        _carrierTintBlock.SetColor(BaseColorId, tintColor.Value);
-        _carrierRenderer.SetPropertyBlock(_carrierTintBlock);
+        _carrierRenderer.ApplyColor(ColorId, tintColor.Value);
+        _carrierRenderer.ApplyColor(BaseColorId, tintColor.Value);
     }
 
     private void EnsureVisual(ECarrierVisualKind kind)
@@ -81,18 +76,18 @@ public sealed class CarrierVisualController
         var prefab = _mechanicVisualConfig != null ? _mechanicVisualConfig.GetVisualPrefab(kind) : null;
         if (prefab == null) return;
 
-        if (Application.isPlaying)
+        var instanceObject = UnityEngine.Object.Instantiate(prefab.gameObject, GetHiddenVisualRoot());
+        _spawnedVisual = instanceObject.GetComponent<CarrierMechanicVisual>();
+        if (_spawnedVisual == null)
         {
-            _spawnedVisual = PoolManagerNew.Instance.PopFromPool(prefab, GetHiddenVisualRoot());
-        }
-        else
-        {
-            _spawnedVisual = UnityEngine.Object.Instantiate(prefab, GetHiddenVisualRoot());
+            UnityEngine.Object.Destroy(instanceObject);
+            return;
         }
         _spawnedVisualKind = kind;
         _spawnedVisual.transform.localPosition = Vector3.zero;
         _spawnedVisual.transform.localRotation = Quaternion.identity;
         _spawnedVisual.transform.localScale = Vector3.one;
+        LunaMaterialUtility.NormalizeRenderers(_spawnedVisual.gameObject);
     }
 
     private void ClearVisual(bool animate = true)
@@ -114,7 +109,7 @@ public sealed class CarrierVisualController
             }
             else
             {
-                PoolManagerNew.Instance.PushToPool(visualToClear);
+                UnityEngine.Object.Destroy(visualToClear.gameObject);
             }
         }
         else
@@ -131,8 +126,8 @@ public sealed class CarrierVisualController
             if (visualKind == ECarrierVisualKind.HiddenShell)
                 _onHiddenVisualDisappearCompleted?.Invoke();
 
-            if (visual != null && PoolManagerNew.Instance != null)
-                PoolManagerNew.Instance.PushToPool(visual);
+            if (visual != null)
+                UnityEngine.Object.Destroy(visual.gameObject);
         });
     }
 
@@ -158,7 +153,6 @@ public sealed class CarrierVisualController
 
     private void ClearSpecialColorTint()
     {
-        if (_carrierRenderer == null) return;
-        _carrierRenderer.SetPropertyBlock(null);
+        // Normal carrier material is restored by the next visual setup/tint update.
     }
 }

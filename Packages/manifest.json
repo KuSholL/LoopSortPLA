@@ -1,7 +1,9 @@
 {
   "dependencies": {
+    "com.unity.formats.fbx": "4.2.1",
     "com.unity.mathematics": "file:com.unity.mathematics",
     "com.unity.playworks.upp": "file:../../../../Downloads/Unity Playwork/scripts",
+    "com.unity.polybrush": "1.1.8",
     "com.unity.splines": "file:com.unity.splines",
     "com.unity.textmeshpro": "3.0.6",
     "com.unity.ugui": "1.0.0",

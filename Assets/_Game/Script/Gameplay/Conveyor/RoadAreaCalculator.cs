@@ -1,11 +1,10 @@
 using UnityEngine;
-using UnityEngine.Splines;
 
 public class RoadAreaCalculator : MonoBehaviour
 {
     private const int BaselineCubePerBlock = 8;
 
-    [SerializeField] private SplineContainer centerRoad;
+    [SerializeField] private ConveyorManager conveyorManager;
     [SerializeField] private ConveyorMeshBuilder conveyorMeshBuilder;
     [SerializeField] private float objectRadius = 0.2f;
     [SerializeField, Range(0.1f, 1f)] private float packingEfficiency = 0.9f;
@@ -23,23 +22,23 @@ public class RoadAreaCalculator : MonoBehaviour
     }
     private void CalculateArea()
     {
-        roadArea = GetRoadArea(centerRoad);
+        roadArea = GetRoadArea(conveyorManager != null ? conveyorManager.Path : null);
         UpdateCapacity(roadArea);
     }
 
-    public int GetRecommendedBlockCount(SplineContainer road)
+    public int GetRecommendedBlockCount(ConveyorPathRuntime road)
     {
         var area = GetRoadArea(road);
         return GetRequiredBlockCount(area);
     }
 
-    public int GetBaselineBlockCount(SplineContainer road)
+    public int GetBaselineBlockCount(ConveyorPathRuntime road)
     {
         var area = GetRoadArea(road);
         return GetRequiredBlockCount(area, BaselineCubePerBlock);
     }
 
-    private float GetRoadArea(SplineContainer road)
+    private float GetRoadArea(ConveyorPathRuntime road)
     {
         if (conveyorMeshBuilder == null || road == null) return 0f;
         return conveyorMeshBuilder.GetProjectedRoadArea(road);

@@ -80,7 +80,9 @@ public sealed class BlockReceiveHandler
 
     private ColorEntry GetColorEntry(EBlockColorType colorType)
     {
-        var colorConfig = ConfigManager.Instance.GetColorConfig();
-        return colorConfig != null ? colorConfig.GetColorEntry(colorType) : null;
+        var colorConfig = ConfigManager.Instance != null ? ConfigManager.Instance.GetColorConfig() : null;
+        return colorConfig != null
+            ? colorConfig.GetColorEntry(colorType)
+            : PlayableColorFallback.CreateColorEntry(colorType);
     }
 }

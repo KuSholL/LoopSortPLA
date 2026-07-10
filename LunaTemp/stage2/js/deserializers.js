@@ -1455,20 +1455,20 @@ Deserializers["ConveyorManager"] = function (request, data, root) {
   var i1092 = root || request.c( 'ConveyorManager' )
   var i1093 = data
   request.r(i1093[0], i1093[1], 0, i1092, 'conveyorContainer')
-  request.r(i1093[2], i1093[3], 0, i1092, 'conveyorMeshBuilder')
-  request.r(i1093[4], i1093[5], 0, i1092, 'conveyorCornerDetector')
-  request.r(i1093[6], i1093[7], 0, i1092, 'conveyorPortalPrefab')
-  request.r(i1093[8], i1093[9], 0, i1092, 'portalHolder')
-  request.r(i1093[10], i1093[11], 0, i1092, 'splineInstantiate')
+  request.r(i1093[2], i1093[3], 0, i1092, 'splineInstantiate')
+  request.r(i1093[4], i1093[5], 0, i1092, 'conveyorMeshBuilder')
+  request.r(i1093[6], i1093[7], 0, i1092, 'conveyorCornerDetector')
+  request.r(i1093[8], i1093[9], 0, i1092, 'conveyorPortalPrefab')
+  request.r(i1093[10], i1093[11], 0, i1092, 'portalHolder')
+  request.r(i1093[12], i1093[13], 0, i1092, 'conveyorRoot')
   return i1092
 }
 
 Deserializers["ConveyorCornerDetector"] = function (request, data, root) {
   var i1094 = root || request.c( 'ConveyorCornerDetector' )
   var i1095 = data
-  request.r(i1095[0], i1095[1], 0, i1094, 'splineContainer')
-  request.r(i1095[2], i1095[3], 0, i1094, 'config')
-  var i1097 = i1095[4]
+  request.r(i1095[0], i1095[1], 0, i1094, 'config')
+  var i1097 = i1095[2]
   var i1096 = new (System.Collections.Generic.List$1(Bridge.ns('System.Single')))
   for(var i = 0; i < i1097.length; i += 1) {
     i1096.add(i1097[i + 0]);
@@ -1480,22 +1480,21 @@ Deserializers["ConveyorCornerDetector"] = function (request, data, root) {
 Deserializers["ConveyorDeliverySystem"] = function (request, data, root) {
   var i1100 = root || request.c( 'ConveyorDeliverySystem' )
   var i1101 = data
-  request.r(i1101[0], i1101[1], 0, i1100, 'splineContainer')
-  request.r(i1101[2], i1101[3], 0, i1100, 'splineInstantiate')
-  request.r(i1101[4], i1101[5], 0, i1100, 'conveyorMeshBuilder')
-  request.r(i1101[6], i1101[7], 0, i1100, 'cubeConfig')
-  i1100.spawnInterval = i1101[8]
-  request.r(i1101[9], i1101[10], 0, i1100, 'spawnRoot')
-  request.r(i1101[11], i1101[12], 0, i1100, 'conveyorSpawnPointConfig')
-  var i1103 = i1101[13]
+  request.r(i1101[0], i1101[1], 0, i1100, 'conveyorManager')
+  request.r(i1101[2], i1101[3], 0, i1100, 'conveyorMeshBuilder')
+  request.r(i1101[4], i1101[5], 0, i1100, 'cubeConfig')
+  i1100.spawnInterval = i1101[6]
+  request.r(i1101[7], i1101[8], 0, i1100, 'spawnRoot')
+  request.r(i1101[9], i1101[10], 0, i1100, 'conveyorSpawnPointConfig')
+  var i1103 = i1101[11]
   var i1102 = new (System.Collections.Generic.List$1(Bridge.ns('Cube')))
   for(var i = 0; i < i1103.length; i += 2) {
   request.r(i1103[i + 0], i1103[i + 1], 1, i1102, '')
   }
   i1100.cachedMovers = i1102
-  request.r(i1101[14], i1101[15], 0, i1100, 'conveyorSpeedBoostConfig')
-  request.r(i1101[16], i1101[17], 0, i1100, 'conveyorCornerDetector')
-  i1100.pickupThreshold = i1101[18]
+  request.r(i1101[12], i1101[13], 0, i1100, 'conveyorSpeedBoostConfig')
+  request.r(i1101[14], i1101[15], 0, i1100, 'conveyorCornerDetector')
+  i1100.pickupThreshold = i1101[16]
   return i1100
 }
 
@@ -1583,8 +1582,7 @@ Deserializers["CarrierSpawner"] = function (request, data, root) {
   var i1124 = root || request.c( 'CarrierSpawner' )
   var i1125 = data
   request.r(i1125[0], i1125[1], 0, i1124, 'carrierConfig')
-  request.r(i1125[2], i1125[3], 0, i1124, 'splineContainer')
-  request.r(i1125[4], i1125[5], 0, i1124, 'spawnRoot')
+  request.r(i1125[2], i1125[3], 0, i1124, 'spawnRoot')
   return i1124
 }
 
@@ -2951,7 +2949,7 @@ Deserializers.fields = {"Luna.Unity.DTO.UnityEngine.Assets.Material":{"name":0,"
 
 Deserializers.requiredComponents = {"88":[89],"90":[89],"91":[89],"92":[89],"93":[89],"94":[89],"95":[17],"96":[52],"97":[30],"98":[30],"99":[30],"100":[30],"101":[30],"102":[30],"103":[30],"104":[105],"106":[105],"107":[105],"108":[105],"109":[105],"110":[105],"111":[105],"112":[105],"113":[105],"114":[105],"115":[105],"116":[105],"117":[105],"118":[52],"119":[6],"120":[121],"122":[121],"53":[47],"123":[7,6],"124":[47],"125":[6,47],"126":[47,56],"127":[47],"128":[56,47],"129":[6],"130":[56,47],"131":[47],"132":[47],"133":[47],"134":[53],"57":[56,47],"135":[47],"55":[53],"136":[47],"137":[47],"138":[47],"139":[47],"140":[47],"141":[47],"142":[47],"143":[47],"144":[47],"145":[56,47],"146":[47],"147":[47],"148":[47],"149":[47],"150":[56,47],"151":[47],"152":[153],"154":[153],"155":[153],"156":[153],"157":[52],"158":[52]}
 
-Deserializers.types = ["UnityEngine.Shader","UnityEngine.Texture2D","UnityEngine.Cubemap","UnityEngine.Transform","UnityEngine.MonoBehaviour","HiddenCarrierVisual","UnityEngine.MeshRenderer","UnityEngine.MeshFilter","UnityEngine.Mesh","UnityEngine.Material","SpecialColorReceiverVisual","LinkedBlockVisual","UnityEngine.GameObject","BlockSolidProgressAnimator","UnityEngine.BoxCollider","UnityEngine.Animator","UnityEditor.Animations.AnimatorController","UnityEngine.SkinnedMeshRenderer","UnityEngine.SpriteRenderer","UnityEngine.Sprite","Block","BlockVisual","ContainerKey","BlockSolidVisual","UnityEngine.ParticleSystem","KeyAnim","UnityEngine.ParticleSystemRenderer","ConveyorPortal","UnityEngine.SphereCollider","UnityEngine.PhysicMaterial","UnityEngine.Rigidbody","Cube","CubeMovement","CubeDeliveryHandler","CubeVisual","CubeMovementConfigSO","AnimCube","Carrier","CarrierBlockLayout","CarrierMechanicVisualConfigSO","CarrierLinkedBlockVisualConfigSO","CarrierSpawnEffect","ContainerMechanic","GiftBoxVisual","Key3DCodeAnimator","UnityEngine.MeshCollider","Spawner","UnityEngine.RectTransform","SpawnerRemainingSlimeAnimator","SpawnerBlockAnimation","BlockLinkVisual","UnityEngine.Light","UnityEngine.Camera","UnityEngine.Canvas","UnityEngine.EventSystems.UIBehaviour","UnityEngine.UI.CanvasScaler","UnityEngine.CanvasRenderer","UnityEngine.UI.Image","UnityEngine.Splines.SplineContainer","ConveyorManager","ConveyorMeshBuilder","ConveyorCornerDetector","UnityEngine.Splines.SplineInstantiate","ConveyorCornerDetectorConfigSO","ConveyorDeliverySystem","CubeConfigSO","ConveyorSpawnPointConfigSO","ConveyorSpeedBoostConfigSO","CarrierSystem","CarrierSpawner","CarrierConfigSO","CapacityManager","GameConditionManager","GameConditionConfigSO","LevelManager","LevelData","LevelEntryAnimConfigSO","CameraManager","InputController","PoolManagerNew","ConfigManager","ColorConfigSO","CatColorConfigSO","AnimBlockConfig","StylizedColorConfigSO","RemainingColorConfigSO","CustomTimeScaleGroup","DG.Tweening.Core.DOTweenSettings","UnityEngine.AudioLowPassFilter","UnityEngine.AudioBehaviour","UnityEngine.AudioHighPassFilter","UnityEngine.AudioReverbFilter","UnityEngine.AudioDistortionFilter","UnityEngine.AudioEchoFilter","UnityEngine.AudioChorusFilter","UnityEngine.Cloth","UnityEngine.FlareLayer","UnityEngine.ConstantForce","UnityEngine.Joint","UnityEngine.HingeJoint","UnityEngine.SpringJoint","UnityEngine.FixedJoint","UnityEngine.CharacterJoint","UnityEngine.ConfigurableJoint","UnityEngine.CompositeCollider2D","UnityEngine.Rigidbody2D","UnityEngine.Joint2D","UnityEngine.AnchoredJoint2D","UnityEngine.SpringJoint2D","UnityEngine.DistanceJoint2D","UnityEngine.FrictionJoint2D","UnityEngine.HingeJoint2D","UnityEngine.RelativeJoint2D","UnityEngine.SliderJoint2D","UnityEngine.TargetJoint2D","UnityEngine.FixedJoint2D","UnityEngine.WheelJoint2D","UnityEngine.ConstantForce2D","UnityEngine.StreamingController","UnityEngine.TextMesh","UnityEngine.Tilemaps.TilemapRenderer","UnityEngine.Tilemaps.Tilemap","UnityEngine.Tilemaps.TilemapCollider2D","UnityEngine.Splines.SplineExtrude","TMPro.TextContainer","TMPro.TextMeshPro","TMPro.TextMeshProUGUI","TMPro.TMP_Dropdown","TMPro.TMP_SelectionCaret","TMPro.TMP_SubMesh","TMPro.TMP_SubMeshUI","TMPro.TMP_Text","UnityEngine.UI.Dropdown","UnityEngine.UI.Graphic","UnityEngine.UI.GraphicRaycaster","UnityEngine.UI.AspectRatioFitter","UnityEngine.UI.ContentSizeFitter","UnityEngine.UI.GridLayoutGroup","UnityEngine.UI.HorizontalLayoutGroup","UnityEngine.UI.HorizontalOrVerticalLayoutGroup","UnityEngine.UI.LayoutElement","UnityEngine.UI.LayoutGroup","UnityEngine.UI.VerticalLayoutGroup","UnityEngine.UI.Mask","UnityEngine.UI.MaskableGraphic","UnityEngine.UI.RawImage","UnityEngine.UI.RectMask2D","UnityEngine.UI.Scrollbar","UnityEngine.UI.ScrollRect","UnityEngine.UI.Slider","UnityEngine.UI.Text","UnityEngine.UI.Toggle","UnityEngine.EventSystems.BaseInputModule","UnityEngine.EventSystems.EventSystem","UnityEngine.EventSystems.PointerInputModule","UnityEngine.EventSystems.StandaloneInputModule","UnityEngine.EventSystems.TouchInputModule","UnityEngine.EventSystems.Physics2DRaycaster","UnityEngine.EventSystems.PhysicsRaycaster"]
+Deserializers.types = ["UnityEngine.Shader","UnityEngine.Texture2D","UnityEngine.Cubemap","UnityEngine.Transform","UnityEngine.MonoBehaviour","HiddenCarrierVisual","UnityEngine.MeshRenderer","UnityEngine.MeshFilter","UnityEngine.Mesh","UnityEngine.Material","SpecialColorReceiverVisual","LinkedBlockVisual","UnityEngine.GameObject","BlockSolidProgressAnimator","UnityEngine.BoxCollider","UnityEngine.Animator","UnityEditor.Animations.AnimatorController","UnityEngine.SkinnedMeshRenderer","UnityEngine.SpriteRenderer","UnityEngine.Sprite","Block","BlockVisual","ContainerKey","BlockSolidVisual","UnityEngine.ParticleSystem","KeyAnim","UnityEngine.ParticleSystemRenderer","ConveyorPortal","UnityEngine.SphereCollider","UnityEngine.PhysicMaterial","UnityEngine.Rigidbody","Cube","CubeMovement","CubeDeliveryHandler","CubeVisual","CubeMovementConfigSO","AnimCube","Carrier","CarrierBlockLayout","CarrierMechanicVisualConfigSO","CarrierLinkedBlockVisualConfigSO","CarrierSpawnEffect","ContainerMechanic","GiftBoxVisual","Key3DCodeAnimator","UnityEngine.MeshCollider","Spawner","UnityEngine.RectTransform","SpawnerRemainingSlimeAnimator","SpawnerBlockAnimation","BlockLinkVisual","UnityEngine.Light","UnityEngine.Camera","UnityEngine.Canvas","UnityEngine.EventSystems.UIBehaviour","UnityEngine.UI.CanvasScaler","UnityEngine.CanvasRenderer","UnityEngine.UI.Image","UnityEngine.Splines.SplineContainer","ConveyorManager","UnityEngine.Splines.SplineInstantiate","ConveyorMeshBuilder","ConveyorCornerDetector","ConveyorCornerDetectorConfigSO","ConveyorDeliverySystem","CubeConfigSO","ConveyorSpawnPointConfigSO","ConveyorSpeedBoostConfigSO","CarrierSystem","CarrierSpawner","CarrierConfigSO","CapacityManager","GameConditionManager","GameConditionConfigSO","LevelManager","LevelData","LevelEntryAnimConfigSO","CameraManager","InputController","PoolManagerNew","ConfigManager","ColorConfigSO","CatColorConfigSO","AnimBlockConfig","StylizedColorConfigSO","RemainingColorConfigSO","CustomTimeScaleGroup","DG.Tweening.Core.DOTweenSettings","UnityEngine.AudioLowPassFilter","UnityEngine.AudioBehaviour","UnityEngine.AudioHighPassFilter","UnityEngine.AudioReverbFilter","UnityEngine.AudioDistortionFilter","UnityEngine.AudioEchoFilter","UnityEngine.AudioChorusFilter","UnityEngine.Cloth","UnityEngine.FlareLayer","UnityEngine.ConstantForce","UnityEngine.Joint","UnityEngine.HingeJoint","UnityEngine.SpringJoint","UnityEngine.FixedJoint","UnityEngine.CharacterJoint","UnityEngine.ConfigurableJoint","UnityEngine.CompositeCollider2D","UnityEngine.Rigidbody2D","UnityEngine.Joint2D","UnityEngine.AnchoredJoint2D","UnityEngine.SpringJoint2D","UnityEngine.DistanceJoint2D","UnityEngine.FrictionJoint2D","UnityEngine.HingeJoint2D","UnityEngine.RelativeJoint2D","UnityEngine.SliderJoint2D","UnityEngine.TargetJoint2D","UnityEngine.FixedJoint2D","UnityEngine.WheelJoint2D","UnityEngine.ConstantForce2D","UnityEngine.StreamingController","UnityEngine.TextMesh","UnityEngine.Tilemaps.TilemapRenderer","UnityEngine.Tilemaps.Tilemap","UnityEngine.Tilemaps.TilemapCollider2D","UnityEngine.Splines.SplineExtrude","TMPro.TextContainer","TMPro.TextMeshPro","TMPro.TextMeshProUGUI","TMPro.TMP_Dropdown","TMPro.TMP_SelectionCaret","TMPro.TMP_SubMesh","TMPro.TMP_SubMeshUI","TMPro.TMP_Text","UnityEngine.UI.Dropdown","UnityEngine.UI.Graphic","UnityEngine.UI.GraphicRaycaster","UnityEngine.UI.AspectRatioFitter","UnityEngine.UI.ContentSizeFitter","UnityEngine.UI.GridLayoutGroup","UnityEngine.UI.HorizontalLayoutGroup","UnityEngine.UI.HorizontalOrVerticalLayoutGroup","UnityEngine.UI.LayoutElement","UnityEngine.UI.LayoutGroup","UnityEngine.UI.VerticalLayoutGroup","UnityEngine.UI.Mask","UnityEngine.UI.MaskableGraphic","UnityEngine.UI.RawImage","UnityEngine.UI.RectMask2D","UnityEngine.UI.Scrollbar","UnityEngine.UI.ScrollRect","UnityEngine.UI.Slider","UnityEngine.UI.Text","UnityEngine.UI.Toggle","UnityEngine.EventSystems.BaseInputModule","UnityEngine.EventSystems.EventSystem","UnityEngine.EventSystems.PointerInputModule","UnityEngine.EventSystems.StandaloneInputModule","UnityEngine.EventSystems.TouchInputModule","UnityEngine.EventSystems.Physics2DRaycaster","UnityEngine.EventSystems.PhysicsRaycaster"]
 
 Deserializers.unityVersion = "2022.3.62f3";
 
@@ -2959,7 +2957,7 @@ Deserializers.productName = "Loop sort PLA";
 
 Deserializers.lunaInitializationTime = "07/09/2026 07:54:59";
 
-Deserializers.lunaDaysRunning = "0.8";
+Deserializers.lunaDaysRunning = "1.1";
 
 Deserializers.lunaVersion = "7.2.0";
 
@@ -2989,11 +2987,11 @@ Deserializers.isAntiAliasingEnabled = "False";
 
 Deserializers.isRuntimeAnalysisEnabledForCode = "False";
 
-Deserializers.runtimeAnalysisExcludedClassesCount = "0";
+Deserializers.runtimeAnalysisExcludedClassesCount = "1766";
 
-Deserializers.runtimeAnalysisExcludedMethodsCount = "0";
+Deserializers.runtimeAnalysisExcludedMethodsCount = "5095";
 
-Deserializers.runtimeAnalysisExcludedModules = "";
+Deserializers.runtimeAnalysisExcludedModules = "physics2d";
 
 Deserializers.isRuntimeAnalysisEnabledForShaders = "True";
 
@@ -3013,7 +3011,7 @@ Deserializers.graphicsConstraint = 24;
 
 Deserializers.linearColorSpace = true;
 
-Deserializers.buildID = "d73785c8-03c2-48ff-a67e-9170559bd89b";
+Deserializers.buildID = "2289538d-fc42-44d7-af7d-b50515f04238";
 
 Deserializers.runtimeInitializeOnLoadInfos = [[["UnityEngine","Experimental","Rendering","ScriptableRuntimeReflectionSystemSettings","ScriptingDirtyReflectionSystemInstance"]],[],[],[],[]];
 

@@ -33,6 +33,22 @@ public class StylizedColorConfigSO : ScriptableObject
             return entry;
         }
 
-        return new StylizedColorEntry();
+        return PlayableStylizedColorFallback.CreateColorEntry(blockColorType);
+    }
+}
+
+public static class PlayableStylizedColorFallback
+{
+    public static StylizedColorEntry CreateColorEntry(EBlockColorType colorType)
+    {
+        var colorEntry = PlayableColorFallback.CreateColorEntry(colorType);
+        return new StylizedColorEntry
+        {
+            BlockColorType = colorType,
+            Color = colorEntry.Color,
+            ShadowColor = colorEntry.ShadowColor,
+            SpecularColor = colorEntry.SpecularColor,
+            ReflectColor = Color.white
+        };
     }
 }

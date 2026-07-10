@@ -18,8 +18,15 @@ public sealed class CapacityUI : MonoBehaviour
     private const float TextTweenDuration = 0.2f;
 
     private static readonly Color DisabledColor = new Color(0.78431374f, 0.78431374f, 0.78431374f, 0.5019608f);
+    private static readonly Color BackgroundColor = new Color(0.78f, 0.8f, 0.93f, 1f);
+    private static readonly Color TickColor = new Color(0.2f, 0.23f, 0.38f, 1f);
+    private static readonly Color FillLowColor = new Color(0.33f, 0.9f, 0.14f, 1f);
+    private static readonly Color FillMidColor = new Color(1f, 0.82f, 0.08f, 1f);
+    private static readonly Color FillHighColor = new Color(1f, 0.47f, 0.06f, 1f);
+    private static readonly Color FillFullColor = new Color(1f, 0.12f, 0.12f, 1f);
 
     private static CapacityUI _instance;
+    private static Sprite _solidSprite;
 
     [SerializeField] private Image backgroundImage;
     [SerializeField] private Image fillImage;
@@ -46,6 +53,10 @@ public sealed class CapacityUI : MonoBehaviour
     {
         if (_instance != null) return _instance;
 
+#if UNITY_LUNA
+        var lunaRoot = new GameObject("Capacity");
+        return lunaRoot.AddComponent<CapacityUI>();
+#else
         var root = new GameObject("Capacity", typeof(RectTransform));
         var canvas = root.AddComponent<Canvas>();
         canvas.renderMode = RenderMode.ScreenSpaceOverlay;
@@ -59,6 +70,7 @@ public sealed class CapacityUI : MonoBehaviour
 
         root.AddComponent<GraphicRaycaster>();
         return root.AddComponent<CapacityUI>();
+#endif
     }
 
     private void Awake()
@@ -70,8 +82,12 @@ public sealed class CapacityUI : MonoBehaviour
         }
 
         _instance = this;
+#if UNITY_LUNA
+        return;
+#else
         LoadSprites();
         BuildUI();
+#endif
     }
 
     private void OnEnable()
@@ -95,26 +111,42 @@ public sealed class CapacityUI : MonoBehaviour
 
     public void InitLevel(int maxCapacity)
     {
+#if UNITY_LUNA
+        _lastTickCapacity = maxCapacity;
+        _displayedPercent = 0f;
+        _displayedFillPercent = 0f;
+        return;
+#else
         UpdateTicks(maxCapacity);
         ResetView();
+#endif
     }
 
     public void SetCapacity(int capacity, int maxCapacity)
     {
         var percent = maxCapacity > 0 ? Mathf.Clamp01((float)capacity / maxCapacity) : 0f;
+#if UNITY_LUNA
+        _displayedPercent = percent;
+        _displayedFillPercent = percent;
+        return;
+#else
         SetFillSmooth(percent);
         SetTextSmooth(percent);
         ApplyFillSprite(percent);
+#endif
     }
 
     public void SetDisableCapacity(bool isDisabled)
     {
         _isDisabled = isDisabled;
-        var color = isDisabled ? DisabledColor : Color.white;
-        if (backgroundImage != null) backgroundImage.color = color;
-        if (fillImage != null) fillImage.color = color;
-        if (percentText != null) percentText.color = color;
-        SetTickColor(color);
+#if UNITY_LUNA
+        return;
+#else
+        if (backgroundImage != null) backgroundImage.color = isDisabled ? DisabledColor : BackgroundColor;
+        ApplyFillSprite(_displayedFillPercent);
+        if (percentText != null) percentText.color = isDisabled ? DisabledColor : Color.white;
+        SetTickColor(isDisabled ? DisabledColor : TickColor);
+#endif
     }
 
     private void OnLevelLoaded(LevelData levelData)
@@ -166,20 +198,19 @@ public sealed class CapacityUI : MonoBehaviour
         barRoot.anchoredPosition = new Vector2(0f, BarOffsetY);
         barRoot.sizeDelta = new Vector2(DefaultWidth, DefaultHeight);
 
-        backgroundImage = CreateImage("Background", barRoot, GetSprite("progress_bar1"), Image.Type.Sliced);
+        backgroundImage = CreateImage("Background", barRoot, _solidSprite, Image.Type.Simple);
+        backgroundImage.color = BackgroundColor;
         var backgroundRect = backgroundImage.rectTransform;
         Stretch(backgroundRect, Vector2.zero, Vector2.zero);
-        var backgroundMask = backgroundImage.gameObject.AddComponent<Mask>();
-        backgroundMask.showMaskGraphic = true;
 
         fillArea = CreateRect("Fill Area", backgroundRect);
         Stretch(
             fillArea,
             new Vector2(FillAreaInsetLeft, FillAreaInsetBottom),
             new Vector2(-FillAreaInsetRight, -FillAreaInsetTop));
-        fillArea.gameObject.AddComponent<RectMask2D>();
 
-        fillImage = CreateImage("Fill", fillArea, _fillLowSprite, Image.Type.Tiled);
+        fillImage = CreateImage("Fill", fillArea, _fillLowSprite, Image.Type.Simple);
+        fillImage.color = FillLowColor;
         fillRect = fillImage.rectTransform;
         fillRect.anchorMin = new Vector2(0f, 0f);
         fillRect.anchorMax = new Vector2(0f, 1f);
@@ -193,6 +224,7 @@ public sealed class CapacityUI : MonoBehaviour
             new Vector2(FillAreaInsetLeft, 0f),
             new Vector2(-FillAreaInsetRight, 0f));
 
+#if !UNITY_LUNA
         percentText = CreateText("PercentText", backgroundRect);
         var textRect = percentText.rectTransform;
         textRect.anchorMin = new Vector2(0.5f, 0.5f);
@@ -201,39 +233,27 @@ public sealed class CapacityUI : MonoBehaviour
         textRect.anchoredPosition = new Vector2(0f, -2.4f);
         textRect.sizeDelta = new Vector2(DefaultWidth, 35f);
         percentText.text = "0%";
+#endif
     }
 
     private void LoadSprites()
     {
-        _fillLowSprite = GetSprite("progress_bar2");
-        _fillMidSprite = GetSprite("progress_bar3");
-        _fillHighSprite = GetSprite("progress_bar4");
-        _fillFullSprite = GetSprite("progress_bar5");
-        _tickSprite = GetSprite("progress_vachchia");
+        _solidSprite = CreateSolidSprite();
+        _fillLowSprite = _solidSprite;
+        _fillMidSprite = _solidSprite;
+        _fillHighSprite = _solidSprite;
+        _fillFullSprite = _solidSprite;
+        _tickSprite = _solidSprite;
     }
 
-    private static Sprite GetSprite(string spriteName)
+    private static Sprite CreateSolidSprite()
     {
-        var path = "Sprites/" + spriteName;
-        var sprite = Resources.Load<Sprite>(path);
-        if (sprite != null) return sprite;
-
-        var sprites = Resources.LoadAll<Sprite>(path);
-        if (sprites == null || sprites.Length == 0) return null;
-
-        for (var i = 0; i < sprites.Length; i++)
-        {
-            if (sprites[i] != null && sprites[i].name == spriteName)
-                return sprites[i];
-        }
-
-        for (var i = 0; i < sprites.Length; i++)
-        {
-            if (sprites[i] != null && sprites[i].name.StartsWith(spriteName))
-                return sprites[i];
-        }
-
-        return sprites[0];
+        if (_solidSprite != null) return _solidSprite;
+        var texture = new Texture2D(1, 1, TextureFormat.RGBA32, false);
+        texture.name = "CapacitySolidSpriteTexture";
+        texture.SetPixel(0, 0, Color.white);
+        texture.Apply(false, true);
+        return Sprite.Create(texture, new Rect(0f, 0f, 1f, 1f), new Vector2(0.5f, 0.5f), 1f);
     }
 
     private static Image CreateImage(string name, Transform parent, Sprite sprite, Image.Type type)
@@ -242,9 +262,8 @@ public sealed class CapacityUI : MonoBehaviour
         go.transform.SetParent(parent, false);
         var image = go.AddComponent<Image>();
         image.raycastTarget = false;
-        image.sprite = sprite;
-        image.type = type;
-        if (sprite == null) image.color = Color.clear;
+        image.sprite = sprite != null ? sprite : _solidSprite;
+        image.type = Image.Type.Simple;
         return image;
     }
 
@@ -262,7 +281,6 @@ public sealed class CapacityUI : MonoBehaviour
         var text = go.AddComponent<Text>();
         text.raycastTarget = false;
         text.alignment = TextAnchor.MiddleCenter;
-        text.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
         text.fontSize = 26;
         text.fontStyle = FontStyle.Bold;
         text.color = Color.white;
@@ -292,15 +310,29 @@ public sealed class CapacityUI : MonoBehaviour
         if (fillImage == null) return;
 
         var sprite = _fillLowSprite;
-        if (percent > 0.75f) sprite = _fillFullSprite;
-        else if (percent > 0.5f) sprite = _fillHighSprite;
-        else if (percent > 0.25f) sprite = _fillMidSprite;
+        var color = FillLowColor;
+        if (percent > 0.75f)
+        {
+            sprite = _fillFullSprite;
+            color = FillFullColor;
+        }
+        else if (percent > 0.5f)
+        {
+            sprite = _fillHighSprite;
+            color = FillHighColor;
+        }
+        else if (percent > 0.25f)
+        {
+            sprite = _fillMidSprite;
+            color = FillMidColor;
+        }
 
         if (sprite != null && fillImage.sprite != sprite)
         {
             fillImage.sprite = sprite;
-            fillImage.type = Image.Type.Tiled;
+            fillImage.type = Image.Type.Simple;
         }
+        fillImage.color = _isDisabled ? DisabledColor : color;
     }
 
     private void SetFillSmooth(float targetPercent)
@@ -384,11 +416,10 @@ public sealed class CapacityUI : MonoBehaviour
             Destroy(ticksContainer.GetChild(i).gameObject);
 
         if (maxCapacity <= 1) return;
-        var color = _isDisabled ? DisabledColor : Color.white;
         for (var i = 1; i < maxCapacity; i++)
         {
             var tick = CreateImage("Tick_" + i, ticksContainer, _tickSprite, Image.Type.Simple);
-            tick.color = color;
+            tick.color = _isDisabled ? DisabledColor : TickColor;
             var rect = tick.rectTransform;
             rect.anchorMin = new Vector2((float)i / maxCapacity, 0.5f);
             rect.anchorMax = rect.anchorMin;

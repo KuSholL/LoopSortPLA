@@ -39,6 +39,10 @@ public class CarrierSpawnEffect : MonoBehaviour
 
     private IEnumerator PlaySpawnEffectRoutine()
     {
+#if UNITY_LUNA
+        transform.localScale = Vector3.one;
+        yield break;
+#endif
         ParticleSystem spawnVfx = null;
         if (spawnVfxPrefab != null && PoolManagerNew.Instance != null)
         {

@@ -32,8 +32,6 @@ public class BlockSolidVisual : MonoBehaviour
 	[Range(0f, 1f)]
 	private float firstCubeScalePercent = 0.05f;
 
-	private MaterialPropertyBlock _materialBlock;
-
 	private Tween _progressTween;
 
 	private Tween _swapRotateTween;
@@ -75,13 +73,7 @@ public class BlockSolidVisual : MonoBehaviour
 	{
 		if (colorEntry != null)
 		{
-			if (_materialBlock == null)
-			{
-				_materialBlock = new MaterialPropertyBlock();
-			}
-			meshRenderer.GetPropertyBlock(_materialBlock);
-			_materialBlock.SetColorEntry(colorEntry);
-			meshRenderer.SetPropertyBlock(_materialBlock);
+			meshRenderer.ApplyColorEntry(colorEntry);
 		}
 	}
 
@@ -143,15 +135,12 @@ public class BlockSolidVisual : MonoBehaviour
 
 	public void SetSwapArrowColor(EBlockColorType colorType, ColorConfigSO colorConfig)
 	{
-		if (!(swapArrowRenderer == null) && !(colorConfig == null))
+		if (!(swapArrowRenderer == null))
 		{
-			ColorEntry entry = colorConfig.GetColorEntry(colorType);
+			ColorEntry entry = ((colorConfig != null) ? colorConfig.GetColorEntry(colorType) : PlayableColorFallback.CreateColorEntry(colorType));
 			if (entry != null)
 			{
-				MaterialPropertyBlock propBlock = new MaterialPropertyBlock();
-				swapArrowRenderer.GetPropertyBlock(propBlock);
-				propBlock.SetColorEntry(entry);
-				swapArrowRenderer.SetPropertyBlock(propBlock);
+				swapArrowRenderer.ApplyColorEntry(entry);
 			}
 		}
 	}
@@ -180,12 +169,11 @@ public class BlockSolidVisual : MonoBehaviour
 			return;
 		}
 		StylizedColorConfigSO config = ((MonoSingleton<ConfigManager>.Instance != null) ? MonoSingleton<ConfigManager>.Instance.GetStylizedColorConfig() : null);
-		if (config == null)
+		StylizedColorEntry entry = ((config != null) ? config.GetColorEntry(colorType) : PlayableStylizedColorFallback.CreateColorEntry(colorType));
+		if (entry == null)
 		{
 			return;
 		}
-		StylizedColorEntry entry = config.GetColorEntry(colorType);
-		MaterialPropertyBlock propertyBlock = new MaterialPropertyBlock();
 		int colorId = Shader.PropertyToID("_Color");
 		int shadowColorId = Shader.PropertyToID("_ShadowColor");
 		int specularColorId = Shader.PropertyToID("_SpecularColor");
@@ -204,22 +192,18 @@ public class BlockSolidVisual : MonoBehaviour
 				int[] array2 = targetIndices;
 				foreach (int i in array2)
 				{
-					r.GetPropertyBlock(propertyBlock, i);
-					propertyBlock.SetColor(colorId, entry.Color);
-					propertyBlock.SetColor(shadowColorId, entry.ShadowColor);
-					propertyBlock.SetColor(specularColorId, entry.SpecularColor);
-					propertyBlock.SetColor(reflectColorId, entry.ReflectColor);
-					r.SetPropertyBlock(propertyBlock, i);
+					r.ApplyColor(colorId, entry.Color, i);
+					r.ApplyColor(shadowColorId, entry.ShadowColor, i);
+					r.ApplyColor(specularColorId, entry.SpecularColor, i);
+					r.ApplyColor(reflectColorId, entry.ReflectColor, i);
 				}
 			}
 			else
 			{
-				r.GetPropertyBlock(propertyBlock, 0);
-				propertyBlock.SetColor(colorId, entry.Color);
-				propertyBlock.SetColor(shadowColorId, entry.ShadowColor);
-				propertyBlock.SetColor(specularColorId, entry.SpecularColor);
-				propertyBlock.SetColor(reflectColorId, entry.ReflectColor);
-				r.SetPropertyBlock(propertyBlock, 0);
+				r.ApplyColor(colorId, entry.Color, 0);
+				r.ApplyColor(shadowColorId, entry.ShadowColor, 0);
+				r.ApplyColor(specularColorId, entry.SpecularColor, 0);
+				r.ApplyColor(reflectColorId, entry.ReflectColor, 0);
 			}
 		}
 	}
@@ -345,9 +329,5 @@ public class BlockSolidVisual : MonoBehaviour
 
 	private void ClearPropertyBlocks()
 	{
-		if ((bool)meshRenderer)
-		{
-			meshRenderer.SetPropertyBlock(null);
-		}
 	}
 }

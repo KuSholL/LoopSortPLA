@@ -1,13 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Splines;
 using DG.Tweening;
 
 public class CarrierSpawner : MonoBehaviour
 {
     [SerializeField] private CarrierConfigSO carrierConfig;
-    [SerializeField] private SplineContainer splineContainer;
     [SerializeField] private Transform spawnRoot;
 
     private LevelEntryAnimConfigSO EntryConfig =>
@@ -19,9 +17,15 @@ public class CarrierSpawner : MonoBehaviour
     private readonly List<CarrierBase> _spawnedCarriers = new List<CarrierBase>();
     public List<CarrierBase> SpawnedCarriers => _spawnedCarriers;
     public CarrierConfigSO CarrierConfig => carrierConfig;
-    public SplineContainer SplineContainer => splineContainer;
+    private ConveyorPathRuntime _runtimePath;
+    public ConveyorPathRuntime Path => _runtimePath != null ? _runtimePath : ConveyorDeliverySystem.Instance != null ? ConveyorDeliverySystem.Instance.Path : null;
 
     private Sequence _carrierSequence;
+
+    public void SetPath(ConveyorPathRuntime path)
+    {
+        _runtimePath = path;
+    }
 
     private void OnDestroy()
     {
@@ -39,8 +43,13 @@ public class CarrierSpawner : MonoBehaviour
         foreach (var carrier in _spawnedCarriers)
         {
             if (carrier == null) continue;
+#if UNITY_LUNA
+            carrier.SetClickCollidersEnabled(!carrier.IsLockedByContainer());
+            carrier.transform.localScale = Vector3.one;
+#else
             carrier.SetClickCollidersEnabled(false);
             carrier.transform.localScale = Vector3.zero;
+#endif
         }
     }
 
@@ -50,6 +59,11 @@ public class CarrierSpawner : MonoBehaviour
         if (carrier == null) return false;
         ConveyorDeliverySystem.Instance?.SetupCarrierPickup(_spawnedCarriers);
 
+#if UNITY_LUNA
+        carrier.SetClickCollidersEnabled(!carrier.IsLockedByContainer());
+        carrier.transform.localScale = Vector3.one;
+        return true;
+#else
         carrier.SetClickCollidersEnabled(false);
         carrier.transform.localScale = Vector3.zero;
         var spawnedCarrier = carrier;
@@ -60,6 +74,7 @@ public class CarrierSpawner : MonoBehaviour
         carrier.SetScaleMotionHandle(scaleTween);
 
         return true;
+#endif
     }
 
     private void ClearCarriers()
@@ -76,7 +91,7 @@ public class CarrierSpawner : MonoBehaviour
             if (carrier == null) continue;
             carrier.SetClickCollidersEnabled(true);
             carrier.transform.localScale = Vector3.one; // reset scale trước khi pool
-            PoolManagerNew.Instance.PushToPool(carrier);
+            Destroy(carrier.gameObject);
         }
 
         _spawnedCarriers.Clear();
@@ -98,21 +113,41 @@ public class CarrierSpawner : MonoBehaviour
                 }
             }
         }
-        var prefab = isSpawner && carrierConfig.Spawner != null
-            ? (CarrierBase)carrierConfig.Spawner
-            : carrierConfig.Prefab;
-        var carrier = PoolManagerNew.Instance.PopFromPool(prefab, spawnRoot);
+        var carrier = CreateCarrierInstance(isSpawner);
+        if (carrier == null) return null;
         carrier.IncrementSessionId();
         ApplyCarrierTransform(carrier, carrierStack);
         carrier.SetSplineProgress(carrierStack.Progress);
         carrier.CreateBlocks(carrierStack, suppressProgressAnimation: true);
+        LunaMaterialUtility.NormalizeRenderers(carrier.gameObject);
         _spawnedCarriers.Add(carrier);
         return carrier;
     }
 
+    private CarrierBase CreateCarrierInstance(bool isSpawner)
+    {
+        var prefab = isSpawner && carrierConfig.Spawner != null
+            ? carrierConfig.Spawner.gameObject
+            : carrierConfig.Prefab != null
+                ? carrierConfig.Prefab.gameObject
+                : null;
+        if (prefab == null) return null;
+
+        var instance = Instantiate(prefab, spawnRoot);
+        if (isSpawner)
+        {
+            var spawner = instance.GetComponent<Spawner>();
+            if (spawner != null) return spawner;
+        }
+
+        var carrier = instance.GetComponent<Carrier>();
+        if (carrier != null) return carrier;
+        return instance.GetComponent<CarrierBase>();
+    }
+
     private void ApplyCarrierTransform(CarrierBase carrier, CarrierStackData carrierStack)
     {
-        if (carrier == null || splineContainer == null) return;
+        if (carrier == null || Path == null || !Path.IsValid) return;
         carrier.transform.position = GetCarrierWorldPosition(carrierStack);
         carrier.transform.rotation = GetCarrierWorldRotation(carrierStack);
     }
@@ -125,17 +160,26 @@ public class CarrierSpawner : MonoBehaviour
 
     public Vector3 GetCarrierWorldPosition(CarrierStackData carrierStack)
     {
-        return splineContainer.transform.TransformPoint(GetCarrierPosition(carrierStack));
+        var path = Path;
+        return path != null && path.IsValid
+            ? path.TransformPoint(GetCarrierPosition(carrierStack))
+            : GetCarrierPosition(carrierStack);
     }
 
     private Quaternion GetCarrierWorldRotation(CarrierStackData carrierStack)
     {
-        return splineContainer.transform.rotation * Quaternion.Euler(0f, carrierStack.RotationY, 0f);
+        var path = Path;
+        var rootRotation = path != null && path.Root != null ? path.Root.rotation : Quaternion.identity;
+        return rootRotation * Quaternion.Euler(0f, carrierStack.RotationY, 0f);
     }
 
     public IEnumerator PlayCarriersScaleAnimation()
     {
         if (_spawnedCarriers.Count == 0) yield break;
+#if UNITY_LUNA
+        EnsureCarriersVisibleAndClickable();
+        yield break;
+#endif
         if (_carrierSequence != null)
         {
             _carrierSequence.Kill();

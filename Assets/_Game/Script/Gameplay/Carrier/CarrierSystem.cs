@@ -16,17 +16,27 @@ public class CarrierSystem : MonoSingleton<CarrierSystem>
         get { return carrierSpawner != null ? carrierSpawner.SpawnedCarriers : null; }
     }
 
-    public void InitCarrier(LevelData levelData)
+    public void InitCarrier(LevelData levelData, ConveyorPathRuntime path)
     {
         if (carrierSpawner != null)
         {
+            carrierSpawner.SetPath(path);
             carrierSpawner.SpawnCarriers(levelData);
             _containerSpawner.SpawnContainers(
                 levelData,
                 carrierSpawner.SpawnedCarriers,
                 carrierSpawner.CarrierConfig,
-                carrierSpawner.SplineContainer);
+                path);
+#if UNITY_LUNA
+            carrierSpawner.EnsureCarriersVisibleAndClickable();
+            _containerSpawner.EnsureContainersAtFinalState();
+#endif
         }
+    }
+
+    public void InitCarrier(LevelData levelData)
+    {
+        InitCarrier(levelData, carrierSpawner != null ? carrierSpawner.Path : null);
     }
 
     public IEnumerator PlayContainersScaleAnimation(LevelEntryAnimConfigSO animationConfig)

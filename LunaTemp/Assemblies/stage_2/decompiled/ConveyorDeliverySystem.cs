@@ -1,16 +1,11 @@
 using System;
 using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.Splines;
 
 public class ConveyorDeliverySystem : MonoSingleton<ConveyorDeliverySystem>, IConveyorPickupHandler
 {
 	[SerializeField]
-	private SplineContainer splineContainer;
-
-	[SerializeField]
-	private SplineInstantiate splineInstantiate;
+	private ConveyorManager conveyorManager;
 
 	[SerializeField]
 	private ConveyorMeshBuilder conveyorMeshBuilder;
@@ -84,7 +79,7 @@ public class ConveyorDeliverySystem : MonoSingleton<ConveyorDeliverySystem>, ICo
 
 	public ConveyorSpeedBoostConfigSO ConveyorSpeedBoostConfig => conveyorSpeedBoostConfig;
 
-	public SplineContainer SplineContainer => splineContainer;
+	public ConveyorPathRuntime Path => (conveyorManager != null) ? conveyorManager.Path : null;
 
 	public ConveyorWinDetector WinDetector => _winDetector;
 
@@ -159,11 +154,7 @@ public class ConveyorDeliverySystem : MonoSingleton<ConveyorDeliverySystem>, ICo
 
 	private Transform GetInstancesRoot()
 	{
-		if (splineInstantiate == null)
-		{
-			return null;
-		}
-		foreach (Transform child in splineInstantiate.transform)
+		foreach (Transform child in base.transform)
 		{
 			if (child.name.StartsWith("root-"))
 			{
@@ -176,13 +167,17 @@ public class ConveyorDeliverySystem : MonoSingleton<ConveyorDeliverySystem>, ICo
 	protected override void Awake()
 	{
 		base.Awake();
+		if (conveyorManager == null)
+		{
+			conveyorManager = GetComponent<ConveyorManager>();
+		}
 		if (conveyorCornerDetector == null)
 		{
 			conveyorCornerDetector = GetComponent<ConveyorCornerDetector>();
 		}
 		if (_conveyorSpawnPointCalculator == null)
 		{
-			_conveyorSpawnPointCalculator = new ConveyorSpawnPointCalculator(conveyorSpawnPointConfig, conveyorMeshBuilder, splineContainer, GetSpawnRoot(), base.transform);
+			_conveyorSpawnPointCalculator = new ConveyorSpawnPointCalculator(conveyorSpawnPointConfig, conveyorMeshBuilder, Path, GetSpawnRoot(), base.transform);
 		}
 		if (_deliveryCubeFactory == null)
 		{
@@ -220,11 +215,28 @@ public class ConveyorDeliverySystem : MonoSingleton<ConveyorDeliverySystem>, ICo
 
 	private void Update()
 	{
+		UpdateLunaManualCubeMovement(Time.unscaledDeltaTime);
 		ConveyorCornerDetector cornerDetector = GetCornerDetector();
 		if (_conveyorCubeSpeedController != null && !(cornerDetector == null))
 		{
 			_conveyorCubeSpeedController.BoostCubesPassingCorners(cornerDetector.CornerProgresses);
 			UpdatePickupDetection();
+		}
+	}
+
+	private void UpdateLunaManualCubeMovement(float deltaTime)
+	{
+		if (_deliveryStates == null || _deliveryStates.Count == 0)
+		{
+			return;
+		}
+		for (int i = _deliveryStates.Count - 1; i >= 0; i--)
+		{
+			DeliveryCubeState state = _deliveryStates[i];
+			if (state != null && !state.IsPickedUp && !(state.Cube == null))
+			{
+				state.Cube.ManualUpdate(deltaTime);
+			}
 		}
 	}
 
@@ -354,19 +366,13 @@ public class ConveyorDeliverySystem : MonoSingleton<ConveyorDeliverySystem>, ICo
 
 	private void SnapCubeToSplineProgress(Cube cube, float progress)
 	{
-		if (!(cube == null) && !(splineContainer == null) && splineContainer.Spline != null)
+		ConveyorPathRuntime path = Path;
+		if (!(cube == null) && path != null && path.IsValid)
 		{
 			float normalizedProgress = Mathf.Repeat(progress, 1f);
-			float3 localPosition = splineContainer.Spline.EvaluatePosition(normalizedProgress);
-			Vector3 worldPosition = splineContainer.transform.TransformPoint(localPosition);
+			Vector3 worldPosition = path.EvaluateWorldPosition(normalizedProgress);
 			cube.transform.position = worldPosition;
 			cube.SyncProgress(normalizedProgress);
-			if (cube.TryGetComponent<Rigidbody>(out var rb))
-			{
-				rb.position = worldPosition;
-				rb.velocity = Vector3.zero;
-				rb.angularVelocity = Vector3.zero;
-			}
 		}
 	}
 
@@ -469,7 +475,7 @@ public class ConveyorDeliverySystem : MonoSingleton<ConveyorDeliverySystem>, ICo
 				progressOffset += 1f;
 			}
 		}
-		cube.Setup(splineContainer, progress, progressOffset, deliveryTarget);
+		cube.Setup(Path, progress, progressOffset, deliveryTarget);
 		DeliveryCubeState state = new DeliveryCubeState(cube, carrier, payload.BlockColorType, payload.Color, undoBatchId);
 		state.PreviousProgress = Mathf.Repeat(progress, 1f);
 		state.PreviousProgressCorner = state.PreviousProgress;
@@ -554,9 +560,9 @@ public class ConveyorDeliverySystem : MonoSingleton<ConveyorDeliverySystem>, ICo
 		}
 		foreach (Cube follower in cachedMovers)
 		{
-			if (follower != null)
+			if (!(follower == null))
 			{
-				MonoSingleton<PoolManagerNew>.Instance.PushToPool(follower);
+				UnityEngine.Object.Destroy(follower.gameObject);
 			}
 		}
 		cachedMovers.Clear();
@@ -568,9 +574,9 @@ public class ConveyorDeliverySystem : MonoSingleton<ConveyorDeliverySystem>, ICo
 		for (int i = _activeAnimCubes.Count - 1; i >= 0; i--)
 		{
 			AnimCube animCube = _activeAnimCubes[i];
-			if (animCube != null)
+			if (!(animCube == null))
 			{
-				MonoSingleton<PoolManagerNew>.Instance.PushToPool(animCube);
+				UnityEngine.Object.Destroy(animCube.gameObject);
 			}
 		}
 		_activeAnimCubes.Clear();
@@ -581,7 +587,7 @@ public class ConveyorDeliverySystem : MonoSingleton<ConveyorDeliverySystem>, ICo
 		if (!(animCube == null))
 		{
 			_activeAnimCubes.Remove(animCube);
-			MonoSingleton<PoolManagerNew>.Instance.PushToPool(animCube);
+			UnityEngine.Object.Destroy(animCube.gameObject);
 			EvaluateLoseCondition();
 		}
 	}
@@ -934,7 +940,7 @@ public class ConveyorDeliverySystem : MonoSingleton<ConveyorDeliverySystem>, ICo
 		{
 			cachedMovers.Remove(cube);
 			RemoveDeliveryState(cube);
-			MonoSingleton<PoolManagerNew>.Instance.PushToPool(cube);
+			UnityEngine.Object.Destroy(cube.gameObject);
 			MonoSingleton<CapacityManager>.Instance.RemoveCube();
 		}
 	}
@@ -959,7 +965,13 @@ public class ConveyorDeliverySystem : MonoSingleton<ConveyorDeliverySystem>, ICo
 		if (_conveyorCubeSpeedController != null)
 		{
 			List<CarrierBase> carriers = MonoSingleton<CarrierSystem>.Instance?.CarrierSpawner?.SpawnedCarriers;
-			_conveyorCubeSpeedController.DrawPickupRanges(splineContainer, carriers);
+			ConveyorPathRuntime path = Path;
+			if (path == null && conveyorManager == null)
+			{
+				conveyorManager = GetComponent<ConveyorManager>();
+			}
+			path = Path;
+			_conveyorCubeSpeedController.DrawPickupRanges(path, carriers);
 		}
 	}
 }

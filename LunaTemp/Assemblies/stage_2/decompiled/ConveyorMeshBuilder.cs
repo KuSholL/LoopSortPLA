@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Splines;
 
 public class ConveyorMeshBuilder : MonoBehaviour
 {
@@ -68,7 +67,11 @@ public class ConveyorMeshBuilder : MonoBehaviour
 
 	private const string RoadObjectName = "GeneratedRoad";
 
+	private const string RoadBaseObjectName = "GeneratedRoadBase";
+
 	private const string RailObjectName = "GeneratedRails";
+
+	private const string RailVisualObjectName = "GeneratedRailVisual";
 
 	private const string RoadPlaneObjectName = "GeneratedRoadPlane";
 
@@ -94,8 +97,6 @@ public class ConveyorMeshBuilder : MonoBehaviour
 
 	private bool _revealProgressDirty;
 
-	private MaterialPropertyBlock _roadPropertyBlock;
-
 	private float _roadVisualLength;
 
 	private float _currentScrollOffset;
@@ -112,19 +113,25 @@ public class ConveyorMeshBuilder : MonoBehaviour
 
 	private MeshRenderer _roadMeshRenderer;
 
+	private Material _roadRuntimeMaterial;
+
+	private Material _lunaRoadBaseMaterial;
+
+	private Material _lunaRailMaterial;
+
 	public float GetUsableRoadHalfWidth(float edgePadding = 0f)
 	{
 		float usableHalfWidth = roadWidth * 0.5f - railWidth;
 		return Mathf.Max(0f, usableHalfWidth - Mathf.Max(0f, edgePadding));
 	}
 
-	public float GetApproximateRoadLength(SplineContainer container)
+	public float GetApproximateRoadLength(ConveyorPathRuntime container)
 	{
-		if (container == null || container.Spline == null)
+		if (container == null || !container.IsValid)
 		{
 			return 0f;
 		}
-		bool isClosed = container.Spline.Closed;
+		bool isClosed = container.Closed;
 		int ringCount = GetRingCount();
 		Vector3 previousCenter = Vector3.zero;
 		float accumulatedLength = 0f;
@@ -149,9 +156,9 @@ public class ConveyorMeshBuilder : MonoBehaviour
 		return accumulatedLength;
 	}
 
-	public float GetProjectedRoadArea(SplineContainer container)
+	public float GetProjectedRoadArea(ConveyorPathRuntime container)
 	{
-		if (container == null || container.Spline == null)
+		if (container == null || !container.IsValid)
 		{
 			return 0f;
 		}
@@ -162,25 +169,22 @@ public class ConveyorMeshBuilder : MonoBehaviour
 	}
 
 	[ContextMenu("Rebuild")]
-	public void Rebuild(SplineContainer splineContainer)
+	public void Rebuild(ConveyorPathRuntime splineContainer)
 	{
-		if (!(splineContainer == null) && splineContainer.Spline != null)
+		if (splineContainer != null && splineContainer.IsValid)
 		{
 			_roadChild = null;
 			_roadMeshRenderer = null;
 			EnsureRoadRoot(out var roadObject);
 			UpdateRoadVisual(splineContainer, roadObject);
-			UpdateRoadPlaneCollider(splineContainer, roadObject.transform);
-			EnsureRailColliderObject(out var railObject, out var railCollider);
-			ClearRailColliderMesh(railCollider);
-			RemoveRenderComponents(railObject);
-			railCollider.sharedMesh = BuildRailMesh(splineContainer);
+			UpdateLunaSolidRoadVisual(splineContainer);
+			RemoveLunaGeneratedPhysics(roadObject.transform);
 		}
 	}
 
-	private Mesh BuildRoadMesh(SplineContainer container)
+	private Mesh BuildRoadMesh(ConveyorPathRuntime container)
 	{
-		bool isClosed = container.Spline.Closed;
+		bool isClosed = container.Closed;
 		int ringCount = GetRingCount();
 		int segmentCount = (isClosed ? ringCount : (ringCount - 1));
 		int vertsPerRing = 4;
@@ -241,7 +245,7 @@ public class ConveyorMeshBuilder : MonoBehaviour
 		return mesh;
 	}
 
-	private Mesh BuildRailMesh(SplineContainer container)
+	private Mesh BuildRailMesh(ConveyorPathRuntime container)
 	{
 		if (railWidth <= 0f || railHeight <= 0f)
 		{
@@ -266,9 +270,9 @@ public class ConveyorMeshBuilder : MonoBehaviour
 		return mesh;
 	}
 
-	private void BuildSingleRail(SplineContainer container, float sideSign, List<Vector3> vertices, List<Vector3> normals, List<Vector2> uvs, List<int> triangles)
+	private void BuildSingleRail(ConveyorPathRuntime container, float sideSign, List<Vector3> vertices, List<Vector3> normals, List<Vector2> uvs, List<int> triangles)
 	{
-		bool isClosed = container.Spline.Closed;
+		bool isClosed = container.Closed;
 		int ringCount = GetRingCount();
 		int segmentCount = (isClosed ? ringCount : (ringCount - 1));
 		List<Vector2> profilePoints = new List<Vector2>();
@@ -397,12 +401,12 @@ public class ConveyorMeshBuilder : MonoBehaviour
 		return distance;
 	}
 
-	private void SampleFrame(SplineContainer container, float t, out Vector3 center, out Vector3 forward, out Vector3 up, out Vector3 right)
+	private void SampleFrame(ConveyorPathRuntime container, float t, out Vector3 center, out Vector3 forward, out Vector3 up, out Vector3 right)
 	{
 		container.Evaluate(t, out var pos, out var tangent, out var upVector);
-		center = pos;
-		forward = ((Vector3)tangent).normalized;
-		up = ((Vector3)upVector).normalized;
+		center = container.TransformPoint(pos);
+		forward = container.TransformDirection(tangent).normalized;
+		up = container.TransformDirection(upVector).normalized;
 		if (forward.sqrMagnitude < 0.0001f)
 		{
 			forward = Vector3.forward;
@@ -426,7 +430,7 @@ public class ConveyorMeshBuilder : MonoBehaviour
 		roadObject.transform.localPosition = RoadVisualOffset;
 	}
 
-	private void UpdateRoadVisual(SplineContainer splineContainer, GameObject roadObject)
+	private void UpdateRoadVisual(ConveyorPathRuntime splineContainer, GameObject roadObject)
 	{
 		Mesh roadMesh = BuildRoadVisualMesh(splineContainer);
 		EnsureRoadComponents(roadObject, out var meshFilter, out var meshRenderer);
@@ -435,22 +439,48 @@ public class ConveyorMeshBuilder : MonoBehaviour
 		ApplyRoadShaderData(meshRenderer, splineContainer);
 	}
 
-	private void ApplyRoadShaderData(MeshRenderer meshRenderer, SplineContainer splineContainer)
+	private void UpdateLunaSolidRoadVisual(ConveyorPathRuntime splineContainer)
+	{
+		EnsureGeneratedMeshVisual("GeneratedRoadBase", BuildRoadMesh(splineContainer), ref _lunaRoadBaseMaterial, new Color(0.42f, 0.42f, 0.58f, 1f), "LunaRoadBaseMaterial", new Vector3(0f, -0.08f, 0f), roadMaterial);
+		EnsureGeneratedMeshVisual("GeneratedRailVisual", BuildRailMesh(splineContainer), ref _lunaRailMaterial, new Color(0.77f, 0.78f, 0.96f, 1f), "LunaRailMaterial", Vector3.zero);
+	}
+
+	private void EnsureGeneratedMeshVisual(string objectName, Mesh mesh, ref Material material, Color color, string materialName, Vector3 localOffset, Material sourceMaterial = null)
+	{
+		Transform childTransform = base.transform.Find(objectName);
+		GameObject visualObject = ((childTransform == null) ? new GameObject(objectName) : childTransform.gameObject);
+		visualObject.transform.SetParent(base.transform, false);
+		visualObject.transform.localPosition = localOffset;
+		visualObject.transform.localRotation = Quaternion.identity;
+		visualObject.transform.localScale = Vector3.one;
+		MeshFilter meshFilter = visualObject.GetComponent<MeshFilter>();
+		if (meshFilter == null)
+		{
+			meshFilter = visualObject.AddComponent<MeshFilter>();
+		}
+		MeshRenderer meshRenderer = visualObject.GetComponent<MeshRenderer>();
+		if (meshRenderer == null)
+		{
+			meshRenderer = visualObject.AddComponent<MeshRenderer>();
+		}
+		ReplaceMesh(meshFilter, mesh);
+		if (material == null)
+		{
+			material = ((sourceMaterial != null) ? LunaMaterialUtility.CreateRuntimeMaterial(sourceMaterial, color) : LunaMaterialUtility.CreateRuntimeMaterial(color, materialName));
+		}
+		meshRenderer.sharedMaterial = material;
+	}
+
+	private void ApplyRoadShaderData(MeshRenderer meshRenderer, ConveyorPathRuntime splineContainer)
 	{
 		if (meshRenderer == null || splineContainer == null)
 		{
 			return;
 		}
-		if (_roadPropertyBlock == null)
-		{
-			_roadPropertyBlock = new MaterialPropertyBlock();
-		}
-		meshRenderer.GetPropertyBlock(_roadPropertyBlock);
-		_roadPropertyBlock.SetFloat(RoadLengthId, _roadVisualLength);
-		_roadPropertyBlock.SetFloat(ClosedLoopId, splineContainer.Spline.Closed ? 1f : 0f);
-		_roadPropertyBlock.SetFloat(RevealProgressId, _revealProgress);
-		meshRenderer.SetPropertyBlock(_roadPropertyBlock);
-		_isClosed = splineContainer.Spline.Closed;
+		SetRoadFloat(RoadLengthId, _roadVisualLength);
+		SetRoadFloat(ClosedLoopId, splineContainer.Closed ? 1f : 0f);
+		SetRoadFloat(RevealProgressId, _revealProgress);
+		_isClosed = splineContainer.Closed;
 		if (_roadChild == null)
 		{
 			_roadChild = base.transform.Find("GeneratedRoad");
@@ -494,20 +524,14 @@ public class ConveyorMeshBuilder : MonoBehaviour
 		}
 		if ((bool)_roadMeshRenderer)
 		{
-			if (_roadPropertyBlock == null)
-			{
-				_roadPropertyBlock = new MaterialPropertyBlock();
-			}
-			_roadMeshRenderer.GetPropertyBlock(_roadPropertyBlock);
-			_roadPropertyBlock.SetFloat(RevealProgressId, _revealProgress);
-			_roadMeshRenderer.SetPropertyBlock(_roadPropertyBlock);
+			SetRoadFloat(RevealProgressId, _revealProgress);
 			_revealProgressDirty = false;
 		}
 	}
 
-	private Mesh BuildRoadVisualMesh(SplineContainer container)
+	private Mesh BuildRoadVisualMesh(ConveyorPathRuntime container)
 	{
-		bool isClosed = container.Spline.Closed;
+		bool isClosed = container.Closed;
 		int sampleRingCount = GetRoadVisualRingCount();
 		int ringCount = (isClosed ? (sampleRingCount + 1) : sampleRingCount);
 		int segmentCount = ringCount - 1;
@@ -546,7 +570,7 @@ public class ConveyorMeshBuilder : MonoBehaviour
 		return (float)index / (float)sampleRingCount;
 	}
 
-	private void FillRoadVisualRing(SplineContainer container, float sampleTime, int ringIndex, bool hasPrevious, float halfWidth, ref float accumulatedLength, ref Vector3 previousCenter, Vector3[] vertices, Vector3[] normals, Vector2[] uvs)
+	private void FillRoadVisualRing(ConveyorPathRuntime container, float sampleTime, int ringIndex, bool hasPrevious, float halfWidth, ref float accumulatedLength, ref Vector3 previousCenter, Vector3[] vertices, Vector3[] normals, Vector2[] uvs)
 	{
 		SampleFrame(container, sampleTime, out var center, out var _, out var up, out var right);
 		if (hasPrevious)
@@ -637,22 +661,43 @@ public class ConveyorMeshBuilder : MonoBehaviour
 	{
 		if (roadMaterial != null)
 		{
-			meshRenderer.sharedMaterial = roadMaterial;
+			if (Application.isPlaying)
+			{
+				if (_roadRuntimeMaterial != null && _roadRuntimeMaterial != roadMaterial)
+				{
+					DestroyObject(_roadRuntimeMaterial);
+				}
+				_roadRuntimeMaterial = new Material(roadMaterial)
+				{
+					name = roadMaterial.name + "_Runtime"
+				};
+				meshRenderer.sharedMaterial = _roadRuntimeMaterial;
+			}
+			else
+			{
+				meshRenderer.sharedMaterial = roadMaterial;
+				_roadRuntimeMaterial = roadMaterial;
+			}
 		}
-		else if (!(meshRenderer.sharedMaterial != null))
+		else if (meshRenderer.sharedMaterial != null)
+		{
+			_roadRuntimeMaterial = meshRenderer.sharedMaterial;
+		}
+		else
 		{
 			Shader shader = Shader.Find("Custom/SplineFollowerRoad");
 			if (!(shader == null))
 			{
 				meshRenderer.sharedMaterial = new Material(shader)
 				{
-					name = "GeneratedRoadMaterial"
+					name = "GeneratedRoadMaterial_Runtime"
 				};
+				_roadRuntimeMaterial = meshRenderer.sharedMaterial;
 			}
 		}
 	}
 
-	private void UpdateRoadPlaneCollider(SplineContainer splineContainer, Transform roadRoot)
+	private void UpdateRoadPlaneCollider(ConveyorPathRuntime splineContainer, Transform roadRoot)
 	{
 		if (!generateRoadCollider)
 		{
@@ -706,6 +751,22 @@ public class ConveyorMeshBuilder : MonoBehaviour
 			Mesh previousMesh = meshCollider.sharedMesh;
 			meshCollider.sharedMesh = null;
 			DestroyObject(previousMesh);
+		}
+	}
+
+	private void RemoveLunaGeneratedPhysics(Transform roadRoot)
+	{
+		DestroyRoadPlane(roadRoot);
+		Transform railTransform = base.transform.Find("GeneratedRails");
+		if (!(railTransform == null))
+		{
+			MeshCollider railCollider = railTransform.GetComponent<MeshCollider>();
+			if (railCollider != null)
+			{
+				ClearRailColliderMesh(railCollider);
+				DestroyObject(railCollider);
+			}
+			RemoveRenderComponents(railTransform.gameObject);
 		}
 	}
 
@@ -871,18 +932,24 @@ public class ConveyorMeshBuilder : MonoBehaviour
 			}
 			_currentScrollOffset += Time.deltaTime * _currentShaderSpeed * timeScale;
 			_currentScrollOffset = Mathf.Repeat(_currentScrollOffset, _spacingForWrap);
-			if (_roadPropertyBlock == null)
-			{
-				_roadPropertyBlock = new MaterialPropertyBlock();
-			}
-			_roadMeshRenderer.GetPropertyBlock(_roadPropertyBlock);
-			_roadPropertyBlock.SetFloat(FollowerOffsetId, _currentScrollOffset);
+			SetRoadFloat(FollowerOffsetId, _currentScrollOffset);
 			if (_revealProgressDirty)
 			{
-				_roadPropertyBlock.SetFloat(RevealProgressId, _revealProgress);
+				SetRoadFloat(RevealProgressId, _revealProgress);
 				_revealProgressDirty = false;
 			}
-			_roadMeshRenderer.SetPropertyBlock(_roadPropertyBlock);
+		}
+	}
+
+	private void SetRoadFloat(int propertyId, float value)
+	{
+		if (_roadRuntimeMaterial == null && _roadMeshRenderer != null)
+		{
+			_roadRuntimeMaterial = _roadMeshRenderer.sharedMaterial;
+		}
+		if (!(_roadRuntimeMaterial == null))
+		{
+			_roadRuntimeMaterial.SetFloat(propertyId, value);
 		}
 	}
 }

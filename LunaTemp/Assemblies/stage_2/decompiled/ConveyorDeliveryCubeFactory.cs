@@ -18,9 +18,17 @@ public class ConveyorDeliveryCubeFactory
 			Debug.LogError("[ConveyorDeliveryCubeFactory] AnimCube prefab is not assigned.");
 			return null;
 		}
-		AnimCube animCube = MonoSingleton<PoolManagerNew>.Instance.PopFromPool(animCubePrefab, parent);
+		AnimCube animCube = Object.Instantiate(animCubePrefab, parent);
+		if (animCube.Trans == null)
+		{
+			animCube.Trans = animCube.transform;
+		}
+		LunaMaterialUtility.NormalizeRenderers(animCube.gameObject);
 		cacheList?.Add(animCube);
-		MonoSingleton<CustomTimeScaleGroup>.Instance.AddTarget(animCube);
+		if (MonoSingleton<CustomTimeScaleGroup>.Instance != null)
+		{
+			MonoSingleton<CustomTimeScaleGroup>.Instance.AddTarget(animCube);
+		}
 		return animCube;
 	}
 
@@ -32,9 +40,17 @@ public class ConveyorDeliveryCubeFactory
 			Debug.LogError("[ConveyorDeliveryCubeFactory] Cube prefab is not assigned.");
 			return null;
 		}
-		Cube instance = MonoSingleton<PoolManagerNew>.Instance.PopFromPool(cube);
+		Cube instance = Object.Instantiate(cube);
+		if (instance.Trans == null)
+		{
+			instance.Trans = instance.transform;
+		}
+		LunaMaterialUtility.NormalizeRenderers(instance.gameObject);
 		instance.Trans.localScale = _cubeConfig.CubeDefaultScale;
-		MonoSingleton<CustomTimeScaleGroup>.Instance.AddTarget(instance);
+		if (MonoSingleton<CustomTimeScaleGroup>.Instance != null)
+		{
+			MonoSingleton<CustomTimeScaleGroup>.Instance.AddTarget(instance);
+		}
 		return instance;
 	}
 

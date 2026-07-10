@@ -123,12 +123,9 @@ public sealed class Key3DCodeAnimator : MonoBehaviour
 	{
 		if (!(target == null))
 		{
-			MaterialPropertyBlock block = new MaterialPropertyBlock();
 			for (int i = 0; i < target.sharedMaterials.Length; i++)
 			{
-				target.GetPropertyBlock(block, i);
-				block.SetColorEntry(entry);
-				target.SetPropertyBlock(block, i);
+				target.ApplyColorEntry(entry, i);
 			}
 		}
 	}

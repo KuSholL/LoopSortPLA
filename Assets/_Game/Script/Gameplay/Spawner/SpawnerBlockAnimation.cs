@@ -45,9 +45,22 @@ public sealed class SpawnerBlockAnimation : MonoBehaviour, ICustomTimeScaleTarge
 
     public void Play(Block block, Action onComplete = null)
     {
+#if UNITY_LUNA
+        Cancel();
+        if (block != null)
+        {
+            block.transform.localPosition = Vector3.zero;
+            block.transform.localScale = Vector3.one;
+            block.SetPhysicsCollidersEnabled(true);
+            block.SetVisualCubes(block.GetCurrentCubes(), true);
+        }
+        onComplete?.Invoke();
+        return;
+#else
         Cancel();
         _animationVersion++;
         _animationRoutine = StartCoroutine(PlayRoutine(block, onComplete, _animationVersion));
+#endif
     }
 
     public void Cancel()

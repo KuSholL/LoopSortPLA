@@ -1,15 +1,22 @@
 using System;
 using UnityEngine;
-using UnityEngine.Splines;
 
 public class Cube : CubeBase
 {
     [SerializeField] private CubeMovement cubeMovement;
 
-    public void Setup(SplineContainer splineContainer, float startProgress = 0f, float progressOffset = 0f, Vector3? initialWorldPosition = null)
+    public void Setup(ConveyorPathRuntime splineContainer, float startProgress = 0f, float progressOffset = 0f, Vector3? initialWorldPosition = null)
     {
         cubeMovement.Setup(splineContainer, startProgress, progressOffset, initialWorldPosition);
     }
+
+#if UNITY_LUNA
+    public void ManualUpdate(float deltaTime)
+    {
+        if (!cubeMovement) return;
+        cubeMovement.ManualUpdate(deltaTime);
+    }
+#endif
 
     public bool HasCompletedLap()
     {
