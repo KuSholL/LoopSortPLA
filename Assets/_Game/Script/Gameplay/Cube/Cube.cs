@@ -10,14 +10,6 @@ public class Cube : CubeBase
         cubeMovement.Setup(splineContainer, startProgress, progressOffset, initialWorldPosition);
     }
 
-#if UNITY_LUNA
-    public void ManualUpdate(float deltaTime)
-    {
-        if (!cubeMovement) return;
-        cubeMovement.ManualUpdate(deltaTime);
-    }
-#endif
-
     public bool HasCompletedLap()
     {
         return cubeMovement && cubeMovement.HasCompletedLap();

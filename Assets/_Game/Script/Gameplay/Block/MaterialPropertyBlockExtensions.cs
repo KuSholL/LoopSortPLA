@@ -45,6 +45,7 @@ public static class RendererMaterialExtensions
     public static void ApplyColor(this Renderer renderer, int propertyId, UnityEngine.Color value, int materialIndex = -1)
     {
         if (renderer == null) return;
+        value = LunaMaterialUtility.TuneColorForLuna(value);
         var materials = EnsureRuntimeMaterials(renderer);
         if (materials == null || materials.Length == 0) return;
 
@@ -127,17 +128,14 @@ public static class LunaMaterialUtility
 
     public static void NormalizeRenderers(GameObject root)
     {
-#if UNITY_LUNA
         if (root == null) return;
         var renderers = root.GetComponentsInChildren<Renderer>(true);
         for (var i = 0; i < renderers.Length; i++)
             NormalizeRenderer(renderers[i]);
-#endif
     }
 
     public static void NormalizeRenderer(Renderer renderer)
     {
-#if UNITY_LUNA
         if (renderer == null) return;
         var materials = renderer.sharedMaterials;
         if (materials == null || materials.Length == 0) return;
@@ -153,25 +151,16 @@ public static class LunaMaterialUtility
         }
 
         if (changed) renderer.sharedMaterials = materials;
-#endif
     }
 
     public static Material CreateRuntimeMaterial(Material source)
     {
         if (source == null) return null;
-#if UNITY_LUNA
-        var shader = GetFallbackShader();
-        var material = shader != null ? new Material(shader) : new Material(source);
+        var material = new Material(source);
         material.name = source.name + RuntimeMaterialSuffix;
         CopyMainTexture(source, material);
         CopyVisualProperties(source, material);
         return material;
-#else
-        return new Material(source)
-        {
-            name = source.name + RuntimeMaterialSuffix
-        };
-#endif
     }
 
     public static Material CreateRuntimeMaterial(Material source, Color fallbackColor)
@@ -183,21 +172,12 @@ public static class LunaMaterialUtility
 
     public static Material CreateRuntimeMaterial(Color color, string materialName)
     {
-#if UNITY_LUNA
         var shader = GetFallbackShader();
         if (shader == null) return null;
         var material = new Material(shader);
         material.name = (string.IsNullOrEmpty(materialName) ? "PLA_RuntimeMaterial" : materialName) + RuntimeMaterialSuffix;
         ApplyColor(material, color);
         return material;
-#else
-        var shader = Shader.Find("Standard");
-        if (shader == null) return null;
-        var material = new Material(shader);
-        material.name = string.IsNullOrEmpty(materialName) ? "PLA_RuntimeMaterial" : materialName;
-        ApplyColor(material, color);
-        return material;
-#endif
     }
 
     private static Shader GetFallbackShader()
@@ -231,9 +211,10 @@ public static class LunaMaterialUtility
     private static void ApplyColor(Material material, Color color)
     {
         if (material == null) return;
+        color = TuneColorForLuna(color);
         if (material.HasProperty(BaseColorId)) material.SetColor(BaseColorId, color);
         if (material.HasProperty(ColorId)) material.SetColor(ColorId, color);
-        if (material.HasProperty(HighlightColorId)) material.SetColor(HighlightColorId, Color.Lerp(color, Color.white, 0.55f));
+        if (material.HasProperty(HighlightColorId)) material.SetColor(HighlightColorId, Color.Lerp(color, Color.white, 0.38f));
         if (material.HasProperty(ShadowColorId)) material.SetColor(ShadowColorId, Color.Lerp(color, Color.black, 0.42f));
     }
 
@@ -264,8 +245,8 @@ public static class LunaMaterialUtility
         CopyFloat(source, target, ReflectIntensityId);
         ClampMinimumFloat(target, SpecularToonSizeId, 0.22f);
         ClampMinimumFloat(target, SpecularToonSmoothnessId, 0.035f);
-        ClampMinimumFloat(target, SpecularIntensityId, 0.65f);
-        ClampMinimumFloat(target, ReflectIntensityId, 0.2f);
+        ClampMinimumFloat(target, SpecularIntensityId, 0.35f);
+        ClampMinimumFloat(target, ReflectIntensityId, 0.08f);
     }
 
     private static void CopyColor(Material source, Material target, int sourceId)
@@ -277,7 +258,9 @@ public static class LunaMaterialUtility
     {
         if (source == null || target == null) return;
         if (!source.HasProperty(sourceId) || !target.HasProperty(targetId)) return;
-        target.SetColor(targetId, source.GetColor(sourceId));
+        var color = source.GetColor(sourceId);
+        color = TuneColorForLuna(color);
+        target.SetColor(targetId, color);
     }
 
     private static void CopyFloat(Material source, Material target, int propertyId)
@@ -303,5 +286,23 @@ public static class LunaMaterialUtility
         target.SetTexture(MainTexId, texture);
         target.SetTextureScale(MainTexId, source.GetTextureScale(MainTexId));
         target.SetTextureOffset(MainTexId, source.GetTextureOffset(MainTexId));
+    }
+
+    public static Color TuneColorForLuna(Color color)
+    {
+        var alpha = color.a;
+        var maxChannel = Mathf.Max(color.r, Mathf.Max(color.g, color.b));
+        if (maxChannel > 0.72f)
+        {
+            var t = Mathf.InverseLerp(0.72f, 1f, maxChannel);
+            var scale = Mathf.Lerp(1f, 0.84f, t);
+            color.r *= scale;
+            color.g *= scale;
+            color.b *= scale;
+        }
+
+        color = Color.Lerp(color, Color.black, 0.06f);
+        color.a = alpha;
+        return color;
     }
 }

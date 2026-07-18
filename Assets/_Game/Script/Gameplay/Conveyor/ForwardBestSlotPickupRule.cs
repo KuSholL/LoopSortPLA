@@ -214,7 +214,8 @@ public sealed class ForwardBestSlotPickupRule
     private static bool CanReturnToSourceCarrier(DeliveryCubeState state, CarrierBase targetCarrier)
     {
         if (state.SourceCarrier != targetCarrier) return true;
-        return state.Cube != null && state.Cube.HasCompletedLap();
+        return state.CanReturnToSourceCarrier
+               || (state.Cube != null && state.Cube.HasCompletedLap());
     }
 
     private static bool IsCarrierEmpty(CarrierBase carrier)

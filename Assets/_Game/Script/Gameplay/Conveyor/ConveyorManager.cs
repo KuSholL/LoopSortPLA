@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
-using DG.Tweening;
 #if UNITY_EDITOR
 using Unity.Mathematics;
 using UnityEngine.Splines;
@@ -34,13 +33,6 @@ public class ConveyorManager : MonoBehaviour
 
     private readonly List<InstantiatedSegmentData> _instantiatedSegments = new List<InstantiatedSegmentData>();
 
-    private LevelEntryAnimConfigSO EntryConfig =>
-        LevelManager.Instance != null ? LevelManager.Instance.LevelEntryAnimConfig : null;
-    private float RevealDelay => EntryConfig != null ? EntryConfig.ConveyorRevealDelay : 0.1f;
-    private float RevealDuration => EntryConfig != null ? EntryConfig.ConveyorRevealDuration : 1f;
-    private DG.Tweening.Ease RevealEase => EntryConfig != null ? EntryConfig.ConveyorRevealEase : DG.Tweening.Ease.OutCubic;
-
-    private Tween _revealTween;
     private readonly ConveyorPathRuntime _path = new ConveyorPathRuntime();
 
     public ConveyorPathRuntime Path => _path;
@@ -48,12 +40,7 @@ public class ConveyorManager : MonoBehaviour
     private void Awake()
     {
         CacheInstantiatedSegments();
-        SetRevealProgress(0f);
-    }
-
-    private void OnDestroy()
-    {
-        if (_revealTween != null) _revealTween.Kill();
+        SetRevealProgress(1f);
     }
 
     public IEnumerator InitConveyor(SplinePathData splinePathData)
@@ -79,11 +66,7 @@ public class ConveyorManager : MonoBehaviour
 #endif
 
         CacheInstantiatedSegments();
-#if UNITY_LUNA
         SetRevealProgress(1f);
-#else
-        SetRevealProgress(0f);
-#endif
         var pathRoot = GetPathRoot();
         if (pathRoot != null) LunaMaterialUtility.NormalizeRenderers(pathRoot.gameObject);
     }
@@ -104,7 +87,6 @@ public class ConveyorManager : MonoBehaviour
         {
             var mapPoints = splinePathData.GetMapPointsInOrder();
             BuildBakedSpline(conveyorContainer.Spline, mapPoints, splinePathData.Closed);
-            _path.UseEditorSpline(conveyorContainer);
         }
 #endif
         if (conveyorCornerDetector != null) conveyorCornerDetector.UpdateCornerProgresses(_path, splinePathData.Closed);
@@ -388,39 +370,7 @@ public class ConveyorManager : MonoBehaviour
 
     public IEnumerator PlayRevealAnimation()
     {
-#if UNITY_LUNA
         SetRevealProgress(1f);
         yield break;
-#endif
-        if (_revealTween != null) _revealTween.Kill();
-        SetRevealProgress(0f);
-        if (RevealDelay > 0f)
-        {
-            yield return new WaitForSeconds(RevealDelay);
-        }
-
-        _revealTween = DOTween.To(SetRevealProgress, 0f, 1f, RevealDuration)
-            .SetEase(RevealEase)
-            .SetUpdate(true)
-            .SetTarget(this);
-
-        var elapsed = 0f;
-        var timeout = Mathf.Max(0.05f, RevealDuration + 0.25f);
-        while (_revealTween != null
-               && _revealTween.IsActive()
-               && !_revealTween.IsComplete()
-               && elapsed < timeout)
-        {
-            elapsed += Time.unscaledDeltaTime;
-            yield return null;
-        }
-
-        if (_revealTween != null && _revealTween.IsActive() && !_revealTween.IsComplete())
-        {
-            _revealTween.Kill();
-        }
-
-        _revealTween = null;
-        SetRevealProgress(1f);
     }
 }

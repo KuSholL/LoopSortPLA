@@ -97,21 +97,34 @@ public class ConveyorDeliverySystem : MonoSingleton<ConveyorDeliverySystem>, ICo
     private const float WrapCurrentProgressThreshold = 0.2f;
     private static readonly int BlinkEnabledId = Shader.PropertyToID("_BlinkEnabled");
     private static readonly int BlinkStartTimeId = Shader.PropertyToID("_BlinkStartTime");
+    private bool _hasAppliedBlinkState;
+    private bool _appliedBlinkState;
 
     #region Prelose Shader  
     
-    private void ApplyBlinkToFirstRenderer(bool active)
+    private void ApplyBlinkToRenderers(bool active)
     {
         var root = GetInstancesRoot();
         if (root == null) return;
-        var conveyorRenderer = root.GetComponentInChildren<Renderer>(true);
-        if (!conveyorRenderer) return;
-        SetBlinkEnabled(conveyorRenderer.sharedMaterial, active);
+
+        // This scan only runs when the warning state changes (normally twice per
+        // level), not once per cube or once per frame.
+        var renderers = root.GetComponentsInChildren<Renderer>(true);
+        for (var rendererIndex = 0; rendererIndex < renderers.Length; rendererIndex++)
+        {
+            var renderer = renderers[rendererIndex];
+            if (renderer == null) continue;
+            var materials = renderer.sharedMaterials;
+            for (var materialIndex = 0; materialIndex < materials.Length; materialIndex++)
+            {
+                SetBlinkEnabled(materials[materialIndex], active);
+            }
+        }
     }
 
     private void SetBlinkEnabled(Material material, bool active)
     {
-        if (!material) return;
+        if (!material || !material.HasProperty(BlinkEnabledId)) return;
         if (material.GetFloat(BlinkEnabledId) > 0.5f == active) return;
         if (active) material.SetFloat(BlinkStartTimeId, Time.time);
         material.SetFloat(BlinkEnabledId, active ? 1f : 0f);
@@ -205,27 +218,11 @@ public class ConveyorDeliverySystem : MonoSingleton<ConveyorDeliverySystem>, ICo
 
     private void Update()
     {
-#if UNITY_LUNA
-        UpdateLunaManualCubeMovement(Time.unscaledDeltaTime);
-#endif
         var cornerDetector = GetCornerDetector();
         if (_conveyorCubeSpeedController == null || cornerDetector == null) return;
         _conveyorCubeSpeedController.BoostCubesPassingCorners(cornerDetector.CornerProgresses);
         UpdatePickupDetection();
     }
-
-#if UNITY_LUNA
-    private void UpdateLunaManualCubeMovement(float deltaTime)
-    {
-        if (_deliveryStates == null || _deliveryStates.Count == 0) return;
-        for (var i = _deliveryStates.Count - 1; i >= 0; i--)
-        {
-            var state = _deliveryStates[i];
-            if (state == null || state.IsPickedUp || state.Cube == null) continue;
-            state.Cube.ManualUpdate(deltaTime);
-        }
-    }
-#endif
 
     private void UpdatePickupDetection()
     {
@@ -253,6 +250,7 @@ public class ConveyorDeliverySystem : MonoSingleton<ConveyorDeliverySystem>, ICo
             var cube = state.Cube;
             var cubeProgress = cube.GetProgress();
             var previousProgress = state.PreviousProgress;
+            state.TrackProgress(cubeProgress);
             var pickedUp = false;
             
             for (var j = 0; j < carrierCount; j++)
@@ -261,7 +259,14 @@ public class ConveyorDeliverySystem : MonoSingleton<ConveyorDeliverySystem>, ICo
                 if (carrier == null || !carrier.Interactable) continue;
                 
                 var pickupProgress = _cachedCarrierPickupProgresses[j];
-                if (!HasReachedPickupProgress(previousProgress, cubeProgress, pickupProgress)) continue;
+                var crossedPickup = HasReachedPickupProgress(previousProgress, cubeProgress, pickupProgress);
+                var insideRetryWindow = state.IsInsidePickupRetryWindow(
+                    carrier,
+                    cubeProgress,
+                    pickupProgress,
+                    GetPickupRetryWindow());
+                if (!crossedPickup && !insideRetryWindow) continue;
+                state.NotifyPickupPointReached(carrier, pickupProgress);
                 if (!TryPickupState(state, carrier, pickupProgress)) continue;
 
                 pickedUp = true;
@@ -310,6 +315,15 @@ public class ConveyorDeliverySystem : MonoSingleton<ConveyorDeliverySystem>, ICo
     private float GetPickupProgressEpsilon()
     {
         return Mathf.Clamp(pickupThreshold, 0.00001f, MaxPickupProgressEpsilon);
+    }
+
+    private float GetPickupRetryWindow()
+    {
+        // Keep the exact crossing epsilon small, but use the scene's configured
+        // threshold as a short post-pickup retry zone. This lets a following cube
+        // retry after an in-flight reservation/animation changes during a dense
+        // batch instead of losing the pickup opportunity for an entire lap.
+        return Mathf.Clamp(pickupThreshold, MaxPickupProgressEpsilon, 0.05f);
     }
     #endregion
 
@@ -361,14 +375,10 @@ public class ConveyorDeliverySystem : MonoSingleton<ConveyorDeliverySystem>, ICo
         cube.transform.position = worldPosition;
         cube.SyncProgress(normalizedProgress);
 
-#if UNITY_LUNA
-        return;
-#else
         if (!cube.TryGetComponent<Rigidbody>(out var rb)) return;
         rb.position = worldPosition;
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
-#endif
     }
 
     /// <summary>
@@ -471,7 +481,7 @@ public class ConveyorDeliverySystem : MonoSingleton<ConveyorDeliverySystem>, ICo
         var cube = _deliveryCubeFactory.CreateCubeInstance();
         _deliveryCubeFactory.SetupCube(
             cube,
-            payload.StartWorldPosition,
+            deliveryTarget,
             payload.BlockColorType,
             GetSpawnRoot());
         float progressOffset = 0f;
@@ -485,7 +495,7 @@ public class ConveyorDeliverySystem : MonoSingleton<ConveyorDeliverySystem>, ICo
         }
         cube.Setup(Path, progress, progressOffset, deliveryTarget);
         var state = new DeliveryCubeState(cube, carrier, payload.BlockColorType, payload.Color, undoBatchId);
-        state.PreviousProgress = Mathf.Repeat(progress, 1f);
+        state.PreviousProgress = cube != null ? cube.GetProgress() : Mathf.Repeat(progress, 1f);
         state.PreviousProgressCorner = state.PreviousProgress;
         _deliveryStates.Add(state);
         cachedMovers.Add(cube);
@@ -594,11 +604,7 @@ public class ConveyorDeliverySystem : MonoSingleton<ConveyorDeliverySystem>, ICo
         foreach (var follower in cachedMovers)
         {
             if (follower == null) continue;
-#if UNITY_LUNA
-            Destroy(follower.gameObject);
-#else
-            PoolManagerNew.Instance.PushToPool(follower);
-#endif
+            _deliveryCubeFactory.ReleaseCube(follower);
         }
 
         cachedMovers.Clear();
@@ -614,11 +620,7 @@ public class ConveyorDeliverySystem : MonoSingleton<ConveyorDeliverySystem>, ICo
         {
             var animCube = _activeAnimCubes[i];
             if (animCube == null) continue;
-#if UNITY_LUNA
-            Destroy(animCube.gameObject);
-#else
-            PoolManagerNew.Instance.PushToPool(animCube);
-#endif
+            _deliveryCubeFactory.ReleaseAnimCube(animCube);
         }
         _activeAnimCubes.Clear();
     }
@@ -630,11 +632,7 @@ public class ConveyorDeliverySystem : MonoSingleton<ConveyorDeliverySystem>, ICo
     {
         if (animCube == null) return;
         _activeAnimCubes.Remove(animCube);
-#if UNITY_LUNA
-        Destroy(animCube.gameObject);
-#else
-        PoolManagerNew.Instance.PushToPool(animCube);
-#endif
+        _deliveryCubeFactory.ReleaseAnimCube(animCube);
         EvaluateLoseCondition();
     }
     
@@ -1004,7 +1002,18 @@ public class ConveyorDeliverySystem : MonoSingleton<ConveyorDeliverySystem>, ICo
     public void RefreshPreloseBlink()
     {
         var isPrelose = CapacityManager.Instance && CapacityManager.Instance.IsPrelose;
-        ApplyBlinkToFirstRenderer(isPrelose);
+        if (_hasAppliedBlinkState && _appliedBlinkState == isPrelose) return;
+        ApplyBlinkToRenderers(isPrelose);
+        _appliedBlinkState = isPrelose;
+        _hasAppliedBlinkState = true;
+    }
+
+    public void ResetPreloseBlinkMaterials()
+    {
+        _hasAppliedBlinkState = false;
+        ApplyBlinkToRenderers(false);
+        _appliedBlinkState = false;
+        _hasAppliedBlinkState = true;
     }
 
     /// <summary>
@@ -1031,11 +1040,7 @@ public class ConveyorDeliverySystem : MonoSingleton<ConveyorDeliverySystem>, ICo
         if (cube == null) return;
         cachedMovers.Remove(cube);
         RemoveDeliveryState(cube);
-#if UNITY_LUNA
-        Destroy(cube.gameObject);
-#else
-        PoolManagerNew.Instance.PushToPool(cube);
-#endif
+        _deliveryCubeFactory.ReleaseCube(cube);
         CapacityManager.Instance.RemoveCube();
     }
 

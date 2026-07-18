@@ -28,7 +28,34 @@ public class CubeMovementConfigSO : ScriptableObject
     public float RoadGripDelay = 0.1f;
 
     [Tooltip("Khoảng thời gian giữa hai lần cập nhật chuyển động của cube.")]
-    public float MovementInterval = 0.1f;
+    public float MovementInterval = 0.02f;
+
+    [Header("Anti Stall")]
+    [Tooltip("Nếu vận tốc tiến theo ray thấp hơn tỷ lệ này so với tốc độ mục tiêu, cube sẽ nhận thêm lực đẩy nhẹ để tránh kẹt chuỗi.")]
+    [Range(0f, 1f)] public float StallAssistSpeedRatio = 0.55f;
+
+    [Tooltip("Lực đẩy bổ sung theo hướng ray khi cube bị chậm/kẹt. Giữ nhỏ để vẫn bảo toàn va chạm cube-cube.")]
+    [Min(0f)] public float StallAssistAcceleration = 12f;
+
+    [Header("Flow Stabilizer")]
+    [Range(0f, 1f)] public float MinimumForwardSpeedRatio = 0.82f;
+    [Range(0f, 1f)] public float ForwardSpeedRecovery = 0.45f;
+    [Min(0f)] public float MaxForwardCorrection = 2.5f;
+    [Range(1f, 2f)] public float MaximumForwardSpeedRatio = 1.18f;
+    [Range(0f, 1f)] public float ForwardOverspeedDamping = 0.25f;
+
+    [Header("Road Boundary")]
+    [Tooltip("Khoảng lệch ngang tối đa từ tâm ray mà cube được phép nằm trước khi bị kéo về lane.")]
+    [Min(0.1f)] public float RoadMaxOffset = 0.68f;
+
+    [Tooltip("Lực kéo cube về lane khi bị ép sát/tràn khỏi mép ray.")]
+    [Min(0f)] public float RoadBoundaryForce = 260f;
+
+    [Tooltip("Độ dập vận tốc ngang khi cube bị đẩy lệch khỏi hướng ray.")]
+    [Min(0f)] public float RoadLateralDamping = 22f;
+
+    [Tooltip("Nếu cube vượt quá RoadMaxOffset + giá trị này thì clamp cứng về mép an toàn để tránh lọt khỏi ray.")]
+    [Min(0f)] public float RoadHardClampPadding = 0.12f;
 
     [Tooltip("Khoảng progress tối thiểu cube phải đi qua trước khi được phép nhận vào carrier.")]
     public float ReceiveOffset = 0.03f;

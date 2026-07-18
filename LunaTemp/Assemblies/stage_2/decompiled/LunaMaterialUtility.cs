@@ -87,8 +87,7 @@ public static class LunaMaterialUtility
 		{
 			return null;
 		}
-		Shader shader = GetFallbackShader();
-		Material material = ((shader != null) ? new Material(shader) : new Material(source));
+		Material material = new Material(source);
 		material.name = source.name + "_PLA_Runtime";
 		CopyMainTexture(source, material);
 		CopyVisualProperties(source, material);
@@ -178,6 +177,7 @@ public static class LunaMaterialUtility
 	{
 		if (!(material == null))
 		{
+			color = TuneColorForLuna(color);
 			if (material.HasProperty(BaseColorId))
 			{
 				material.SetColor(BaseColorId, color);
@@ -188,7 +188,7 @@ public static class LunaMaterialUtility
 			}
 			if (material.HasProperty(HighlightColorId))
 			{
-				material.SetColor(HighlightColorId, Color.Lerp(color, Color.white, 0.55f));
+				material.SetColor(HighlightColorId, Color.Lerp(color, Color.white, 0.38f));
 			}
 			if (material.HasProperty(ShadowColorId))
 			{
@@ -222,8 +222,8 @@ public static class LunaMaterialUtility
 			CopyFloat(source, target, ReflectIntensityId);
 			ClampMinimumFloat(target, SpecularToonSizeId, 0.22f);
 			ClampMinimumFloat(target, SpecularToonSmoothnessId, 0.035f);
-			ClampMinimumFloat(target, SpecularIntensityId, 0.65f);
-			ClampMinimumFloat(target, ReflectIntensityId, 0.2f);
+			ClampMinimumFloat(target, SpecularIntensityId, 0.35f);
+			ClampMinimumFloat(target, ReflectIntensityId, 0.08f);
 		}
 	}
 
@@ -236,7 +236,9 @@ public static class LunaMaterialUtility
 	{
 		if (!(source == null) && !(target == null) && source.HasProperty(sourceId) && target.HasProperty(targetId))
 		{
-			target.SetColor(targetId, source.GetColor(sourceId));
+			Color color = source.GetColor(sourceId);
+			color = TuneColorForLuna(color);
+			target.SetColor(targetId, color);
 		}
 	}
 
@@ -268,5 +270,22 @@ public static class LunaMaterialUtility
 				target.SetTextureOffset(MainTexId, source.GetTextureOffset(MainTexId));
 			}
 		}
+	}
+
+	public static Color TuneColorForLuna(Color color)
+	{
+		float alpha = color.a;
+		float maxChannel = Mathf.Max(color.r, Mathf.Max(color.g, color.b));
+		if (maxChannel > 0.72f)
+		{
+			float t = Mathf.InverseLerp(0.72f, 1f, maxChannel);
+			float scale = Mathf.Lerp(1f, 0.84f, t);
+			color.r *= scale;
+			color.g *= scale;
+			color.b *= scale;
+		}
+		color = Color.Lerp(color, Color.black, 0.06f);
+		color.a = alpha;
+		return color;
 	}
 }

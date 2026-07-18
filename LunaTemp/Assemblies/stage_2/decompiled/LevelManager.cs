@@ -152,6 +152,7 @@ public class LevelManager : MonoSingleton<LevelManager>
 
 	private IEnumerator LoadLevelRoutine(int levelIndex)
 	{
+		ConveyorPhysicsSetup.ConfigureGameplayCollisions();
 		IsLevelLoaded = false;
 		IsReplay = CurrentLevel != null;
 		InputController.Disable();
@@ -206,9 +207,6 @@ public class LevelManager : MonoSingleton<LevelManager>
 		if (conveyorManager != null)
 		{
 			conveyorManager.SetRevealProgress(1f);
-		}
-		if (carrierSystem != null)
-		{
 		}
 		if (carrierSystem != null && carrierSystem.CarrierSpawner != null)
 		{

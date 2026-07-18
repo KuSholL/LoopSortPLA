@@ -17304,7 +17304,7 @@
                     },
                     {
                         "name": "right#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "right#set",
@@ -17312,7 +17312,7 @@
                     },
                     {
                         "name": "up#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "up#set",
@@ -18258,7 +18258,7 @@
                     },
                     {
                         "name": "receiveShadows#set",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "shadowCastingMode#get",
@@ -18266,7 +18266,7 @@
                     },
                     {
                         "name": "shadowCastingMode#set",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "motionVectorGenerationMode#get",
@@ -23198,7 +23198,7 @@
                     },
                     {
                         "name": "GetCubeMovementConfig",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "GetRemainingColorConfig",
@@ -23264,7 +23264,7 @@
                     },
                     {
                         "name": "IsConveyorEmpty#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "HasActiveCubesOnConveyor#get",
@@ -23497,10 +23497,6 @@
                     {
                         "name": "OnDrawGizmos",
                         "excluded": true
-                    },
-                    {
-                        "name": "UpdateLunaManualCubeMovement",
-                        "excluded": false
                     }
                 ]
             },
@@ -23616,7 +23612,7 @@
                     },
                     {
                         "name": "TryGetNextLevelIndex",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "CancelPreloseDelay",
@@ -28650,7 +28646,7 @@
                     },
                     {
                         "name": "center#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "center#set",
@@ -29512,7 +29508,7 @@
                     },
                     {
                         "name": "ctor",
-                        "excluded": true
+                        "excluded": false
                     }
                 ]
             },
@@ -31669,6 +31665,10 @@
                     {
                         "name": "SetSwapArrowColor",
                         "excluded": false
+                    },
+                    {
+                        "name": "GetCubeFlightCenter",
+                        "excluded": false
                     }
                 ]
             },
@@ -32709,6 +32709,10 @@
                     {
                         "name": "SetPath",
                         "excluded": false
+                    },
+                    {
+                        "name": "NormalizeRotationY",
+                        "excluded": false
                     }
                 ]
             },
@@ -33351,6 +33355,14 @@
                     {
                         "name": "SetupCube",
                         "excluded": false
+                    },
+                    {
+                        "name": "ResetCubeTransform",
+                        "excluded": false
+                    },
+                    {
+                        "name": "GetDefaultScale",
+                        "excluded": false
                     }
                 ]
             },
@@ -33389,32 +33401,12 @@
                         "excluded": true
                     },
                     {
-                        "name": "EntryConfig#get",
-                        "excluded": false
-                    },
-                    {
-                        "name": "RevealDelay#get",
-                        "excluded": false
-                    },
-                    {
-                        "name": "RevealDuration#get",
-                        "excluded": false
-                    },
-                    {
-                        "name": "RevealEase#get",
-                        "excluded": false
-                    },
-                    {
                         "name": "Path#get",
                         "excluded": false
                     },
                     {
                         "name": "Awake",
                         "excluded": false
-                    },
-                    {
-                        "name": "OnDestroy",
-                        "excluded": true
                     },
                     {
                         "name": "InitConveyor",
@@ -33717,15 +33709,23 @@
                         "excluded": false
                     },
                     {
-                        "name": "UpdateLunaSolidRoadVisual",
+                        "name": "RemoveLunaVisualReplacementObjects",
                         "excluded": false
                     },
                     {
-                        "name": "EnsureGeneratedMeshVisual",
+                        "name": "DestroyChildIfExists",
                         "excluded": false
                     },
                     {
-                        "name": "RemoveLunaGeneratedPhysics",
+                        "name": "ConfigureLunaRoadRuntimeMaterial",
+                        "excluded": false
+                    },
+                    {
+                        "name": "BuildRailMesh$1",
+                        "excluded": false
+                    },
+                    {
+                        "name": "BuildRailColliderMesh",
                         "excluded": false
                     }
                 ]
@@ -33832,6 +33832,10 @@
                     },
                     {
                         "name": "GetSegment",
+                        "excluded": false
+                    },
+                    {
+                        "name": "RotateKnotTangent",
                         "excluded": false
                     }
                 ]
@@ -34244,7 +34248,7 @@
                 "instanceMethods": [
                     {
                         "name": "AreAllCarriersIdle",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "OnEnable",
@@ -34654,7 +34658,7 @@
                     },
                     {
                         "name": "TryGetSpecialReceiverTargetColor",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "GetActualPickupProgress",
@@ -34961,10 +34965,6 @@
                     {
                         "name": "SetCustomTimeScale",
                         "excluded": false
-                    },
-                    {
-                        "name": "ManualUpdate",
-                        "excluded": false
                     }
                 ]
             },
@@ -35018,7 +35018,7 @@
                     },
                     {
                         "name": "CanPotentiallyReceive",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "CanReceiveByMechanic",
@@ -35160,7 +35160,7 @@
                     },
                     {
                         "name": "IgnoreLayerCollision",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "Raycast$2",
@@ -38001,6 +38001,10 @@
                     {
                         "name": "ClampMinimumFloat",
                         "excluded": false
+                    },
+                    {
+                        "name": "TuneColorForLuna",
+                        "excluded": false
                     }
                 ]
             },
@@ -38555,10 +38559,6 @@
                         "excluded": false
                     },
                     {
-                        "name": "Update",
-                        "excluded": false
-                    },
-                    {
                         "name": "FixedUpdate",
                         "excluded": false
                     },
@@ -38668,7 +38668,7 @@
                     },
                     {
                         "name": "GetSplineWorldPosition",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "EnablePhysicsNextFrameAsync",
@@ -38707,11 +38707,19 @@
                         "excluded": false
                     },
                     {
-                        "name": "AdvanceAlongSplineManual",
+                        "name": "ApplyStallAssist",
                         "excluded": false
                     },
                     {
-                        "name": "ManualUpdate",
+                        "name": "ApplyRoadBoundaryAssist",
+                        "excluded": false
+                    },
+                    {
+                        "name": "StabilizeForwardVelocity",
+                        "excluded": false
+                    },
+                    {
+                        "name": "ResolveInitialProgress",
                         "excluded": false
                     }
                 ]
@@ -38891,6 +38899,24 @@
                     {
                         "name": "$clone",
                         "excluded": true
+                    }
+                ]
+            },
+            {
+                "className": "ConveyorPhysicsSetup",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "init",
+                        "excluded": false
+                    },
+                    {
+                        "name": "SetDeliveryCubeCollisionWith",
+                        "excluded": false
+                    },
+                    {
+                        "name": "ConfigureGameplayCollisions",
+                        "excluded": false
                     }
                 ]
             }

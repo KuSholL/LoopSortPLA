@@ -1568,6 +1568,8 @@ Deserializers["ConveyorMeshBuilder"] = function (request, data, root) {
   i1120.railLightingFromTop = i1121[14]
   i1120.generateRoadCollider = !!i1121[15]
   i1120.roadColliderScaleMultiplier = i1121[16]
+  i1120.useSimplifiedRailCollider = !!i1121[17]
+  i1120.railColliderSampleCount = i1121[18]
   return i1120
 }
 
@@ -2231,10 +2233,21 @@ Deserializers["CubeMovementConfigSO"] = function (request, data, root) {
   i1318.RoadGripForce = i1319[5]
   i1318.RoadGripDelay = i1319[6]
   i1318.MovementInterval = i1319[7]
-  i1318.ReceiveOffset = i1319[8]
-  i1318.ReceiveThreshold = i1319[9]
-  i1318.SpawnFreezeYDuration = i1319[10]
-  i1318.ScaleSpeedMultiplier = i1319[11]
+  i1318.StallAssistSpeedRatio = i1319[8]
+  i1318.StallAssistAcceleration = i1319[9]
+  i1318.MinimumForwardSpeedRatio = i1319[10]
+  i1318.ForwardSpeedRecovery = i1319[11]
+  i1318.MaxForwardCorrection = i1319[12]
+  i1318.MaximumForwardSpeedRatio = i1319[13]
+  i1318.ForwardOverspeedDamping = i1319[14]
+  i1318.RoadMaxOffset = i1319[15]
+  i1318.RoadBoundaryForce = i1319[16]
+  i1318.RoadLateralDamping = i1319[17]
+  i1318.RoadHardClampPadding = i1319[18]
+  i1318.ReceiveOffset = i1319[19]
+  i1318.ReceiveThreshold = i1319[20]
+  i1318.SpawnFreezeYDuration = i1319[21]
+  i1318.ScaleSpeedMultiplier = i1319[22]
   return i1318
 }
 
@@ -2957,7 +2970,7 @@ Deserializers.productName = "Loop sort PLA";
 
 Deserializers.lunaInitializationTime = "07/09/2026 07:54:59";
 
-Deserializers.lunaDaysRunning = "1.1";
+Deserializers.lunaDaysRunning = "7.8";
 
 Deserializers.lunaVersion = "7.2.0";
 
@@ -2989,7 +3002,7 @@ Deserializers.isRuntimeAnalysisEnabledForCode = "False";
 
 Deserializers.runtimeAnalysisExcludedClassesCount = "1766";
 
-Deserializers.runtimeAnalysisExcludedMethodsCount = "5095";
+Deserializers.runtimeAnalysisExcludedMethodsCount = "5082";
 
 Deserializers.runtimeAnalysisExcludedModules = "physics2d";
 
@@ -3011,7 +3024,7 @@ Deserializers.graphicsConstraint = 24;
 
 Deserializers.linearColorSpace = true;
 
-Deserializers.buildID = "2289538d-fc42-44d7-af7d-b50515f04238";
+Deserializers.buildID = "e24c9e32-3f14-4852-aa7e-9e972ac9bff2";
 
 Deserializers.runtimeInitializeOnLoadInfos = [[["UnityEngine","Experimental","Rendering","ScriptableRuntimeReflectionSystemSettings","ScriptingDirtyReflectionSystemInstance"]],[],[],[],[]];
 

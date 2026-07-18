@@ -71,7 +71,7 @@ Material:
     m_Floats:
     - _BlinkEnabled: 0
     - _BlinkSpeed: 4
-    - _BlinkStartTime: 12.581575
+    - _BlinkStartTime: 40.796192
     - _BlinkStrength: 1
     - _BumpScale: 1
     - _Cull: 2

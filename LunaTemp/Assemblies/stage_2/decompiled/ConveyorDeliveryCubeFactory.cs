@@ -23,6 +23,7 @@ public class ConveyorDeliveryCubeFactory
 		{
 			animCube.Trans = animCube.transform;
 		}
+		ResetCubeTransform(animCube);
 		LunaMaterialUtility.NormalizeRenderers(animCube.gameObject);
 		cacheList?.Add(animCube);
 		if (MonoSingleton<CustomTimeScaleGroup>.Instance != null)
@@ -46,7 +47,7 @@ public class ConveyorDeliveryCubeFactory
 			instance.Trans = instance.transform;
 		}
 		LunaMaterialUtility.NormalizeRenderers(instance.gameObject);
-		instance.Trans.localScale = _cubeConfig.CubeDefaultScale;
+		ResetCubeTransform(instance);
 		if (MonoSingleton<CustomTimeScaleGroup>.Instance != null)
 		{
 			MonoSingleton<CustomTimeScaleGroup>.Instance.AddTarget(instance);
@@ -60,7 +61,23 @@ public class ConveyorDeliveryCubeFactory
 		{
 			cube.transform.SetParent(parent, false);
 			cube.transform.position = startPos;
+			ResetCubeTransform(cube);
 			cube.InitCube(colorType);
 		}
+	}
+
+	private void ResetCubeTransform(CubeBase cube)
+	{
+		if (!(cube == null))
+		{
+			Transform trans = ((cube.Trans != null) ? cube.Trans : cube.transform);
+			trans.localRotation = Quaternion.identity;
+			trans.localScale = GetDefaultScale(cube);
+		}
+	}
+
+	private Vector3 GetDefaultScale(CubeBase cube)
+	{
+		return (_cubeConfig != null) ? _cubeConfig.CubeDefaultScale : Vector3.one;
 	}
 }

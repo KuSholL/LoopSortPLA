@@ -204,12 +204,21 @@ public sealed class ConveyorPathRuntime
 
 	private static Vector3 GetOutHandle(SplinePointData point)
 	{
-		return (point == null) ? Vector3.zero : (GetPointPosition(point) + point.TangentOutValue);
+		return (point == null) ? Vector3.zero : (GetPointPosition(point) + RotateKnotTangent(point, point.TangentOutValue));
 	}
 
 	private static Vector3 GetInHandle(SplinePointData point)
 	{
-		return (point == null) ? Vector3.zero : (GetPointPosition(point) + point.TangentInValue);
+		return (point == null) ? Vector3.zero : (GetPointPosition(point) + RotateKnotTangent(point, point.TangentInValue));
+	}
+
+	private static Vector3 RotateKnotTangent(SplinePointData point, Vector3 tangent)
+	{
+		if (point == null)
+		{
+			return tangent;
+		}
+		return Quaternion.Euler(point.Rotation) * tangent;
 	}
 
 	private static Vector3 EvaluateBezier(Vector3 p0, Vector3 p1, Vector3 p2, Vector3 p3, float t)

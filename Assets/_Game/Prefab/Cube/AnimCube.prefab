@@ -115,9 +115,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Trans: {fileID: 6767664029281824749}
   config:
-    Speed: 10
-    EaseType: 5
+    EaseType: 3
     Height: 3
+    DeliveryDuration: 0.5
+    SpawnerDuration: 0.15
+    ScaleSpeedMultiplier: 0.3
 --- !u!114 &5079734104890182006
 MonoBehaviour:
   m_ObjectHideFlags: 0

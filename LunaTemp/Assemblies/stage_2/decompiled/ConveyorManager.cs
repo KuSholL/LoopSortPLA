@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using DG.Tweening;
 using UnityEngine;
 
 public class ConveyorManager : MonoBehaviour
@@ -41,32 +40,14 @@ public class ConveyorManager : MonoBehaviour
 
 	private readonly List<InstantiatedSegmentData> _instantiatedSegments = new List<InstantiatedSegmentData>();
 
-	private Tween _revealTween;
-
 	private readonly ConveyorPathRuntime _path = new ConveyorPathRuntime();
-
-	private LevelEntryAnimConfigSO EntryConfig => (MonoSingleton<LevelManager>.Instance != null) ? MonoSingleton<LevelManager>.Instance.LevelEntryAnimConfig : null;
-
-	private float RevealDelay => (EntryConfig != null) ? EntryConfig.ConveyorRevealDelay : 0.1f;
-
-	private float RevealDuration => (EntryConfig != null) ? EntryConfig.ConveyorRevealDuration : 1f;
-
-	private Ease RevealEase => (EntryConfig != null) ? EntryConfig.ConveyorRevealEase : Ease.OutCubic;
 
 	public ConveyorPathRuntime Path => _path;
 
 	private void Awake()
 	{
 		CacheInstantiatedSegments();
-		SetRevealProgress(0f);
-	}
-
-	private void OnDestroy()
-	{
-		if (_revealTween != null)
-		{
-			_revealTween.Kill();
-		}
+		SetRevealProgress(1f);
 	}
 
 	public IEnumerator InitConveyor(SplinePathData splinePathData)
@@ -87,11 +68,6 @@ public class ConveyorManager : MonoBehaviour
 			yield return null;
 			CacheInstantiatedSegments();
 			SetRevealProgress(1f);
-			Transform pathRoot = GetPathRoot();
-			if (pathRoot != null)
-			{
-				LunaMaterialUtility.NormalizeRenderers(pathRoot.gameObject);
-			}
 		}
 	}
 

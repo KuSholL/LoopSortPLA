@@ -21,8 +21,8 @@ MonoBehaviour:
   CornerBoostDistance: 0.2
   PortalExtraSpeed: 3
   PortalBoostDistance: 0.15
-  PostUnloadFreezeAroundRange: 0.2
+  PostUnloadFreezeAroundRange: 0.06
   PostUnloadFreezeAroundOffset: 0
-  PostUnloadFreezeSpeedMultiplier: 0.2
-  PostUnloadLockYDuration: 1
-  PostUnloadSlowDuration: 0.5
+  PostUnloadFreezeSpeedMultiplier: 0.65
+  PostUnloadLockYDuration: 0.25
+  PostUnloadSlowDuration: 0.2

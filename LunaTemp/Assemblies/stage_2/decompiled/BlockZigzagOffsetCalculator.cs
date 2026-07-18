@@ -29,8 +29,7 @@ public static class BlockZigzagOffsetCalculator
 		float spacingY = ((rows > 1) ? (blockSize.y * 0.75f / (float)(rows - 1)) : 0f);
 		float offsetX = ((float)col - (float)(cols - 1) * 0.5f) * spacingX;
 		float offsetY = ((float)row - (float)(rows - 1) * 0.5f) * spacingY;
-		Vector3 localOffset = new Vector3(offsetX, offsetY, 0f);
-		Vector3 worldOffset = blockTransform.TransformDirection(localOffset);
+		Vector3 worldOffset = blockTransform.right * offsetX + blockTransform.up * offsetY;
 		return blockWorldCenter + worldOffset;
 	}
 

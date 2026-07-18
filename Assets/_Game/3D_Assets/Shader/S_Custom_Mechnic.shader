@@ -83,8 +83,8 @@ Shader "PLA/Custom_Cube_Mechanic_Lite"
                 half3 lightDir = normalize(_WorldSpaceLightPos0.xyz);
                 half ndl = saturate(dot(normal, lightDir));
 
-                half smoothWidth = max(_RampSmoothing, 0.001h);
-                half ramp = smoothstep(_RampThreshold - smoothWidth * 0.5h, _RampThreshold + smoothWidth * 0.5h, ndl);
+                half smoothWidth = max(_RampSmoothing, 0.001);
+                half ramp = smoothstep(_RampThreshold - smoothWidth * 0.5, _RampThreshold + smoothWidth * 0.5, ndl);
                 fixed3 lightTint = lerp(_SColor.rgb, _HColor.rgb, ramp);
 
                 fixed4 tex = tex2D(_MainTex, i.uv);
@@ -93,18 +93,18 @@ Shader "PLA/Custom_Cube_Mechanic_Lite"
                 half3 viewDir = normalize(i.viewDir);
                 half3 halfDir = normalize(lightDir + viewDir);
                 half specBase = saturate(dot(normal, halfDir));
-                half specStrength = max(_SpecularToonSize, 0.22h);
+                half specStrength = max(_SpecularToonSize, 0.22);
                 half spec = smoothstep(
-                    saturate(1.0h - specStrength - _SpecularToonSmoothness),
-                    saturate(1.0h - specStrength),
+                    saturate(1.0 - specStrength - _SpecularToonSmoothness),
+                    saturate(1.0 - specStrength),
                     specBase);
 
-                half fresnel = pow(1.0h - saturate(dot(normal, viewDir)), 2.4h);
-                half topLight = saturate(normal.y * 0.5h + 0.5h);
-                color += spec * _SpecularColor.rgb * specStrength * max(_SpecularIntensity, 0.35h);
+                half fresnel = pow(1.0 - saturate(dot(normal, viewDir)), 2.4);
+                half topLight = saturate(normal.y * 0.5 + 0.5);
+                color += spec * _SpecularColor.rgb * specStrength * max(_SpecularIntensity, 0.35);
                 color += fresnel * _RimColor.rgb * _RimColor.a;
-                color += topLight * _MatCapColor.rgb * 0.08h;
-                color += fresnel * _ReflectColor.rgb * _ReflectIntensity * 0.12h;
+                color += topLight * _MatCapColor.rgb * 0.08;
+                color += fresnel * _ReflectColor.rgb * _ReflectIntensity * 0.12;
 
                 return fixed4(color, tex.a * _Color.a);
             }

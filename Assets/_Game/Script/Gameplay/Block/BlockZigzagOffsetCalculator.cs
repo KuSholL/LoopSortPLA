@@ -43,9 +43,9 @@ public static class BlockZigzagOffsetCalculator
         var offsetX = (col - (cols - 1) * 0.5f) * spacingX;
         var offsetY = (row - (rows - 1) * 0.5f) * spacingY;
 
-        // Bỏ độ sâu (Z) để các hạt chỉ zic-zac phẳng trên mặt phẳng XY quanh animation pivot
-        var localOffset = new Vector3(offsetX, offsetY, 0f);
-        var worldOffset = blockTransform.TransformDirection(localOffset);
+        // Build the offset from explicit world axes. This avoids a Luna discrepancy observed
+        // when multiplying a quaternion inherited from a carrier rotated by a negative angle.
+        var worldOffset = blockTransform.right * offsetX + blockTransform.up * offsetY;
 
         return blockWorldCenter + worldOffset;
     }

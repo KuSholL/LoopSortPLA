@@ -419,7 +419,7 @@ public class Block : MonoBehaviour
 
 	public IReadOnlyList<BlockCubePayload> GetUnloadCubePayloadSnapshot()
 	{
-		Vector3 worldPos = ((animationPivot != null) ? animationPivot.position : base.transform.position);
+		Vector3 worldPos = GetCubeFlightCenter();
 		return OpenHandler.CreateHiddenCubePayloadSnapshot(currentCubes, blockColorType, blockColor, worldPos, base.transform, maxCubes);
 	}
 
@@ -447,7 +447,7 @@ public class Block : MonoBehaviour
 
 	public bool TryReserveReceive(EBlockColorType colorType, out Vector3 worldPosition)
 	{
-		Vector3 basePos = (worldPosition = ((animationPivot != null) ? animationPivot.position : base.transform.position));
+		Vector3 basePos = (worldPosition = GetCubeFlightCenter());
 		if (!CanReceiveByMechanic())
 		{
 			return false;
@@ -461,6 +461,21 @@ public class Block : MonoBehaviour
 			RefreshVisualState();
 		}
 		return didReserve;
+	}
+
+	private Vector3 GetCubeFlightCenter()
+	{
+		if (animationPivot == null)
+		{
+			return base.transform.position;
+		}
+		Transform pivotParent = animationPivot.parent;
+		if (pivotParent == null)
+		{
+			return animationPivot.position;
+		}
+		Vector3 local = animationPivot.localPosition;
+		return pivotParent.position + pivotParent.right * local.x + pivotParent.up * local.y + pivotParent.forward * local.z;
 	}
 
 	public bool TryReceiveCube(EBlockColorType colorType, Color color)

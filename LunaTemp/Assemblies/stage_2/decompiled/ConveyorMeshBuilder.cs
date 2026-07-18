@@ -65,13 +65,16 @@ public class ConveyorMeshBuilder : MonoBehaviour
 	[Min(1f)]
 	private float roadColliderScaleMultiplier = 1.1f;
 
+	[SerializeField]
+	private bool useSimplifiedRailCollider = true;
+
+	[SerializeField]
+	[Min(8f)]
+	private int railColliderSampleCount = 64;
+
 	private const string RoadObjectName = "GeneratedRoad";
 
-	private const string RoadBaseObjectName = "GeneratedRoadBase";
-
 	private const string RailObjectName = "GeneratedRails";
-
-	private const string RailVisualObjectName = "GeneratedRailVisual";
 
 	private const string RoadPlaneObjectName = "GeneratedRoadPlane";
 
@@ -92,6 +95,24 @@ public class ConveyorMeshBuilder : MonoBehaviour
 	private static readonly int FollowerSpacingId = Shader.PropertyToID("_FollowerSpacing");
 
 	private static readonly int RevealProgressId = Shader.PropertyToID("_RevealProgress");
+
+	private static readonly int RoadAlphaId = Shader.PropertyToID("_RoadAlpha");
+
+	private static readonly int RoadColorId = Shader.PropertyToID("_RoadColor");
+
+	private static readonly int RoadHighlightColorId = Shader.PropertyToID("_RoadHighlightColor");
+
+	private static readonly int RoadEdgeColorId = Shader.PropertyToID("_RoadEdgeColor");
+
+	private static readonly int RoadInnerLineColorId = Shader.PropertyToID("_RoadInnerLineColor");
+
+	private static readonly int RoadEdgeWidthId = Shader.PropertyToID("_RoadEdgeWidth");
+
+	private static readonly int RoadInnerLineWidthId = Shader.PropertyToID("_RoadInnerLineWidth");
+
+	private static readonly int FollowerColorId = Shader.PropertyToID("_FollowerColor");
+
+	private static readonly int FollowerEmissionId = Shader.PropertyToID("_FollowerEmission");
 
 	private float _revealProgress = 1f;
 
@@ -114,10 +135,6 @@ public class ConveyorMeshBuilder : MonoBehaviour
 	private MeshRenderer _roadMeshRenderer;
 
 	private Material _roadRuntimeMaterial;
-
-	private Material _lunaRoadBaseMaterial;
-
-	private Material _lunaRailMaterial;
 
 	public float GetUsableRoadHalfWidth(float edgePadding = 0f)
 	{
@@ -177,8 +194,12 @@ public class ConveyorMeshBuilder : MonoBehaviour
 			_roadMeshRenderer = null;
 			EnsureRoadRoot(out var roadObject);
 			UpdateRoadVisual(splineContainer, roadObject);
-			UpdateLunaSolidRoadVisual(splineContainer);
-			RemoveLunaGeneratedPhysics(roadObject.transform);
+			RemoveLunaVisualReplacementObjects();
+			UpdateRoadPlaneCollider(splineContainer, roadObject.transform);
+			EnsureRailColliderObject(out var railObject, out var railCollider);
+			ClearRailColliderMesh(railCollider);
+			RemoveRenderComponents(railObject);
+			railCollider.sharedMesh = BuildRailColliderMesh(splineContainer);
 		}
 	}
 
@@ -247,7 +268,19 @@ public class ConveyorMeshBuilder : MonoBehaviour
 
 	private Mesh BuildRailMesh(ConveyorPathRuntime container)
 	{
-		if (railWidth <= 0f || railHeight <= 0f)
+		return BuildRailMesh(container, railWidth, railHeight, railCornerRadius, GetRingCount());
+	}
+
+	private Mesh BuildRailColliderMesh(ConveyorPathRuntime container)
+	{
+		float colliderCornerRadius = (useSimplifiedRailCollider ? 0f : railCornerRadius);
+		int colliderRingCount = Mathf.Clamp(railColliderSampleCount, 8, GetRingCount());
+		return BuildRailMesh(container, railWidth, railHeight, colliderCornerRadius, colliderRingCount);
+	}
+
+	private Mesh BuildRailMesh(ConveyorPathRuntime container, float currentRailWidth, float currentRailHeight, float currentRailCornerRadius, int ringCount)
+	{
+		if (currentRailWidth <= 0f || currentRailHeight <= 0f)
 		{
 			return new Mesh
 			{
@@ -258,8 +291,8 @@ public class ConveyorMeshBuilder : MonoBehaviour
 		List<Vector3> normals = new List<Vector3>();
 		List<Vector2> uvs = new List<Vector2>();
 		List<int> triangles = new List<int>();
-		BuildSingleRail(container, -1f, vertices, normals, uvs, triangles);
-		BuildSingleRail(container, 1f, vertices, normals, uvs, triangles);
+		BuildSingleRail(container, -1f, currentRailWidth, currentRailHeight, currentRailCornerRadius, ringCount, vertices, normals, uvs, triangles);
+		BuildSingleRail(container, 1f, currentRailWidth, currentRailHeight, currentRailCornerRadius, ringCount, vertices, normals, uvs, triangles);
 		Mesh mesh = new Mesh();
 		mesh.name = "SplineRailMesh";
 		mesh.SetVertices(vertices);
@@ -270,14 +303,13 @@ public class ConveyorMeshBuilder : MonoBehaviour
 		return mesh;
 	}
 
-	private void BuildSingleRail(ConveyorPathRuntime container, float sideSign, List<Vector3> vertices, List<Vector3> normals, List<Vector2> uvs, List<int> triangles)
+	private void BuildSingleRail(ConveyorPathRuntime container, float sideSign, float currentRailWidth, float currentRailHeight, float currentRailCornerRadius, int ringCount, List<Vector3> vertices, List<Vector3> normals, List<Vector2> uvs, List<int> triangles)
 	{
 		bool isClosed = container.Closed;
-		int ringCount = GetRingCount();
 		int segmentCount = (isClosed ? ringCount : (ringCount - 1));
 		List<Vector2> profilePoints = new List<Vector2>();
 		List<Vector2> profileNormals = new List<Vector2>();
-		BuildRoundedRailProfile(profilePoints, profileNormals);
+		BuildRoundedRailProfile(profilePoints, profileNormals, currentRailWidth, currentRailHeight, currentRailCornerRadius);
 		int vertsPerRing = profilePoints.Count;
 		int startVertex = vertices.Count;
 		float halfWidth = roadWidth * 0.5f;
@@ -288,7 +320,7 @@ public class ConveyorMeshBuilder : MonoBehaviour
 		{
 			float t = GetSampleTime(j, ringCount, isClosed);
 			SampleFrame(container, t, out var center, out var forward, out var up, out var right);
-			Vector3 railCenter = center + right * sideSign * (halfWidth - railWidth * 0.5f);
+			Vector3 railCenter = center + right * sideSign * (halfWidth - currentRailWidth * 0.5f);
 			Vector3 side = right * sideSign;
 			if (j > 0)
 			{
@@ -334,24 +366,24 @@ public class ConveyorMeshBuilder : MonoBehaviour
 		return isClosed ? ((float)index / (float)ringCount) : ((float)index / (float)(ringCount - 1));
 	}
 
-	private void BuildRoundedRailProfile(List<Vector2> profilePoints, List<Vector2> profileNormals)
+	private void BuildRoundedRailProfile(List<Vector2> profilePoints, List<Vector2> profileNormals, float currentRailWidth, float currentRailHeight, float currentRailCornerRadius)
 	{
 		profilePoints.Clear();
 		profileNormals.Clear();
-		float halfRailWidth = railWidth * 0.5f;
-		float radius = Mathf.Min(railCornerRadius, halfRailWidth, railHeight * 0.5f);
+		float halfRailWidth = currentRailWidth * 0.5f;
+		float radius = Mathf.Min(currentRailCornerRadius, halfRailWidth, currentRailHeight * 0.5f);
 		if (radius <= 0.0001f)
 		{
 			AddProfilePoint(profilePoints, profileNormals, new Vector2(0f - halfRailWidth, 0f), new Vector2(-1f, 0f));
-			AddProfilePoint(profilePoints, profileNormals, new Vector2(0f - halfRailWidth, railHeight), new Vector2(-1f, 0f));
-			AddProfilePoint(profilePoints, profileNormals, new Vector2(halfRailWidth, railHeight), new Vector2(1f, 0f));
+			AddProfilePoint(profilePoints, profileNormals, new Vector2(0f - halfRailWidth, currentRailHeight), new Vector2(-1f, 0f));
+			AddProfilePoint(profilePoints, profileNormals, new Vector2(halfRailWidth, currentRailHeight), new Vector2(1f, 0f));
 			AddProfilePoint(profilePoints, profileNormals, new Vector2(halfRailWidth, 0f), new Vector2(1f, 0f));
 			return;
 		}
 		int segments = Mathf.Max(1, railCornerSegments);
 		Vector2 bottomLeftCenter = new Vector2(0f - halfRailWidth + radius, radius);
-		Vector2 topLeftCenter = new Vector2(0f - halfRailWidth + radius, railHeight - radius);
-		Vector2 topRightCenter = new Vector2(halfRailWidth - radius, railHeight - radius);
+		Vector2 topLeftCenter = new Vector2(0f - halfRailWidth + radius, currentRailHeight - radius);
+		Vector2 topRightCenter = new Vector2(halfRailWidth - radius, currentRailHeight - radius);
 		Vector2 bottomRightCenter = new Vector2(halfRailWidth - radius, radius);
 		AddArc(profilePoints, profileNormals, bottomLeftCenter, radius, 270f, 180f, segments, true);
 		AddArc(profilePoints, profileNormals, topLeftCenter, radius, 180f, 90f, segments, false);
@@ -437,38 +469,6 @@ public class ConveyorMeshBuilder : MonoBehaviour
 		ReplaceMesh(meshFilter, roadMesh);
 		ApplyRoadMaterial(meshRenderer);
 		ApplyRoadShaderData(meshRenderer, splineContainer);
-	}
-
-	private void UpdateLunaSolidRoadVisual(ConveyorPathRuntime splineContainer)
-	{
-		EnsureGeneratedMeshVisual("GeneratedRoadBase", BuildRoadMesh(splineContainer), ref _lunaRoadBaseMaterial, new Color(0.42f, 0.42f, 0.58f, 1f), "LunaRoadBaseMaterial", new Vector3(0f, -0.08f, 0f), roadMaterial);
-		EnsureGeneratedMeshVisual("GeneratedRailVisual", BuildRailMesh(splineContainer), ref _lunaRailMaterial, new Color(0.77f, 0.78f, 0.96f, 1f), "LunaRailMaterial", Vector3.zero);
-	}
-
-	private void EnsureGeneratedMeshVisual(string objectName, Mesh mesh, ref Material material, Color color, string materialName, Vector3 localOffset, Material sourceMaterial = null)
-	{
-		Transform childTransform = base.transform.Find(objectName);
-		GameObject visualObject = ((childTransform == null) ? new GameObject(objectName) : childTransform.gameObject);
-		visualObject.transform.SetParent(base.transform, false);
-		visualObject.transform.localPosition = localOffset;
-		visualObject.transform.localRotation = Quaternion.identity;
-		visualObject.transform.localScale = Vector3.one;
-		MeshFilter meshFilter = visualObject.GetComponent<MeshFilter>();
-		if (meshFilter == null)
-		{
-			meshFilter = visualObject.AddComponent<MeshFilter>();
-		}
-		MeshRenderer meshRenderer = visualObject.GetComponent<MeshRenderer>();
-		if (meshRenderer == null)
-		{
-			meshRenderer = visualObject.AddComponent<MeshRenderer>();
-		}
-		ReplaceMesh(meshFilter, mesh);
-		if (material == null)
-		{
-			material = ((sourceMaterial != null) ? LunaMaterialUtility.CreateRuntimeMaterial(sourceMaterial, color) : LunaMaterialUtility.CreateRuntimeMaterial(color, materialName));
-		}
-		meshRenderer.sharedMaterial = material;
 	}
 
 	private void ApplyRoadShaderData(MeshRenderer meshRenderer, ConveyorPathRuntime splineContainer)
@@ -671,6 +671,7 @@ public class ConveyorMeshBuilder : MonoBehaviour
 				{
 					name = roadMaterial.name + "_Runtime"
 				};
+				ConfigureLunaRoadRuntimeMaterial(_roadRuntimeMaterial);
 				meshRenderer.sharedMaterial = _roadRuntimeMaterial;
 			}
 			else
@@ -692,7 +693,51 @@ public class ConveyorMeshBuilder : MonoBehaviour
 				{
 					name = "GeneratedRoadMaterial_Runtime"
 				};
+				ConfigureLunaRoadRuntimeMaterial(meshRenderer.sharedMaterial);
 				_roadRuntimeMaterial = meshRenderer.sharedMaterial;
+			}
+		}
+	}
+
+	private static void ConfigureLunaRoadRuntimeMaterial(Material material)
+	{
+		if (!(material == null))
+		{
+			if (material.HasProperty(RoadAlphaId))
+			{
+				material.SetFloat(RoadAlphaId, 1f);
+			}
+			if (material.HasProperty(RoadColorId))
+			{
+				material.SetColor(RoadColorId, new Color(0.39f, 0.4f, 0.58f, 1f));
+			}
+			if (material.HasProperty(RoadHighlightColorId))
+			{
+				material.SetColor(RoadHighlightColorId, new Color(0.56f, 0.57f, 0.76f, 1f));
+			}
+			if (material.HasProperty(RoadEdgeColorId))
+			{
+				material.SetColor(RoadEdgeColorId, new Color(0.88f, 0.9f, 1f, 1f));
+			}
+			if (material.HasProperty(RoadInnerLineColorId))
+			{
+				material.SetColor(RoadInnerLineColorId, new Color(0.82f, 0.84f, 0.98f, 1f));
+			}
+			if (material.HasProperty(RoadEdgeWidthId))
+			{
+				material.SetFloat(RoadEdgeWidthId, 0.08f);
+			}
+			if (material.HasProperty(RoadInnerLineWidthId))
+			{
+				material.SetFloat(RoadInnerLineWidthId, 0.018f);
+			}
+			if (material.HasProperty(FollowerColorId))
+			{
+				material.SetColor(FollowerColorId, new Color(0.56f, 0.56f, 0.76f, 1f));
+			}
+			if (material.HasProperty(FollowerEmissionId))
+			{
+				material.SetFloat(FollowerEmissionId, 1.25f);
 			}
 		}
 	}
@@ -754,19 +799,18 @@ public class ConveyorMeshBuilder : MonoBehaviour
 		}
 	}
 
-	private void RemoveLunaGeneratedPhysics(Transform roadRoot)
+	private void RemoveLunaVisualReplacementObjects()
 	{
-		DestroyRoadPlane(roadRoot);
-		Transform railTransform = base.transform.Find("GeneratedRails");
-		if (!(railTransform == null))
+		DestroyChildIfExists("GeneratedRoadBase");
+		DestroyChildIfExists("GeneratedRailVisual");
+	}
+
+	private void DestroyChildIfExists(string childName)
+	{
+		Transform child = base.transform.Find(childName);
+		if (child != null)
 		{
-			MeshCollider railCollider = railTransform.GetComponent<MeshCollider>();
-			if (railCollider != null)
-			{
-				ClearRailColliderMesh(railCollider);
-				DestroyObject(railCollider);
-			}
-			RemoveRenderComponents(railTransform.gameObject);
+			DestroyObject(child.gameObject);
 		}
 	}
 

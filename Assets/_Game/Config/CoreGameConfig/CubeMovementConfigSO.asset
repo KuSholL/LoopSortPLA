@@ -19,7 +19,19 @@ MonoBehaviour:
   SpawnPushSpeed: 5
   RoadGripForce: 100
   RoadGripDelay: 0.1
-  MovementInterval: 0.1
+  MovementInterval: 0.04
   ReceiveOffset: 0.03
   ReceiveThreshold: 0.01
   SpawnFreezeYDuration: 1
+  ScaleSpeedMultiplier: 0.2
+  StallAssistSpeedRatio: 0.55
+  StallAssistAcceleration: 12
+  MinimumForwardSpeedRatio: 0.82
+  ForwardSpeedRecovery: 0.45
+  MaxForwardCorrection: 2.5
+  MaximumForwardSpeedRatio: 1.18
+  ForwardOverspeedDamping: 0.25
+  RoadMaxOffset: 0.68
+  RoadBoundaryForce: 260
+  RoadLateralDamping: 22
+  RoadHardClampPadding: 0.12

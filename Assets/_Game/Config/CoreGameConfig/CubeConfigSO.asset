@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CubePrefab: {fileID: 570581654699605141, guid: 0a7354e6596e22845bb0fbf13b1ce3ea, type: 3}
   AnimCubePrefab: {fileID: 1144204020988226138, guid: 9d7b365d88178f441adf63b4342e3fce, type: 3}
+  CubeDefaultScale: {x: 1.3, y: 1.3, z: 1.3}
   hiddenCubeEntries:
   - hiddenCubeType: 0
     Prefab: {fileID: 573699414840329465, guid: c34944ccd64de8a4ba99e54cb044b11a, type: 3}

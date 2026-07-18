@@ -199,18 +199,11 @@ public sealed class Spawner : CarrierBase
 
             if (playAnimation && spawnAnimator != null)
             {
-#if UNITY_LUNA
-                if (spawnAnimator != null) spawnAnimator.Cancel();
+                spawnAnimator.Cancel();
                 _singleBlock.SetPhysicsCollidersEnabled(true);
                 _singleBlock.transform.localScale = Vector3.one;
                 _singleBlock.transform.localPosition = Vector3.zero;
                 _singleBlock.SetVisualCubes(_singleBlock.GetCurrentCubes(), true);
-#else
-                _singleBlock.SetPhysicsCollidersEnabled(false);
-                _singleBlock.transform.localScale = Vector3.zero;
-                _singleBlock.SetVisualCubes(0, true);
-                spawnAnimator.Play(_singleBlock);
-#endif
             }
             else
             {

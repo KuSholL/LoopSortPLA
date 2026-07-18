@@ -124,6 +124,7 @@ public class LevelManager : MonoSingleton<LevelManager>
 
     private IEnumerator LoadLevelRoutine(int levelIndex)
     {
+        ConveyorPhysicsSetup.ConfigureGameplayCollisions();
         IsLevelLoaded = false;
         IsReplay = CurrentLevel != null;
         InputController.Disable();
@@ -165,11 +166,12 @@ public class LevelManager : MonoSingleton<LevelManager>
         if (conveyorManager != null)
         {
             yield return conveyorManager.InitConveyor(CurrentLevel.SplineLayout);
-#if UNITY_LUNA
             conveyorManager.SetRevealProgress(1f);
-#else
-            conveyorManager.SetRevealProgress(0f);
-#endif
+        }
+
+        if (ConveyorDeliverySystem.Instance != null)
+        {
+            ConveyorDeliverySystem.Instance.ResetPreloseBlinkMaterials();
         }
         if (carrierSystem != null)
         {
@@ -183,29 +185,12 @@ public class LevelManager : MonoSingleton<LevelManager>
 
         if (conveyorManager != null)
         {
-#if UNITY_LUNA
             conveyorManager.SetRevealProgress(1f);
-#else
-            yield return conveyorManager.PlayRevealAnimation();
-            conveyorManager.SetRevealProgress(1f);
-#endif
-        }
-
-        if (carrierSystem != null)
-        {
-#if !UNITY_LUNA
-            yield return carrierSystem.PlayContainersScaleAnimation(levelEntryAnimConfig);
-#endif
         }
 
         if (carrierSystem != null && carrierSystem.CarrierSpawner != null)
         {
-#if UNITY_LUNA
             carrierSystem.CarrierSpawner.EnsureCarriersVisibleAndClickable();
-#else
-            yield return carrierSystem.CarrierSpawner.PlayCarriersScaleAnimation();
-            carrierSystem.CarrierSpawner.EnsureCarriersVisibleAndClickable();
-#endif
         }
 
         if (BlockLinkVisualManager.Instance != null)

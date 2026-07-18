@@ -27,10 +27,8 @@ public class CarrierSystem : MonoSingleton<CarrierSystem>
                 carrierSpawner.SpawnedCarriers,
                 carrierSpawner.CarrierConfig,
                 path);
-#if UNITY_LUNA
             carrierSpawner.EnsureCarriersVisibleAndClickable();
             _containerSpawner.EnsureContainersAtFinalState();
-#endif
         }
     }
 

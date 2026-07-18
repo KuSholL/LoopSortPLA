@@ -18,7 +18,7 @@ Shader "S_Custom_Conveyor_Up"
 		[TCP2HeaderHelp(Emission)]
 		[TCP2ColorNoAlpha] _BlinkColor ("Blink Color", Color) = (1,0,0,1)
 		[HDR] _BlinkEmission ("Blink Emission", Color) = (1,0,0,1)
-		[Toggle] _BlinkEnabled ("Blink Enabled", Float) = 1
+		[Toggle] _BlinkEnabled ("Blink Enabled", Float) = 0
 		_BlinkStartTime ("Blink Start Time", Float) = 0
 		_BlinkSpeed ("Blink Speed", Range(0.1, 20)) = 6
 		_BlinkStrength ("Blink Strength", Range(0, 1)) = 1

@@ -1,121 +1,65 @@
 using System.Collections.Generic;
 using UnityEngine;
-#if UNITY_EDITOR
-using UnityEngine.Splines;
-#endif
 
 public sealed class ConveyorPathRuntime
 {
     private const int LengthSamplesPerSegment = 12;
     private const int NearestSamples = 240;
 
-    private readonly List<SplinePointData> _points = new List<SplinePointData>();
+    private readonly List<PathKnot> _knots = new List<PathKnot>();
+    private readonly Vector3[] _samplePositions = new Vector3[NearestSamples];
+    private readonly Vector3[] _sampleTangents = new Vector3[NearestSamples];
     private Transform _root;
     private bool _closed;
     private float _cachedLength = -1f;
-#if UNITY_EDITOR
-    private SplineContainer _editorSplineContainer;
-#endif
 
-    public Transform Root
-    {
-        get
-        {
-#if UNITY_EDITOR
-            if (_editorSplineContainer != null) return _editorSplineContainer.transform;
-#endif
-            return _root;
-        }
-    }
+    public Transform Root => _root;
 
-    public bool Closed
-    {
-        get
-        {
-#if UNITY_EDITOR
-            if (_editorSplineContainer != null && _editorSplineContainer.Spline != null) return _editorSplineContainer.Spline.Closed;
-#endif
-            return _closed;
-        }
-    }
+    public bool Closed => _closed;
 
-    public int Count
-    {
-        get
-        {
-#if UNITY_EDITOR
-            if (_editorSplineContainer != null && _editorSplineContainer.Spline != null) return _editorSplineContainer.Spline.Count;
-#endif
-            return _points.Count;
-        }
-    }
+    public int Count => _knots.Count;
 
-    public bool IsValid
-    {
-        get
-        {
-#if UNITY_EDITOR
-            if (_editorSplineContainer != null && _editorSplineContainer.Spline != null)
-            {
-                return _editorSplineContainer.Spline.Count >= 2;
-            }
-#endif
-            return _root != null && _points.Count >= 2 && GetSegmentCount() > 0;
-        }
-    }
+    public bool IsValid => _root != null && _knots.Count >= 2 && GetSegmentCount() > 0;
 
     public void Setup(SplinePathData data, Transform root)
     {
         _root = root;
         _closed = data != null && data.Closed;
-#if UNITY_EDITOR
-        _editorSplineContainer = null;
-#endif
-        _points.Clear();
+        _knots.Clear();
         if (data != null)
         {
             var ordered = data.GetMapPointsInOrder();
             for (var i = 0; i < ordered.Count; i++)
             {
-                if (ordered[i] != null) _points.Add(ordered[i]);
+                if (ordered[i] != null) _knots.Add(CreateKnot(ordered[i]));
             }
         }
         _cachedLength = -1f;
+        BuildNearestSampleCache();
     }
-
-#if UNITY_EDITOR
-    public void UseEditorSpline(SplineContainer splineContainer)
-    {
-        _editorSplineContainer = splineContainer;
-        _cachedLength = -1f;
-    }
-#endif
 
     public Vector3 EvaluateLocalPosition(float progress)
     {
         if (!IsValid) return Vector3.zero;
-#if UNITY_EDITOR
-        if (_editorSplineContainer != null && _editorSplineContainer.Spline != null)
-        {
-            return _editorSplineContainer.Spline.EvaluatePosition(_editorSplineContainer.Spline.Closed ? Mathf.Repeat(progress, 1f) : Mathf.Clamp01(progress));
-        }
-#endif
         GetSegment(progress, out var current, out var next, out var t);
-        return EvaluateBezier(GetPointPosition(current), GetOutHandle(current), GetInHandle(next), GetPointPosition(next), t);
+        return EvaluateBezier(
+            _knots[current].Position,
+            _knots[current].OutHandle,
+            _knots[next].InHandle,
+            _knots[next].Position,
+            t);
     }
 
     public Vector3 EvaluateLocalTangent(float progress)
     {
         if (!IsValid) return Vector3.forward;
-#if UNITY_EDITOR
-        if (_editorSplineContainer != null && _editorSplineContainer.Spline != null)
-        {
-            var editorTangent = (Vector3)_editorSplineContainer.Spline.EvaluateTangent(_editorSplineContainer.Spline.Closed ? Mathf.Repeat(progress, 1f) : Mathf.Clamp01(progress));
-            return editorTangent.sqrMagnitude > 0.000001f ? editorTangent.normalized : Vector3.forward;
-        }
-#endif
         GetSegment(progress, out var current, out var next, out var t);
-        var tangent = EvaluateBezierDerivative(GetPointPosition(current), GetOutHandle(current), GetInHandle(next), GetPointPosition(next), t);
+        var tangent = EvaluateBezierDerivative(
+            _knots[current].Position,
+            _knots[current].OutHandle,
+            _knots[next].InHandle,
+            _knots[next].Position,
+            t);
         return tangent.sqrMagnitude > 0.000001f ? tangent.normalized : Vector3.forward;
     }
 
@@ -155,13 +99,6 @@ public sealed class ConveyorPathRuntime
     public float CalculateLength()
     {
         if (_cachedLength >= 0f) return _cachedLength;
-#if UNITY_EDITOR
-        if (_editorSplineContainer != null && _editorSplineContainer.Spline != null)
-        {
-            _cachedLength = Mathf.Max(0.0001f, _editorSplineContainer.Spline.CalculateLength(_editorSplineContainer.transform.localToWorldMatrix));
-            return _cachedLength;
-        }
-#endif
         if (!IsValid)
         {
             _cachedLength = 0f;
@@ -186,7 +123,25 @@ public sealed class ConveyorPathRuntime
 
     public void GetNearestPointGlobal(Vector3 localPosition, out Vector3 nearestPoint, out float progress, out Vector3 tangent)
     {
-        GetNearestPointInternal(localPosition, 0f, 1f, NearestSamples, out nearestPoint, out progress, out tangent);
+        if (!IsValid)
+        {
+            nearestPoint = Vector3.zero;
+            progress = 0f;
+            tangent = Vector3.forward;
+            return;
+        }
+
+        var bestIndex = 0;
+        var bestDistance = float.MaxValue;
+        for (var i = 0; i < NearestSamples; i++)
+        {
+            var distance = (localPosition - _samplePositions[i]).sqrMagnitude;
+            if (distance >= bestDistance) continue;
+            bestDistance = distance;
+            bestIndex = i;
+        }
+
+        InterpolateNearestSample(localPosition, bestIndex, out nearestPoint, out progress, out tangent);
     }
 
     public void GetNearestPointLocal(Vector3 localPosition, float centerProgress, int searchRange, out Vector3 nearestPoint, out float progress, out Vector3 tangent)
@@ -199,41 +154,122 @@ public sealed class ConveyorPathRuntime
             return;
         }
 
-        var window = Mathf.Clamp01(searchRange / (float)NearestSamples);
-        GetNearestPointInternal(localPosition, centerProgress - window, centerProgress + window, Mathf.Max(8, searchRange * 2 + 1), out nearestPoint, out progress, out tangent);
-    }
-
-    private void GetNearestPointInternal(Vector3 localPosition, float startProgress, float endProgress, int samples, out Vector3 nearestPoint, out float progress, out Vector3 tangent)
-    {
-        nearestPoint = Vector3.zero;
-        progress = 0f;
-        tangent = Vector3.forward;
-        if (!IsValid) return;
-
-        var bestDistance = float.MaxValue;
-        samples = Mathf.Max(2, samples);
-        for (var i = 0; i <= samples; i++)
+        var normalizedCenter = _closed ? Mathf.Repeat(centerProgress, 1f) : Mathf.Clamp01(centerProgress);
+        var approximateIndex = _closed
+            ? Mathf.RoundToInt(normalizedCenter * NearestSamples) % NearestSamples
+            : Mathf.RoundToInt(normalizedCenter * (NearestSamples - 1));
+        approximateIndex = Mathf.Clamp(approximateIndex, 0, NearestSamples - 1);
+        if ((localPosition - _samplePositions[approximateIndex]).sqrMagnitude > 4f)
         {
-            var rawProgress = Mathf.Lerp(startProgress, endProgress, i / (float)samples);
-            var sampleProgress = _closed ? Mathf.Repeat(rawProgress, 1f) : Mathf.Clamp01(rawProgress);
-            var point = EvaluateLocalPosition(sampleProgress);
-            var distance = (point - localPosition).sqrMagnitude;
-            if (distance >= bestDistance) continue;
-            bestDistance = distance;
-            nearestPoint = point;
-            progress = sampleProgress;
+            GetNearestPointGlobal(localPosition, out nearestPoint, out progress, out tangent);
+            return;
         }
 
-        tangent = EvaluateLocalTangent(progress);
+        var bestIndex = approximateIndex;
+        var bestDistance = float.MaxValue;
+        var actualSearchRange = Mathf.Min(Mathf.Max(1, searchRange), NearestSamples / 2);
+        for (var offset = -actualSearchRange; offset <= actualSearchRange; offset++)
+        {
+            var index = approximateIndex + offset;
+            if (_closed)
+            {
+                index = (index + NearestSamples) % NearestSamples;
+            }
+            else
+            {
+                index = Mathf.Clamp(index, 0, NearestSamples - 1);
+            }
+
+            var distance = (localPosition - _samplePositions[index]).sqrMagnitude;
+            if (distance >= bestDistance) continue;
+            bestDistance = distance;
+            bestIndex = index;
+        }
+
+        InterpolateNearestSample(localPosition, bestIndex, out nearestPoint, out progress, out tangent);
+    }
+
+    private void BuildNearestSampleCache()
+    {
+        if (!IsValid) return;
+        for (var i = 0; i < NearestSamples; i++)
+        {
+            var progress = GetSampleProgress(i);
+            _samplePositions[i] = EvaluateLocalPosition(progress);
+            _sampleTangents[i] = EvaluateLocalTangent(progress);
+        }
+    }
+
+    private void InterpolateNearestSample(
+        Vector3 localPosition,
+        int bestIndex,
+        out Vector3 nearestPoint,
+        out float progress,
+        out Vector3 tangent)
+    {
+        var previousIndex = bestIndex - 1;
+        var nextIndex = bestIndex + 1;
+        if (_closed)
+        {
+            previousIndex = (previousIndex + NearestSamples) % NearestSamples;
+            nextIndex %= NearestSamples;
+        }
+        else
+        {
+            previousIndex = Mathf.Clamp(previousIndex, 0, NearestSamples - 1);
+            nextIndex = Mathf.Clamp(nextIndex, 0, NearestSamples - 1);
+        }
+
+        var previousDistance = (localPosition - _samplePositions[previousIndex]).sqrMagnitude;
+        var nextDistance = (localPosition - _samplePositions[nextIndex]).sqrMagnitude;
+        var neighborIndex = previousDistance < nextDistance ? previousIndex : nextIndex;
+        var bestPoint = _samplePositions[bestIndex];
+        var neighborPoint = _samplePositions[neighborIndex];
+        var segment = neighborPoint - bestPoint;
+        var segmentLengthSqr = segment.sqrMagnitude;
+
+        var bestProgress = GetSampleProgress(bestIndex);
+        if (segmentLengthSqr <= 0.000001f)
+        {
+            nearestPoint = bestPoint;
+            progress = Mathf.Repeat(bestProgress, 1f);
+            tangent = _sampleTangents[bestIndex];
+            return;
+        }
+
+        var projection = Mathf.Clamp01(Vector3.Dot(localPosition - bestPoint, segment) / segmentLengthSqr);
+        var neighborProgress = GetSampleProgress(neighborIndex);
+        var progressDelta = neighborProgress - bestProgress;
+        if (_closed)
+        {
+            if (progressDelta > 0.5f) progressDelta -= 1f;
+            else if (progressDelta < -0.5f) progressDelta += 1f;
+        }
+
+        nearestPoint = bestPoint + segment * projection;
+        progress = _closed
+            ? Mathf.Repeat(bestProgress + progressDelta * projection, 1f)
+            : Mathf.Clamp01(bestProgress + progressDelta * projection);
+        tangent = Vector3.Lerp(
+            _sampleTangents[bestIndex],
+            _sampleTangents[neighborIndex],
+            projection).normalized;
+    }
+
+    private float GetSampleProgress(int index)
+    {
+        return _closed
+            ? index / (float)NearestSamples
+            : index / (float)(NearestSamples - 1);
     }
 
     private int GetSegmentCount()
     {
-        if (_points.Count < 2) return 0;
-        return _closed ? _points.Count : _points.Count - 1;
+        if (_knots.Count < 2) return 0;
+        return _closed ? _knots.Count : _knots.Count - 1;
     }
 
-    private void GetSegment(float progress, out SplinePointData current, out SplinePointData next, out float t)
+    private void GetSegment(float progress, out int current, out int next, out float t)
     {
         var segmentCount = GetSegmentCount();
         progress = _closed ? Mathf.Repeat(progress, 1f) : Mathf.Clamp01(progress);
@@ -249,23 +285,18 @@ public sealed class ConveyorPathRuntime
             t = scaled - index;
         }
 
-        current = _points[index];
-        next = _points[(index + 1) % _points.Count];
+        current = index;
+        next = (index + 1) % _knots.Count;
     }
 
-    private static Vector3 GetPointPosition(SplinePointData point)
+    private static PathKnot CreateKnot(SplinePointData point)
     {
-        return point == null ? Vector3.zero : new Vector3(point.GridPosition.x, 0f, point.GridPosition.y);
-    }
-
-    private static Vector3 GetOutHandle(SplinePointData point)
-    {
-        return point == null ? Vector3.zero : GetPointPosition(point) + point.TangentOutValue;
-    }
-
-    private static Vector3 GetInHandle(SplinePointData point)
-    {
-        return point == null ? Vector3.zero : GetPointPosition(point) + point.TangentInValue;
+        var position = new Vector3(point.GridPosition.x, 0f, point.GridPosition.y);
+        var rotation = Quaternion.Euler(point.Rotation);
+        return new PathKnot(
+            position,
+            position + rotation * point.TangentInValue,
+            position + rotation * point.TangentOutValue);
     }
 
     private static Vector3 EvaluateBezier(Vector3 p0, Vector3 p1, Vector3 p2, Vector3 p3, float t)
@@ -283,5 +314,19 @@ public sealed class ConveyorPathRuntime
         return 3f * u * u * (p1 - p0)
                + 6f * u * t * (p2 - p1)
                + 3f * t * t * (p3 - p2);
+    }
+
+    private struct PathKnot
+    {
+        public readonly Vector3 Position;
+        public readonly Vector3 InHandle;
+        public readonly Vector3 OutHandle;
+
+        public PathKnot(Vector3 position, Vector3 inHandle, Vector3 outHandle)
+        {
+            Position = position;
+            InHandle = inHandle;
+            OutHandle = outHandle;
+        }
     }
 }

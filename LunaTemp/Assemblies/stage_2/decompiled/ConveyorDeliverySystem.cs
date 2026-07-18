@@ -215,28 +215,11 @@ public class ConveyorDeliverySystem : MonoSingleton<ConveyorDeliverySystem>, ICo
 
 	private void Update()
 	{
-		UpdateLunaManualCubeMovement(Time.unscaledDeltaTime);
 		ConveyorCornerDetector cornerDetector = GetCornerDetector();
 		if (_conveyorCubeSpeedController != null && !(cornerDetector == null))
 		{
 			_conveyorCubeSpeedController.BoostCubesPassingCorners(cornerDetector.CornerProgresses);
 			UpdatePickupDetection();
-		}
-	}
-
-	private void UpdateLunaManualCubeMovement(float deltaTime)
-	{
-		if (_deliveryStates == null || _deliveryStates.Count == 0)
-		{
-			return;
-		}
-		for (int i = _deliveryStates.Count - 1; i >= 0; i--)
-		{
-			DeliveryCubeState state = _deliveryStates[i];
-			if (state != null && !state.IsPickedUp && !(state.Cube == null))
-			{
-				state.Cube.ManualUpdate(deltaTime);
-			}
 		}
 	}
 
@@ -373,6 +356,12 @@ public class ConveyorDeliverySystem : MonoSingleton<ConveyorDeliverySystem>, ICo
 			Vector3 worldPosition = path.EvaluateWorldPosition(normalizedProgress);
 			cube.transform.position = worldPosition;
 			cube.SyncProgress(normalizedProgress);
+			if (cube.TryGetComponent<Rigidbody>(out var rb))
+			{
+				rb.position = worldPosition;
+				rb.velocity = Vector3.zero;
+				rb.angularVelocity = Vector3.zero;
+			}
 		}
 	}
 
@@ -459,7 +448,7 @@ public class ConveyorDeliverySystem : MonoSingleton<ConveyorDeliverySystem>, ICo
 	private void CompleteUnload(AnimCube animCube, CarrierBase carrier, CarrierCubePayload payload, float progress, Vector3 deliveryTarget, bool isFirstCube, int undoBatchId)
 	{
 		Cube cube = _deliveryCubeFactory.CreateCubeInstance();
-		_deliveryCubeFactory.SetupCube(cube, payload.StartWorldPosition, payload.BlockColorType, GetSpawnRoot());
+		_deliveryCubeFactory.SetupCube(cube, deliveryTarget, payload.BlockColorType, GetSpawnRoot());
 		float progressOffset = 0f;
 		if (carrier != null)
 		{
@@ -477,7 +466,7 @@ public class ConveyorDeliverySystem : MonoSingleton<ConveyorDeliverySystem>, ICo
 		}
 		cube.Setup(Path, progress, progressOffset, deliveryTarget);
 		DeliveryCubeState state = new DeliveryCubeState(cube, carrier, payload.BlockColorType, payload.Color, undoBatchId);
-		state.PreviousProgress = Mathf.Repeat(progress, 1f);
+		state.PreviousProgress = ((cube != null) ? cube.GetProgress() : Mathf.Repeat(progress, 1f));
 		state.PreviousProgressCorner = state.PreviousProgress;
 		_deliveryStates.Add(state);
 		cachedMovers.Add(cube);

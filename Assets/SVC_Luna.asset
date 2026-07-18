@@ -899,34 +899,6 @@ MonoBehaviour:
       - DIRECTIONAL
       - TCP2_SPECULAR
   - shaderCompilerPlatform: 9
-    shader: {fileID: 4800000, guid: b62230acaa02d29479ae8460047a1371, type: 3}
-    passType: 4
-    passId: 0
-    subShaderIndex: 0
-    upToDate: 0
-    keywords:
-      "\L\u2025":
-      - DIRECTIONAL
-  - shaderCompilerPlatform: 9
-    shader: {fileID: 4800000, guid: b62230acaa02d29479ae8460047a1371, type: 3}
-    passType: 4
-    passId: 0
-    subShaderIndex: 0
-    upToDate: 0
-    keywords:
-      "\L\u2025":
-      - DIRECTIONAL
-      - LIGHTPROBE_SH
-  - shaderCompilerPlatform: 9
-    shader: {fileID: 4800000, guid: b62230acaa02d29479ae8460047a1371, type: 3}
-    passType: 5
-    passId: 1
-    subShaderIndex: 0
-    upToDate: 0
-    keywords:
-      "\L\u2025":
-      - DIRECTIONAL
-  - shaderCompilerPlatform: 9
     shader: {fileID: 4800000, guid: a1b2c3d4e5f60718293a4b5c6d7e8f90, type: 3}
     passType: 0
     passId: 0
@@ -2165,14 +2137,6 @@ MonoBehaviour:
     keywords:
       "\L\u2025": []
   - shaderCompilerPlatform: 9
-    shader: {fileID: 207, guid: 0000000000000000f000000000000000, type: 0}
-    passType: 0
-    passId: 0
-    subShaderIndex: 0
-    upToDate: 0
-    keywords:
-      "\L\u2025": []
-  - shaderCompilerPlatform: 9
     shader: {fileID: 106, guid: 0000000000000000f000000000000000, type: 0}
     passType: 0
     passId: 0
@@ -2323,26 +2287,6 @@ MonoBehaviour:
       "\L\u2025":
       - TCP2_UV_NORMALS_FULL
   - shaderCompilerPlatform: 5
-    shader: {fileID: 4800000, guid: b62230acaa02d29479ae8460047a1371, type: 3}
-    passType: 4
-    passId: 0
-    subShaderIndex: 0
-    upToDate: 0
-    keywords:
-      "\L\u2025":
-      - DIRECTIONAL
-      - LIGHTPROBE_SH
-  - shaderCompilerPlatform: 9
-    shader: {fileID: 4800000, guid: b62230acaa02d29479ae8460047a1371, type: 3}
-    passType: 4
-    passId: 0
-    subShaderIndex: 0
-    upToDate: 0
-    keywords:
-      "\L\u2025":
-      - DIRECTIONAL
-      - LIGHTPROBE_SH
-  - shaderCompilerPlatform: 5
     shader: {fileID: 4800000, guid: a1b2c3d4e5f60718293a4b5c6d7e8f90, type: 3}
     passType: 0
     passId: 0
@@ -2368,22 +2312,6 @@ MonoBehaviour:
       "\L\u2025": []
   - shaderCompilerPlatform: 9
     shader: {fileID: 4800000, guid: cf81c85f95fe47e1a27f6ae460cf182c, type: 3}
-    passType: 0
-    passId: 0
-    subShaderIndex: 0
-    upToDate: 0
-    keywords:
-      "\L\u2025": []
-  - shaderCompilerPlatform: 5
-    shader: {fileID: 4800000, guid: 218de872f117b394299b5c22a2c6f037, type: 3}
-    passType: 0
-    passId: 0
-    subShaderIndex: 0
-    upToDate: 0
-    keywords:
-      "\L\u2025": []
-  - shaderCompilerPlatform: 9
-    shader: {fileID: 4800000, guid: 218de872f117b394299b5c22a2c6f037, type: 3}
     passType: 0
     passId: 0
     subShaderIndex: 0
@@ -2567,23 +2495,67 @@ MonoBehaviour:
       - TCP2_RIM_LIGHTING
       - _ALPHAPREMULTIPLY_ON
   - shaderCompilerPlatform: 5
-    shader: {fileID: 4800000, guid: 25db5bcafdefb44499b6b10644d5cf3f, type: 3}
-    passType: 4
+    shader: {fileID: 207, guid: 0000000000000000f000000000000000, type: 0}
+    passType: 0
     passId: 0
     subShaderIndex: 0
     upToDate: 0
     keywords:
       "\L\u2025": []
   - shaderCompilerPlatform: 9
-    shader: {fileID: 4800000, guid: 25db5bcafdefb44499b6b10644d5cf3f, type: 3}
-    passType: 4
+    shader: {fileID: 207, guid: 0000000000000000f000000000000000, type: 0}
+    passType: 0
     passId: 0
     subShaderIndex: 0
     upToDate: 0
     keywords:
       "\L\u2025": []
   - shaderCompilerPlatform: 5
-    shader: {fileID: 207, guid: 0000000000000000f000000000000000, type: 0}
+    shader: {fileID: 4800000, guid: dc10052bc03b1084090717f65650b397, type: 3}
+    passType: 4
+    passId: 0
+    subShaderIndex: 0
+    upToDate: 0
+    keywords:
+      "\L\u2025":
+      - DIRECTIONAL
+      - LIGHTPROBE_SH
+      - TCP2_MATCAP
+      - TCP2_RIM_LIGHTING
+      - TCP2_SPECULAR
+  - shaderCompilerPlatform: 9
+    shader: {fileID: 4800000, guid: dc10052bc03b1084090717f65650b397, type: 3}
+    passType: 4
+    passId: 0
+    subShaderIndex: 0
+    upToDate: 0
+    keywords:
+      "\L\u2025":
+      - DIRECTIONAL
+      - LIGHTPROBE_SH
+      - TCP2_MATCAP
+      - TCP2_RIM_LIGHTING
+      - TCP2_SPECULAR
+  - shaderCompilerPlatform: 5
+    shader: {fileID: 4800000, guid: dc10052bc03b1084090717f65650b397, type: 3}
+    passType: 4
+    passId: 2
+    subShaderIndex: 0
+    upToDate: 0
+    keywords:
+      "\L\u2025":
+      - TCP2_UV_NORMALS_FULL
+  - shaderCompilerPlatform: 9
+    shader: {fileID: 4800000, guid: dc10052bc03b1084090717f65650b397, type: 3}
+    passType: 4
+    passId: 2
+    subShaderIndex: 0
+    upToDate: 0
+    keywords:
+      "\L\u2025":
+      - TCP2_UV_NORMALS_FULL
+  - shaderCompilerPlatform: 5
+    shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
     passType: 0
     passId: 0
     subShaderIndex: 0
@@ -2591,16 +2563,52 @@ MonoBehaviour:
     keywords:
       "\L\u2025": []
   - shaderCompilerPlatform: 9
-    shader: {fileID: 207, guid: 0000000000000000f000000000000000, type: 0}
+    shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
     passType: 0
     passId: 0
     subShaderIndex: 0
     upToDate: 0
     keywords:
       "\L\u2025": []
+  - shaderCompilerPlatform: 5
+    shader: {fileID: 4800000, guid: 218de872f117b394299b5c22a2c6f037, type: 3}
+    passType: 0
+    passId: 0
+    subShaderIndex: 0
+    upToDate: 0
+    keywords:
+      "\L\u2025": []
+  - shaderCompilerPlatform: 9
+    shader: {fileID: 4800000, guid: 218de872f117b394299b5c22a2c6f037, type: 3}
+    passType: 0
+    passId: 0
+    subShaderIndex: 0
+    upToDate: 0
+    keywords:
+      "\L\u2025": []
+  - shaderCompilerPlatform: 5
+    shader: {fileID: 10703, guid: 0000000000000000f000000000000000, type: 0}
+    passType: 4
+    passId: 0
+    subShaderIndex: 0
+    upToDate: 0
+    keywords:
+      "\L\u2025":
+      - DIRECTIONAL
+      - LIGHTPROBE_SH
+  - shaderCompilerPlatform: 9
+    shader: {fileID: 10703, guid: 0000000000000000f000000000000000, type: 0}
+    passType: 4
+    passId: 0
+    subShaderIndex: 0
+    upToDate: 0
+    keywords:
+      "\L\u2025":
+      - DIRECTIONAL
+      - LIGHTPROBE_SH
   _includedShaderVariants: []
   _excludedShaderVariants: []
-  version: 379
+  version: 688
   _shaderParsedShaders:
   - ParsedSubShaders:
     - Index: 0
@@ -3547,55 +3555,96 @@ MonoBehaviour:
             \tvec4 _LineShapeTex_ST;\nuniform \tfloat _FollowerAlpha;\nuniform \tfloat
             _FollowerEmission;\nuniform \tfloat _FollowerSpacing;\nuniform \tfloat
             _FollowerLength;\nuniform \tfloat _FollowerSoftness;\nuniform \tfloat
-            _LineWidth;\nuniform \tfloat _LineSoftness;\nuniform \tfloat _RoadLength;\nuniform
-            \tfloat _ClosedLoop;\nuniform \tfloat _FollowerOffset;\nuniform \tfloat
-            _RevealProgress;\nUNITY_LOCATION(0) uniform mediump sampler2D _LineShapeTex;\nin
-            highp vec2 vs_TEXCOORD0;\nlayout(location = 0) out mediump vec4 SV_Target0;\nvec4
-            u_xlat0;\nbvec4 u_xlatb0;\nvec2 u_xlat1;\nvec2 u_xlat2;\nmediump vec4
-            u_xlat16_3;\nmediump float u_xlat16_4;\nvec2 u_xlat5;\nfloat u_xlat6;\nfloat
-            u_xlat10;\nbool u_xlatb10;\nfloat u_xlat11;\nvec2 u_xlat12;\nfloat u_xlat15;\nfloat
-            u_xlat16;\nbool u_xlatb16;\nvoid main()\n{\n    u_xlat0.x = max(_FollowerSpacing,
-            0.00999999978);\n    u_xlat5.x = max(u_xlat0.x, _RoadLength);\n    u_xlat5.x
-            = u_xlat5.x / u_xlat0.x;\n    u_xlat5.x = roundEven(u_xlat5.x);\n   
-            u_xlat5.x = max(u_xlat5.x, 1.0);\n    u_xlat5.x = _RoadLength / u_xlat5.x;\n   
-            u_xlat5.x = max(u_xlat5.x, 0.00999999978);\n    u_xlat5.x = (-u_xlat0.x)
-            + u_xlat5.x;\n    u_xlatb10 = _ClosedLoop>=0.5;\n    u_xlat10 = u_xlatb10
-            ? 1.0 : float(0.0);\n    u_xlat0.x = u_xlat10 * u_xlat5.x + u_xlat0.x;\n   
-            u_xlat5.x = vs_TEXCOORD0.y + (-_FollowerOffset);\n    u_xlat0.x = u_xlat5.x
-            / u_xlat0.x;\n    u_xlat0.x = fract(u_xlat0.x);\n    u_xlat5.xy = vec2(_FollowerLength,
-            _FollowerAlpha);\n    u_xlat5.xy = clamp(u_xlat5.xy, 0.0, 1.0);\n   
-            u_xlat15 = (-u_xlat5.x) + 1.0;\n    u_xlat1.x = (-u_xlat15) * 0.5 + u_xlat0.x;\n   
-            u_xlat6 = max(u_xlat5.x, 9.99999975e-05);\n    u_xlat1.y = u_xlat1.x
-            / u_xlat6;\n    u_xlat1.y = clamp(u_xlat1.y, 0.0, 1.0);\n    u_xlat11
-            = vs_TEXCOORD0.x + -0.5;\n    u_xlat2.xy = max(vec2(_RoadLength, _LineWidth),
-            vec2(9.99999975e-05, 9.99999975e-05));\n    u_xlat11 = u_xlat11 / u_xlat2.y;\n   
-            u_xlat16 = vs_TEXCOORD0.y / u_xlat2.x;\n    u_xlatb16 = _RevealProgress>=u_xlat16;\n   
-            u_xlat16 = u_xlatb16 ? 1.0 : float(0.0);\n    u_xlat1.x = u_xlat11 +
-            0.5;\n    u_xlat2.xy = (-vec2(_LineSoftness, _FollowerSoftness)) + vec2(1.0,
-            1.0);\n    u_xlat12.xy = u_xlat1.xy + (-u_xlat2.xy);\n    u_xlat2.xy
-            = (-u_xlat2.xy) + vec2(1.0, 1.0);\n    u_xlat2.xy = vec2(1.0, 1.0) /
-            u_xlat2.xy;\n    u_xlat2.xy = u_xlat2.xy * u_xlat12.xy;\n    u_xlat2.xy
-            = clamp(u_xlat2.xy, 0.0, 1.0);\n    u_xlat12.xy = u_xlat2.xy * vec2(-2.0,
-            -2.0) + vec2(3.0, 3.0);\n    u_xlat2.xy = u_xlat2.xy * u_xlat2.xy;\n   
-            u_xlat2.xy = (-u_xlat12.xy) * u_xlat2.xy + vec2(1.0, 1.0);\n    u_xlat12.xy
-            = vec2(1.0, 1.0) / vec2(_LineSoftness, _FollowerSoftness);\n    u_xlat12.xy
-            = u_xlat1.xy * u_xlat12.xy;\n    u_xlat12.xy = clamp(u_xlat12.xy, 0.0,
-            1.0);\n    u_xlat1.xy = u_xlat1.xy * _LineShapeTex_ST.xy + _LineShapeTex_ST.zw;\n   
-            u_xlat16_3 = texture(_LineShapeTex, u_xlat1.xy);\n    u_xlat1.xy = u_xlat12.xy
-            * vec2(-2.0, -2.0) + vec2(3.0, 3.0);\n    u_xlat12.xy = u_xlat12.xy *
-            u_xlat12.xy;\n    u_xlat1.xy = u_xlat1.xy * u_xlat12.xy;\n    u_xlat1.xy
-            = u_xlat2.xy * u_xlat1.xy;\n    u_xlat1.xy = clamp(u_xlat1.xy, 0.0, 1.0);\n   
-            u_xlat16_4 = max(u_xlat16_3.z, u_xlat16_3.y);\n    u_xlat16_4 = max(u_xlat16_3.x,
-            u_xlat16_4);\n    u_xlat16_4 = max(u_xlat16_3.w, u_xlat16_4);\n    u_xlat1.x
-            = u_xlat1.x * u_xlat16_4;\n    u_xlat5.x = u_xlat15 * 0.5 + u_xlat5.x;\n   
-            u_xlat15 = u_xlat15 * 0.5;\n    u_xlatb0.w = u_xlat0.x>=u_xlat15;\n   
-            u_xlatb0.x = u_xlat5.x>=u_xlat0.x;\n    u_xlat0.x = u_xlatb0.x ? float(1.0)
-            : 0.0;\n    u_xlat0.y = u_xlatb0.w ? float(1.0) : 0.0;\n;\n    u_xlat0.x
-            = u_xlat0.x * u_xlat0.y;\n    u_xlat0.x = u_xlat0.x * u_xlat1.x;\n   
-            u_xlat0.x = u_xlat1.y * u_xlat0.x;\n    u_xlat0.x = u_xlat5.y * u_xlat0.x;\n   
-            u_xlat0.w = u_xlat16 * u_xlat0.x;\n    u_xlat0.xyz = _FollowerColor.xyz
-            * vec3(vec3(_FollowerEmission, _FollowerEmission, _FollowerEmission));\n   
-            SV_Target0 = u_xlat0;\n    return;\n}\n\n"
+            _LineWidth;\nuniform \tfloat _LineSoftness;\nuniform \tmediump vec4 _RoadColor;\nuniform
+            \tmediump vec4 _RoadHighlightColor;\nuniform \tmediump vec4 _RoadEdgeColor;\nuniform
+            \tmediump vec4 _RoadInnerLineColor;\nuniform \tfloat _RoadEdgeWidth;\nuniform
+            \tfloat _RoadInnerLineOffset;\nuniform \tfloat _RoadInnerLineWidth;\nuniform
+            \tfloat _RoadAlpha;\nuniform \tfloat _RoadLength;\nuniform \tfloat _ClosedLoop;\nuniform
+            \tfloat _FollowerOffset;\nuniform \tfloat _RevealProgress;\nUNITY_LOCATION(0)
+            uniform mediump sampler2D _LineShapeTex;\nin highp vec2 vs_TEXCOORD0;\nlayout(location
+            = 0) out mediump vec4 SV_Target0;\nvec2 u_xlat0;\nbvec4 u_xlatb0;\nvec4
+            u_xlat1;\nvec3 u_xlat2;\nvec3 u_xlat3;\nmediump vec4 u_xlat16_3;\nmediump
+            float u_xlat16_4;\nvec3 u_xlat5;\nvec2 u_xlat6;\nbool u_xlatb6;\nvec3
+            u_xlat7;\nfloat u_xlat9;\nfloat u_xlat12;\nbool u_xlatb12;\nvec2 u_xlat13;\nfloat
+            u_xlat18;\nfloat u_xlat19;\nfloat u_xlat20;\nvoid main()\n{\n    u_xlat0.x
+            = max(_FollowerSpacing, 0.00999999978);\n    u_xlat6.x = max(u_xlat0.x,
+            _RoadLength);\n    u_xlat6.x = u_xlat6.x / u_xlat0.x;\n    u_xlat6.x
+            = roundEven(u_xlat6.x);\n    u_xlat6.x = max(u_xlat6.x, 1.0);\n    u_xlat6.x
+            = _RoadLength / u_xlat6.x;\n    u_xlat6.x = max(u_xlat6.x, 0.00999999978);\n   
+            u_xlat6.x = (-u_xlat0.x) + u_xlat6.x;\n    u_xlatb12 = _ClosedLoop>=0.5;\n   
+            u_xlat12 = u_xlatb12 ? 1.0 : float(0.0);\n    u_xlat0.x = u_xlat12 *
+            u_xlat6.x + u_xlat0.x;\n    u_xlat6.x = vs_TEXCOORD0.y + (-_FollowerOffset);\n   
+            u_xlat0.x = u_xlat6.x / u_xlat0.x;\n    u_xlat0.x = fract(u_xlat0.x);\n   
+            u_xlat6.xy = vec2(_FollowerLength, _FollowerAlpha);\n    u_xlat6.xy =
+            clamp(u_xlat6.xy, 0.0, 1.0);\n    u_xlat18 = (-u_xlat6.x) + 1.0;\n   
+            u_xlat1.x = (-u_xlat18) * 0.5 + u_xlat0.x;\n    u_xlat7.x = max(u_xlat6.x,
+            9.99999975e-05);\n    u_xlat1.y = u_xlat1.x / u_xlat7.x;\n    u_xlat1.y
+            = clamp(u_xlat1.y, 0.0, 1.0);\n    u_xlat13.x = vs_TEXCOORD0.x + -0.5;\n   
+            u_xlat19 = max(_LineWidth, 9.99999975e-05);\n    u_xlat13.x = u_xlat13.x
+            / u_xlat19;\n    u_xlat1.x = u_xlat13.x + 0.5;\n    u_xlat13.xy = (-vec2(_LineSoftness,
+            _FollowerSoftness)) + vec2(1.0, 1.0);\n    u_xlat2.xy = (-u_xlat13.xy)
+            + u_xlat1.xy;\n    u_xlat13.xy = (-u_xlat13.xy) + vec2(1.0, 1.0);\n   
+            u_xlat13.xy = vec2(1.0, 1.0) / u_xlat13.xy;\n    u_xlat13.xy = u_xlat13.xy
+            * u_xlat2.xy;\n    u_xlat13.xy = clamp(u_xlat13.xy, 0.0, 1.0);\n    u_xlat2.xy
+            = u_xlat13.xy * vec2(-2.0, -2.0) + vec2(3.0, 3.0);\n    u_xlat13.xy =
+            u_xlat13.xy * u_xlat13.xy;\n    u_xlat13.xy = (-u_xlat2.xy) * u_xlat13.xy
+            + vec2(1.0, 1.0);\n    u_xlat2.xy = vec2(1.0, 1.0) / vec2(_LineSoftness,
+            _FollowerSoftness);\n    u_xlat2.xy = u_xlat1.xy * u_xlat2.xy;\n    u_xlat2.xy
+            = clamp(u_xlat2.xy, 0.0, 1.0);\n    u_xlat1.xy = u_xlat1.xy * _LineShapeTex_ST.xy
+            + _LineShapeTex_ST.zw;\n    u_xlat16_3 = texture(_LineShapeTex, u_xlat1.xy);\n   
+            u_xlat1.xy = u_xlat2.xy * vec2(-2.0, -2.0) + vec2(3.0, 3.0);\n    u_xlat2.xy
+            = u_xlat2.xy * u_xlat2.xy;\n    u_xlat1.xy = u_xlat1.xy * u_xlat2.xy;\n   
+            u_xlat1.xy = u_xlat13.xy * u_xlat1.xy;\n    u_xlat1.xy = clamp(u_xlat1.xy,
+            0.0, 1.0);\n    u_xlat16_4 = max(u_xlat16_3.z, u_xlat16_3.y);\n    u_xlat16_4
+            = max(u_xlat16_3.x, u_xlat16_4);\n    u_xlat16_4 = max(u_xlat16_3.w,
+            u_xlat16_4);\n    u_xlat1.x = u_xlat1.x * u_xlat16_4;\n    u_xlat6.x
+            = u_xlat18 * 0.5 + u_xlat6.x;\n    u_xlat18 = u_xlat18 * 0.5;\n    u_xlatb0.w
+            = u_xlat0.x>=u_xlat18;\n    u_xlatb0.x = u_xlat6.x>=u_xlat0.x;\n    u_xlat0.x
+            = u_xlatb0.x ? float(1.0) : 0.0;\n    u_xlat0.y = u_xlatb0.w ? float(1.0)
+            : 0.0;\n;\n    u_xlat0.x = u_xlat0.x * u_xlat0.y;\n    u_xlat0.x = u_xlat0.x
+            * u_xlat1.x;\n    u_xlat0.x = u_xlat1.y * u_xlat0.x;\n    u_xlat0.x =
+            u_xlat6.y * u_xlat0.x;\n    u_xlat6.x = max(_RoadLength, 9.99999975e-05);\n   
+            u_xlat6.x = vs_TEXCOORD0.y / u_xlat6.x;\n    u_xlatb6 = _RevealProgress>=u_xlat6.x;\n   
+            u_xlat6.x = u_xlatb6 ? 1.0 : float(0.0);\n    u_xlat0.x = u_xlat6.x *
+            u_xlat0.x;\n    u_xlat12 = u_xlat0.x;\n    u_xlat12 = clamp(u_xlat12,
+            0.0, 1.0);\n    u_xlat18 = vs_TEXCOORD0.x;\n    u_xlat18 = clamp(u_xlat18,
+            0.0, 1.0);\n    u_xlat1.xy = vec2(u_xlat18) + (-vec2(_RoadEdgeWidth,
+            _RoadInnerLineOffset));\n    u_xlat1.y = abs(u_xlat1.y) + (-_RoadInnerLineWidth);\n   
+            u_xlat1.xy = u_xlat1.xy * vec2(40.0, 83.3333359);\n    u_xlat1.xy = clamp(u_xlat1.xy,
+            0.0, 1.0);\n    u_xlat13.x = u_xlat1.y * -2.0 + 3.0;\n    u_xlat7.x =
+            u_xlat1.y * u_xlat1.y;\n    u_xlat7.x = (-u_xlat13.x) * u_xlat7.x + 1.0;\n   
+            u_xlat13.x = (-_RoadInnerLineOffset) + 1.0;\n    u_xlat13.x = u_xlat18
+            + (-u_xlat13.x);\n    u_xlat13.x = abs(u_xlat13.x) + (-_RoadInnerLineWidth);\n   
+            u_xlat13.x = u_xlat13.x * 83.3333359;\n    u_xlat13.x = clamp(u_xlat13.x,
+            0.0, 1.0);\n    u_xlat19 = u_xlat13.x * -2.0 + 3.0;\n    u_xlat13.x =
+            u_xlat13.x * u_xlat13.x;\n    u_xlat7.x = (-u_xlat19) * u_xlat13.x +
+            u_xlat7.x;\n    u_xlat7.x = u_xlat7.x + 1.0;\n    u_xlat7.x = clamp(u_xlat7.x,
+            0.0, 1.0);\n    u_xlat7.x = u_xlat7.x * 0.850000024;\n    u_xlat2.xyz
+            = (-_RoadColor.xyz) + _RoadHighlightColor.xyz;\n    u_xlat3.xyz = vec3(u_xlat18)
+            + vec3(-0.99000001, -1.0, -0.5);\n    u_xlat18 = u_xlat18 * 100.0;\n   
+            u_xlat18 = min(u_xlat18, 1.0);\n    u_xlat13.x = -abs(u_xlat3.z) * 2.0
+            + 1.0;\n    u_xlat13.x = u_xlat13.x * 0.180000007;\n    u_xlat2.xyz =
+            u_xlat13.xxx * u_xlat2.xyz + _RoadColor.xyz;\n    u_xlat5.xyz = (-u_xlat2.xyz)
+            + _RoadInnerLineColor.xyz;\n    u_xlat7.xyz = u_xlat7.xxx * u_xlat5.xyz
+            + u_xlat2.xyz;\n    u_xlat2.xyz = (-u_xlat7.xyz) + _RoadEdgeColor.xyz;\n   
+            u_xlat20 = u_xlat1.x * -2.0 + 3.0;\n    u_xlat1.x = u_xlat1.x * u_xlat1.x;\n   
+            u_xlat1.x = (-u_xlat20) * u_xlat1.x + 1.0;\n    u_xlat20 = (-u_xlat3.y)
+            + (-_RoadEdgeWidth);\n    u_xlat3.x = u_xlat3.x * 100.000099;\n    u_xlat3.x
+            = max(u_xlat3.x, 0.0);\n    u_xlat20 = u_xlat20 * 40.0;\n    u_xlat20
+            = clamp(u_xlat20, 0.0, 1.0);\n    u_xlat9 = u_xlat20 * -2.0 + 3.0;\n   
+            u_xlat20 = u_xlat20 * u_xlat20;\n    u_xlat1.x = (-u_xlat9) * u_xlat20
+            + u_xlat1.x;\n    u_xlat1.x = u_xlat1.x + 1.0;\n    u_xlat1.x = clamp(u_xlat1.x,
+            0.0, 1.0);\n    u_xlat1.xyz = u_xlat1.xxx * u_xlat2.xyz + u_xlat7.xyz;\n   
+            u_xlat2.xyz = _FollowerColor.xyz * vec3(vec3(_FollowerEmission, _FollowerEmission,
+            _FollowerEmission)) + (-u_xlat1.xyz);\n    u_xlat1.xyz = vec3(u_xlat12)
+            * u_xlat2.xyz + u_xlat1.xyz;\n    u_xlat12 = u_xlat18 * -2.0 + 3.0;\n   
+            u_xlat18 = u_xlat18 * u_xlat18;\n    u_xlat12 = u_xlat18 * u_xlat12;\n   
+            u_xlat18 = u_xlat3.x * -2.0 + 3.0;\n    u_xlat2.x = u_xlat3.x * u_xlat3.x;\n   
+            u_xlat18 = (-u_xlat18) * u_xlat2.x + 1.0;\n    u_xlat12 = u_xlat18 *
+            u_xlat12;\n    u_xlat12 = clamp(u_xlat12, 0.0, 1.0);\n    u_xlat6.x =
+            u_xlat6.x * u_xlat12;\n    u_xlat1.w = u_xlat6.x * _RoadAlpha + u_xlat0.x;\n   
+            u_xlat1.w = clamp(u_xlat1.w, 0.0, 1.0);\n    SV_Target0 = u_xlat1;\n   
+            return;\n}\n\n"
           LOD: 0
           readDepth: 0
           PassId: 0
@@ -13279,130 +13328,6 @@ MonoBehaviour:
   - ParsedSubShaders:
     - Index: 0
       Passes:
-      - Shader: {fileID: 207, guid: 0000000000000000f000000000000000, type: 0}
-        ShaderVariants:
-        - ShaderCompilerPlatform: 9
-          NoShaderVariant: 0
-          VertexProgram: "\n#version 300 es\n\n#define HLSLCC_ENABLE_UNIFORM_BUFFERS
-            0\n#if HLSLCC_ENABLE_UNIFORM_BUFFERS\n#define UNITY_UNIFORM\n#else\n#define
-            UNITY_UNIFORM uniform\n#endif\n#define UNITY_SUPPORTS_UNIFORM_LOCATION
-            0\n#if UNITY_SUPPORTS_UNIFORM_LOCATION\n#define UNITY_LOCATION(x) layout(location
-            = x)\n#define UNITY_BINDING(x) layout(binding = x, std140)\n#else\n#define
-            UNITY_LOCATION(x)\n#define UNITY_BINDING(x) layout(std140)\n#endif\nuniform
-            \tvec4 hlslcc_mtx4x4unity_ObjectToWorld[4];\nuniform \tvec4 hlslcc_mtx4x4unity_MatrixVP[4];\nuniform
-            \tvec4 _MainTex_ST;\nin highp vec4 in_POSITION0;\nin mediump vec4 in_COLOR0;\nin
-            highp vec2 in_TEXCOORD0;\nout mediump vec4 vs_COLOR0;\nout highp vec2
-            vs_TEXCOORD0;\nvec4 u_xlat0;\nvec4 u_xlat1;\nvoid main()\n{\n    u_xlat0
-            = in_POSITION0.yyyy * hlslcc_mtx4x4unity_ObjectToWorld[1];\n    u_xlat0
-            = hlslcc_mtx4x4unity_ObjectToWorld[0] * in_POSITION0.xxxx + u_xlat0;\n   
-            u_xlat0 = hlslcc_mtx4x4unity_ObjectToWorld[2] * in_POSITION0.zzzz + u_xlat0;\n   
-            u_xlat0 = u_xlat0 + hlslcc_mtx4x4unity_ObjectToWorld[3];\n    u_xlat1
-            = u_xlat0.yyyy * hlslcc_mtx4x4unity_MatrixVP[1];\n    u_xlat1 = hlslcc_mtx4x4unity_MatrixVP[0]
-            * u_xlat0.xxxx + u_xlat1;\n    u_xlat1 = hlslcc_mtx4x4unity_MatrixVP[2]
-            * u_xlat0.zzzz + u_xlat1;\n    gl_Position = hlslcc_mtx4x4unity_MatrixVP[3]
-            * u_xlat0.wwww + u_xlat1;\n    vs_COLOR0 = in_COLOR0;\n    vs_TEXCOORD0.xy
-            = in_TEXCOORD0.xy * _MainTex_ST.xy + _MainTex_ST.zw;\n    return;\n}\n\n"
-          FragmentProgram: "\n#version 300 es\n\nprecision highp float;\nprecision
-            highp int;\n#define UNITY_SUPPORTS_UNIFORM_LOCATION 0\n#if UNITY_SUPPORTS_UNIFORM_LOCATION\n#define
-            UNITY_LOCATION(x) layout(location = x)\n#define UNITY_BINDING(x) layout(binding
-            = x, std140)\n#else\n#define UNITY_LOCATION(x)\n#define UNITY_BINDING(x)
-            layout(std140)\n#endif\nUNITY_LOCATION(0) uniform mediump sampler2D _MainTex;\nin
-            mediump vec4 vs_COLOR0;\nin highp vec2 vs_TEXCOORD0;\nlayout(location
-            = 0) out mediump vec4 SV_Target0;\nvec4 u_xlat0;\nmediump vec4 u_xlat16_0;\nvoid
-            main()\n{\n    u_xlat16_0 = texture(_MainTex, vs_TEXCOORD0.xy);\n   
-            u_xlat0 = u_xlat16_0 * vs_COLOR0;\n    u_xlat0 = u_xlat0 * vs_COLOR0.wwww;\n   
-            SV_Target0 = u_xlat0;\n    return;\n}\n\n"
-          LOD: 0
-          readDepth: 0
-          PassId: 0
-          SubShaderIndex: 0
-          Keywords:
-            "\L\u2025": []
-          Tags:
-          - Key: IGNOREPROJECTOR
-            Value: true
-          - Key: PreviewType
-            Value: Plane
-          - Key: QUEUE
-            Value: Transparent
-          - Key: RenderType
-            Value: Transparent
-        DefinedKeywords:
-          "\L\u2025":
-          - SOFTPARTICLES_ON
-          - STEREO_CUBEMAP_RENDER_ON
-          - STEREO_INSTANCING_ON
-          - STEREO_MULTIVIEW_ON
-          - UNITY_SINGLE_PASS_STEREO
-          - __
-        KeywordGroups:
-        - Keywords:
-          - __
-          - SOFTPARTICLES_ON
-          hasDiscard: 1
-        KeywordsMinimalCardinality: 0
-        ContainsInvalidVariant: 0
-        VariantStructures:
-        - shaderCompilerPlatform: 9
-          shader: {fileID: 207, guid: 0000000000000000f000000000000000, type: 0}
-          passType: 0
-          passId: 0
-          subShaderIndex: 0
-          upToDate: 0
-          keywords:
-            "\L\u2025": []
-        CompilationErrors: []
-        HasDepthReader: 0
-        Id: 0
-        SubShaderIndex: 0
-        SerializedObjectId: 0
-        Tags:
-        - Key: IGNOREPROJECTOR
-          Value: true
-        - Key: PreviewType
-          Value: Plane
-        - Key: QUEUE
-          Value: Transparent
-        - Key: RenderType
-          Value: Transparent
-        UsePass:
-          shader: 
-          pass: 
-        GrabPassTextureName: 
-        PlatformMask: -1
-      Shader: {fileID: 207, guid: 0000000000000000f000000000000000, type: 0}
-      Tags:
-      - Key: IGNOREPROJECTOR
-        Value: true
-      - Key: PreviewType
-        Value: Plane
-      - Key: QUEUE
-        Value: Transparent
-      - Key: RenderType
-        Value: Transparent
-    Shader: {fileID: 207, guid: 0000000000000000f000000000000000, type: 0}
-    ShaderPath: Resources/unity_builtin_extra
-    ShaderDefinedKeywords:
-    - SOFTPARTICLES_ON
-    - STEREO_CUBEMAP_RENDER_ON
-    - STEREO_INSTANCING_ON
-    - STEREO_MULTIVIEW_ON
-    - UNITY_SINGLE_PASS_STEREO
-    - __
-    fallbackShader: {fileID: 0}
-    CompilationErrors: []
-    Variants:
-    - shaderCompilerPlatform: 9
-      shader: {fileID: 207, guid: 0000000000000000f000000000000000, type: 0}
-      passType: 0
-      passId: 0
-      subShaderIndex: 0
-      upToDate: 0
-      keywords:
-        "\L\u2025": []
-  - ParsedSubShaders:
-    - Index: 0
-      Passes:
       - Shader: {fileID: 6, guid: 0000000000000000f000000000000000, type: 0}
         ShaderVariants:
         - ShaderCompilerPlatform: 9
@@ -16154,53 +16079,56 @@ MonoBehaviour:
             \tmediump float _ReflectIntensity;\nUNITY_LOCATION(0) uniform mediump
             sampler2D _MainTex;\nin highp vec2 vs_TEXCOORD0;\nin mediump vec3 vs_TEXCOORD1;\nin
             mediump vec3 vs_TEXCOORD2;\nlayout(location = 0) out mediump vec4 SV_Target0;\nmediump
-            vec3 u_xlat16_0;\nvec3 u_xlat1;\nmediump vec4 u_xlat16_1;\nmediump vec3
-            u_xlat16_2;\nmediump vec3 u_xlat16_3;\nvec3 u_xlat4;\nmediump vec3 u_xlat16_5;\nfloat
-            u_xlat6;\nfloat u_xlat14;\nmediump float u_xlat16_15;\nfloat u_xlat16;\nfloat
-            u_xlat19;\nvoid main()\n{\n    u_xlat16_0.x = dot(vs_TEXCOORD2.xyz, vs_TEXCOORD2.xyz);\n   
+            vec3 u_xlat16_0;\nvec3 u_xlat1;\nmediump vec4 u_xlat16_1;\nmediump vec4
+            u_xlat16_2;\nmediump vec3 u_xlat16_3;\nmediump vec3 u_xlat16_4;\nmediump
+            vec3 u_xlat16_5;\nmediump vec3 u_xlat16_6;\nmediump float u_xlat16_14;\nmediump
+            float u_xlat16_18;\nmediump float u_xlat16_20;\nmediump float u_xlat16_21;\nvoid
+            main()\n{\n    u_xlat16_0.x = dot(vs_TEXCOORD2.xyz, vs_TEXCOORD2.xyz);\n   
             u_xlat16_0.x = inversesqrt(u_xlat16_0.x);\n    u_xlat16_0.xyz = u_xlat16_0.xxx
             * vs_TEXCOORD2.xyz;\n    u_xlat1.x = dot(_WorldSpaceLightPos0.xyz, _WorldSpaceLightPos0.xyz);\n   
             u_xlat1.x = inversesqrt(u_xlat1.x);\n    u_xlat16_2.xyz = _WorldSpaceLightPos0.xyz
             * u_xlat1.xxx + u_xlat16_0.xyz;\n    u_xlat1.xyz = u_xlat1.xxx * _WorldSpaceLightPos0.xyz;\n   
-            u_xlat16_15 = dot(u_xlat16_2.xyz, u_xlat16_2.xyz);\n    u_xlat16_15 =
-            inversesqrt(u_xlat16_15);\n    u_xlat16_2.xyz = vec3(u_xlat16_15) * u_xlat16_2.xyz;\n   
-            u_xlat16_15 = dot(vs_TEXCOORD1.xyz, vs_TEXCOORD1.xyz);\n    u_xlat16_15
-            = inversesqrt(u_xlat16_15);\n    u_xlat16_3.xyz = vec3(u_xlat16_15) *
-            vs_TEXCOORD1.xyz;\n    u_xlat16_15 = dot(u_xlat16_3.xyz, u_xlat16_2.xyz);\n   
-            u_xlat16_15 = clamp(u_xlat16_15, 0.0, 1.0);\n    u_xlat4.xy = max(vec2(_SpecularToonSize,
-            _SpecularIntensity), vec2(0.219999999, 0.349999994));\n    u_xlat16 =
-            (-u_xlat4.x) + 1.0;\n    u_xlat14 = u_xlat16 + (-_SpecularToonSmoothness);\n   
-            u_xlat14 = clamp(u_xlat14, 0.0, 1.0);\n    u_xlat16 = max(u_xlat16, 0.0);\n   
-            u_xlat16 = (-u_xlat14) + u_xlat16;\n    u_xlat14 = u_xlat16_15 + (-u_xlat14);\n   
-            u_xlat16 = float(1.0) / u_xlat16;\n    u_xlat16 = u_xlat16 * u_xlat14;\n   
-            u_xlat16 = clamp(u_xlat16, 0.0, 1.0);\n    u_xlat14 = u_xlat16 * -2.0
-            + 3.0;\n    u_xlat16 = u_xlat16 * u_xlat16;\n    u_xlat16 = u_xlat16
-            * u_xlat14;\n    u_xlat16_2.xyz = vec3(u_xlat16) * _SpecularColor.xyz;\n   
-            u_xlat16_2.xyz = u_xlat4.xxx * u_xlat16_2.xyz;\n    u_xlat4.xyz = u_xlat4.yyy
-            * u_xlat16_2.xyz;\n    u_xlat16_15 = dot(u_xlat16_3.xyz, u_xlat1.xyz);\n   
-            u_xlat16_15 = clamp(u_xlat16_15, 0.0, 1.0);\n    u_xlat1.x = max(_RampSmoothing,
-            0.00100000005);\n    u_xlat6 = (-u_xlat1.x) * 0.5 + _RampThreshold;\n   
-            u_xlat1.x = u_xlat1.x * 0.5 + _RampThreshold;\n    u_xlat1.x = (-u_xlat6)
-            + u_xlat1.x;\n    u_xlat6 = u_xlat16_15 + (-u_xlat6);\n    u_xlat1.x
-            = float(1.0) / u_xlat1.x;\n    u_xlat1.x = u_xlat1.x * u_xlat6;\n   
-            u_xlat1.x = clamp(u_xlat1.x, 0.0, 1.0);\n    u_xlat6 = u_xlat1.x * -2.0
-            + 3.0;\n    u_xlat1.x = u_xlat1.x * u_xlat1.x;\n    u_xlat1.x = u_xlat1.x
-            * u_xlat6;\n    u_xlat16_2.xyz = _HColor.xyz + (-_SColor.xyz);\n    u_xlat16_2.xyz
-            = u_xlat1.xxx * u_xlat16_2.xyz + _SColor.xyz;\n    u_xlat16_1 = texture(_MainTex,
-            vs_TEXCOORD0.xy);\n    u_xlat16_1 = u_xlat16_1 * _Color;\n    u_xlat4.xyz
-            = u_xlat16_1.xyz * u_xlat16_2.xyz + u_xlat4.xyz;\n    SV_Target0.w =
-            u_xlat16_1.w;\n    u_xlat16_0.x = dot(u_xlat16_3.xyz, u_xlat16_0.xyz);\n   
-            u_xlat16_0.x = clamp(u_xlat16_0.x, 0.0, 1.0);\n    u_xlat19 = u_xlat16_3.y
-            * 0.5 + 0.5;\n    u_xlat19 = clamp(u_xlat19, 0.0, 1.0);\n    u_xlat16_5.xyz
-            = vec3(u_xlat19) * _MatCapColor.xyz;\n    u_xlat19 = (-u_xlat16_0.x)
-            + 1.0;\n    u_xlat19 = log2(u_xlat19);\n    u_xlat19 = u_xlat19 * 2.4000001;\n   
-            u_xlat19 = exp2(u_xlat19);\n    u_xlat16_2.xyz = vec3(u_xlat19) * _RimColor.xyz;\n   
-            u_xlat16_3.xyz = vec3(u_xlat19) * _ReflectColor.xyz;\n    u_xlat16_3.xyz
-            = u_xlat16_3.xyz * vec3(_ReflectIntensity);\n    u_xlat16_2.xyz = u_xlat16_2.xyz
-            * _RimColor.www + u_xlat4.xyz;\n    u_xlat4.xyz = u_xlat16_5.xyz * vec3(0.0799999982,
-            0.0799999982, 0.0799999982) + u_xlat16_2.xyz;\n    u_xlat4.xyz = u_xlat16_3.xyz
-            * vec3(0.119999997, 0.119999997, 0.119999997) + u_xlat4.xyz;\n    SV_Target0.xyz
-            = u_xlat4.xyz;\n    return;\n}\n\n"
+            u_xlat16_18 = dot(u_xlat16_2.xyz, u_xlat16_2.xyz);\n    u_xlat16_18 =
+            inversesqrt(u_xlat16_18);\n    u_xlat16_2.xyz = vec3(u_xlat16_18) * u_xlat16_2.xyz;\n   
+            u_xlat16_18 = dot(vs_TEXCOORD1.xyz, vs_TEXCOORD1.xyz);\n    u_xlat16_18
+            = inversesqrt(u_xlat16_18);\n    u_xlat16_3.xyz = vec3(u_xlat16_18) *
+            vs_TEXCOORD1.xyz;\n    u_xlat16_18 = dot(u_xlat16_3.xyz, u_xlat16_2.xyz);\n   
+            u_xlat16_18 = clamp(u_xlat16_18, 0.0, 1.0);\n    u_xlat16_2.xy = max(vec2(_SpecularToonSize,
+            _SpecularIntensity), vec2(0.219999999, 0.349999994));\n    u_xlat16_14
+            = (-u_xlat16_2.x) + 1.0;\n    u_xlat16_20 = u_xlat16_14 + (-_SpecularToonSmoothness);\n   
+            u_xlat16_20 = clamp(u_xlat16_20, 0.0, 1.0);\n    u_xlat16_14 = max(u_xlat16_14,
+            0.0);\n    u_xlat16_14 = (-u_xlat16_20) + u_xlat16_14;\n    u_xlat16_18
+            = u_xlat16_18 + (-u_xlat16_20);\n    u_xlat16_14 = float(1.0) / u_xlat16_14;\n   
+            u_xlat16_18 = u_xlat16_18 * u_xlat16_14;\n    u_xlat16_18 = clamp(u_xlat16_18,
+            0.0, 1.0);\n    u_xlat16_14 = u_xlat16_18 * -2.0 + 3.0;\n    u_xlat16_18
+            = u_xlat16_18 * u_xlat16_18;\n    u_xlat16_18 = u_xlat16_18 * u_xlat16_14;\n   
+            u_xlat16_4.xyz = vec3(u_xlat16_18) * _SpecularColor.xyz;\n    u_xlat16_2.xzw
+            = u_xlat16_2.xxx * u_xlat16_4.xyz;\n    u_xlat16_2.xyz = u_xlat16_2.yyy
+            * u_xlat16_2.xzw;\n    u_xlat16_18 = dot(u_xlat16_3.xyz, u_xlat1.xyz);\n   
+            u_xlat16_18 = clamp(u_xlat16_18, 0.0, 1.0);\n    u_xlat16_20 = max(_RampSmoothing,
+            0.00100000005);\n    u_xlat16_21 = (-u_xlat16_20) * 0.5 + _RampThreshold;\n   
+            u_xlat16_20 = u_xlat16_20 * 0.5 + _RampThreshold;\n    u_xlat16_20 =
+            (-u_xlat16_21) + u_xlat16_20;\n    u_xlat16_18 = u_xlat16_18 + (-u_xlat16_21);\n   
+            u_xlat16_20 = float(1.0) / u_xlat16_20;\n    u_xlat16_18 = u_xlat16_18
+            * u_xlat16_20;\n    u_xlat16_18 = clamp(u_xlat16_18, 0.0, 1.0);\n   
+            u_xlat16_20 = u_xlat16_18 * -2.0 + 3.0;\n    u_xlat16_18 = u_xlat16_18
+            * u_xlat16_18;\n    u_xlat16_18 = u_xlat16_18 * u_xlat16_20;\n    u_xlat16_4.xyz
+            = _HColor.xyz + (-_SColor.xyz);\n    u_xlat16_4.xyz = vec3(u_xlat16_18)
+            * u_xlat16_4.xyz + _SColor.xyz;\n    u_xlat16_1 = texture(_MainTex, vs_TEXCOORD0.xy);\n   
+            u_xlat16_5.xyz = u_xlat16_1.xyz * _Color.xyz;\n    SV_Target0.w = u_xlat16_1.w
+            * _Color.w;\n    u_xlat16_2.xyz = u_xlat16_5.xyz * u_xlat16_4.xyz + u_xlat16_2.xyz;\n   
+            u_xlat16_0.x = dot(u_xlat16_3.xyz, u_xlat16_0.xyz);\n    u_xlat16_0.x
+            = clamp(u_xlat16_0.x, 0.0, 1.0);\n    u_xlat16_6.x = u_xlat16_3.y * 0.5
+            + 0.5;\n    u_xlat16_6.x = clamp(u_xlat16_6.x, 0.0, 1.0);\n    u_xlat16_6.xyz
+            = u_xlat16_6.xxx * _MatCapColor.xyz;\n    u_xlat16_0.x = (-u_xlat16_0.x)
+            + 1.0;\n    u_xlat16_0.x = log2(u_xlat16_0.x);\n    u_xlat16_0.x = u_xlat16_0.x
+            * 2.4000001;\n    u_xlat16_0.x = exp2(u_xlat16_0.x);\n    u_xlat16_3.xyz
+            = u_xlat16_0.xxx * _RimColor.xyz;\n    u_xlat16_4.xyz = u_xlat16_0.xxx
+            * _ReflectColor.xyz;\n    u_xlat16_4.xyz = u_xlat16_4.xyz * vec3(_ReflectIntensity);\n   
+            u_xlat16_2.xyz = u_xlat16_3.xyz * _RimColor.www + u_xlat16_2.xyz;\n   
+            u_xlat16_0.xyz = u_xlat16_6.xyz * vec3(0.0799999982, 0.0799999982, 0.0799999982)
+            + u_xlat16_2.xyz;\n    SV_Target0.xyz = u_xlat16_4.xyz * vec3(0.119999997,
+            0.119999997, 0.119999997) + u_xlat16_0.xyz;\n    return;\n}\n\n"
           LOD: 0
           readDepth: 0
           PassId: 0
@@ -21330,585 +21258,6 @@ MonoBehaviour:
         - TCP2_UV4_AS_NORMALS
         - TCP2_UV_NORMALS_FULL
         - TCP2_UV_NORMALS_ZW
-  - ParsedSubShaders:
-    - Index: 0
-      Passes:
-      - Shader: {fileID: 4800000, guid: b62230acaa02d29479ae8460047a1371, type: 3}
-        ShaderVariants:
-        - ShaderCompilerPlatform: 9
-          NoShaderVariant: 0
-          VertexProgram: "\n#version 300 es\n\n#define HLSLCC_ENABLE_UNIFORM_BUFFERS
-            0\n#if HLSLCC_ENABLE_UNIFORM_BUFFERS\n#define UNITY_UNIFORM\n#else\n#define
-            UNITY_UNIFORM uniform\n#endif\n#define UNITY_SUPPORTS_UNIFORM_LOCATION
-            0\n#if UNITY_SUPPORTS_UNIFORM_LOCATION\n#define UNITY_LOCATION(x) layout(location
-            = x)\n#define UNITY_BINDING(x) layout(binding = x, std140)\n#else\n#define
-            UNITY_LOCATION(x)\n#define UNITY_BINDING(x) layout(std140)\n#endif\nuniform
-            \tmediump vec4 unity_SHBr;\nuniform \tmediump vec4 unity_SHBg;\nuniform
-            \tmediump vec4 unity_SHBb;\nuniform \tmediump vec4 unity_SHC;\nuniform
-            \tvec4 hlslcc_mtx4x4unity_ObjectToWorld[4];\nuniform \tvec4 hlslcc_mtx4x4unity_WorldToObject[4];\nuniform
-            \tvec4 hlslcc_mtx4x4unity_MatrixVP[4];\nuniform \tvec4 _MainTex_ST;\nin
-            highp vec4 in_POSITION0;\nin highp vec3 in_NORMAL0;\nin highp vec4 in_TEXCOORD0;\nout
-            highp vec3 vs_TEXCOORD0;\nout highp vec3 vs_TEXCOORD1;\nout highp vec2
-            vs_TEXCOORD2;\nout mediump vec3 vs_TEXCOORD3;\nout highp vec4 vs_TEXCOORD4;\nvec4
-            u_xlat0;\nmediump vec4 u_xlat16_0;\nvec4 u_xlat1;\nmediump float u_xlat16_2;\nmediump
-            vec3 u_xlat16_3;\nfloat u_xlat12;\nvoid main()\n{\n    u_xlat0 = in_POSITION0.yyyy
-            * hlslcc_mtx4x4unity_ObjectToWorld[1];\n    u_xlat0 = hlslcc_mtx4x4unity_ObjectToWorld[0]
-            * in_POSITION0.xxxx + u_xlat0;\n    u_xlat0 = hlslcc_mtx4x4unity_ObjectToWorld[2]
-            * in_POSITION0.zzzz + u_xlat0;\n    u_xlat1 = u_xlat0 + hlslcc_mtx4x4unity_ObjectToWorld[3];\n   
-            vs_TEXCOORD1.xyz = hlslcc_mtx4x4unity_ObjectToWorld[3].xyz * in_POSITION0.www
-            + u_xlat0.xyz;\n    u_xlat0 = u_xlat1.yyyy * hlslcc_mtx4x4unity_MatrixVP[1];\n   
-            u_xlat0 = hlslcc_mtx4x4unity_MatrixVP[0] * u_xlat1.xxxx + u_xlat0;\n   
-            u_xlat0 = hlslcc_mtx4x4unity_MatrixVP[2] * u_xlat1.zzzz + u_xlat0;\n   
-            gl_Position = hlslcc_mtx4x4unity_MatrixVP[3] * u_xlat1.wwww + u_xlat0;\n   
-            u_xlat0.x = dot(in_NORMAL0.xyz, hlslcc_mtx4x4unity_WorldToObject[0].xyz);\n   
-            u_xlat0.y = dot(in_NORMAL0.xyz, hlslcc_mtx4x4unity_WorldToObject[1].xyz);\n   
-            u_xlat0.z = dot(in_NORMAL0.xyz, hlslcc_mtx4x4unity_WorldToObject[2].xyz);\n   
-            u_xlat12 = dot(u_xlat0.xyz, u_xlat0.xyz);\n    u_xlat12 = inversesqrt(u_xlat12);\n   
-            u_xlat0.xyz = vec3(u_xlat12) * u_xlat0.xyz;\n    vs_TEXCOORD0.xyz = u_xlat0.xyz;\n   
-            vs_TEXCOORD2.xy = in_TEXCOORD0.xy * _MainTex_ST.xy + _MainTex_ST.zw;\n   
-            u_xlat16_2 = u_xlat0.y * u_xlat0.y;\n    u_xlat16_2 = u_xlat0.x * u_xlat0.x
-            + (-u_xlat16_2);\n    u_xlat16_0 = u_xlat0.yzzx * u_xlat0.xyzz;\n   
-            u_xlat16_3.x = dot(unity_SHBr, u_xlat16_0);\n    u_xlat16_3.y = dot(unity_SHBg,
-            u_xlat16_0);\n    u_xlat16_3.z = dot(unity_SHBb, u_xlat16_0);\n    vs_TEXCOORD3.xyz
-            = unity_SHC.xyz * vec3(u_xlat16_2) + u_xlat16_3.xyz;\n    vs_TEXCOORD4
-            = vec4(0.0, 0.0, 0.0, 0.0);\n    return;\n}\n\n"
-          FragmentProgram: "\n#version 300 es\n\nprecision highp float;\nprecision
-            highp int;\n#define HLSLCC_ENABLE_UNIFORM_BUFFERS 0\n#if HLSLCC_ENABLE_UNIFORM_BUFFERS\n#define
-            UNITY_UNIFORM\n#else\n#define UNITY_UNIFORM uniform\n#endif\n#define
-            UNITY_SUPPORTS_UNIFORM_LOCATION 0\n#if UNITY_SUPPORTS_UNIFORM_LOCATION\n#define
-            UNITY_LOCATION(x) layout(location = x)\n#define UNITY_BINDING(x) layout(binding
-            = x, std140)\n#else\n#define UNITY_LOCATION(x)\n#define UNITY_BINDING(x)
-            layout(std140)\n#endif\nuniform \tvec4 _Time;\nuniform \tvec3 _WorldSpaceCameraPos;\nuniform
-            \tmediump vec4 _WorldSpaceLightPos0;\nuniform \tmediump vec4 unity_SHAr;\nuniform
-            \tmediump vec4 unity_SHAg;\nuniform \tmediump vec4 unity_SHAb;\nuniform
-            \tmediump vec4 _LightColor0;\nuniform \tmediump vec4 _Color;\nuniform
-            \tfloat _RampThreshold;\nuniform \tfloat _RampSmoothing;\nuniform \tmediump
-            vec4 _HColor;\nuniform \tmediump vec4 _SColor;\nuniform \tfloat _SpecularToonSize;\nuniform
-            \tfloat _SpecularToonSmoothness;\nuniform \tmediump vec4 _SpecularColor;\nuniform
-            \tmediump vec4 _BlinkColor;\nuniform \tmediump vec4 _BlinkEmission;\nuniform
-            \tfloat _BlinkEnabled;\nuniform \tfloat _BlinkStartTime;\nuniform \tfloat
-            _BlinkSpeed;\nuniform \tfloat _BlinkStrength;\nUNITY_LOCATION(0) uniform
-            mediump sampler2D _MainTex;\nin highp vec3 vs_TEXCOORD0;\nin highp vec3
-            vs_TEXCOORD1;\nin highp vec2 vs_TEXCOORD2;\nin mediump vec3 vs_TEXCOORD3;\nlayout(location
-            = 0) out mediump vec4 SV_Target0;\nvec3 u_xlat0;\nvec4 u_xlat1;\nmediump
-            vec4 u_xlat16_1;\nvec3 u_xlat2;\nmediump vec3 u_xlat16_3;\nvec4 u_xlat4;\nvec3
-            u_xlat5;\nfloat u_xlat6;\nmediump float u_xlat16_7;\nfloat u_xlat8;\nvec3
-            u_xlat10;\nfloat u_xlat12;\nfloat u_xlat18;\nmediump float u_xlat16_19;\nfloat
-            u_xlat20;\nbool u_xlatb20;\nvoid main()\n{\n    u_xlat0.xyz = (-vs_TEXCOORD1.xyz)
-            + _WorldSpaceCameraPos.xyz;\n    u_xlat18 = dot(u_xlat0.xyz, u_xlat0.xyz);\n   
-            u_xlat18 = inversesqrt(u_xlat18);\n    u_xlat0.xyz = u_xlat0.xyz * vec3(u_xlat18)
-            + _WorldSpaceLightPos0.xyz;\n    u_xlat18 = dot(u_xlat0.xyz, u_xlat0.xyz);\n   
-            u_xlat18 = max(u_xlat18, 0.00100000005);\n    u_xlat16_1.x = inversesqrt(u_xlat18);\n   
-            u_xlat0.xyz = u_xlat0.xyz * u_xlat16_1.xxx;\n    u_xlat16_1.x = dot(vs_TEXCOORD0.xyz,
-            vs_TEXCOORD0.xyz);\n    u_xlat16_1.x = inversesqrt(u_xlat16_1.x);\n   
-            u_xlat16_1.xyz = u_xlat16_1.xxx * vs_TEXCOORD0.xyz;\n    u_xlat16_19
-            = dot(u_xlat16_1.xyz, u_xlat0.xyz);\n    u_xlat16_1.x = dot(u_xlat16_1.xyz,
-            _WorldSpaceLightPos0.xyz);\n    u_xlat16_1.x = clamp(u_xlat16_1.x, 0.0,
-            1.0);\n    u_xlat16_7 = max(u_xlat16_19, 0.0);\n    u_xlat0.x = _SpecularToonSmoothness
-            + 1.0;\n    u_xlat0.x = u_xlat16_7 / u_xlat0.x;\n    u_xlat0.x = (-u_xlat0.x)
-            + 1.0;\n    u_xlat6 = _SpecularToonSmoothness + _SpecularToonSize;\n   
-            u_xlat0.x = (-u_xlat6) + u_xlat0.x;\n    u_xlat12 = (-_SpecularToonSmoothness)
-            + _SpecularToonSize;\n    u_xlat6 = (-u_xlat6) + u_xlat12;\n    u_xlat6
-            = float(1.0) / u_xlat6;\n    u_xlat0.x = u_xlat6 * u_xlat0.x;\n    u_xlat0.x
-            = clamp(u_xlat0.x, 0.0, 1.0);\n    u_xlat6 = u_xlat0.x * -2.0 + 3.0;\n   
-            u_xlat0.x = u_xlat0.x * u_xlat0.x;\n    u_xlat0.x = u_xlat0.x * u_xlat6;\n   
-            u_xlat0.x = u_xlat16_1.x * u_xlat0.x;\n    u_xlat0.xyz = u_xlat0.xxx
-            * _LightColor0.xyz;\n    u_xlat18 = (-_RampSmoothing) * 0.5 + _RampThreshold;\n   
-            u_xlat2.x = (-u_xlat18) + u_xlat16_1.x;\n    u_xlat8 = _RampSmoothing
-            * 0.5 + _RampThreshold;\n    u_xlat18 = (-u_xlat18) + u_xlat8;\n    u_xlat18
-            = float(1.0) / u_xlat18;\n    u_xlat18 = u_xlat18 * u_xlat2.x;\n    u_xlat18
-            = clamp(u_xlat18, 0.0, 1.0);\n    u_xlat2.x = u_xlat18 * -2.0 + 3.0;\n   
-            u_xlat18 = u_xlat18 * u_xlat18;\n    u_xlat18 = u_xlat18 * u_xlat2.x;\n   
-            u_xlat2.xyz = _HColor.xyz + (-_SColor.xyz);\n    u_xlat2.xyz = vec3(u_xlat18)
-            * u_xlat2.xyz + _SColor.xyz;\n    u_xlat1.xyz = vs_TEXCOORD0.xyz;\n   
-            u_xlat1.w = 1.0;\n    u_xlat16_3.x = dot(unity_SHAr, u_xlat1);\n    u_xlat16_3.y
-            = dot(unity_SHAg, u_xlat1);\n    u_xlat16_3.z = dot(unity_SHAb, u_xlat1);\n   
-            u_xlat16_3.xyz = u_xlat16_3.xyz + vs_TEXCOORD3.xyz;\n    u_xlat16_3.xyz
-            = max(u_xlat16_3.xyz, vec3(0.0, 0.0, 0.0));\n    u_xlat18 = _Time.y +
-            (-_BlinkStartTime);\n    u_xlat18 = max(u_xlat18, 0.0);\n    u_xlat18
-            = u_xlat18 * _BlinkSpeed;\n    u_xlat18 = sin(u_xlat18);\n    u_xlat18
-            = u_xlat18 * 0.5 + 0.5;\n    u_xlat20 = u_xlat18 * u_xlat18;\n    u_xlat18
-            = (-u_xlat18) * 2.0 + 3.0;\n    u_xlat18 = u_xlat18 * u_xlat20;\n   
-            u_xlat18 = u_xlat18 * _BlinkStrength;\n    u_xlatb20 = _BlinkEnabled>=0.5;\n   
-            u_xlat18 = u_xlatb20 ? u_xlat18 : float(0.0);\n    u_xlat16_1 = texture(_MainTex,
-            vs_TEXCOORD2.xy);\n    u_xlat4 = u_xlat16_1.wxyz * _Color.wxyz;\n   
-            u_xlat5.xyz = u_xlat16_1.xyz * _BlinkColor.xyz + (-u_xlat4.yzw);\n   
-            u_xlat10.xyz = vec3(u_xlat18) * u_xlat5.xyz + u_xlat4.yzw;\n    SV_Target0.w
-            = u_xlat4.x;\n    u_xlat5.xyz = u_xlat16_3.xyz * u_xlat10.xyz;\n    u_xlat16_3.xyz
-            = u_xlat10.xyz * _LightColor0.xyz;\n    u_xlat16_3.xyz = u_xlat16_3.xyz
-            * u_xlat2.xyz + u_xlat5.xyz;\n    u_xlat0.xyz = u_xlat0.xyz * _SpecularColor.xyz
-            + u_xlat16_3.xyz;\n    SV_Target0.xyz = _BlinkEmission.xyz * vec3(u_xlat18)
-            + u_xlat0.xyz;\n    return;\n}\n\n"
-          LOD: 0
-          readDepth: 0
-          PassId: 0
-          SubShaderIndex: 0
-          Keywords:
-            "\L\u2025":
-            - DIRECTIONAL
-          Tags:
-          - Key: LIGHTMODE
-            Value: FORWARDBASE
-          - Key: RenderType
-            Value: Opaque
-          - Key: SHADOWSUPPORT
-            Value: true
-        - ShaderCompilerPlatform: 9
-          NoShaderVariant: 0
-          VertexProgram: "\n#version 300 es\n\n#define HLSLCC_ENABLE_UNIFORM_BUFFERS
-            0\n#if HLSLCC_ENABLE_UNIFORM_BUFFERS\n#define UNITY_UNIFORM\n#else\n#define
-            UNITY_UNIFORM uniform\n#endif\n#define UNITY_SUPPORTS_UNIFORM_LOCATION
-            0\n#if UNITY_SUPPORTS_UNIFORM_LOCATION\n#define UNITY_LOCATION(x) layout(location
-            = x)\n#define UNITY_BINDING(x) layout(binding = x, std140)\n#else\n#define
-            UNITY_LOCATION(x)\n#define UNITY_BINDING(x) layout(std140)\n#endif\nuniform
-            \tmediump vec4 unity_SHBr;\nuniform \tmediump vec4 unity_SHBg;\nuniform
-            \tmediump vec4 unity_SHBb;\nuniform \tmediump vec4 unity_SHC;\nuniform
-            \tvec4 hlslcc_mtx4x4unity_ObjectToWorld[4];\nuniform \tvec4 hlslcc_mtx4x4unity_WorldToObject[4];\nuniform
-            \tvec4 hlslcc_mtx4x4unity_MatrixVP[4];\nuniform \tvec4 _MainTex_ST;\nin
-            highp vec4 in_POSITION0;\nin highp vec3 in_NORMAL0;\nin highp vec4 in_TEXCOORD0;\nout
-            highp vec3 vs_TEXCOORD0;\nout highp vec3 vs_TEXCOORD1;\nout highp vec2
-            vs_TEXCOORD2;\nout mediump vec3 vs_TEXCOORD3;\nout highp vec4 vs_TEXCOORD4;\nvec4
-            u_xlat0;\nmediump vec4 u_xlat16_0;\nvec4 u_xlat1;\nmediump float u_xlat16_2;\nmediump
-            vec3 u_xlat16_3;\nfloat u_xlat12;\nvoid main()\n{\n    u_xlat0 = in_POSITION0.yyyy
-            * hlslcc_mtx4x4unity_ObjectToWorld[1];\n    u_xlat0 = hlslcc_mtx4x4unity_ObjectToWorld[0]
-            * in_POSITION0.xxxx + u_xlat0;\n    u_xlat0 = hlslcc_mtx4x4unity_ObjectToWorld[2]
-            * in_POSITION0.zzzz + u_xlat0;\n    u_xlat1 = u_xlat0 + hlslcc_mtx4x4unity_ObjectToWorld[3];\n   
-            vs_TEXCOORD1.xyz = hlslcc_mtx4x4unity_ObjectToWorld[3].xyz * in_POSITION0.www
-            + u_xlat0.xyz;\n    u_xlat0 = u_xlat1.yyyy * hlslcc_mtx4x4unity_MatrixVP[1];\n   
-            u_xlat0 = hlslcc_mtx4x4unity_MatrixVP[0] * u_xlat1.xxxx + u_xlat0;\n   
-            u_xlat0 = hlslcc_mtx4x4unity_MatrixVP[2] * u_xlat1.zzzz + u_xlat0;\n   
-            gl_Position = hlslcc_mtx4x4unity_MatrixVP[3] * u_xlat1.wwww + u_xlat0;\n   
-            u_xlat0.x = dot(in_NORMAL0.xyz, hlslcc_mtx4x4unity_WorldToObject[0].xyz);\n   
-            u_xlat0.y = dot(in_NORMAL0.xyz, hlslcc_mtx4x4unity_WorldToObject[1].xyz);\n   
-            u_xlat0.z = dot(in_NORMAL0.xyz, hlslcc_mtx4x4unity_WorldToObject[2].xyz);\n   
-            u_xlat12 = dot(u_xlat0.xyz, u_xlat0.xyz);\n    u_xlat12 = inversesqrt(u_xlat12);\n   
-            u_xlat0.xyz = vec3(u_xlat12) * u_xlat0.xyz;\n    vs_TEXCOORD0.xyz = u_xlat0.xyz;\n   
-            vs_TEXCOORD2.xy = in_TEXCOORD0.xy * _MainTex_ST.xy + _MainTex_ST.zw;\n   
-            u_xlat16_2 = u_xlat0.y * u_xlat0.y;\n    u_xlat16_2 = u_xlat0.x * u_xlat0.x
-            + (-u_xlat16_2);\n    u_xlat16_0 = u_xlat0.yzzx * u_xlat0.xyzz;\n   
-            u_xlat16_3.x = dot(unity_SHBr, u_xlat16_0);\n    u_xlat16_3.y = dot(unity_SHBg,
-            u_xlat16_0);\n    u_xlat16_3.z = dot(unity_SHBb, u_xlat16_0);\n    vs_TEXCOORD3.xyz
-            = unity_SHC.xyz * vec3(u_xlat16_2) + u_xlat16_3.xyz;\n    vs_TEXCOORD4
-            = vec4(0.0, 0.0, 0.0, 0.0);\n    return;\n}\n\n"
-          FragmentProgram: "\n#version 300 es\n\nprecision highp float;\nprecision
-            highp int;\n#define HLSLCC_ENABLE_UNIFORM_BUFFERS 0\n#if HLSLCC_ENABLE_UNIFORM_BUFFERS\n#define
-            UNITY_UNIFORM\n#else\n#define UNITY_UNIFORM uniform\n#endif\n#define
-            UNITY_SUPPORTS_UNIFORM_LOCATION 0\n#if UNITY_SUPPORTS_UNIFORM_LOCATION\n#define
-            UNITY_LOCATION(x) layout(location = x)\n#define UNITY_BINDING(x) layout(binding
-            = x, std140)\n#else\n#define UNITY_LOCATION(x)\n#define UNITY_BINDING(x)
-            layout(std140)\n#endif\nuniform \tvec4 _Time;\nuniform \tvec3 _WorldSpaceCameraPos;\nuniform
-            \tmediump vec4 _WorldSpaceLightPos0;\nuniform \tmediump vec4 unity_SHAr;\nuniform
-            \tmediump vec4 unity_SHAg;\nuniform \tmediump vec4 unity_SHAb;\nuniform
-            \tmediump vec4 _LightColor0;\nuniform \tmediump vec4 _Color;\nuniform
-            \tfloat _RampThreshold;\nuniform \tfloat _RampSmoothing;\nuniform \tmediump
-            vec4 _HColor;\nuniform \tmediump vec4 _SColor;\nuniform \tfloat _SpecularToonSize;\nuniform
-            \tfloat _SpecularToonSmoothness;\nuniform \tmediump vec4 _SpecularColor;\nuniform
-            \tmediump vec4 _BlinkColor;\nuniform \tmediump vec4 _BlinkEmission;\nuniform
-            \tfloat _BlinkEnabled;\nuniform \tfloat _BlinkStartTime;\nuniform \tfloat
-            _BlinkSpeed;\nuniform \tfloat _BlinkStrength;\nUNITY_LOCATION(0) uniform
-            mediump sampler2D _MainTex;\nin highp vec3 vs_TEXCOORD0;\nin highp vec3
-            vs_TEXCOORD1;\nin highp vec2 vs_TEXCOORD2;\nin mediump vec3 vs_TEXCOORD3;\nlayout(location
-            = 0) out mediump vec4 SV_Target0;\nvec3 u_xlat0;\nvec4 u_xlat1;\nmediump
-            vec4 u_xlat16_1;\nvec3 u_xlat2;\nmediump vec3 u_xlat16_3;\nvec4 u_xlat4;\nvec3
-            u_xlat5;\nfloat u_xlat6;\nmediump float u_xlat16_7;\nfloat u_xlat8;\nvec3
-            u_xlat10;\nfloat u_xlat12;\nfloat u_xlat18;\nmediump float u_xlat16_19;\nfloat
-            u_xlat20;\nbool u_xlatb20;\nvoid main()\n{\n    u_xlat0.xyz = (-vs_TEXCOORD1.xyz)
-            + _WorldSpaceCameraPos.xyz;\n    u_xlat18 = dot(u_xlat0.xyz, u_xlat0.xyz);\n   
-            u_xlat18 = inversesqrt(u_xlat18);\n    u_xlat0.xyz = u_xlat0.xyz * vec3(u_xlat18)
-            + _WorldSpaceLightPos0.xyz;\n    u_xlat18 = dot(u_xlat0.xyz, u_xlat0.xyz);\n   
-            u_xlat18 = max(u_xlat18, 0.00100000005);\n    u_xlat16_1.x = inversesqrt(u_xlat18);\n   
-            u_xlat0.xyz = u_xlat0.xyz * u_xlat16_1.xxx;\n    u_xlat16_1.x = dot(vs_TEXCOORD0.xyz,
-            vs_TEXCOORD0.xyz);\n    u_xlat16_1.x = inversesqrt(u_xlat16_1.x);\n   
-            u_xlat16_1.xyz = u_xlat16_1.xxx * vs_TEXCOORD0.xyz;\n    u_xlat16_19
-            = dot(u_xlat16_1.xyz, u_xlat0.xyz);\n    u_xlat16_1.x = dot(u_xlat16_1.xyz,
-            _WorldSpaceLightPos0.xyz);\n    u_xlat16_1.x = clamp(u_xlat16_1.x, 0.0,
-            1.0);\n    u_xlat16_7 = max(u_xlat16_19, 0.0);\n    u_xlat0.x = _SpecularToonSmoothness
-            + 1.0;\n    u_xlat0.x = u_xlat16_7 / u_xlat0.x;\n    u_xlat0.x = (-u_xlat0.x)
-            + 1.0;\n    u_xlat6 = _SpecularToonSmoothness + _SpecularToonSize;\n   
-            u_xlat0.x = (-u_xlat6) + u_xlat0.x;\n    u_xlat12 = (-_SpecularToonSmoothness)
-            + _SpecularToonSize;\n    u_xlat6 = (-u_xlat6) + u_xlat12;\n    u_xlat6
-            = float(1.0) / u_xlat6;\n    u_xlat0.x = u_xlat6 * u_xlat0.x;\n    u_xlat0.x
-            = clamp(u_xlat0.x, 0.0, 1.0);\n    u_xlat6 = u_xlat0.x * -2.0 + 3.0;\n   
-            u_xlat0.x = u_xlat0.x * u_xlat0.x;\n    u_xlat0.x = u_xlat0.x * u_xlat6;\n   
-            u_xlat0.x = u_xlat16_1.x * u_xlat0.x;\n    u_xlat0.xyz = u_xlat0.xxx
-            * _LightColor0.xyz;\n    u_xlat18 = (-_RampSmoothing) * 0.5 + _RampThreshold;\n   
-            u_xlat2.x = (-u_xlat18) + u_xlat16_1.x;\n    u_xlat8 = _RampSmoothing
-            * 0.5 + _RampThreshold;\n    u_xlat18 = (-u_xlat18) + u_xlat8;\n    u_xlat18
-            = float(1.0) / u_xlat18;\n    u_xlat18 = u_xlat18 * u_xlat2.x;\n    u_xlat18
-            = clamp(u_xlat18, 0.0, 1.0);\n    u_xlat2.x = u_xlat18 * -2.0 + 3.0;\n   
-            u_xlat18 = u_xlat18 * u_xlat18;\n    u_xlat18 = u_xlat18 * u_xlat2.x;\n   
-            u_xlat2.xyz = _HColor.xyz + (-_SColor.xyz);\n    u_xlat2.xyz = vec3(u_xlat18)
-            * u_xlat2.xyz + _SColor.xyz;\n    u_xlat1.xyz = vs_TEXCOORD0.xyz;\n   
-            u_xlat1.w = 1.0;\n    u_xlat16_3.x = dot(unity_SHAr, u_xlat1);\n    u_xlat16_3.y
-            = dot(unity_SHAg, u_xlat1);\n    u_xlat16_3.z = dot(unity_SHAb, u_xlat1);\n   
-            u_xlat16_3.xyz = u_xlat16_3.xyz + vs_TEXCOORD3.xyz;\n    u_xlat16_3.xyz
-            = max(u_xlat16_3.xyz, vec3(0.0, 0.0, 0.0));\n    u_xlat18 = _Time.y +
-            (-_BlinkStartTime);\n    u_xlat18 = max(u_xlat18, 0.0);\n    u_xlat18
-            = u_xlat18 * _BlinkSpeed;\n    u_xlat18 = sin(u_xlat18);\n    u_xlat18
-            = u_xlat18 * 0.5 + 0.5;\n    u_xlat20 = u_xlat18 * u_xlat18;\n    u_xlat18
-            = (-u_xlat18) * 2.0 + 3.0;\n    u_xlat18 = u_xlat18 * u_xlat20;\n   
-            u_xlat18 = u_xlat18 * _BlinkStrength;\n    u_xlatb20 = _BlinkEnabled>=0.5;\n   
-            u_xlat18 = u_xlatb20 ? u_xlat18 : float(0.0);\n    u_xlat16_1 = texture(_MainTex,
-            vs_TEXCOORD2.xy);\n    u_xlat4 = u_xlat16_1.wxyz * _Color.wxyz;\n   
-            u_xlat5.xyz = u_xlat16_1.xyz * _BlinkColor.xyz + (-u_xlat4.yzw);\n   
-            u_xlat10.xyz = vec3(u_xlat18) * u_xlat5.xyz + u_xlat4.yzw;\n    SV_Target0.w
-            = u_xlat4.x;\n    u_xlat5.xyz = u_xlat16_3.xyz * u_xlat10.xyz;\n    u_xlat16_3.xyz
-            = u_xlat10.xyz * _LightColor0.xyz;\n    u_xlat16_3.xyz = u_xlat16_3.xyz
-            * u_xlat2.xyz + u_xlat5.xyz;\n    u_xlat0.xyz = u_xlat0.xyz * _SpecularColor.xyz
-            + u_xlat16_3.xyz;\n    SV_Target0.xyz = _BlinkEmission.xyz * vec3(u_xlat18)
-            + u_xlat0.xyz;\n    return;\n}\n\n"
-          LOD: 0
-          readDepth: 0
-          PassId: 0
-          SubShaderIndex: 0
-          Keywords:
-            "\L\u2025":
-            - DIRECTIONAL
-            - LIGHTPROBE_SH
-          Tags:
-          - Key: LIGHTMODE
-            Value: FORWARDBASE
-          - Key: RenderType
-            Value: Opaque
-          - Key: SHADOWSUPPORT
-            Value: true
-        DefinedKeywords:
-          "\L\u2025":
-          - DIRECTIONAL
-          - INSTANCING_ON
-          - LIGHTMAP_SHADOW_MIXING
-          - LIGHTPROBE_SH
-          - SHADOWS_SCREEN
-          - STEREO_CUBEMAP_RENDER_ON
-          - STEREO_INSTANCING_ON
-          - STEREO_MULTIVIEW_ON
-          - UNITY_SINGLE_PASS_STEREO
-          - VERTEXLIGHT_ON
-          - _
-          - _ALPHABLEND_ON
-          - _ALPHAPREMULTIPLY_ON
-          - __
-        KeywordGroups:
-        - Keywords:
-          - __
-          - INSTANCING_ON
-          hasDiscard: 1
-        - Keywords:
-          - _
-          - _ALPHABLEND_ON
-          - _ALPHAPREMULTIPLY_ON
-          hasDiscard: 1
-        - Keywords:
-          - DIRECTIONAL
-          hasDiscard: 0
-        - Keywords:
-          - DIRECTIONAL
-          - LIGHTPROBE_SH
-          hasDiscard: 0
-        - Keywords:
-          - DIRECTIONAL
-          - SHADOWS_SCREEN
-          hasDiscard: 0
-        - Keywords:
-          - DIRECTIONAL
-          - SHADOWS_SCREEN
-          - LIGHTPROBE_SH
-          hasDiscard: 0
-        - Keywords:
-          - DIRECTIONAL
-          - SHADOWS_SCREEN
-          - LIGHTMAP_SHADOW_MIXING
-          - LIGHTPROBE_SH
-          hasDiscard: 0
-        - Keywords:
-          - DIRECTIONAL
-          - VERTEXLIGHT_ON
-          hasDiscard: 0
-        - Keywords:
-          - DIRECTIONAL
-          - VERTEXLIGHT_ON
-          - LIGHTPROBE_SH
-          hasDiscard: 0
-        - Keywords:
-          - DIRECTIONAL
-          - VERTEXLIGHT_ON
-          - SHADOWS_SCREEN
-          hasDiscard: 0
-        - Keywords:
-          - DIRECTIONAL
-          - VERTEXLIGHT_ON
-          - SHADOWS_SCREEN
-          - LIGHTPROBE_SH
-          hasDiscard: 0
-        - Keywords:
-          - DIRECTIONAL
-          - VERTEXLIGHT_ON
-          - SHADOWS_SCREEN
-          - LIGHTMAP_SHADOW_MIXING
-          hasDiscard: 0
-        - Keywords:
-          - DIRECTIONAL
-          - VERTEXLIGHT_ON
-          - SHADOWS_SCREEN
-          - LIGHTMAP_SHADOW_MIXING
-          - LIGHTPROBE_SH
-          hasDiscard: 0
-        KeywordsMinimalCardinality: 11
-        ContainsInvalidVariant: 0
-        VariantStructures:
-        - shaderCompilerPlatform: 9
-          shader: {fileID: 4800000, guid: b62230acaa02d29479ae8460047a1371, type: 3}
-          passType: 4
-          passId: 0
-          subShaderIndex: 0
-          upToDate: 0
-          keywords:
-            "\L\u2025":
-            - DIRECTIONAL
-        - shaderCompilerPlatform: 9
-          shader: {fileID: 4800000, guid: b62230acaa02d29479ae8460047a1371, type: 3}
-          passType: 4
-          passId: 0
-          subShaderIndex: 0
-          upToDate: 0
-          keywords:
-            "\L\u2025":
-            - DIRECTIONAL
-            - LIGHTPROBE_SH
-        CompilationErrors: []
-        HasDepthReader: 0
-        Id: 0
-        SubShaderIndex: 0
-        SerializedObjectId: 0
-        Tags:
-        - Key: LIGHTMODE
-          Value: FORWARDBASE
-        - Key: RenderType
-          Value: Opaque
-        - Key: SHADOWSUPPORT
-          Value: true
-        UsePass:
-          shader: 
-          pass: 
-        GrabPassTextureName: 
-        PlatformMask: -1
-      - Shader: {fileID: 4800000, guid: b62230acaa02d29479ae8460047a1371, type: 3}
-        ShaderVariants:
-        - ShaderCompilerPlatform: 9
-          NoShaderVariant: 0
-          VertexProgram: "\n#version 300 es\n\n#define HLSLCC_ENABLE_UNIFORM_BUFFERS
-            0\n#if HLSLCC_ENABLE_UNIFORM_BUFFERS\n#define UNITY_UNIFORM\n#else\n#define
-            UNITY_UNIFORM uniform\n#endif\n#define UNITY_SUPPORTS_UNIFORM_LOCATION
-            0\n#if UNITY_SUPPORTS_UNIFORM_LOCATION\n#define UNITY_LOCATION(x) layout(location
-            = x)\n#define UNITY_BINDING(x) layout(binding = x, std140)\n#else\n#define
-            UNITY_LOCATION(x)\n#define UNITY_BINDING(x) layout(std140)\n#endif\nuniform
-            \tvec4 hlslcc_mtx4x4unity_ObjectToWorld[4];\nuniform \tvec4 hlslcc_mtx4x4unity_WorldToObject[4];\nuniform
-            \tvec4 hlslcc_mtx4x4unity_MatrixVP[4];\nuniform \tvec4 _MainTex_ST;\nin
-            highp vec4 in_POSITION0;\nin highp vec3 in_NORMAL0;\nin highp vec4 in_TEXCOORD0;\nout
-            highp vec3 vs_TEXCOORD0;\nout highp vec3 vs_TEXCOORD1;\nout highp vec2
-            vs_TEXCOORD2;\nout highp vec4 vs_TEXCOORD4;\nvec4 u_xlat0;\nvec4 u_xlat1;\nfloat
-            u_xlat6;\nvoid main()\n{\n    u_xlat0 = in_POSITION0.yyyy * hlslcc_mtx4x4unity_ObjectToWorld[1];\n   
-            u_xlat0 = hlslcc_mtx4x4unity_ObjectToWorld[0] * in_POSITION0.xxxx + u_xlat0;\n   
-            u_xlat0 = hlslcc_mtx4x4unity_ObjectToWorld[2] * in_POSITION0.zzzz + u_xlat0;\n   
-            u_xlat1 = u_xlat0 + hlslcc_mtx4x4unity_ObjectToWorld[3];\n    vs_TEXCOORD1.xyz
-            = hlslcc_mtx4x4unity_ObjectToWorld[3].xyz * in_POSITION0.www + u_xlat0.xyz;\n   
-            u_xlat0 = u_xlat1.yyyy * hlslcc_mtx4x4unity_MatrixVP[1];\n    u_xlat0
-            = hlslcc_mtx4x4unity_MatrixVP[0] * u_xlat1.xxxx + u_xlat0;\n    u_xlat0
-            = hlslcc_mtx4x4unity_MatrixVP[2] * u_xlat1.zzzz + u_xlat0;\n    gl_Position
-            = hlslcc_mtx4x4unity_MatrixVP[3] * u_xlat1.wwww + u_xlat0;\n    u_xlat0.x
-            = dot(in_NORMAL0.xyz, hlslcc_mtx4x4unity_WorldToObject[0].xyz);\n   
-            u_xlat0.y = dot(in_NORMAL0.xyz, hlslcc_mtx4x4unity_WorldToObject[1].xyz);\n   
-            u_xlat0.z = dot(in_NORMAL0.xyz, hlslcc_mtx4x4unity_WorldToObject[2].xyz);\n   
-            u_xlat6 = dot(u_xlat0.xyz, u_xlat0.xyz);\n    u_xlat6 = inversesqrt(u_xlat6);\n   
-            vs_TEXCOORD0.xyz = vec3(u_xlat6) * u_xlat0.xyz;\n    vs_TEXCOORD2.xy
-            = in_TEXCOORD0.xy * _MainTex_ST.xy + _MainTex_ST.zw;\n    vs_TEXCOORD4
-            = vec4(0.0, 0.0, 0.0, 0.0);\n    return;\n}\n\n"
-          FragmentProgram: "\n#version 300 es\n\nprecision highp float;\nprecision
-            highp int;\n#define HLSLCC_ENABLE_UNIFORM_BUFFERS 0\n#if HLSLCC_ENABLE_UNIFORM_BUFFERS\n#define
-            UNITY_UNIFORM\n#else\n#define UNITY_UNIFORM uniform\n#endif\n#define
-            UNITY_SUPPORTS_UNIFORM_LOCATION 0\n#if UNITY_SUPPORTS_UNIFORM_LOCATION\n#define
-            UNITY_LOCATION(x) layout(location = x)\n#define UNITY_BINDING(x) layout(binding
-            = x, std140)\n#else\n#define UNITY_LOCATION(x)\n#define UNITY_BINDING(x)
-            layout(std140)\n#endif\nuniform \tvec4 _Time;\nuniform \tvec3 _WorldSpaceCameraPos;\nuniform
-            \tmediump vec4 _WorldSpaceLightPos0;\nuniform \tmediump vec4 _LightColor0;\nuniform
-            \tmediump vec4 _Color;\nuniform \tfloat _RampThreshold;\nuniform \tfloat
-            _RampSmoothing;\nuniform \tmediump vec4 _HColor;\nuniform \tfloat _SpecularToonSize;\nuniform
-            \tfloat _SpecularToonSmoothness;\nuniform \tmediump vec4 _SpecularColor;\nuniform
-            \tmediump vec4 _BlinkColor;\nuniform \tfloat _BlinkEnabled;\nuniform
-            \tfloat _BlinkStartTime;\nuniform \tfloat _BlinkSpeed;\nuniform \tfloat
-            _BlinkStrength;\nUNITY_LOCATION(0) uniform mediump sampler2D _MainTex;\nin
-            highp vec3 vs_TEXCOORD0;\nin highp vec3 vs_TEXCOORD1;\nin highp vec2
-            vs_TEXCOORD2;\nlayout(location = 0) out mediump vec4 SV_Target0;\nvec3
-            u_xlat0;\nmediump vec3 u_xlat16_1;\nvec3 u_xlat2;\nmediump vec4 u_xlat16_2;\nbool
-            u_xlatb2;\nvec4 u_xlat3;\nfloat u_xlat4;\nmediump vec3 u_xlat16_5;\nfloat
-            u_xlat6;\nfloat u_xlat8;\nfloat u_xlat12;\nmediump float u_xlat16_13;\nvoid
-            main()\n{\n    u_xlat0.xyz = (-vs_TEXCOORD1.xyz) + _WorldSpaceCameraPos.xyz;\n   
-            u_xlat12 = dot(u_xlat0.xyz, u_xlat0.xyz);\n    u_xlat12 = inversesqrt(u_xlat12);\n   
-            u_xlat0.xyz = u_xlat0.xyz * vec3(u_xlat12) + _WorldSpaceLightPos0.xyz;\n   
-            u_xlat12 = dot(u_xlat0.xyz, u_xlat0.xyz);\n    u_xlat12 = max(u_xlat12,
-            0.00100000005);\n    u_xlat16_1.x = inversesqrt(u_xlat12);\n    u_xlat0.xyz
-            = u_xlat0.xyz * u_xlat16_1.xxx;\n    u_xlat16_1.x = dot(vs_TEXCOORD0.xyz,
-            vs_TEXCOORD0.xyz);\n    u_xlat16_1.x = inversesqrt(u_xlat16_1.x);\n   
-            u_xlat16_1.xyz = u_xlat16_1.xxx * vs_TEXCOORD0.xyz;\n    u_xlat16_13
-            = dot(u_xlat16_1.xyz, u_xlat0.xyz);\n    u_xlat16_1.x = dot(u_xlat16_1.xyz,
-            _WorldSpaceLightPos0.xyz);\n    u_xlat16_1.x = clamp(u_xlat16_1.x, 0.0,
-            1.0);\n    u_xlat16_5.x = max(u_xlat16_13, 0.0);\n    u_xlat0.x = _SpecularToonSmoothness
-            + 1.0;\n    u_xlat0.x = u_xlat16_5.x / u_xlat0.x;\n    u_xlat0.x = (-u_xlat0.x)
-            + 1.0;\n    u_xlat4 = _SpecularToonSmoothness + _SpecularToonSize;\n   
-            u_xlat0.x = (-u_xlat4) + u_xlat0.x;\n    u_xlat8 = (-_SpecularToonSmoothness)
-            + _SpecularToonSize;\n    u_xlat4 = (-u_xlat4) + u_xlat8;\n    u_xlat4
-            = float(1.0) / u_xlat4;\n    u_xlat0.x = u_xlat4 * u_xlat0.x;\n    u_xlat0.x
-            = clamp(u_xlat0.x, 0.0, 1.0);\n    u_xlat4 = u_xlat0.x * -2.0 + 3.0;\n   
-            u_xlat0.x = u_xlat0.x * u_xlat0.x;\n    u_xlat0.x = u_xlat0.x * u_xlat4;\n   
-            u_xlat0.x = u_xlat16_1.x * u_xlat0.x;\n    u_xlat0.xyz = u_xlat0.xxx
-            * _LightColor0.xyz;\n    u_xlat0.xyz = u_xlat0.xyz * _SpecularColor.xyz;\n   
-            u_xlat12 = _Time.y + (-_BlinkStartTime);\n    u_xlat12 = max(u_xlat12,
-            0.0);\n    u_xlat12 = u_xlat12 * _BlinkSpeed;\n    u_xlat12 = sin(u_xlat12);\n   
-            u_xlat12 = u_xlat12 * 0.5 + 0.5;\n    u_xlat2.x = u_xlat12 * u_xlat12;\n   
-            u_xlat12 = (-u_xlat12) * 2.0 + 3.0;\n    u_xlat12 = u_xlat12 * u_xlat2.x;\n   
-            u_xlat12 = u_xlat12 * _BlinkStrength;\n    u_xlatb2 = _BlinkEnabled>=0.5;\n   
-            u_xlat12 = u_xlatb2 ? u_xlat12 : float(0.0);\n    u_xlat16_2 = texture(_MainTex,
-            vs_TEXCOORD2.xy);\n    u_xlat3 = u_xlat16_2 * _Color;\n    u_xlat2.xyz
-            = u_xlat16_2.xyz * _BlinkColor.xyz + (-u_xlat3.xyz);\n    u_xlat2.xyz
-            = vec3(u_xlat12) * u_xlat2.xyz + u_xlat3.xyz;\n    u_xlat16_5.xyz = u_xlat2.xyz
-            * _LightColor0.xyz;\n    u_xlat12 = (-_RampSmoothing) * 0.5 + _RampThreshold;\n   
-            u_xlat2.x = (-u_xlat12) + u_xlat16_1.x;\n    u_xlat6 = _RampSmoothing
-            * 0.5 + _RampThreshold;\n    u_xlat12 = (-u_xlat12) + u_xlat6;\n    u_xlat12
-            = float(1.0) / u_xlat12;\n    u_xlat12 = u_xlat12 * u_xlat2.x;\n    u_xlat12
-            = clamp(u_xlat12, 0.0, 1.0);\n    u_xlat2.x = u_xlat12 * -2.0 + 3.0;\n   
-            u_xlat12 = u_xlat12 * u_xlat12;\n    u_xlat12 = u_xlat12 * u_xlat2.x;\n   
-            u_xlat2.xyz = vec3(u_xlat12) * _HColor.xyz;\n    u_xlat3.xyz = u_xlat16_5.xyz
-            * u_xlat2.xyz + u_xlat0.xyz;\n    SV_Target0 = u_xlat3;\n    return;\n}\n\n"
-          LOD: 0
-          readDepth: 0
-          PassId: 1
-          SubShaderIndex: 0
-          Keywords:
-            "\L\u2025":
-            - DIRECTIONAL
-          Tags:
-          - Key: LIGHTMODE
-            Value: FORWARDADD
-          - Key: RenderType
-            Value: Opaque
-        DefinedKeywords:
-          "\L\u2025":
-          - DIRECTIONAL
-          - DIRECTIONAL_COOKIE
-          - POINT
-          - POINT_COOKIE
-          - SPOT
-          - STEREO_CUBEMAP_RENDER_ON
-          - STEREO_INSTANCING_ON
-          - STEREO_MULTIVIEW_ON
-          - UNITY_SINGLE_PASS_STEREO
-          - _
-          - _ALPHABLEND_ON
-          - _ALPHAPREMULTIPLY_ON
-        KeywordGroups:
-        - Keywords:
-          - _
-          - _ALPHABLEND_ON
-          - _ALPHAPREMULTIPLY_ON
-          hasDiscard: 1
-        - Keywords:
-          - POINT
-          hasDiscard: 0
-        - Keywords:
-          - DIRECTIONAL
-          hasDiscard: 0
-        - Keywords:
-          - SPOT
-          hasDiscard: 0
-        - Keywords:
-          - POINT_COOKIE
-          hasDiscard: 0
-        - Keywords:
-          - DIRECTIONAL_COOKIE
-          hasDiscard: 0
-        KeywordsMinimalCardinality: 5
-        ContainsInvalidVariant: 0
-        VariantStructures:
-        - shaderCompilerPlatform: 9
-          shader: {fileID: 4800000, guid: b62230acaa02d29479ae8460047a1371, type: 3}
-          passType: 5
-          passId: 1
-          subShaderIndex: 0
-          upToDate: 0
-          keywords:
-            "\L\u2025":
-            - DIRECTIONAL
-        CompilationErrors: []
-        HasDepthReader: 0
-        Id: 1
-        SubShaderIndex: 0
-        SerializedObjectId: 1
-        Tags:
-        - Key: LIGHTMODE
-          Value: FORWARDADD
-        - Key: RenderType
-          Value: Opaque
-        UsePass:
-          shader: 
-          pass: 
-        GrabPassTextureName: 
-        PlatformMask: -1
-      Shader: {fileID: 4800000, guid: b62230acaa02d29479ae8460047a1371, type: 3}
-      Tags:
-      - Key: RenderType
-        Value: Opaque
-    Shader: {fileID: 4800000, guid: b62230acaa02d29479ae8460047a1371, type: 3}
-    ShaderPath: Assets/_Game/3D_Assets/Shader/S_Custom_Conveyor_Up.shader
-    ShaderDefinedKeywords:
-    - DIRECTIONAL
-    - LIGHTMAP_SHADOW_MIXING
-    - LIGHTPROBE_SH
-    - SHADOWS_SCREEN
-    - VERTEXLIGHT_ON
-    - _ALPHABLEND_ON
-    - _ALPHAPREMULTIPLY_ON
-    - DIRECTIONAL_COOKIE
-    - POINT
-    - POINT_COOKIE
-    - SPOT
-    - INSTANCING_ON
-    - STEREO_CUBEMAP_RENDER_ON
-    - STEREO_INSTANCING_ON
-    - STEREO_MULTIVIEW_ON
-    - UNITY_SINGLE_PASS_STEREO
-    - _
-    - __
-    fallbackShader: {fileID: 7, guid: 0000000000000000f000000000000000, type: 0}
-    CompilationErrors: []
-    Variants:
-    - shaderCompilerPlatform: 9
-      shader: {fileID: 4800000, guid: b62230acaa02d29479ae8460047a1371, type: 3}
-      passType: 4
-      passId: 0
-      subShaderIndex: 0
-      upToDate: 0
-      keywords:
-        "\L\u2025":
-        - DIRECTIONAL
-    - shaderCompilerPlatform: 9
-      shader: {fileID: 4800000, guid: b62230acaa02d29479ae8460047a1371, type: 3}
-      passType: 4
-      passId: 0
-      subShaderIndex: 0
-      upToDate: 0
-      keywords:
-        "\L\u2025":
-        - DIRECTIONAL
-        - LIGHTPROBE_SH
-    - shaderCompilerPlatform: 9
-      shader: {fileID: 4800000, guid: b62230acaa02d29479ae8460047a1371, type: 3}
-      passType: 5
-      passId: 1
-      subShaderIndex: 0
-      upToDate: 0
-      keywords:
-        "\L\u2025":
-        - DIRECTIONAL
   - ParsedSubShaders:
     - Index: 0
       Passes:
@@ -29536,5 +28885,6 @@ MonoBehaviour:
       upToDate: 0
       keywords:
         "\L\u2025": []
-  _modifiedShaders: []
-  invalidShaders: 0
+  _modifiedShaders:
+  - Assets/_Game/3D_Assets/Shader/S_Custom_Conveyor_Up.shader
+  invalidShaders: 1

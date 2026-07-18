@@ -1,5 +1,4 @@
 using UnityEngine;
-using System;
 using System.Collections;
 
 public class CubeMovement : MonoBehaviour, ICustomTimeScaleTarget
@@ -8,6 +7,11 @@ public class CubeMovement : MonoBehaviour, ICustomTimeScaleTarget
     [SerializeField] private Rigidbody rb;
 
     private readonly int _splineSearchRange = 15;
+    private static readonly RigidbodyConstraints ConveyorMovementConstraints =
+        RigidbodyConstraints.FreezePositionY
+        | RigidbodyConstraints.FreezeRotationX
+        | RigidbodyConstraints.FreezeRotationY
+        | RigidbodyConstraints.FreezeRotationZ;
 
     private ConveyorPathRuntime _path;
     private float _lastProgress;
@@ -30,15 +34,9 @@ public class CubeMovement : MonoBehaviour, ICustomTimeScaleTarget
     private bool _hasLoggedMissingConfig;
     private bool _hasStartedFirstLoop = true;
     private bool _isFirstSampleOnSpline = true;
-#if UNITY_LUNA
-    private bool _lunaManualMode;
-#endif
 
     private void OnDisable()
     {
-#if UNITY_LUNA
-        if (_lunaManualMode) return;
-#endif
         _isFirstSampleOnSpline = true;
         _setupVersion++;
         _yAxisLockVersion++;
@@ -50,11 +48,6 @@ public class CubeMovement : MonoBehaviour, ICustomTimeScaleTarget
         SetSpawnYAxisLocked(false);
         SetPhysicsEnabled(false);
         _customTimeScale = 1f;
-    }
-
-    private void Update()
-    {
-        _movementTime += Time.unscaledDeltaTime * _customTimeScale;
     }
 
     private void FixedUpdate()
@@ -70,10 +63,7 @@ public class CubeMovement : MonoBehaviour, ICustomTimeScaleTarget
             return;
         }
 
-#if UNITY_LUNA
-        ManualUpdate(Time.unscaledDeltaTime);
-        return;
-#endif
+        _movementTime += Time.fixedDeltaTime * _customTimeScale;
 
         if (!IsMovementStepReady())
         {
@@ -88,15 +78,9 @@ public class CubeMovement : MonoBehaviour, ICustomTimeScaleTarget
         _isFirstSampleOnSpline = true;
         _setupVersion++;
         _path = path;
-        var progress = Mathf.Repeat(startProgress, 1f);
+        var progress = ResolveInitialProgress(Mathf.Repeat(startProgress, 1f), initialWorldPosition);
         _progressOffset = progressOffset;
         PrepareForSplineMovement(progress, initialWorldPosition);
-#if UNITY_LUNA
-        _lunaManualMode = true;
-        SetPhysicsEnabled(false);
-        enabled = false;
-        return;
-#endif
         LockYAxisTemporarily(config != null ? config.SpawnFreezeYDuration : 0.3f);
         EnablePhysicsNextFrameAsync(_setupVersion, progress);
     }
@@ -106,16 +90,6 @@ public class CubeMovement : MonoBehaviour, ICustomTimeScaleTarget
         _isFirstSampleOnSpline = true;
         _path = path;
         ResetDelayedForces();
-#if UNITY_LUNA
-        _lunaManualMode = true;
-        SetPhysicsEnabled(false);
-        transform.position = worldPosition;
-        if (worldForward.sqrMagnitude > 0.001f)
-        {
-            transform.forward = worldForward.normalized;
-        }
-        return;
-#endif
         SetPhysicsEnabled(true);
 
         if (rb != null)
@@ -135,7 +109,7 @@ public class CubeMovement : MonoBehaviour, ICustomTimeScaleTarget
     {
         return _completedLapCount > 0;
     }
-    
+
     public bool HasStartedFirstLoop()
     {
         return _hasStartedFirstLoop;
@@ -187,14 +161,10 @@ public class CubeMovement : MonoBehaviour, ICustomTimeScaleTarget
     private bool CanMove()
     {
         if (!HasValidConfig()) return false;
-#if UNITY_LUNA
-        return _path != null && _path.IsValid;
-#else
         return rb != null
                && !rb.isKinematic
                && _path != null
                && _path.IsValid;
-#endif
     }
 
     private float GetSpeedTimeScale()
@@ -232,34 +202,6 @@ public class CubeMovement : MonoBehaviour, ICustomTimeScaleTarget
         ApplyRoadGripForce(sample.WorldNearestPoint, sample.WorldTangent);
     }
 
-#if UNITY_LUNA
-    public void ManualUpdate(float deltaTime)
-    {
-        _movementTime += Mathf.Max(0f, deltaTime) * _customTimeScale;
-        if (_customTimeScale <= 0f || !CanMove()) return;
-        AdvanceAlongSplineManual(deltaTime);
-    }
-
-    private void AdvanceAlongSplineManual(float deltaTime)
-    {
-        if (_path == null || !_path.IsValid) return;
-        var pathLength = Mathf.Max(0.0001f, _path.CalculateLength());
-        var deltaProgress = GetTargetSpeed() * Mathf.Max(0f, deltaTime) / pathLength;
-        if (deltaProgress <= 0f) return;
-
-        var nextProgress = Mathf.Repeat(_lastProgress + deltaProgress, 1f);
-        UpdateCompletedLapCount(nextProgress);
-
-        var worldPosition = _path.EvaluateWorldPosition(nextProgress);
-        var worldTangent = _path.EvaluateWorldTangent(nextProgress);
-        transform.position = worldPosition;
-        if (worldTangent.sqrMagnitude > 0.000001f)
-        {
-            transform.forward = worldTangent.normalized;
-        }
-    }
-#endif
-
     private bool TryGetSplineSample(out SplineSample sample)
     {
         sample = default;
@@ -269,7 +211,7 @@ public class CubeMovement : MonoBehaviour, ICustomTimeScaleTarget
         }
 
         var localPosition = _path.InverseTransformPoint(transform.position);
-        
+
         Vector3 nearestPoint;
         float progress;
         Vector3 tangent;
@@ -284,7 +226,7 @@ public class CubeMovement : MonoBehaviour, ICustomTimeScaleTarget
         {
             _path.GetNearestPointLocal(localPosition, _lastProgress, _splineSearchRange, out nearestPoint, out progress, out tangent);
         }
-        
+
         var worldTangent = _path.TransformDirection(tangent).normalized;
         if (worldTangent.sqrMagnitude <= 0.000001f)
         {
@@ -300,9 +242,51 @@ public class CubeMovement : MonoBehaviour, ICustomTimeScaleTarget
 
     private void ApplyMovementForce(Vector3 worldTangent)
     {
-        var desiredVelocity = worldTangent * GetSmoothedSpeed();
+        var targetSpeed = GetSmoothedSpeed();
+        var desiredVelocity = worldTangent * targetSpeed;
+        var forwardVelocity = Vector3.Dot(rb.velocity, worldTangent);
         var velocityDelta = desiredVelocity - rb.velocity;
         rb.AddForce(velocityDelta * config.Acceleration, ForceMode.Acceleration);
+        ApplyStallAssist(worldTangent, targetSpeed, forwardVelocity);
+        StabilizeForwardVelocity(worldTangent, targetSpeed, forwardVelocity);
+    }
+
+    private void ApplyStallAssist(Vector3 worldTangent, float targetSpeed, float forwardVelocity)
+    {
+        if (config.StallAssistAcceleration <= 0f || targetSpeed <= 0f) return;
+        var assistThreshold = targetSpeed * Mathf.Clamp01(config.StallAssistSpeedRatio);
+        if (forwardVelocity >= assistThreshold) return;
+        var assistRatio = Mathf.InverseLerp(assistThreshold, 0f, Mathf.Max(0f, forwardVelocity));
+        rb.AddForce(
+            worldTangent * (config.StallAssistAcceleration * assistRatio),
+            ForceMode.Acceleration);
+    }
+
+    private void StabilizeForwardVelocity(Vector3 worldTangent, float targetSpeed, float forwardVelocity)
+    {
+        if (targetSpeed <= 0f) return;
+
+        var minForwardSpeed = targetSpeed * Mathf.Clamp01(config.MinimumForwardSpeedRatio);
+        if (forwardVelocity < minForwardSpeed && config.ForwardSpeedRecovery > 0f)
+        {
+            var missingSpeed = minForwardSpeed - forwardVelocity;
+            var correction = missingSpeed * config.ForwardSpeedRecovery;
+            if (config.MaxForwardCorrection > 0f)
+            {
+                correction = Mathf.Min(correction, config.MaxForwardCorrection);
+            }
+
+            rb.AddForce(worldTangent * correction, ForceMode.Acceleration);
+        }
+
+        var maxForwardSpeed = targetSpeed * Mathf.Max(1f, config.MaximumForwardSpeedRatio);
+        if (forwardVelocity > maxForwardSpeed && config.ForwardOverspeedDamping > 0f)
+        {
+            var overspeed = forwardVelocity - maxForwardSpeed;
+            rb.AddForce(
+                -worldTangent * (overspeed * config.ForwardOverspeedDamping),
+                ForceMode.Acceleration);
+        }
     }
 
     private float GetSmoothedSpeed()
@@ -324,12 +308,72 @@ public class CubeMovement : MonoBehaviour, ICustomTimeScaleTarget
         return (config.Speed + _speedBoost) * _lockedSpeedMultiplier * GetSpeedTimeScale();
     }
 
+    private float ResolveInitialProgress(float fallbackProgress, Vector3? initialWorldPosition)
+    {
+        if (_path == null || !_path.IsValid || !initialWorldPosition.HasValue)
+        {
+            return fallbackProgress;
+        }
+
+        var localPosition = _path.InverseTransformPoint(initialWorldPosition.Value);
+        _path.GetNearestPointGlobal(localPosition, out _, out var resolvedProgress, out _);
+        return Mathf.Repeat(resolvedProgress, 1f);
+    }
+
     private void ApplyRoadGripForce(Vector3 worldNearestPoint, Vector3 worldTangent)
     {
         if (_movementTime < _nextRoadGripTime) return;
         var offsetToSpline = Vector3.ProjectOnPlane(worldNearestPoint - transform.position, worldTangent);
+        ApplyRoadBoundaryAssist(worldNearestPoint, worldTangent, offsetToSpline);
         if (offsetToSpline.sqrMagnitude <= 0.000001f) return;
         rb.AddForce(offsetToSpline * config.RoadGripForce, ForceMode.Acceleration);
+    }
+
+    private void ApplyRoadBoundaryAssist(
+        Vector3 worldNearestPoint,
+        Vector3 worldTangent,
+        Vector3 offsetToSpline)
+    {
+        var offsetDistance = offsetToSpline.magnitude;
+        if (offsetDistance <= 0.0001f) return;
+
+        var directionToCenter = offsetToSpline / offsetDistance;
+        var forwardVelocity = Vector3.Dot(rb.velocity, worldTangent);
+        var lateralVelocity = rb.velocity - worldTangent * forwardVelocity;
+
+        var maxOffset = Mathf.Max(0.1f, config.RoadMaxOffset);
+        var dampingStart = maxOffset * 0.35f;
+        if (config.RoadLateralDamping > 0f && offsetDistance > dampingStart)
+        {
+            var dampingRatio = Mathf.InverseLerp(
+                dampingStart,
+                maxOffset + Mathf.Max(0f, config.RoadHardClampPadding),
+                offsetDistance);
+            rb.AddForce(
+                -lateralVelocity * (config.RoadLateralDamping * dampingRatio),
+                ForceMode.Acceleration);
+        }
+
+        if (offsetDistance <= maxOffset) return;
+
+        var overshoot = offsetDistance - maxOffset;
+        if (config.RoadBoundaryForce > 0f)
+        {
+            rb.AddForce(directionToCenter * overshoot * config.RoadBoundaryForce, ForceMode.Acceleration);
+        }
+
+        if (offsetDistance <= maxOffset + config.RoadHardClampPadding) return;
+
+        var clampedPosition = worldNearestPoint - directionToCenter * maxOffset;
+        rb.position = clampedPosition;
+        transform.position = clampedPosition;
+
+        var outwardDirection = -directionToCenter;
+        var outwardSpeed = Vector3.Dot(rb.velocity, outwardDirection);
+        if (outwardSpeed > 0f)
+        {
+            rb.velocity -= outwardDirection * outwardSpeed;
+        }
     }
 
     private void ResetVelocity()
@@ -342,8 +386,6 @@ public class CubeMovement : MonoBehaviour, ICustomTimeScaleTarget
         }
     }
 
-
-
     private float GetForwardProgressDelta(float fromProgress, float toProgress)
     {
         return Mathf.Repeat(toProgress - fromProgress, 1f);
@@ -352,7 +394,7 @@ public class CubeMovement : MonoBehaviour, ICustomTimeScaleTarget
     private void UpdateCompletedLapCount(float currentProgress)
     {
         ConsumeSpeedBoostDistance(currentProgress);
-        
+
         float diff = currentProgress - _lastProgress;
         if (diff > 0.5f) diff -= 1f;
         else if (diff < -0.5f) diff += 1f;
@@ -460,7 +502,7 @@ public class CubeMovement : MonoBehaviour, ICustomTimeScaleTarget
     {
         if (rb == null) yield break;
         SetSpawnYAxisLocked(true);
-        
+
         float elapsed = 0f;
         while (elapsed < duration)
         {
@@ -475,7 +517,7 @@ public class CubeMovement : MonoBehaviour, ICustomTimeScaleTarget
     private IEnumerator ApplySpeedMultiplierRoutine(int lockVersion, float duration, float speedMultiplier)
     {
         _lockedSpeedMultiplier = speedMultiplier;
-        
+
         float elapsed = 0f;
         while (elapsed < duration)
         {
@@ -497,6 +539,12 @@ public class CubeMovement : MonoBehaviour, ICustomTimeScaleTarget
             return;
         }
 
+        if (!rb.isKinematic)
+        {
+            rb.constraints |= ConveyorMovementConstraints;
+            return;
+        }
+
         rb.constraints &= ~RigidbodyConstraints.FreezePositionY;
     }
 
@@ -511,6 +559,7 @@ public class CubeMovement : MonoBehaviour, ICustomTimeScaleTarget
     private void SetPhysicsEnabled(bool isEnabled)
     {
         if (rb == null) return;
+        rb.constraints = isEnabled ? ConveyorMovementConstraints : RigidbodyConstraints.None;
         rb.isKinematic = !isEnabled;
         rb.detectCollisions = isEnabled;
     }

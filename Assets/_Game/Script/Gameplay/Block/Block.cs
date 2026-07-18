@@ -355,8 +355,9 @@ public class Block : MonoBehaviour
 
     public IReadOnlyList<BlockCubePayload> GetUnloadCubePayloadSnapshot()
     {
-        var worldPos = animationPivot != null ? animationPivot.position : transform.position;
-        return OpenHandler.CreateHiddenCubePayloadSnapshot(currentCubes, blockColorType, blockColor, worldPos, transform, maxCubes);
+        var worldPos = GetCubeFlightCenter();
+        return OpenHandler.CreateHiddenCubePayloadSnapshot(
+            currentCubes, blockColorType, blockColor, worldPos, transform, maxCubes);
     }
 
     public bool TryConsumeUnloadCube()
@@ -382,7 +383,7 @@ public class Block : MonoBehaviour
 
     public bool TryReserveReceive(EBlockColorType colorType, out Vector3 worldPosition)
     {
-        var basePos = animationPivot != null ? animationPivot.position : transform.position;
+        var basePos = GetCubeFlightCenter();
         worldPosition = basePos;
         if (!CanReceiveByMechanic()) return false;
 
@@ -400,6 +401,23 @@ public class Block : MonoBehaviour
         }
 
         return didReserve;
+    }
+
+    private Vector3 GetCubeFlightCenter()
+    {
+        if (animationPivot == null) return transform.position;
+
+        // animationPivot is a direct child of the block prefab. Construct its world point
+        // explicitly instead of reading the nested Transform.position. Luna can resolve a
+        // child world position differently under carriers rotated to the left (-90 degrees).
+        var pivotParent = animationPivot.parent;
+        if (pivotParent == null) return animationPivot.position;
+
+        var local = animationPivot.localPosition;
+        return pivotParent.position
+               + pivotParent.right * local.x
+               + pivotParent.up * local.y
+               + pivotParent.forward * local.z;
     }
 
     public bool TryReceiveCube(EBlockColorType colorType, Color color)

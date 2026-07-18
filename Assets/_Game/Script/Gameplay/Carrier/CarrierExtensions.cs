@@ -45,6 +45,8 @@ public static class CarrierExtensions
         var lateral = Vector3.Dot(worldPosition - splinePosition, right);
         var facing = lateral < 0f ? -right : right;
         var baseRotation = Quaternion.LookRotation(facing, Vector3.up);
-        return baseRotation * Quaternion.Euler(0f, rotationY, 0f);
+        var normalizedRotationY = rotationY % 360f;
+        if (normalizedRotationY < 0f) normalizedRotationY += 360f;
+        return baseRotation * Quaternion.Euler(0f, normalizedRotationY, 0f);
     }
 }

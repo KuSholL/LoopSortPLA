@@ -60,6 +60,7 @@ public static class RendererMaterialExtensions
 		{
 			return;
 		}
+		value = LunaMaterialUtility.TuneColorForLuna(value);
 		Material[] materials = EnsureRuntimeMaterials(renderer);
 		if (materials == null || materials.Length == 0)
 		{

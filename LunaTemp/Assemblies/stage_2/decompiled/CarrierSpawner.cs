@@ -179,7 +179,14 @@ public class CarrierSpawner : MonoBehaviour
 	{
 		ConveyorPathRuntime path = Path;
 		Quaternion rootRotation = ((path != null && path.Root != null) ? path.Root.rotation : Quaternion.identity);
-		return rootRotation * Quaternion.Euler(0f, carrierStack.RotationY, 0f);
+		float rotationY = NormalizeRotationY(carrierStack.RotationY);
+		return rootRotation * Quaternion.Euler(0f, rotationY, 0f);
+	}
+
+	private static float NormalizeRotationY(float rotationY)
+	{
+		float normalized = rotationY % 360f;
+		return (normalized < 0f) ? (normalized + 360f) : normalized;
 	}
 
 	public IEnumerator PlayCarriersScaleAnimation()

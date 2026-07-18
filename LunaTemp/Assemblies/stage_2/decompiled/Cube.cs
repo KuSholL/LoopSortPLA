@@ -10,14 +10,6 @@ public class Cube : CubeBase
 		cubeMovement.Setup(splineContainer, startProgress, progressOffset, initialWorldPosition);
 	}
 
-	public void ManualUpdate(float deltaTime)
-	{
-		if ((bool)cubeMovement)
-		{
-			cubeMovement.ManualUpdate(deltaTime);
-		}
-	}
-
 	public bool HasCompletedLap()
 	{
 		return (bool)cubeMovement && cubeMovement.HasCompletedLap();
